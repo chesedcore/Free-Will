@@ -14,6 +14,20 @@ config/name="Free Will"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[debug]
+
+gdscript/warnings/incompatible_ternary=2
+gdscript/warnings/untyped_declaration=2
+
+[file_customization]
+
+folder_colors={
+"res://models/": "orange",
+"res://scenes/": "green",
+"res://scripts/": "red",
+"res://shaderslop/": "yellow"
+}
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
