@@ -6,5 +6,6 @@
 [node name="Main" type="Node" unique_id=1706515465]
 
 [node name="Tank" parent="." unique_id=290108966 instance=ExtResource("1_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 121.94623, 0)
 
 [node name="TestScene" parent="." unique_id=1841801107 instance=ExtResource("2_sugp2")]

@@ -1,8 +1,17 @@
 [gd_scene format=3 uid="uid://mf201g24k23x"]
 
 [ext_resource type="Script" uid="uid://c7xy4j8d6608x" path="res://scripts/entities/player_tank.gd" id="1_e1uyo"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_3lr38"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_hjkd7"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_3lr38"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_e1uyo"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3lr38"]
+radius = 1.1215872
+
+[sub_resource type="Resource" id="Resource_2krvj"]
+script = ExtResource("3_3lr38")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_f8vrt"]
 height = 1.3037109
@@ -11,26 +20,52 @@ height = 1.3037109
 radius = 0.20800781
 height = 2.2089844
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_3lr38"]
-radius = 1.1215872
-
-[node name="Tank" type="RigidBody3D" unique_id=290108966]
+[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("barrel", "gun_gimbal", "camera_gimbal", "body_model", "turret_model")]
+mass = 20.0
 script = ExtResource("1_e1uyo")
+barrel = NodePath("TurretModel/Gun/Barrel")
+gun_gimbal = NodePath("TurretModel/Gun")
+camera_gimbal = NodePath("CameraGimbal")
+body_model = NodePath("BodyModel")
+turret_model = NodePath("TurretModel")
 
-[node name="Model" type="Node3D" parent="." unique_id=1795060039]
+[node name="BodyModel" type="Node3D" parent="." unique_id=1795060039]
 
-[node name="Body" type="MeshInstance3D" parent="Model" unique_id=1191182585]
+[node name="Body" type="MeshInstance3D" parent="BodyModel" unique_id=1191182585]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_e1uyo")
-
-[node name="Gun" type="MeshInstance3D" parent="Model" unique_id=813788881]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.54932356, 0)
-mesh = SubResource("CapsuleMesh_f8vrt")
-
-[node name="Barrel" type="MeshInstance3D" parent="Model/Gun" unique_id=1121618740]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45263672, 0)
-mesh = SubResource("CapsuleMesh_hjkd7")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1289681647]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23927891, 0)
 shape = SubResource("SphereShape3D_3lr38")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
+physics_interpolation_mode = 1
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.5, -4.5)
+top_level = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_3lr38")
+
+[node name="CameraGimbal" type="Node3D" parent="." unique_id=774062337]
+
+[node name="PhantomCamera" type="Node3D" parent="CameraGimbal" unique_id=1937678922]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.5, -4.5)
+script = ExtResource("2_hjkd7")
+look_at_mode = 1
+tween_resource = SubResource("Resource_2krvj")
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="TurretModel" type="Node3D" parent="." unique_id=173374742]
+
+[node name="Gun" type="MeshInstance3D" parent="TurretModel" unique_id=813788881]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.54932356, 0)
+mesh = SubResource("CapsuleMesh_f8vrt")
+
+[node name="Barrel" type="Node3D" parent="TurretModel/Gun" unique_id=95074020]
+
+[node name="Mesh" type="MeshInstance3D" parent="TurretModel/Gun/Barrel" unique_id=1121618740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.73866403, -5.9604645e-08)
+mesh = SubResource("CapsuleMesh_hjkd7")

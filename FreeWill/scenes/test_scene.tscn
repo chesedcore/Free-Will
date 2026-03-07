@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://nu0cniohybqx"]
 
+[ext_resource type="Script" uid="uid://dfj8b4hri7dgl" path="res://scripts/entities/killbox.gd" id="1_g7g4h"]
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5oyu"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -11,6 +13,23 @@ sky_material = SubResource("ProceduralSkyMaterial_a5oyu")
 background_mode = 2
 sky = SubResource("Sky_g7g4h")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g7g4h"]
+frequency = 0.04
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j8ivh"]
+noise = SubResource("FastNoiseLite_g7g4h")
+seamless = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5oyu"]
+albedo_color = Color(0.064799994, 0.09691997, 0.24, 1)
+albedo_texture = SubResource("NoiseTexture2D_j8ivh")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g7g4h"]
+material = SubResource("StandardMaterial3D_a5oyu")
+size = Vector2(1000, 1000)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j8ivh"]
+
 [node name="TestScene" type="Node3D" unique_id=1841801107]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=328075735]
@@ -19,3 +38,14 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=513326264]
 environment = SubResource("Environment_j8ivh")
+
+[node name="Ocean" type="MeshInstance3D" parent="." unique_id=139133770]
+mesh = SubResource("PlaneMesh_g7g4h")
+
+[node name="Killbox" type="Area3D" parent="Ocean" unique_id=820843103]
+script = ExtResource("1_g7g4h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ocean/Killbox" unique_id=1975205493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.118681, 0)
+shape = SubResource("WorldBoundaryShape3D_j8ivh")
+debug_color = Color(0, 0.4333334, 1, 1)
