@@ -11,13 +11,22 @@ config_version=5
 [application]
 
 config/name="Free Will"
+run/main_scene="uid://buyvrdryjb10r"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+PhantomCameraManager="*uid://duq6jhf6unyis"
 
 [debug]
 
 gdscript/warnings/incompatible_ternary=2
 gdscript/warnings/untyped_declaration=2
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
 
 [file_customization]
 
