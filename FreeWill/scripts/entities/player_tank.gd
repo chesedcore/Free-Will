@@ -7,8 +7,7 @@ const GUN_GIMBAL_ROTATION_SPEED: float = 6.0
 const BODY_ROTATION_SPEED: float = 1.0
 const GUN_FIRE_FORCE: float = 50.0
 
-const CANNON_CAMERA_SHAKE_AMPLITUDE: float = 50.0
-const DEFAULT_CAMERA_SHAKE_AMPLITUDE: float = 10.0
+const MAX_SPEED: float = 100.0
 
 @export var camera_gimbal: CameraGimbal
 @export var tank_model: Node3D
@@ -38,12 +37,25 @@ func _physics_process(_delta: float) -> void:
 	model_transform_update()
 
 
+func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	state.linear_velocity.x = clampf(state.linear_velocity.x, -MAX_SPEED, MAX_SPEED)
+	state.linear_velocity.y = clampf(state.linear_velocity.y, -MAX_SPEED, MAX_SPEED)
+	state.linear_velocity.z = clampf(state.linear_velocity.z, -MAX_SPEED, MAX_SPEED)
+
+
 func model_transform_update() -> void:
 	tank_model.global_position = barrel_position_marker.global_position
 	tank_model.look_at(barrel_look_at_marker.global_position, Vector3.UP, true)
 
 
 func fire_cannon() -> void:
+	# Particles
+	var particles: Node3D = \
+		preload("res://scenes/entities/tank_cannon_particles.tscn").instantiate()
+
+	#particles.global_transform = bullet_spawn_position_marker.global_transform
+	bullet_spawn_position_marker.add_child(particles)
+
 	linear_velocity += -camera_gimbal.global_transform.basis.z * GUN_FIRE_FORCE
 	#angular_velocity += -camera_gimbal.global_transform.basis.x * GUN_FIRE_FORCE * 0.1
 

@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://cxffdn6nvltft"]
+
+[ext_resource type="Script" uid="uid://g2ml563qqvrx" path="res://scripts/effects/cannon_particles.gd" id="1_yl5gg"]
+
+[sub_resource type="Gradient" id="Gradient_pc6vm"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jo3q4"]
+gradient = SubResource("Gradient_pc6vm")
+
+[sub_resource type="Curve" id="Curve_sr7b7"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.21729492, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.21729492), 0.0, 0.0, 0, 0]
+point_count = 3
+point_0/position = Vector2(0, 1)
+point_1/position = Vector2(0.21729492, 1)
+point_2/position = Vector2(1, 0.21729492)
+
+[sub_resource type="CurveTexture" id="CurveTexture_sykoq"]
+curve = SubResource("Curve_sr7b7")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ft0en"]
+lifetime_randomness = 0.9
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, 1)
+spread = 72.458
+initial_velocity_min = -10.0
+initial_velocity_max = -10.0
+scale_curve = SubResource("CurveTexture_sykoq")
+color = Color(1, 0.7833333, 0, 1)
+color_ramp = SubResource("GradientTexture1D_jo3q4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lo8o3"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.03
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+stencil_color = Color(0.6274044, 0.44477054, 0, 1)
+stencil_outline_thickness = 0.07
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fke0h"]
+next_pass = SubResource("StandardMaterial3D_lo8o3")
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.6, 0.34, 0, 1)
+emission = Color(0.55, 0.40333334, 0, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_outline_thickness = 0.03
+
+[sub_resource type="SphereMesh" id="SphereMesh_bdemy"]
+material = SubResource("StandardMaterial3D_fke0h")
+radius = 0.25
+height = 0.5
+radial_segments = 8
+rings = 3
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_au4yw"]
+lifetime_randomness = 0.65
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, 1)
+spread = 72.458
+initial_velocity_min = -10.0
+initial_velocity_max = -10.0
+gravity = Vector3(0, 10, 0)
+scale_curve = SubResource("CurveTexture_sykoq")
+color = Color(1, 0.7833333, 0, 1)
+color_ramp = SubResource("GradientTexture1D_jo3q4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2mnf"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.4117647)
+grow = true
+grow_amount = 0.03
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_504x6"]
+next_pass = SubResource("StandardMaterial3D_v2mnf")
+transparency = 1
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.15, 0.15, 0.15, 0.6431373)
+emission = Color(0.55, 0.40333334, 0, 1)
+stencil_mode = 1
+stencil_flags = 2
+stencil_color = Color(0, 0, 0, 0.4117647)
+stencil_outline_thickness = 0.03
+
+[sub_resource type="SphereMesh" id="SphereMesh_jc34l"]
+material = SubResource("StandardMaterial3D_504x6")
+radius = 1.0
+height = 2.0
+radial_segments = 8
+rings = 3
+
+[node name="CannonParticles" type="Node3D" unique_id=1355930968 node_paths=PackedStringArray("fire_particles", "smoke_particles")]
+script = ExtResource("1_yl5gg")
+fire_particles = NodePath("FireParticles")
+smoke_particles = NodePath("SmokeParticles")
+
+[node name="FireParticles" type="GPUParticles3D" parent="." unique_id=178912719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0017375946)
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 0.99
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ft0en")
+draw_pass_1 = SubResource("SphereMesh_bdemy")
+
+[node name="SmokeParticles" type="GPUParticles3D" parent="." unique_id=2022523199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0017375946)
+emitting = false
+amount = 12
+one_shot = true
+explosiveness = 0.85
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_au4yw")
+draw_pass_1 = SubResource("SphereMesh_jc34l")

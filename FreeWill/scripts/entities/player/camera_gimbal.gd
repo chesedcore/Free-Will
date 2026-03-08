@@ -6,10 +6,11 @@ const MOUSE_SENS: float = 1.0
 const MIN_ROT: float = -80.0
 const MAX_ROT: float = 80.0
 
-const SPEED_SHAKE_FREQ_MAX: float = 20.0
-const SPEED_SHAKE_FREQ_MIN: float = 0.0
-
 @export var phantom_camera: PhantomCamera3D
+
+var screen_shake_value: float = 0.0:
+	set(value):
+		screen_shake_value = clampf(value, 0.0, 2.0)
 
 @onready var tank: PlayerTank = owner
 
@@ -44,6 +45,6 @@ func camera_rotation_update(motion: Vector2) -> void:
 
 
 func speed_shake_update(delta: float) -> void:
-	var target_freq: float = \
-		clampf(tank.linear_velocity.length() * 0.0025, SPEED_SHAKE_FREQ_MIN, SPEED_SHAKE_FREQ_MAX)
-	phantom_camera.noise.frequency = lerpf(phantom_camera.noise.frequency, target_freq, 12.0 * delta)
+	screen_shake_value = tank.linear_velocity.length() * 0.0025
+	phantom_camera.noise.frequency = \
+		lerpf(phantom_camera.noise.frequency, screen_shake_value, 12.0 * delta)
