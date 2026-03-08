@@ -46,6 +46,8 @@ environment = SubResource("Environment_j8ivh")
 mesh = SubResource("PlaneMesh_g7g4h")
 
 [node name="Killbox" type="Area3D" parent="Ocean" unique_id=820843103]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_g7g4h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ocean/Killbox" unique_id=1975205493]
