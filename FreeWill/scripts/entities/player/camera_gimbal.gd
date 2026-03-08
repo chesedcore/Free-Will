@@ -4,12 +4,21 @@ class_name CameraGimbal extends Node3D
 
 const MOUSE_SENS: float = 1.0
 
+const SPEED_SHAKE_FREQ_MAX: float = 20.0
+const SPEED_SHAKE_FREQ_MIN: float = 0.0
+
 @export var phantom_camera: PhantomCamera3D
+
+@onready var tank: PlayerTank = owner
 
 
 func _input(event: InputEvent) -> void:
 	if (event is InputEventMouseMotion):
 		camera_rotation_update(event.relative)
+
+
+func _process(delta: float) -> void:
+	speed_shake_update(delta)
 
 
 func camera_rotation_update(motion: Vector2) -> void:
@@ -24,3 +33,9 @@ func camera_rotation_update(motion: Vector2) -> void:
 	rotation.x += motion.y * sens
 	rotation.y += -motion.x * sens
 	rotation.x = clampf(rotation.x, deg_to_rad(-45), deg_to_rad(45))
+
+
+func speed_shake_update(delta: float) -> void:
+	var target_freq: float = \
+		clampf(tank.linear_velocity.length() * 0.0025, SPEED_SHAKE_FREQ_MIN, SPEED_SHAKE_FREQ_MAX)
+	phantom_camera.noise.frequency = lerpf(phantom_camera.noise.frequency, target_freq, 12.0 * delta)

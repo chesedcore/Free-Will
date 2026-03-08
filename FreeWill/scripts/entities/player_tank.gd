@@ -42,6 +42,16 @@ func barrel_transform_update() -> void:
 
 
 func fire_cannon() -> void:
-	print("BANG")
 	linear_velocity += -camera_gimbal.global_transform.basis.z * GUN_FIRE_FORCE
 	angular_velocity += -camera_gimbal.global_transform.basis.x * GUN_FIRE_FORCE * 0.1
+
+	# TODO: a better bullet system would be way better. But for now this works.
+	var new_bullet: Bullet = preload("res://scenes/projectiles/tank_bullet.scn").instantiate()
+	new_bullet.transform = barrel.transform
+
+	# Bubba: to prevent the bullets from looking like they're lagging behind, we add a small amount
+	# of the velocity to the bullet's origin
+	new_bullet.transform.origin += linear_velocity * 0.01
+
+	new_bullet.linear_velocity = linear_velocity
+	get_tree().root.add_child.call_deferred(new_bullet)

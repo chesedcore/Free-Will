@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://buyvrdryjb10r"]
 
-[ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://cy547lha71csg" path="res://scenes/entities/tank.scn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://nu0cniohybqx" path="res://scenes/test_scene.tscn" id="2_sugp2"]
 
 [node name="Main" type="Node" unique_id=1706515465]
 
-[node name="Tank" parent="." unique_id=290108966 instance=ExtResource("1_0wfyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 121.94623, 0)
-
 [node name="TestScene" parent="." unique_id=1841801107 instance=ExtResource("2_sugp2")]
+
+[node name="Tank" parent="." unique_id=290108966 instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 399.1845, 0)

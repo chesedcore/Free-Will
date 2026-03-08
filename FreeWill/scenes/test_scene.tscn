@@ -23,10 +23,13 @@ seamless = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a5oyu"]
 albedo_color = Color(0.064799994, 0.09691997, 0.24, 1)
 albedo_texture = SubResource("NoiseTexture2D_j8ivh")
+uv1_scale = Vector3(0.005, 0.005, 0.005)
+uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g7g4h"]
 material = SubResource("StandardMaterial3D_a5oyu")
-size = Vector2(1000, 1000)
+size = Vector2(30000, 30000)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j8ivh"]
 
