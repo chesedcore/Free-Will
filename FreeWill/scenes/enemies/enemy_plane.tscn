@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://p40bw40m4r7e" path="res://scripts/States/state_machine.gd" id="2_12l03"]
 [ext_resource type="Script" uid="uid://c6hif5kpwhw2i" path="res://scripts/States/enemy_states/plane_enemy_states/plane_wander_state.gd" id="3_ykwvp"]
 [ext_resource type="PackedScene" uid="uid://ciqvl3ekbok17" path="res://models/player_tank.blend" id="4_rhn42"]
+[ext_resource type="Texture2D" uid="uid://bt2jghecfjfkq" path="res://icon.svg" id="5_y35xw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_12l03"]
 
@@ -43,3 +44,7 @@ mesh = SubResource("CapsuleMesh_rhn42")
 
 [node name="player_tank" parent="model" unique_id=123535562 instance=ExtResource("4_rhn42")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1217195094]
+billboard = 1
+texture = ExtResource("5_y35xw")

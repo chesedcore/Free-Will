@@ -14,6 +14,42 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 399.1845, 0)
 [node name="Enemy_plane" parent="." unique_id=187691756 instance=ExtResource("3_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, 0)
 
+[node name="Enemy_plane6" parent="." unique_id=1812028047 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, -19)
+
+[node name="Enemy_plane7" parent="." unique_id=646430862 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, -50)
+
+[node name="Enemy_plane8" parent="." unique_id=26070921 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, -92.96391)
+
+[node name="Enemy_plane9" parent="." unique_id=1925466064 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, -131.82788)
+
+[node name="Enemy_plane10" parent="." unique_id=271372009 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 46.393684, -131.82788)
+
+[node name="Enemy_plane11" parent="." unique_id=730570772 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.98522, 46.393684, -131.82788)
+
+[node name="Enemy_plane12" parent="." unique_id=1670918886 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.98522, 46.393684, 49.17212)
+
+[node name="Enemy_plane13" parent="." unique_id=1914686182 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.014778, 46.393684, 49.17212)
+
+[node name="Enemy_plane14" parent="." unique_id=211547227 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014778137, 46.393684, 101.17212)
+
+[node name="Enemy_plane15" parent="." unique_id=857185105 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.167873, 46.393684, -57.82788)
+
+[node name="Enemy_plane16" parent="." unique_id=554792671 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.167873, 46.393684, 69.17212)
+
+[node name="Enemy_plane17" parent="." unique_id=1631968735 instance=ExtResource("3_sugp2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.167873, 46.393684, 69.17212)
+
 [node name="Enemy_plane2" parent="." unique_id=1462277449 instance=ExtResource("3_sugp2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.902634, 46.393684, 0)
 
