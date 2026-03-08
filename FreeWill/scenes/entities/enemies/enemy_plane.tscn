@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://7yq66c566yvi"]
+
+[ext_resource type="Script" uid="uid://jp6qfe0e22kw" path="res://scripts/enemies/enemy_plane.gd" id="1_17xuh"]
+[ext_resource type="Script" uid="uid://p40bw40m4r7e" path="res://scripts/States/state_machine.gd" id="2_12l03"]
+[ext_resource type="Script" uid="uid://c6hif5kpwhw2i" path="res://scripts/States/enemy_states/plane_enemy_states/plane_wander_state.gd" id="3_ykwvp"]
+[ext_resource type="Script" uid="uid://cdsts08mqub0" path="res://scripts/States/enemy_states/plane_enemy_states/aiming_state.gd" id="4_iyje6"]
+[ext_resource type="PackedScene" uid="uid://dnghcfqawmidu" path="res://assets/models/prototype_plane.blend" id="4_rhn42"]
+[ext_resource type="Script" uid="uid://dyuaafboyucv0" path="res://scripts/States/enemy_states/plane_enemy_states/retreat_state.gd" id="5_8et62"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_12l03"]
+
+[node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("model")]
+collision_layer = 2
+script = ExtResource("1_17xuh")
+model = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2012983732]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_12l03")
+
+[node name="StateMachine" type="Node" parent="." unique_id=519865598 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_12l03")
+initial_state = NodePath("AimingState")
+
+[node name="WanderState" type="Node" parent="StateMachine" unique_id=757746633 node_paths=PackedStringArray("enemy")]
+script = ExtResource("3_ykwvp")
+move_speed = 50.0
+turn_speed = 1.0
+enemy = NodePath("../..")
+
+[node name="AimingState" type="Node" parent="StateMachine" unique_id=1110502229 node_paths=PackedStringArray("aim", "lock_on_timer", "enemy")]
+script = ExtResource("4_iyje6")
+move_speed = 50.0
+aim = NodePath("../../aim")
+attack_range = 150.0
+retreat_range = 50.0
+lock_on_timer = NodePath("../../lock_on_timer")
+enemy = NodePath("../..")
+
+[node name="RetreatState" type="Node" parent="StateMachine" unique_id=1519980772 node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_8et62")
+move_speed = 50.0
+turn_speed = 0.5
+enemy = NodePath("../..")
+
+[node name="prototype_plane" parent="." unique_id=392001002 instance=ExtResource("4_rhn42")]
+
+[node name="aim" type="RayCast3D" parent="." unique_id=1419229604]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14542985, -5.209954)
+target_position = Vector3(0, 0, -300)
+
+[node name="lock_on_timer" type="Timer" parent="." unique_id=1804442152]
+one_shot = true
+
+[connection signal="timeout" from="lock_on_timer" to="StateMachine/AimingState" method="_on_lock_on_timer_timeout"]
