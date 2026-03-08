@@ -5,7 +5,7 @@
 [ext_resource type="Script" uid="uid://c6hif5kpwhw2i" path="res://scripts/States/enemy_states/plane_enemy_states/plane_wander_state.gd" id="3_ykwvp"]
 [ext_resource type="Script" uid="uid://cdsts08mqub0" path="res://scripts/States/enemy_states/plane_enemy_states/aiming_state.gd" id="4_iyje6"]
 [ext_resource type="PackedScene" uid="uid://dnghcfqawmidu" path="res://assets/models/prototype_plane.blend" id="4_rhn42"]
-[ext_resource type="Script" path="res://scripts/States/enemy_states/plane_enemy_states/retreat_state.gd" id="5_8et62"]
+[ext_resource type="Script" uid="uid://dyuaafboyucv0" path="res://scripts/States/enemy_states/plane_enemy_states/retreat_state.gd" id="5_8et62"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_12l03"]
 
@@ -29,7 +29,6 @@ turn_speed = 1.0
 [node name="AimingState" type="Node" parent="StateMachine" unique_id=1110502229 node_paths=PackedStringArray("aim", "lock_on_timer")]
 script = ExtResource("4_iyje6")
 move_speed = 50.0
-turn_speed = null
 aim = NodePath("../../aim")
 attack_range = 150.0
 retreat_range = 50.0
@@ -39,7 +38,6 @@ lock_on_timer = NodePath("../../lock_on_timer")
 script = ExtResource("5_8et62")
 move_speed = 50.0
 turn_speed = 0.5
-retreat_time = null
 
 [node name="prototype_plane" parent="." unique_id=392001002 instance=ExtResource("4_rhn42")]
 

@@ -22,7 +22,6 @@ func update(_delta : float)->void:
 
 func physics_update(_delta :float)->void:
 	if enemy and player:
-
 		player_direction = Vector3(player.global_position - enemy.global_position ).normalized()
 		heading = heading.slerp(player_direction,turn_speed * _delta)
 		enemy.look_at(enemy.global_position + heading, Vector3.UP)

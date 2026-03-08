@@ -9,16 +9,16 @@ var retreat_direction : Vector3
 var player_direction : Vector3
 
 
-func enter()->void:
+func enter() -> void:
 	player_direction =  player.global_position - enemy.global_position
 	retreat_time = randf_range(1,4)
 
 
-func update(_delta : float)->void:
+func update(_delta: float) -> void:
 	pass
 
 
-func physics_update(_delta :float)->void:
+func physics_update(_delta: float) -> void:
 	if enemy and player:
 		if retreat_time >0 :
 			retreat_time -= _delta
