@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://dr1v73kln85wn"]
+
+[ext_resource type="Material" uid="uid://bvhqeqdmijflx" path="res://res/shadermat/theme_stripes.tres" id="1_fe2o3"]
+[ext_resource type="Script" uid="uid://biym5kgfo7ohl" path="res://scripts/util_scripts/cascadev2.gd" id="2_fe2o3"]
+[ext_resource type="PackedScene" uid="uid://dvcp2k1c3lraf" path="res://scenes/temp/temp_tank.tscn" id="3_1g8jr"]
+
+[sub_resource type="Shader" id="Shader_sl1te"]
+code = "shader_type canvas_item;
+
+uniform vec4 color_gap: source_color = vec4(0.25);
+uniform vec4 color_stripe: source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float divisions = 8.0; // increase for more stripe density
+uniform float stripe_bias = 2.5; // 1.0 means no stripes; 2.0 means stripes and gaps are equal size
+uniform float speed = 0.1;
+uniform float angle = 0.7854; // in radians
+
+
+uniform float skew = 0;
+
+void vertex() {
+	VERTEX.x += VERTEX.y * skew;
+}
+
+
+void fragment() {
+
+
+	float w = cos(angle) * UV.x + sin(angle) * UV.y - speed * TIME;
+	if (floor(mod(w * divisions, stripe_bias)) < 0.0001) {
+		COLOR = color_gap;
+	} else {
+		COLOR = color_stripe;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fe2o3"]
+shader = SubResource("Shader_sl1te")
+shader_parameter/color_gap = Color(0, 0, 0, 1)
+shader_parameter/color_stripe = Color(0, 0.7294118, 0.8039216, 1)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.075
+shader_parameter/angle = 4.785
+shader_parameter/skew = 0.0
+
+[node name="MainMenu" type="Control" unique_id=1979099766]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Background" type="ColorRect" parent="." unique_id=1285181798]
+visible = false
+material = ExtResource("1_fe2o3")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="CascadeV2" type="Control" parent="." unique_id=1207365168]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_fe2o3")
+tween_in_time = 0.6
+metadata/_custom_type_script = "uid://biym5kgfo7ohl"
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="CascadeV2" unique_id=1791331676]
+visible = false
+modulate = Color(0, 0, 0, 0.6745098)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 326.0
+offset_top = 68.0
+offset_right = 326.0
+offset_bottom = 68.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="CascadeV2/SubViewportContainer2" unique_id=1034314316]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 0
+
+[node name="Node3D" parent="CascadeV2/SubViewportContainer2/SubViewport" unique_id=2027508469 instance=ExtResource("3_1g8jr")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CascadeV2" unique_id=222853924]
+modulate = Color(0.56078434, 1, 1, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="CascadeV2/SubViewportContainer" unique_id=1496986347]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Node3D" parent="CascadeV2/SubViewportContainer/SubViewport" unique_id=1628686990 instance=ExtResource("3_1g8jr")]
+
+[node name="Shadow" type="ColorRect" parent="CascadeV2" unique_id=1585416011]
+layout_mode = 0
+offset_left = 214.0
+offset_top = -178.00002
+offset_right = 255.25253
+offset_bottom = 795.28
+rotation = 0.26887745
+color = Color(0, 0, 0, 0.22352941)
+
+[node name="ColorRect" type="ColorRect" parent="CascadeV2" unique_id=79623810]
+layout_mode = 0
+offset_left = 201.05241
+offset_top = -159.24252
+offset_right = 242.30495
+offset_bottom = 814.0375
+rotation = 0.26887745
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="CascadeV2/ColorRect" unique_id=42316485]
+material = SubResource("ShaderMaterial_fe2o3")
+layout_mode = 0
+offset_left = 10.669342
+offset_right = 32.410797
+offset_bottom = 946.0431
+color = Color(0, 0.7294118, 0.8039216, 1)
+metadata/_edit_lock_ = true
+
+[node name="Shadow2" type="ColorRect" parent="CascadeV2" unique_id=438617124]
+layout_mode = 0
+offset_left = -53.000015
+offset_top = 414.0
+offset_right = -11.747482
+offset_bottom = 1387.28
+rotation = -1.2534785
+color = Color(0, 0, 0, 0.22352941)
+
+[node name="ColorRect2" type="ColorRect" parent="CascadeV2" unique_id=471774911]
+layout_mode = 0
+offset_left = -73.0
+offset_top = 398.24252
+offset_right = -31.747467
+offset_bottom = 1371.5225
+rotation = -1.2534785
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CascadeV2/ColorRect2" unique_id=478661964]
+material = SubResource("ShaderMaterial_fe2o3")
+layout_mode = 0
+offset_left = 10.669342
+offset_right = 32.410797
+offset_bottom = 946.0431
+color = Color(0, 0.7294118, 0.8039216, 1)
+metadata/_edit_lock_ = true

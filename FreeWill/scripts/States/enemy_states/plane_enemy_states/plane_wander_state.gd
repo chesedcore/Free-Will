@@ -16,12 +16,14 @@ func enter()->void:
 	player = get_tree().get_first_node_in_group("player")
 	randomize_wander()
 
+
 func update(_delta : float)->void:
 	if wander_time>0:
 		wander_time -= _delta
 	else:
 		randomize_wander()
-	
+
+
 func physics_update(_delta :float)->void:
 	if enemy:
 		heading = heading.slerp(move_direction,turn_speed * _delta)

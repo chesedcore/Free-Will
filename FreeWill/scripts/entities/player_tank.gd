@@ -10,16 +10,18 @@ const GUN_FIRE_FORCE: float = 50.0
 const CANNON_CAMERA_SHAKE_AMPLITUDE: float = 50.0
 const DEFAULT_CAMERA_SHAKE_AMPLITUDE: float = 10.0
 
-@export var barrel: Node3D
 @export var camera_gimbal: CameraGimbal
+@export var tank_model: Node3D
 
 @export var barrel_look_at_marker: Marker3D
 @export var barrel_position_marker: Marker3D
+@export var bullet_spawn_position_marker: Marker3D
 
 
 func _ready() -> void:
-	assert(barrel != null, "barrel node shouldn't be null.")
+	assert(tank_model, "barrel node shouldn't be null.")
 	# TEMP: Bubba: should the tank handle changing mouse mode? Maybe.
+	# Monarch: We can change it up later when we have a mission handler.
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
@@ -33,25 +35,29 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	barrel_transform_update()
+	model_transform_update()
 
 
-func barrel_transform_update() -> void:
-	barrel.global_position = barrel_position_marker.global_position
-	barrel.look_at(barrel_look_at_marker.global_position)
+func model_transform_update() -> void:
+	tank_model.global_position = barrel_position_marker.global_position
+	tank_model.look_at(barrel_look_at_marker.global_position, Vector3.UP, true)
 
 
 func fire_cannon() -> void:
 	linear_velocity += -camera_gimbal.global_transform.basis.z * GUN_FIRE_FORCE
-	angular_velocity += -camera_gimbal.global_transform.basis.x * GUN_FIRE_FORCE * 0.1
+	#angular_velocity += -camera_gimbal.global_transform.basis.x * GUN_FIRE_FORCE * 0.1
 
 	# TODO: a better bullet system would be way better. But for now this works.
 	var new_bullet: Bullet = preload("res://scenes/projectiles/tank_bullet.scn").instantiate()
-	new_bullet.transform = barrel.transform
+	new_bullet.transform = bullet_spawn_position_marker.global_transform
 
 	# Bubba: to prevent the bullets from looking like they're lagging behind, we add a small amount
 	# of the velocity to the bullet's origin
 	new_bullet.transform.origin += linear_velocity * 0.01
 
 	new_bullet.linear_velocity = linear_velocity
+
+	# Monarch: Usually I'd make a dedicated `Bullets` Node3D that 'holds' this node as an array,
+	# then trigger a signal that makes the World handler add the bullet to the Bullets node.
+	# But for now (in the spirit of this jam), this will do just fine.
 	get_tree().root.add_child.call_deferred(new_bullet)

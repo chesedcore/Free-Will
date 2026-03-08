@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dvcp2k1c3lraf"]
+
+[ext_resource type="PackedScene" uid="uid://dehr4ujp0q6pl" path="res://models/scene.gltf" id="1_2y4bt"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_jtec7"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_ykqgy"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_jtec7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2y4bt"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_myu3r"]
+sky_material = SubResource("ProceduralSkyMaterial_2y4bt")
+
+[sub_resource type="Environment" id="Environment_ykqgy"]
+background_mode = 2
+sky = SubResource("Sky_myu3r")
+
+[sub_resource type="Resource" id="Resource_vqm70"]
+script = ExtResource("3_jtec7")
+
+[node name="Tanka" type="Node3D" unique_id=1628686990]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=234476269]
+environment = SubResource("Environment_ykqgy")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=7934048]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Sketchfab_Scene" parent="." unique_id=532177407 instance=ExtResource("1_2y4bt")]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=388854813]
+transform = Transform3D(0.8651125, -0.20278049, 0.45875964, -0.013777969, 0.9046804, 0.425868, -0.50138843, -0.37474453, 0.77985644, 1.4153504, 0.7662084, 3.3781767)
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1984843557]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_jtec7")
+
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=2144758083]
+transform = Transform3D(0.8651125, -0.20278049, 0.45875964, -0.013777969, 0.9046804, 0.425868, -0.50138843, -0.37474453, 0.77985644, 1.4153504, 0.7662084, 3.3781767)
+script = ExtResource("2_ykqgy")
+tween_resource = SubResource("Resource_vqm70")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=333319386]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.320799, -1.2434484, -1.9456482)
+cast_shadow = 3
+size = Vector3(146.33398, 1, 45.82129)

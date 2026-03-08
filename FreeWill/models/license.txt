@@ -1,0 +1,11 @@
+Model Information:
+* title:	panzer III low-poly tank
+* source:	https://sketchfab.com/3d-models/panzer-iii-low-poly-tank-2d233db134ec41b29b66180c91d62245
+* author:	alex-toma (https://sketchfab.com/alex-toma)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "panzer III low-poly tank" (https://sketchfab.com/3d-models/panzer-iii-low-poly-tank-2d233db134ec41b29b66180c91d62245) by alex-toma (https://sketchfab.com/alex-toma) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
