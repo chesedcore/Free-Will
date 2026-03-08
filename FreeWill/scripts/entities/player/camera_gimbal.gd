@@ -3,6 +3,8 @@ class_name CameraGimbal extends Node3D
 ## Camera gimbal class. Handles camera rotation and shake.
 
 const MOUSE_SENS: float = 1.0
+const MIN_ROT: float = -80.0
+const MAX_ROT: float = 80.0
 
 const SPEED_SHAKE_FREQ_MAX: float = 20.0
 const SPEED_SHAKE_FREQ_MIN: float = 0.0
@@ -38,7 +40,7 @@ func camera_rotation_update(motion: Vector2) -> void:
 	var sens: float = MOUSE_SENS * 0.001
 	rotation.x += motion.y * sens
 	rotation.y += -motion.x * sens
-	rotation.x = clampf(rotation.x, deg_to_rad(-45), deg_to_rad(45))
+	rotation.x = clampf(rotation.x, deg_to_rad(MIN_ROT), deg_to_rad(MAX_ROT))
 
 
 func speed_shake_update(delta: float) -> void:
