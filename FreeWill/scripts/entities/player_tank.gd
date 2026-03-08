@@ -18,6 +18,7 @@ const MAX_SPEED: float = 100.0
 
 
 func _ready() -> void:
+	GameState.player = self
 	assert(tank_model, "barrel node shouldn't be null.")
 	# TEMP: Bubba: should the tank handle changing mouse mode? Maybe.
 	# Monarch: We can change it up later when we have a mission handler.

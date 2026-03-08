@@ -1,5 +1,10 @@
 class_name EnemyState extends State
-#replace type with whatever class the player uses
-@export var player : CharacterBody3D
-@export var enemy : BaseEnemy
-# Called when the node enters the scene tree for the first time.
+
+var player : PhysicsBody3D
+var enemy : BaseEnemy
+
+
+func _ready() -> void:
+	player = GameState.player
+	assert(player, "Player shouldn't be null")
+	enemy = owner

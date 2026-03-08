@@ -1,6 +1,5 @@
 class_name AimingState extends EnemyState
 
-
 @export var move_speed : float = 10.0
 @export var turn_speed : float = 2.5
 @export var aim: RayCast3D
@@ -14,15 +13,16 @@ var player_direction : Vector3
 
 
 func enter()->void:
-	
-	player = get_tree().get_first_node_in_group("player")
-	
+	pass
+
+
 func update(_delta : float)->void:
 	pass
-	
+
+
 func physics_update(_delta :float)->void:
 	if enemy and player:
-		
+
 		player_direction = Vector3(player.global_position - enemy.global_position ).normalized()
 		heading = heading.slerp(player_direction,turn_speed * _delta)
 		enemy.look_at(enemy.global_position + heading, Vector3.UP)
@@ -43,7 +43,7 @@ func start_lock_on()->void:
 
 
 func stop_lock_on()->void:
-	
+
 	lock_on_timer.stop()
 
 
