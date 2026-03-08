@@ -3,8 +3,13 @@
 [ext_resource type="Script" uid="uid://jp6qfe0e22kw" path="res://scripts/enemies/enemy_plane.gd" id="1_17xuh"]
 [ext_resource type="Script" uid="uid://p40bw40m4r7e" path="res://scripts/States/state_machine.gd" id="2_12l03"]
 [ext_resource type="Script" uid="uid://c6hif5kpwhw2i" path="res://scripts/States/enemy_states/plane_enemy_states/plane_wander_state.gd" id="3_ykwvp"]
+[ext_resource type="Script" uid="uid://b2joxwmyfcsgs" path="res://scripts/States/enemy_states/plane_enemy_states/attack_state.gd" id="4_hrw3j"]
 [ext_resource type="PackedScene" uid="uid://ciqvl3ekbok17" path="res://models/player_tank.blend" id="4_rhn42"]
 [ext_resource type="Texture2D" uid="uid://bt2jghecfjfkq" path="res://icon.svg" id="5_y35xw"]
+[ext_resource type="Material" uid="uid://8aqronk8hojl" path="res://res/tank_mats/green_3.material" id="6_ev65g"]
+[ext_resource type="Material" uid="uid://nvi6067o6oj7" path="res://res/tank_mats/green_4.material" id="7_qi3w7"]
+[ext_resource type="Material" uid="uid://dlc7km5h5mqct" path="res://res/tank_mats/green_2.material" id="8_gautq"]
+[ext_resource type="Material" uid="uid://ctlebubbv3qoy" path="res://res/tank_mats/green_1.material" id="9_1jpvh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_12l03"]
 
@@ -13,6 +18,31 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rhn42"]
 radius = 0.31878662
 height = 0.63757324
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6okr"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.05
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pylw5"]
+resource_name = "Darker Green"
+next_pass = SubResource("StandardMaterial3D_k6okr")
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.016569003, 0.15822126, 0.07921025, 1)
+metallic = 0.25
+roughness = 0.75
+stencil_mode = 1
+stencil_flags = 2
+stencil_outline_thickness = 0.05
 
 [node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("model")]
 script = ExtResource("1_17xuh")
@@ -32,6 +62,10 @@ move_speed = 5.0
 turn_speed = 1.0
 enemy = NodePath("../..")
 
+[node name="AttackState" type="Node" parent="StateMachine" unique_id=1806734552]
+script = ExtResource("4_hrw3j")
+metadata/_custom_type_script = "uid://cp7qkawsjjkjl"
+
 [node name="model" type="Node3D" parent="." unique_id=634413408]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 
@@ -42,9 +76,28 @@ mesh = SubResource("CapsuleMesh_ykwvp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.040287733, 1.0187606, -0.03543973)
 mesh = SubResource("CapsuleMesh_rhn42")
 
-[node name="player_tank" parent="model" unique_id=123535562 instance=ExtResource("4_rhn42")]
+[node name="TankModel" parent="model" unique_id=123535562 instance=ExtResource("4_rhn42")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+
+[node name="Base" parent="model/TankModel" index="0" unique_id=1635417838]
+surface_material_override/0 = ExtResource("6_ev65g")
+surface_material_override/1 = ExtResource("7_qi3w7")
+surface_material_override/2 = ExtResource("8_gautq")
+
+[node name="Barrel" parent="model/TankModel" index="1" unique_id=308442049]
+surface_material_override/0 = SubResource("StandardMaterial3D_pylw5")
+
+[node name="Turret" parent="model/TankModel" index="2" unique_id=347747258]
+surface_material_override/0 = ExtResource("9_1jpvh")
+surface_material_override/1 = ExtResource("6_ev65g")
+surface_material_override/2 = ExtResource("8_gautq")
+surface_material_override/3 = ExtResource("7_qi3w7")
+
+[node name="BulletSpawnPositionMarker" type="Marker3D" parent="model/TankModel" unique_id=1123315019]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.0878064, 2.6, 8)
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1217195094]
 billboard = 1
 texture = ExtResource("5_y35xw")
+
+[editable path="model/TankModel"]

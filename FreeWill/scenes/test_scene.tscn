@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://nu0cniohybqx"]
 
 [ext_resource type="Script" uid="uid://dfj8b4hri7dgl" path="res://scripts/entities/killbox.gd" id="1_g7g4h"]
+[ext_resource type="PackedScene" uid="uid://cy547lha71csg" path="res://scenes/entities/tank.scn" id="2_nd71p"]
+[ext_resource type="PackedScene" uid="uid://7yq66c566yvi" path="res://scenes/enemies/enemy_plane.tscn" id="3_7ddre"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5oyu"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -54,3 +56,57 @@ script = ExtResource("1_g7g4h")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.118681, 0)
 shape = SubResource("WorldBoundaryShape3D_j8ivh")
 debug_color = Color(0, 0.4333334, 1, 1)
+
+[node name="Tank" parent="." unique_id=290108966 instance=ExtResource("2_nd71p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 399.1845, 0)
+
+[node name="Enemy_plane" parent="." unique_id=187691756 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, 0)
+
+[node name="Enemy_plane6" parent="." unique_id=494638081 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, -19)
+
+[node name="Enemy_plane7" parent="." unique_id=1722290493 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, -50)
+
+[node name="Enemy_plane8" parent="." unique_id=1418357385 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, -92.96391)
+
+[node name="Enemy_plane9" parent="." unique_id=682127539 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, -131.82788)
+
+[node name="Enemy_plane10" parent="." unique_id=846406612 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 46.393684, -131.82788)
+
+[node name="Enemy_plane11" parent="." unique_id=1660629328 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.98522, 46.393684, -131.82788)
+
+[node name="Enemy_plane12" parent="." unique_id=1286220801 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.98522, 46.393684, 49.17212)
+
+[node name="Enemy_plane13" parent="." unique_id=465769955 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.014778, 46.393684, 49.17212)
+
+[node name="Enemy_plane14" parent="." unique_id=536332176 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014778137, 46.393684, 101.17212)
+
+[node name="Enemy_plane15" parent="." unique_id=1268426844 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.167873, 46.393684, -57.82788)
+
+[node name="Enemy_plane16" parent="." unique_id=1126238503 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.167873, 46.393684, 69.17212)
+
+[node name="Enemy_plane17" parent="." unique_id=474893715 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.167873, 46.393684, 69.17212)
+
+[node name="Enemy_plane2" parent="." unique_id=538422661 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.902634, 46.393684, 0)
+
+[node name="Enemy_plane3" parent="." unique_id=1130691808 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.88469, 46.393684, 0)
+
+[node name="Enemy_plane4" parent="." unique_id=1702988479 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -163.62111, 46.393684, 0)
+
+[node name="Enemy_plane5" parent="." unique_id=275691127 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -273.07898, 46.393684, 0)
