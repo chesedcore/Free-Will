@@ -1,4 +1,4 @@
-class_name Cascade extends Control
+class_name CascadeV2 extends Control
 
 signal cascade_in_chain_started
 signal cascade_in_chain_finished

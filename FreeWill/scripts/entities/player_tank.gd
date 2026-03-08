@@ -18,8 +18,9 @@ const DEFAULT_CAMERA_SHAKE_AMPLITUDE: float = 10.0
 
 
 func _ready() -> void:
-	assert(barrel != null, "barrel node shouldn't be null.")
+	assert(barrel, "barrel node shouldn't be null.")
 	# TEMP: Bubba: should the tank handle changing mouse mode? Maybe.
+	# Monarch: We can change it up later when we have a mission handler.
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
@@ -54,4 +55,8 @@ func fire_cannon() -> void:
 	new_bullet.transform.origin += linear_velocity * 0.01
 
 	new_bullet.linear_velocity = linear_velocity
+	
+	# Monarch: Usually I'd make a dedicated `Bullets` Node3D that 'holds' this node as an array,
+	# then trigger a signal that makes the World handler add the bullet to the Bullets node.
+	# But for now (in the spirit of this jam), this will do just fine.
 	get_tree().root.add_child.call_deferred(new_bullet)
