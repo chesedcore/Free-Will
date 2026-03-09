@@ -10,7 +10,8 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_12l03"]
 
 [node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756]
-collision_layer = 2
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_17xuh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2012983732]
@@ -19,33 +20,34 @@ shape = SubResource("CapsuleShape3D_12l03")
 
 [node name="StateMachine" type="Node" parent="." unique_id=519865598 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("2_12l03")
-initial_state = NodePath("AimingState")
+initial_state = NodePath("InterceptState")
 
 [node name="WanderState" type="Node" parent="StateMachine" unique_id=757746633]
 script = ExtResource("3_ykwvp")
 move_speed = 50.0
-turn_speed = 1.0
+turn_speed = 0.5
 
-[node name="AimingState" type="Node" parent="StateMachine" unique_id=1110502229 node_paths=PackedStringArray("aim", "lock_on_timer")]
+[node name="InterceptState" type="Node" parent="StateMachine" unique_id=1110502229 node_paths=PackedStringArray("lock_on_timer")]
 script = ExtResource("4_iyje6")
-move_speed = 50.0
-aim = NodePath("../../aim")
+Max_speed = 200.0
+aceleration = 50.0
+turn_speed = 1.5
 attack_range = 150.0
 retreat_range = 50.0
 lock_on_timer = NodePath("../../lock_on_timer")
 
-[node name="RetreatState" type="Node" parent="StateMachine" unique_id=1519980772]
+[node name="DodgingState" type="Node" parent="StateMachine" unique_id=1519980772]
 script = ExtResource("5_8et62")
-move_speed = 50.0
-turn_speed = 0.5
+Max_speed = 200.0
+aceleration = 50.0
+turn_speed = 1.5
 
 [node name="prototype_plane" parent="." unique_id=392001002 instance=ExtResource("4_rhn42")]
-
-[node name="aim" type="RayCast3D" parent="." unique_id=1419229604]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14542985, -5.209954)
-target_position = Vector3(0, 0, -300)
 
 [node name="lock_on_timer" type="Timer" parent="." unique_id=1804442152]
 one_shot = true
 
-[connection signal="timeout" from="lock_on_timer" to="StateMachine/AimingState" method="_on_lock_on_timer_timeout"]
+[node name="missle_spawner" type="Node3D" parent="." unique_id=405366906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3676071, -3.7911148)
+
+[connection signal="timeout" from="lock_on_timer" to="StateMachine/InterceptState" method="_on_lock_on_timer_timeout"]
