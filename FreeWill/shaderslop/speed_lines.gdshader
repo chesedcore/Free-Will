@@ -9,6 +9,8 @@ uniform float smoothness = 0.25;
 uniform float voronoi_speed = 0.25;
 uniform float line_quantity = 4.0;
 
+uniform vec4 color_offset: source_color = vec4(1.0, 1.0, 1.0, 1.0);
+
 uniform vec2 screen_center = vec2(0.5, 0.5);
 
 
@@ -42,5 +44,5 @@ void fragment() {
 	float alpha = smoothstep(radius, radius + smoothness, distance_float);
 	color.a *= alpha;
 
-	COLOR = color;
+	COLOR = color * color_offset;
 }
