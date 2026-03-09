@@ -18,6 +18,7 @@ var tween_transition: Tween.TransitionType = Tween.TRANS_QUAD
 var interactable: bool
 var is_interacting: bool
 
+
 func _ready() -> void:
 	dialogueArea.connect("area_entered", _interactable)
 	dialogueArea.connect("area_exited", _not_interactable)
@@ -28,7 +29,6 @@ func _ready() -> void:
 	dialogue_label_initial_rotation = dialogueLabel3D.get_global_rotation()
 
 	npc_pcam.tween_completed.connect(_on_tween_started)
-
 
 
 func _on_tween_started() -> void:
