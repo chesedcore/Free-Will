@@ -3,8 +3,9 @@
 [ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="1_7ddre"]
 [ext_resource type="Script" uid="uid://dfj8b4hri7dgl" path="res://scripts/entities/killbox.gd" id="1_g7g4h"]
 [ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="1_qjeyg"]
-[ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="2_nd71p"]
 [ext_resource type="PackedScene" uid="uid://7yq66c566yvi" path="res://scenes/entities/enemies/enemy_plane.tscn" id="3_7ddre"]
+[ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="4_3qnke"]
+[ext_resource type="PackedScene" uid="uid://bl4ycq25qh3pb" path="res://scenes/projectiles/enemy_projectie/homingmissle.tscn" id="6_3qnke"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjeyg"]
 render_priority = 0
@@ -36,6 +37,7 @@ shadow_enabled = true
 environment = ExtResource("1_qjeyg")
 
 [node name="Ocean" type="MeshInstance3D" parent="." unique_id=139133770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12763977, 0.11047363, -0.7965088)
 mesh = SubResource("PlaneMesh_g7g4h")
 
 [node name="Killbox" type="Area3D" parent="Ocean" unique_id=820843103]
@@ -48,57 +50,48 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.118681, 0)
 shape = SubResource("WorldBoundaryShape3D_j8ivh")
 debug_color = Color(0, 0.4333334, 1, 1)
 
-[node name="Tank" parent="." unique_id=290108966 instance=ExtResource("2_nd71p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 399.1845, 0)
-gravity_scale = 0.0
+[node name="Tank" parent="." unique_id=290108966 instance=ExtResource("4_3qnke")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 335.62222, 0)
+freeze = false
 
 [node name="Enemy_plane" parent="." unique_id=187691756 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.031876, 46.393684, 0)
 
-[node name="Enemy_plane6" parent="." unique_id=494638081 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, -19)
+[node name="Enemy_plane2" parent="." unique_id=1897209183 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.499405, 46.393684, 0)
 
-[node name="Enemy_plane7" parent="." unique_id=1722290493 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, -50)
+[node name="Enemy_plane3" parent="." unique_id=1140772667 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 242.52855, 46.393684, 0)
 
-[node name="Enemy_plane8" parent="." unique_id=1418357385 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, -92.96391)
+[node name="Enemy_plane4" parent="." unique_id=1248955236 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 242.52855, 46.393684, 107.87222)
 
-[node name="Enemy_plane9" parent="." unique_id=682127539 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, -131.82788)
+[node name="Enemy_plane5" parent="." unique_id=473138733 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6975555, 46.393684, 107.87222)
 
-[node name="Enemy_plane10" parent="." unique_id=846406612 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 46.393684, -131.82788)
+[node name="Enemy_plane6" parent="." unique_id=423110217 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.64972, 46.393684, 107.87222)
 
-[node name="Enemy_plane11" parent="." unique_id=1660629328 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.98522, 46.393684, -131.82788)
+[node name="Enemy_plane7" parent="." unique_id=1380472499 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -199.7468, 46.393684, 107.87222)
 
-[node name="Enemy_plane12" parent="." unique_id=1286220801 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.98522, 46.393684, 49.17212)
+[node name="Enemy_plane8" parent="." unique_id=1125492626 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -212.29749, 0, -277)
 
-[node name="Enemy_plane13" parent="." unique_id=465769955 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.014778, 46.393684, 49.17212)
+[node name="Enemy_plane9" parent="." unique_id=1771648245 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -212.29749, 0, 265.86255)
 
-[node name="Enemy_plane14" parent="." unique_id=536332176 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014778137, 46.393684, 101.17212)
+[node name="Enemy_plane10" parent="." unique_id=422871223 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 219.6778, 0, 265.86255)
 
-[node name="Enemy_plane15" parent="." unique_id=1268426844 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.167873, 46.393684, -57.82788)
+[node name="Enemy_plane11" parent="." unique_id=1639526335 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 219.6778, 0, -344.5125)
 
-[node name="Enemy_plane16" parent="." unique_id=1126238503 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.167873, 46.393684, 69.17212)
+[node name="Enemy_plane12" parent="." unique_id=1267330643 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 665.61127, 0, -344.5125)
 
-[node name="Enemy_plane17" parent="." unique_id=474893715 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61.167873, 46.393684, 69.17212)
+[node name="Enemy_plane13" parent="." unique_id=778763880 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 665.61127, 0, -344.5125)
 
-[node name="Enemy_plane2" parent="." unique_id=538422661 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.902634, 46.393684, 0)
-
-[node name="Enemy_plane3" parent="." unique_id=1130691808 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -97.88469, 46.393684, 0)
-
-[node name="Enemy_plane4" parent="." unique_id=1702988479 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -163.62111, 46.393684, 0)
-
-[node name="Enemy_plane5" parent="." unique_id=275691127 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -273.07898, 46.393684, 0)
+[node name="Homingmissle" parent="." unique_id=1409877024 instance=ExtResource("6_3qnke")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -211.99522, 0, -154.57654)

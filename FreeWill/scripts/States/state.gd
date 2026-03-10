@@ -1,4 +1,6 @@
-class_name State  extends Node
+class_name State  extends RefCounted
+
+
 
 @warning_ignore("unused_signal")
 signal Transitioned

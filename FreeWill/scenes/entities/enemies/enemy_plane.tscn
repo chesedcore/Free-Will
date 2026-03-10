@@ -2,50 +2,41 @@
 
 [ext_resource type="Script" uid="uid://jp6qfe0e22kw" path="res://scripts/enemies/enemy_plane.gd" id="1_17xuh"]
 [ext_resource type="Script" uid="uid://p40bw40m4r7e" path="res://scripts/States/state_machine.gd" id="2_12l03"]
-[ext_resource type="Script" uid="uid://c6hif5kpwhw2i" path="res://scripts/States/enemy_states/plane_enemy_states/plane_wander_state.gd" id="3_ykwvp"]
-[ext_resource type="Script" uid="uid://cdsts08mqub0" path="res://scripts/States/enemy_states/plane_enemy_states/aiming_state.gd" id="4_iyje6"]
+[ext_resource type="PackedScene" uid="uid://b2k0tvxc2ybxm" path="res://assets/models/missile.blend" id="4_rakmp"]
 [ext_resource type="PackedScene" uid="uid://dnghcfqawmidu" path="res://assets/models/prototype_plane.blend" id="4_rhn42"]
-[ext_resource type="Script" uid="uid://dyuaafboyucv0" path="res://scripts/States/enemy_states/plane_enemy_states/retreat_state.gd" id="5_8et62"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_12l03"]
 
-[node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756]
-collision_layer = 2
+[sub_resource type="BoxMesh" id="BoxMesh_0s5y7"]
+
+[node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("mesh_instance_3d", "missle_spawner")]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_17xuh")
+mesh_instance_3d = NodePath("MeshInstance3D")
+missle_spawner = NodePath("missle_spawner")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2012983732]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_12l03")
 
-[node name="StateMachine" type="Node" parent="." unique_id=519865598 node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=519865598]
 script = ExtResource("2_12l03")
-initial_state = NodePath("AimingState")
-
-[node name="WanderState" type="Node" parent="StateMachine" unique_id=757746633]
-script = ExtResource("3_ykwvp")
-move_speed = 50.0
-turn_speed = 1.0
-
-[node name="AimingState" type="Node" parent="StateMachine" unique_id=1110502229 node_paths=PackedStringArray("aim", "lock_on_timer")]
-script = ExtResource("4_iyje6")
-move_speed = 50.0
-aim = NodePath("../../aim")
-attack_range = 150.0
-retreat_range = 50.0
-lock_on_timer = NodePath("../../lock_on_timer")
-
-[node name="RetreatState" type="Node" parent="StateMachine" unique_id=1519980772]
-script = ExtResource("5_8et62")
-move_speed = 50.0
-turn_speed = 0.5
+initial_state = "interceptstate"
 
 [node name="prototype_plane" parent="." unique_id=392001002 instance=ExtResource("4_rhn42")]
-
-[node name="aim" type="RayCast3D" parent="." unique_id=1419229604]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14542985, -5.209954)
-target_position = Vector3(0, 0, -300)
 
 [node name="lock_on_timer" type="Timer" parent="." unique_id=1804442152]
 one_shot = true
 
-[connection signal="timeout" from="lock_on_timer" to="StateMachine/AimingState" method="_on_lock_on_timer_timeout"]
+[node name="missle_spawner" type="Node3D" parent="." unique_id=405366906]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3676071, -3.7911148)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2091338083]
+mesh = SubResource("BoxMesh_0s5y7")
+
+[node name="missile" parent="." unique_id=1561043600 instance=ExtResource("4_rakmp")]
+transform = Transform3D(0.037673336, 0, 0.9992901, 0, 1, 0, -0.9992901, 0, 0.037673336, 1.2833618, -0.7955308, -1.4830804)
+
+[node name="missile2" parent="." unique_id=1092546641 instance=ExtResource("4_rakmp")]
+transform = Transform3D(0.037673336, 0, 0.9992901, 0, 1, 0, -0.9992901, 0, 0.037673336, -2.0393302, -0.7955308, -1.4830804)

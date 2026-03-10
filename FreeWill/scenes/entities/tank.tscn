@@ -1,21 +1,16 @@
 [gd_scene format=3 uid="uid://mf201g24k23x"]
 
-[ext_resource type="Script" uid="uid://c7xy4j8d6608x" path="res://scripts/entities/player_tank.gd" id="1_ig2cu"]
-[ext_resource type="PackedScene" uid="uid://ciqvl3ekbok17" path="res://models/player_tank.blend" id="2_uedwi"]
-[ext_resource type="Material" uid="uid://8aqronk8hojl" path="res://res/tank_mats/green_3.material" id="3_tafis"]
-[ext_resource type="Material" uid="uid://nvi6067o6oj7" path="res://res/tank_mats/green_4.material" id="4_oqcw2"]
-[ext_resource type="Material" uid="uid://dlc7km5h5mqct" path="res://res/tank_mats/green_2.material" id="5_7kk30"]
-[ext_resource type="Material" uid="uid://ctlebubbv3qoy" path="res://res/tank_mats/green_1.material" id="6_ekcgd"]
-[ext_resource type="Script" uid="uid://wel3y4ne2cus" path="res://scripts/effects/tank_wind_trail.gd" id="7_ywmen"]
-[ext_resource type="Material" uid="uid://cumspkgnerlec" path="res://shaderslop/speed_lines.material" id="8_rlhxg"]
-[ext_resource type="Script" uid="uid://co0q1pii83vmr" path="res://scripts/effects/tank_speed_lines.gd" id="9_4sl2t"]
-[ext_resource type="Script" uid="uid://brqh6t5d1dyrl" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="10_hsoq5"]
-[ext_resource type="Shader" uid="uid://cwxrvexdarj2x" path="res://shaderslop/wind_trail.gdshader" id="11_if5yn"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="12_xioay"]
-[ext_resource type="Script" uid="uid://df8hs8d0hc522" path="res://scripts/entities/player/camera_gimbal.gd" id="13_l4ev5"]
-[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="14_616kc"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="15_elt2t"]
-[ext_resource type="Script" uid="uid://cuffvge5ad4aa" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_3d.gd" id="16_h5iat"]
+[ext_resource type="Script" uid="uid://c7xy4j8d6608x" path="res://scripts/entities/player_tank.gd" id="1_xcn37"]
+[ext_resource type="PackedScene" uid="uid://ciqvl3ekbok17" path="res://models/player_tank.blend" id="2_fn73n"]
+[ext_resource type="Material" uid="uid://8aqronk8hojl" path="res://res/tank_mats/green_3.material" id="3_ev27x"]
+[ext_resource type="Material" uid="uid://nvi6067o6oj7" path="res://res/tank_mats/green_4.material" id="4_xylog"]
+[ext_resource type="Material" uid="uid://dlc7km5h5mqct" path="res://res/tank_mats/green_2.material" id="5_hjnge"]
+[ext_resource type="Material" uid="uid://ctlebubbv3qoy" path="res://res/tank_mats/green_1.material" id="6_ig2cu"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_uedwi"]
+[ext_resource type="Script" uid="uid://df8hs8d0hc522" path="res://scripts/entities/player/camera_gimbal.gd" id="8_tafis"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="9_oqcw2"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="10_7kk30"]
+[ext_resource type="Script" uid="uid://cuffvge5ad4aa" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_3d.gd" id="11_ekcgd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6okr"]
 render_priority = 1
@@ -42,26 +37,14 @@ stencil_mode = 1
 stencil_flags = 2
 stencil_outline_thickness = 0.05
 
-[sub_resource type="Curve" id="Curve_vvw44"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.11133202, 0.4996404), 0.0, 0.0, 0, 0, Vector2(1, 0.15359724), 0.0, 0.0, 0, 0]
-point_count = 3
-point_1/position = Vector2(0.11133202, 0.4996404)
-point_2/position = Vector2(1, 0.15359724)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvw44"]
-render_priority = 0
-shader = ExtResource("11_if5yn")
-shader_parameter/edgefade = 0.800000038
-shader_parameter/globalfade = 0.750000035625
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_3lr38"]
-radius = 1.1215872
+radius = 5.503188
 
 [sub_resource type="Resource" id="Resource_2krvj"]
-script = ExtResource("15_elt2t")
+script = ExtResource("10_7kk30")
 
 [sub_resource type="Resource" id="Resource_xupi1"]
-script = ExtResource("16_h5iat")
+script = ExtResource("11_ekcgd")
 amplitude = 1.0
 frequency = 0.05
 positional_noise = true
@@ -84,66 +67,33 @@ collision_layer = 2
 collision_mask = 5
 mass = 20.0
 gravity_scale = 4.0
+freeze = true
 angular_damp = 1.0
-script = ExtResource("1_ig2cu")
+script = ExtResource("1_xcn37")
 camera_gimbal = NodePath("CameraGimbal")
 tank_model = NodePath("TankModel")
 barrel_look_at_marker = NodePath("CameraGimbal/BarrelLookAtMarker")
 barrel_position_marker = NodePath("BarrelPositionMarker")
 bullet_spawn_position_marker = NodePath("TankModel/BulletSpawnPositionMarker")
 
-[node name="TankModel" parent="." unique_id=123535562 instance=ExtResource("2_uedwi")]
+[node name="TankModel" parent="." unique_id=123535562 instance=ExtResource("2_fn73n")]
 
-[node name="Base" parent="TankModel" index="0" unique_id=1635417838]
-surface_material_override/0 = ExtResource("3_tafis")
-surface_material_override/1 = ExtResource("4_oqcw2")
-surface_material_override/2 = ExtResource("5_7kk30")
+[node name="Base" parent="TankModel" index="0" unique_id=1637274941]
+surface_material_override/0 = ExtResource("3_ev27x")
+surface_material_override/1 = ExtResource("4_xylog")
+surface_material_override/2 = ExtResource("5_hjnge")
 
-[node name="Barrel" parent="TankModel" index="1" unique_id=308442049]
+[node name="Barrel" parent="TankModel" index="1" unique_id=1092931603]
 surface_material_override/0 = SubResource("StandardMaterial3D_mr7or")
 
-[node name="Turret" parent="TankModel" index="2" unique_id=347747258]
-surface_material_override/0 = ExtResource("6_ekcgd")
-surface_material_override/1 = ExtResource("3_tafis")
-surface_material_override/2 = ExtResource("5_7kk30")
-surface_material_override/3 = ExtResource("4_oqcw2")
+[node name="Turret" parent="TankModel" index="2" unique_id=2124755398]
+surface_material_override/0 = ExtResource("6_ig2cu")
+surface_material_override/1 = ExtResource("3_ev27x")
+surface_material_override/2 = ExtResource("5_hjnge")
+surface_material_override/3 = ExtResource("4_xylog")
 
 [node name="BulletSpawnPositionMarker" type="Marker3D" parent="TankModel" unique_id=110604597]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.0878064, 2.6, 8)
-
-[node name="VFX" type="Node3D" parent="TankModel" unique_id=1701023888 node_paths=PackedStringArray("trail_renderer_l", "trail_renderer_r")]
-script = ExtResource("7_ywmen")
-trail_renderer_l = NodePath("TrailRendererL")
-trail_renderer_r = NodePath("TrailRendererR")
-
-[node name="ScreenVFX" type="CanvasLayer" parent="TankModel/VFX" unique_id=529307410]
-
-[node name="SpeedLines" type="ColorRect" parent="TankModel/VFX/ScreenVFX" unique_id=1864706998]
-material = ExtResource("8_rlhxg")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("9_4sl2t")
-
-[node name="TrailRendererL" type="Node3D" parent="TankModel/VFX" unique_id=426854770]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7915812, 1.185, -3.2703073)
-script = ExtResource("10_hsoq5")
-lifetime = 0.25
-curve = SubResource("Curve_vvw44")
-alignment = 0
-material = SubResource("ShaderMaterial_vvw44")
-metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
-
-[node name="TrailRendererR" type="Node3D" parent="TankModel/VFX" unique_id=1409957225]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9084189, 1.185, -3.2703073)
-script = ExtResource("10_hsoq5")
-lifetime = 0.25
-curve = SubResource("Curve_vvw44")
-alignment = 0
-material = SubResource("ShaderMaterial_vvw44")
-metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1289681647]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23927891, 0)
@@ -151,22 +101,22 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999998, 0.00012825908, -0.0006009472, -3.056317e-05, 0.96638185, 0.2571115, 0.0006137213, 0.2571115, -0.96638155, -0.010126194, 10.003517, -19.999825)
+transform = Transform3D(-0.99999124, -0.002875812, 0.003038641, -0.0019823357, 0.96528554, 0.26118955, -0.003684288, 0.26118124, -0.96528274, 0.014072578, 9.978929, -19.988632)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
 process_priority = 300
 process_physics_priority = 300
-script = ExtResource("12_xioay")
+script = ExtResource("7_uedwi")
 
 [node name="CameraGimbal" type="Node3D" parent="." unique_id=774062337 node_paths=PackedStringArray("phantom_camera")]
 top_level = true
-script = ExtResource("13_l4ev5")
+script = ExtResource("8_tafis")
 phantom_camera = NodePath("PhantomCamera")
 
 [node name="PhantomCamera" type="Node3D" parent="CameraGimbal" unique_id=1937678922]
 transform = Transform3D(-1, 0, -8.742278e-08, -2.262668e-08, 0.9659258, 0.25881904, 8.444392e-08, 0.25881904, -0.9659258, 0, 10, -20)
-script = ExtResource("14_616kc")
+script = ExtResource("9_oqcw2")
 look_at_mode = 1
 tween_resource = SubResource("Resource_2krvj")
 noise = SubResource("Resource_xupi1")

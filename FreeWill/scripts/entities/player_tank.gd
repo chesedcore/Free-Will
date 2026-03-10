@@ -31,11 +31,12 @@ func _input(event: InputEvent) -> void:
 
 
 func _process(_delta: float) -> void:
-	camera_gimbal.global_position = global_position
+	pass
 
 
 func _physics_process(_delta: float) -> void:
 	model_transform_update()
+	camera_gimbal.global_position = global_position
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
