@@ -14,6 +14,9 @@ var screen_shake_value: float = 0.0:
 
 @onready var tank: PlayerTank = owner
 
+var screen_shake_time:float = 0
+var screen_shake_intensity:float = 10
+
 
 func _input(event: InputEvent) -> void:
 	if (event is InputEventMouseMotion):
@@ -24,10 +27,24 @@ func _input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			
+	if (event.is_action_pressed("escape")):
+		get_tree().quit()
 
 
 func _process(delta: float) -> void:
+		
 	speed_shake_update(delta)
+	
+	if screen_shake_time > 0:
+		phantom_camera.noise.frequency = screen_shake_intensity
+		phantom_camera.noise.amplitude = screen_shake_intensity
+		screen_shake_time -= delta
+	elif screen_shake_time < 0:
+		screen_shake_time = 0
+	
+	if Input.is_action_just_pressed("fire"):
+		screen_shake_time = 0.01
 
 
 func camera_rotation_update(motion: Vector2) -> void:
@@ -48,3 +65,7 @@ func speed_shake_update(delta: float) -> void:
 	screen_shake_value = tank.linear_velocity.length() * 0.0025
 	phantom_camera.noise.frequency = \
 		lerpf(phantom_camera.noise.frequency, screen_shake_value, 12.0 * delta)
+		
+	phantom_camera.noise.amplitude = 1
+		
+		

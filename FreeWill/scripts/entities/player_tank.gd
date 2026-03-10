@@ -5,7 +5,7 @@ class_name PlayerTank extends RigidBody3D
 const BARREL_ROTATION_SPEED: float = 7.5
 const GUN_GIMBAL_ROTATION_SPEED: float = 6.0
 const BODY_ROTATION_SPEED: float = 1.0
-const GUN_FIRE_FORCE: float = 50.0
+const GUN_FIRE_FORCE: float = 35.0
 
 const MAX_SPEED: float = 100.0
 
@@ -37,12 +37,6 @@ func _process(_delta: float) -> void:
 func _physics_process(_delta: float) -> void:
 	model_transform_update()
 	camera_gimbal.global_position = global_position
-
-
-func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	state.linear_velocity.x = clampf(state.linear_velocity.x, -MAX_SPEED, MAX_SPEED)
-	state.linear_velocity.y = clampf(state.linear_velocity.y, -MAX_SPEED, MAX_SPEED)
-	state.linear_velocity.z = clampf(state.linear_velocity.z, -MAX_SPEED, MAX_SPEED)
 
 
 func model_transform_update() -> void:
