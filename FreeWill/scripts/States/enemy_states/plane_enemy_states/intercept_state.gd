@@ -1,25 +1,30 @@
 class_name InterceptState extends EnemyState
 
-const HOMING_MISSLE = preload("res://scenes/projectiles/enemy_projectie/homingmissle.tscn")
 
 @export var Max_speed : float = 200.0
 @export var aceleration : float = 50
 @export var turn_speed : float = 1.5
-
-@export var attack_range :float = 300
+@export var detect_range : float = 200.0
+@export var detect_angle : float = 0.7
 
 var velocity_vec : Vector3 = Vector3.ZERO
 var heading : Vector3 = Vector3.FORWARD
-var player_direction : Vector3
+
 var player_offset : Vector3
-var offset_distance : int = randi_range(100,150)
+var offset_distance : int = randi_range(50,65)
+
 
 var marker : MeshInstance3D
 
+func _init(owner :BaseEnemy) -> void:
+	super._init(owner)
+	
+
+
 func enter() -> void:
 	
-	heading  = -enemy.global_transform.basis.z
-	player_direction =  player.global_position - enemy.global_position
+	heading = - enemy.global_basis.z
+	
 
 	var basis := enemy.global_transform.basis
 	var right := basis.x
@@ -35,9 +40,10 @@ func enter() -> void:
 
 
 func physics_update(_delta: float) -> void:
-	if enemy and player:
+	
+	
 		var forward := -enemy.global_transform.basis.z
-		var target := player.global_position + player_offset + forward * 10
+		var target := player.global_position + player_offset + forward * 50
 		var desired_direction := (target - enemy.global_position).normalized()
 		heading = heading.slerp(desired_direction, turn_speed * _delta).normalized()
 
@@ -45,50 +51,32 @@ func physics_update(_delta: float) -> void:
 		enemy.look_at(enemy.global_position + heading, Vector3.UP)
 		enemy.velocity = velocity_vec
 		marker.global_position = target
-		#if enemy.global_position.distance_to(player.global_position) <= attack_range:
-			#if forward.dot(target) > 0.5:
-				#start_lock_on()
-			#else:
-				#stop_lock_on()
-		#else:
-			#stop_lock_on()
-		#if enemy.global_position.distance_to(player.global_position) <= retreat_range:
-			#pass
-	#
-		#player_direction = Vector3(player.global_position - enemy.global_position ).normalized()
-		#var angle := heading.angle_to(player_direction)
-		#var max_turn := turn_speed * _delta
-		#if angle > max_turn:
-			#var axis := heading.cross(player_direction).normalized()
-			#heading = heading.rotated(axis, max_turn)
-		#else:
-			#heading = player_direction
+
 #
-		#heading = heading.normalized()
-		#enemy.look_at(enemy.global_position + heading, Vector3.UP)
-		#velocity_vec = velocity_vec.move_toward(heading * move_speed, 50 * _delta)
-		#enemy.velocity = velocity_vec
-		#if enemy.global_position.distance_to(player.global_position) <= attack_range:
-			#if aim.get_collider():
-				#start_lock_on()
-			#else:
-				#stop_lock_on()
-		#if enemy.global_position.distance_to(player.global_position) <= retreat_range:
-			#Transitioned.emit(self,"dodgingstate")
+func update(_delta : float) -> void:
+	if enemy and player:
+		if player_in_front():
+			start_lock_on()
+			return
 
-
-#func start_lock_on() -> void:
-	#if  lock_on_timer.is_stopped():
-		#print("locking on")
+func start_lock_on() -> void:
+		
+		Transitioned.emit(self,"attackstate")
 		#lock_on_timer.start()
 #
-#
-#func stop_lock_on() -> void:
-	#lock_on_timer.stop()
-#
-#
-#func _on_lock_on_timer_timeout() -> void:
-	#var new_missle :HomingMissle= HOMING_MISSLE.instantiate()
-	#new_missle.target_node = player
-	#new_missle.global_transform = missle_spawner.global_transform
-	#get_tree().root.add_child.call_deferred(new_missle)
+
+func player_in_front() -> bool:
+	if player == null:
+		return false
+		
+	var to_player :Vector3 = player.global_position - enemy.global_position
+	var distance :float = to_player.length()
+	
+	if distance > detect_range:
+		return false
+	
+	var forward : = -enemy.global_transform.basis.z
+	var dir := to_player.normalized()
+	
+	var dot := forward.dot(dir)
+	return dot > detect_angle

@@ -1,5 +1,7 @@
 class_name StateMachine extends Node
 
+# Gael :unused atm i have decided its better for the plane itself to manage all its states, will delete but keeping for now if i change my mind
+
 var current_state : State
 
 enum STATE_TYPES {INTERCEPT,DODGE}
@@ -30,7 +32,7 @@ func create_state(state :STATE_TYPES)->State:
 	match  state:
 		STATE_TYPES.INTERCEPT:
 			
-			new_state = InterceptState.new(get_parent())
+			new_state = InterceptState.new(get_parent(),get_parent().line_of_sight)
 			new_state.marker = get_parent().mesh_instance_3d
 			new_state.Transitioned.connect(on_state_transition)
 	return new_state

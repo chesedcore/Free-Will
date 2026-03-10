@@ -1,20 +1,19 @@
 [gd_scene format=3 uid="uid://bl4ycq25qh3pb"]
 
 [ext_resource type="Script" uid="uid://w1w7mvkqos6t" path="res://scripts/entities/combat/homingmissle.gd" id="1_2glct"]
+[ext_resource type="PackedScene" uid="uid://b2k0tvxc2ybxm" path="res://assets/models/missile.blend" id="2_6ku3j"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vt8wv"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_2glct"]
+height = 4.635742
 
 [node name="Homingmissle" type="CharacterBody3D" unique_id=1409877024]
-collision_layer = 8
-collision_mask = 3
+collision_layer = 16
+collision_mask = 2
 script = ExtResource("1_2glct")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1514301715]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, 8.089167e-09, 8.089167e-09, 0.1850586)
 shape = SubResource("CapsuleShape3D_vt8wv")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=328357352]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_2glct")
+[node name="missile" parent="." unique_id=1561043600 instance=ExtResource("2_6ku3j")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
