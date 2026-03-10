@@ -3,8 +3,8 @@
 [ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="1_7ddre"]
 [ext_resource type="Script" uid="uid://dfj8b4hri7dgl" path="res://scripts/entities/killbox.gd" id="1_g7g4h"]
 [ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="1_qjeyg"]
-[ext_resource type="PackedScene" uid="uid://cy547lha71csg" path="res://scenes/entities/tank.scn" id="2_nd71p"]
 [ext_resource type="PackedScene" uid="uid://7yq66c566yvi" path="res://scenes/entities/enemies/enemy_plane.tscn" id="3_7ddre"]
+[ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="4_3qnke"]
 [ext_resource type="PackedScene" uid="uid://bl4ycq25qh3pb" path="res://scenes/projectiles/enemy_projectie/homingmissle.tscn" id="6_3qnke"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjeyg"]
@@ -50,7 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.118681, 0)
 shape = SubResource("WorldBoundaryShape3D_j8ivh")
 debug_color = Color(0, 0.4333334, 1, 1)
 
-[node name="Tank" parent="." unique_id=290108966 instance=ExtResource("2_nd71p")]
+[node name="Tank" parent="." unique_id=290108966 instance=ExtResource("4_3qnke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 335.62222, 0)
 freeze = false
 
@@ -93,6 +93,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 665.61127, 0, -344.5125)
 [node name="Enemy_plane13" parent="." unique_id=778763880 instance=ExtResource("3_7ddre")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 665.61127, 0, -344.5125)
 
-[node name="Homingmissle" parent="." unique_id=1409877024 node_paths=PackedStringArray("target_node") instance=ExtResource("6_3qnke")]
+[node name="Homingmissle" parent="." unique_id=1409877024 instance=ExtResource("6_3qnke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -211.99522, 0, -154.57654)
-target_node = NodePath("../Tank")
