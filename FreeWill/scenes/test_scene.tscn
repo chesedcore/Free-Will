@@ -50,6 +50,7 @@ debug_color = Color(0, 0.4333334, 1, 1)
 
 [node name="Tank" parent="." unique_id=290108966 instance=ExtResource("2_nd71p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 399.1845, 0)
+gravity_scale = 0.0
 
 [node name="Enemy_plane" parent="." unique_id=187691756 instance=ExtResource("3_7ddre")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 46.393684, 0)
