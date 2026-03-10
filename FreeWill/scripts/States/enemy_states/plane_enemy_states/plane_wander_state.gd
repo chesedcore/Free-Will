@@ -14,7 +14,7 @@ func randomize_wander()->void:
 
 
 func enter()->void:
-	player = get_tree().get_first_node_in_group("player")
+	
 	randomize_wander()
 
 
