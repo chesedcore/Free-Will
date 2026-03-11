@@ -23,13 +23,13 @@ shape = SubResource("CapsuleShape3D_12l03")
 [node name="prototype_plane" parent="." unique_id=392001002 instance=ExtResource("4_rhn42")]
 
 [node name="lock_on_timer" type="Timer" parent="." unique_id=1804442152]
+wait_time = 2.0
 one_shot = true
 
 [node name="missle_spawner" type="Node3D" parent="." unique_id=405366906]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3676071, -3.7911148)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2091338083]
-visible = false
 mesh = SubResource("BoxMesh_0s5y7")
 
 [node name="missile" parent="." unique_id=1561043600 instance=ExtResource("4_rakmp")]

@@ -10,10 +10,10 @@ const HOMINGMISSLE = preload("res://scenes/projectiles/enemy_projectie/homingmis
 
 var current_state : State
 
-enum STATE_TYPES {INTERCEPT,DODGE,ATTACK}
+enum STATE_TYPES {INTERCEPT,EVADE,ATTACK}
 var states :Dictionary={
 	"interceptstate": STATE_TYPES.INTERCEPT,
-	"dodgingstate" : STATE_TYPES.DODGE,
+	"evadingstate" : STATE_TYPES.EVADE,
 	"attackstate" : STATE_TYPES.ATTACK
 }
 @export var initial_state : STATE_TYPES
@@ -24,7 +24,6 @@ func _ready() -> void:
 	
 	var new_state : State = create_state(initial_state)
 	
-
 	new_state.enter()
 	current_state = new_state
 	
@@ -35,7 +34,7 @@ func create_state(state :STATE_TYPES)->State:
 	match  state:
 		STATE_TYPES.INTERCEPT:
 			
-			new_state = InterceptState.new(self,)
+			new_state = InterceptState.new(self)
 			new_state.marker = mesh_instance_3d
 			new_state.Transitioned.connect(on_state_transition)
 		STATE_TYPES.ATTACK:
@@ -43,6 +42,11 @@ func create_state(state :STATE_TYPES)->State:
 			new_state.fireMissle.connect(on_fire_missile)
 			
 			new_state.Transitioned.connect(on_state_transition)
+		STATE_TYPES.EVADE:
+			new_state = EvadeState.new(self)
+			new_state.marker = mesh_instance_3d
+			new_state.Transitioned.connect(on_state_transition)
+			
 	return new_state
 	
 
