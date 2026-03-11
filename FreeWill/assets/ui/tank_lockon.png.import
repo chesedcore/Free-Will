@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjlv0bg7byjx0"
-path.s3tc="res://.godot/imported/warning.svg-c1b21c265e0842bbdc9ed10735995366.s3tc.ctex"
+uid="uid://cjrhhsbbcdx47"
+path.s3tc="res://.godot/imported/tank_lockon.png-76f4a1e9e578a6483e78bc3b93cfacbb.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/phantom_camera/icons/warning.svg"
-dest_files=["res://.godot/imported/warning.svg-c1b21c265e0842bbdc9ed10735995366.s3tc.ctex"]
+source_file="res://assets/ui/tank_lockon.png"
+dest_files=["res://.godot/imported/tank_lockon.png-76f4a1e9e578a6483e78bc3b93cfacbb.s3tc.ctex"]
 
 [params]
 
@@ -39,6 +39,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=0
-svg/scale=2.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
