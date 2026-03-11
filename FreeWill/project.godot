@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 PhantomCameraManager="*uid://duq6jhf6unyis"
 SceneManager="*uid://dc2y0g36pw0lt"
 UIBus="*uid://by5bsoo2lrnko"
+AudioManager="*uid://ccewu7gffr4af"
 
 [debug]
 
