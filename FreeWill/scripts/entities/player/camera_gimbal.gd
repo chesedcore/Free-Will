@@ -72,17 +72,17 @@ var recovery_tween: Tween
 func start_dash_tween(duration: float, fov_boost: float, cam_pullback: float) -> void:
 	if dash_tween: dash_tween.kill()
 	if recovery_tween: recovery_tween.kill()
-	
+
 	dash_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	
+
 	dash_tween.set_parallel(true)
-	
+
 	dash_tween.tween_property(camera, "fov", BASE_FOV + fov_boost, DASH_FOV_TWEEN_TIME)
 	dash_tween.tween_callback(print.bind("balls"))
 	var target_pos := phantom_camera.position
 	target_pos.z = (base_camera_z - cam_pullback)
 	dash_tween.tween_property(phantom_camera, "position:z", target_pos.z, DASH_CAMERA_TWEEN_TIME)
-	
+
 	#return to normal after that duration
 	dash_tween.finished.connect(recover.bind(duration))
 
@@ -97,7 +97,7 @@ func recover(duration: float) -> void:
 func dash_effect_update(delta: float) -> void:
 	if not is_dash_active: return
 	dash_timer -= delta
-	
+
 	if dash_timer <= 0.0:
 		is_dash_active = false
 		#set back to proper base
