@@ -3,8 +3,10 @@ class_name EvadeState extends EnemyState
 var max_speed : float = 200
 var aceleration : float = 50
 var turn_speed : float = 1.5
-var evade_distance : float = 250
+var evade_distance : float = 200
 var evade_duration : float = 5
+
+var forward_distance: float = 600
 
 var velocity_vec : Vector3 = Vector3.ZERO
 var heading : Vector3 = Vector3.FORWARD
@@ -12,6 +14,14 @@ var heading : Vector3 = Vector3.FORWARD
 var evade_offset : Vector3
 var evade_target : Vector3
 var marker : MeshInstance3D
+
+
+static func evade_state_from(owner : BaseEnemy)-> EvadeState:
+	var state : EvadeState= new()
+	state.enemy = owner
+	state.player = GameState.player
+	return state
+
 func enter() -> void:
 	velocity_vec = enemy.velocity
 	heading = velocity_vec.normalized()
@@ -25,7 +35,7 @@ func enter() -> void:
 	]
 	evade_offset = evade_dirs.pick_random() *evade_distance
 	var forward := -enemy.global_transform.basis.z
-	evade_target = enemy.global_position + evade_offset + forward * 600
+	evade_target = enemy.global_position + evade_offset + forward * forward_distance
 
 
 func physics_update(_delta: float) -> void:
@@ -33,7 +43,7 @@ func physics_update(_delta: float) -> void:
 		if evade_duration >0 :
 			evade_duration -= _delta
 		else:
-			Transitioned.emit(self,"interceptstate")
+			Transitioned.emit(self,EnemyPlane.STATES.INTERCEPT)
 
 
 		var desired_direction := (evade_target - enemy.global_position).normalized()

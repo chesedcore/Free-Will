@@ -6,17 +6,14 @@ class_name EnemyPlane extends BaseEnemy
 @export var missle_spawner: Node3D
 const HOMINGMISSLE = preload("res://scenes/projectiles/enemy_projectie/homingmissle.tscn")
 
+@export var line_of_sight: Area3D
 
 
 var current_state : State
 
-enum STATE_TYPES {INTERCEPT,EVADE,ATTACK}
-var states :Dictionary={
-	"interceptstate": STATE_TYPES.INTERCEPT,
-	"evadingstate" : STATE_TYPES.EVADE,
-	"attackstate" : STATE_TYPES.ATTACK
-}
-@export var initial_state : STATE_TYPES
+enum STATES {INTERCEPT,EVADE,ATTACK}
+
+@export var initial_state : STATES
 
 
 
@@ -28,22 +25,21 @@ func _ready() -> void:
 	current_state = new_state
 	
 	
-func create_state(state :STATE_TYPES)->State:
+func create_state(state :STATES)->State:
 	var new_state : State
 	
 	match  state:
-		STATE_TYPES.INTERCEPT:
+		STATES.INTERCEPT:
 			
-			new_state = InterceptState.new(self)
+			new_state = InterceptState.intercept_state_from(self,line_of_sight)
 			new_state.marker = mesh_instance_3d
 			new_state.Transitioned.connect(on_state_transition)
-		STATE_TYPES.ATTACK:
-			new_state = AttackState.new(self,lock_on_timer)
+		STATES.ATTACK:
+			new_state = AttackState.attack_state_from(self,lock_on_timer,line_of_sight)
 			new_state.fireMissle.connect(on_fire_missile)
-			
 			new_state.Transitioned.connect(on_state_transition)
-		STATE_TYPES.EVADE:
-			new_state = EvadeState.new(self)
+		STATES.EVADE:
+			new_state = EvadeState.evade_state_from(self)
 			new_state.marker = mesh_instance_3d
 			new_state.Transitioned.connect(on_state_transition)
 			
@@ -71,15 +67,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func on_state_transition(state: State, new_state_name: String)->void:
-	if state != current_state:
+func on_state_transition(from_state: State, to_state: STATES)->void:
+	if from_state != current_state:
 		return
 
-	var new_state_type : STATE_TYPES = states.get(new_state_name.to_lower())
-
-	if new_state_type == null:
+	if to_state == null:
 		return
-	var new_state : State = create_state(new_state_type)
+	var new_state : State = create_state(to_state)
 	if current_state:
 		current_state.exit()
 
