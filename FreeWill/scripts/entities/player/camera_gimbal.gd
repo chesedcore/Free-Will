@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 		screen_shake_time = 0
 	
 	if Input.is_action_just_pressed("fire"):
-		screen_shake_time = 0.01
+		screen_shake_time = 0.001
 
 
 func camera_rotation_update(motion: Vector2) -> void:
