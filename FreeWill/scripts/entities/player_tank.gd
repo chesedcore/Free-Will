@@ -7,7 +7,16 @@ const GUN_GIMBAL_ROTATION_SPEED: float = 6.0
 const BODY_ROTATION_SPEED: float = 1.0
 const GUN_FIRE_FORCE: float = 50.0
 
-const MAX_SPEED: float = 100.0
+const MAX_SPEED: float = 150.0
+
+const DASH_FORCE := 200.0
+const DASH_COOLDOWN := 4.0
+const DASH_FOV_BOOST := 20.0
+const DASH_CAMERA_PULLBACK := 10.0
+const DASH_EFFECT_DURATION := 10.0
+
+##shorthand for the feedback enum
+const UI := UIBus.Feedback
 
 @export var camera_gimbal: CameraGimbal
 @export var tank_model: Node3D
@@ -15,6 +24,10 @@ const MAX_SPEED: float = 100.0
 @export var barrel_look_at_marker: Marker3D
 @export var barrel_position_marker: Marker3D
 @export var bullet_spawn_position_marker: Marker3D
+
+var dash_cooldown_timer := 0.0
+var is_dashing := false
+var dash_effect_timer := 0.0
 
 
 func _ready() -> void:
@@ -28,11 +41,39 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("fire")):
 		fire_cannon()
+	
+	if Input.is_action_just_pressed("dash"):
+		attempt_dash()
 
+func attempt_dash() -> void:
+	if dash_cooldown_timer > 0.0:
+		var error := UI.DASH_STILL_UNDER_COOLDOWN
+		UIBus.attempted_dash.emit(Result.Err(error))
+		return
+	dash()
 
-func _process(_delta: float) -> void:
-	pass
+func dash() -> void:
+	var dash_direction := camera_gimbal.global_basis.z
+	linear_velocity += dash_direction * DASH_FORCE
+	
+	camera_gimbal.trigger_dash_effect(DASH_EFFECT_DURATION, DASH_FOV_BOOST, DASH_CAMERA_PULLBACK)
+	
+	#cooldown
+	dash_cooldown_timer = DASH_COOLDOWN
+	is_dashing = true
+	dash_effect_timer = DASH_EFFECT_DURATION
 
+func dash_timer_update(delta: float) -> void:
+	if dash_cooldown_timer > 0.0:
+		dash_cooldown_timer -= delta
+	
+	if dash_effect_timer > 0.0:
+		dash_effect_timer -= delta
+		if dash_effect_timer <= 0.0:
+			is_dashing = false
+
+func _process(delta: float) -> void:
+	dash_timer_update(delta)
 
 func _physics_process(_delta: float) -> void:
 	model_transform_update()
@@ -41,14 +82,13 @@ func _physics_process(_delta: float) -> void:
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	state.linear_velocity.x = clampf(state.linear_velocity.x, -MAX_SPEED, MAX_SPEED)
-	state.linear_velocity.y = clampf(state.linear_velocity.y, -MAX_SPEED, MAX_SPEED)
+	state.linear_velocity.y = clampf(state.linear_velocity.y, -INF, MAX_SPEED)
 	state.linear_velocity.z = clampf(state.linear_velocity.z, -MAX_SPEED, MAX_SPEED)
 
 
 func model_transform_update() -> void:
 	tank_model.global_position = barrel_position_marker.global_position
 	tank_model.look_at(barrel_look_at_marker.global_position, Vector3.UP, true)
-
 
 func fire_cannon() -> void:
 	# Particles
