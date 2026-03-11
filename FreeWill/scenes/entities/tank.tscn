@@ -7,15 +7,15 @@
 [ext_resource type="Material" uid="uid://dlc7km5h5mqct" path="res://res/tank_mats/green_2.material" id="5_hjnge"]
 [ext_resource type="Material" uid="uid://ctlebubbv3qoy" path="res://res/tank_mats/green_1.material" id="6_ig2cu"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_uedwi"]
-[ext_resource type="Script" uid="uid://wel3y4ne2cus" path="res://scripts/effects/tank_wind_trail.gd" id="7_ywmen"]
+[ext_resource type="Script" path="res://scripts/effects/tank_wind_trail.gd" id="7_ywmen"]
 [ext_resource type="Material" uid="uid://cumspkgnerlec" path="res://shaderslop/speed_lines.material" id="8_rlhxg"]
 [ext_resource type="Script" uid="uid://df8hs8d0hc522" path="res://scripts/entities/player/camera_gimbal.gd" id="8_tafis"]
-[ext_resource type="Script" uid="uid://co0q1pii83vmr" path="res://scripts/effects/tank_speed_lines.gd" id="9_4sl2t"]
+[ext_resource type="Script" path="res://scripts/effects/tank_speed_lines.gd" id="9_4sl2t"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="9_oqcw2"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="10_7kk30"]
 [ext_resource type="Script" uid="uid://brqh6t5d1dyrl" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="10_hsoq5"]
 [ext_resource type="Script" uid="uid://cuffvge5ad4aa" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_3d.gd" id="11_ekcgd"]
-[ext_resource type="Shader" uid="uid://cwxrvexdarj2x" path="res://shaderslop/wind_trail.gdshader" id="11_if5yn"]
+[ext_resource type="Shader" path="res://shaderslop/wind_trail.gdshader" id="11_if5yn"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6okr"]
 render_priority = 1
@@ -43,9 +43,9 @@ stencil_flags = 2
 stencil_outline_thickness = 0.05
 
 [sub_resource type="Curve" id="Curve_vvw44"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15359724, 1), 0.0, 0.0, 0, 0, Vector2(0.4996404, 0.11133202), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.11133202, 0.4996404), 0.0, 0.0, 0, 0, Vector2(0.4996404, 0.11133202), 0.0, 0.0, 0, 0]
 point_count = 3
-point_1/position = Vector2(0.15359724, 1)
+point_1/position = Vector2(0.11133202, 0.4996404)
 point_2/position = Vector2(0.4996404, 0.11133202)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vvw44"]
@@ -82,7 +82,7 @@ height = 1.3037109
 [node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker")]
 collision_layer = 2
 collision_mask = 5
-mass = 20.0
+mass = 200.0
 gravity_scale = 4.0
 freeze = true
 angular_damp = 1.0
@@ -95,15 +95,15 @@ bullet_spawn_position_marker = NodePath("TankModel/BulletSpawnPositionMarker")
 
 [node name="TankModel" parent="." unique_id=123535562 instance=ExtResource("2_fn73n")]
 
-[node name="Base" parent="TankModel" index="0" unique_id=1635417838]
+[node name="Base" parent="TankModel" index="0" unique_id=1637274941]
 surface_material_override/0 = ExtResource("3_ev27x")
 surface_material_override/1 = ExtResource("4_xylog")
 surface_material_override/2 = ExtResource("5_hjnge")
 
-[node name="Barrel" parent="TankModel" index="1" unique_id=308442049]
+[node name="Barrel" parent="TankModel" index="1" unique_id=1092931603]
 surface_material_override/0 = SubResource("StandardMaterial3D_mr7or")
 
-[node name="Turret" parent="TankModel" index="2" unique_id=347747258]
+[node name="Turret" parent="TankModel" index="2" unique_id=2124755398]
 surface_material_override/0 = ExtResource("6_ig2cu")
 surface_material_override/1 = ExtResource("3_ev27x")
 surface_material_override/2 = ExtResource("5_hjnge")
@@ -136,7 +136,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999934, 0.002848265, -0.002253834, 0.0021724082, 0.9663242, 0.25731874, 0.0029108464, 0.25731215, -0.9663239, -0.008893743, 10.016702, -20.01244)
+transform = Transform3D(-0.99997807, 0.004452317, -0.0049004285, 0.0030563208, 0.9669691, 0.25487554, 0.0058733495, 0.25485498, -0.96696144, -0.023360668, 10.033752, -20.017485)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]

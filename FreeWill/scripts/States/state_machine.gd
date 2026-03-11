@@ -5,7 +5,7 @@ class_name StateMachine extends Node
 var current_state : State
 
 enum STATE_TYPES {INTERCEPT,DODGE}
-var states :Dictionary={
+var states: Dictionary={
 	"interceptstate": STATE_TYPES.INTERCEPT,
 	"dodgingstate" : STATE_TYPES.DODGE
 }
@@ -32,7 +32,7 @@ func create_state(state :STATE_TYPES)->State:
 	match  state:
 		STATE_TYPES.INTERCEPT:
 			
-			new_state = InterceptState.new(get_parent(),get_parent().line_of_sight)
+			new_state = InterceptState.new(get_parent())
 			new_state.marker = get_parent().mesh_instance_3d
 			new_state.Transitioned.connect(on_state_transition)
 	return new_state
