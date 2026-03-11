@@ -24,6 +24,7 @@ const UI := UIBus.Feedback
 @export var barrel_look_at_marker: Marker3D
 @export var barrel_position_marker: Marker3D
 @export var bullet_spawn_position_marker: Marker3D
+@export var lockon_area: LockonArea
 
 var dash_cooldown_timer := 0.0
 var is_dashing := false
@@ -41,9 +42,10 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("fire")):
 		fire_cannon()
-	
+
 	if Input.is_action_just_pressed("dash"):
 		attempt_dash()
+
 
 func attempt_dash() -> void:
 	if dash_cooldown_timer > 0.0:
@@ -52,28 +54,32 @@ func attempt_dash() -> void:
 		return
 	dash()
 
+
 func dash() -> void:
 	var dash_direction := camera_gimbal.global_basis.z
 	linear_velocity += dash_direction * DASH_FORCE
-	
+
 	camera_gimbal.trigger_dash_effect(DASH_EFFECT_DURATION, DASH_FOV_BOOST, DASH_CAMERA_PULLBACK)
-	
+
 	#cooldown
 	dash_cooldown_timer = DASH_COOLDOWN
 	is_dashing = true
 	dash_effect_timer = DASH_EFFECT_DURATION
 
+
 func dash_timer_update(delta: float) -> void:
 	if dash_cooldown_timer > 0.0:
 		dash_cooldown_timer -= delta
-	
+
 	if dash_effect_timer > 0.0:
 		dash_effect_timer -= delta
 		if dash_effect_timer <= 0.0:
 			is_dashing = false
 
+
 func _process(delta: float) -> void:
 	dash_timer_update(delta)
+
 
 func _physics_process(_delta: float) -> void:
 	model_transform_update()
@@ -90,6 +96,7 @@ func model_transform_update() -> void:
 	tank_model.global_position = barrel_position_marker.global_position
 	tank_model.look_at(barrel_look_at_marker.global_position, Vector3.UP, true)
 
+
 func fire_cannon() -> void:
 	# Particles
 	var particles: Node3D = \
@@ -103,6 +110,7 @@ func fire_cannon() -> void:
 
 	# TODO: a better bullet system would be way better. But for now this works.
 	var new_bullet: Bullet = preload("res://scenes/projectiles/tank_bullet.scn").instantiate()
+	new_bullet.target = lockon_area.get_closest_lockon()
 	new_bullet.transform = bullet_spawn_position_marker.global_transform
 
 	# Bubba: to prevent the bullets from looking like they're lagging behind, we add a small amount
