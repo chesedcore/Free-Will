@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://da6ybfuo5tu7y" path="res://scripts/ui/combat_ui.gd" id="1_n7134"]
 
-[node name="UI" type="Node" unique_id=121542168 node_paths=PackedStringArray("nametags_layer")]
+[node name="UI" type="Node" unique_id=121542168 node_paths=PackedStringArray("iff_layer")]
 script = ExtResource("1_n7134")
-nametags_layer = NodePath("CanvasLayer/NametagsLayer")
+iff_layer = NodePath("CanvasLayer/IFFLayer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=957490515]
 
-[node name="NametagsLayer" type="Control" parent="CanvasLayer" unique_id=1291597699]
+[node name="IFFLayer" type="Control" parent="CanvasLayer" unique_id=1291597699]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

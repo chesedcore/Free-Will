@@ -35,7 +35,7 @@ func to_onscreen() -> void:
 	t.tween_property(outer, "scale", 1.25 * Vector2.ONE, time)
 	t.tween_property(outer, "modulate", Color.TRANSPARENT, time)
 	t.tween_property(inner, "rotation_degrees", 0, time)
-	t.tween_property(inner, "modulate", Color.GREEN, time)
+	t.tween_property(inner, "modulate", Color.YELLOW, time)
 
 func to_focused() -> void:
 	reset_tween()
@@ -53,11 +53,13 @@ func to_locked() -> void:
 	t.tween_property(inner, "modulate", Color.RED, time)
 	t.tween_property(inner, "rotation_degrees", 45, time)
 
+
 func setup() -> void:
 	outer.modulate = Color.TRANSPARENT
 	outer.scale = 1.25 * Vector2.ONE
 
-func change_state(to: State) -> void:
+func change_state(to: IFF.State) -> void:
+	if state == to: return
 	match to:
 		State.ON_SCREEN: to_onscreen()
 		State.FOCUSED: to_focused()

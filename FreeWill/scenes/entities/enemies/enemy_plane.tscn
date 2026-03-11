@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="4_iyje6"]
 [ext_resource type="PackedScene" uid="uid://b2k0tvxc2ybxm" path="res://assets/models/missile.blend" id="4_rakmp"]
 [ext_resource type="PackedScene" uid="uid://dnghcfqawmidu" path="res://assets/models/prototype_plane.blend" id="4_rhn42"]
-[ext_resource type="Texture2D" uid="uid://dlui3rp0ggtbu" path="res://assets/models/warning-svgrepo-com.png" id="5_iyje6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_12l03"]
 
@@ -57,4 +56,3 @@ transform = Transform3D(0.2928778, 0, 0, 0, -4.3711385e-08, -0.2111808, 0, 0.999
 
 [node name="warning_indicator" type="Sprite3D" parent="." unique_id=72973899]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36440206, -4.602668)
-texture = ExtResource("5_iyje6")

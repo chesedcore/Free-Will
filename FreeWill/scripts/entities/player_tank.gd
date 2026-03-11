@@ -24,7 +24,6 @@ const UI := UIBus.Feedback
 @export var barrel_look_at_marker: Marker3D
 @export var barrel_position_marker: Marker3D
 @export var bullet_spawn_position_marker: Marker3D
-@export var lockon_area: LockonArea
 
 var dash_cooldown_timer := 0.0
 var is_dashing := false
@@ -111,7 +110,6 @@ func fire_cannon() -> void:
 
 	# TODO: a better bullet system would be way better. But for now this works.
 	var new_bullet: Bullet = preload("res://scenes/projectiles/tank_bullet.scn").instantiate()
-	new_bullet.target = lockon_area.get_closest_lockon()
 	new_bullet.transform = bullet_spawn_position_marker.global_transform
 
 	# Bubba: to prevent the bullets from looking like they're lagging behind, we add a small amount
