@@ -1,17 +1,22 @@
-class_name Nametags
+class_name IFFTracker
 
-var tracked_entities: Dictionary[PhysicsBody3D, Label]
+var tracked_entities: Dictionary[PhysicsBody3D, IFF]
 
 @export var font_size: int = 14
 @export var text_colour := Color.WHITE
 @export var outline_colour := Color.BLACK
 @export var outline_size := 2
-@export var offset := Vector2(10, -20)
+@export var scale_modifier := 0.3
 
 var camera: Camera3D
 var attached_control: Control
 
-static func from_control(control: Control) -> Nametags:
+static func new_iff(with_name: String) -> IFF:
+	var iff := preload("res://scenes/ui/IFF.tscn").instantiate() as IFF
+	iff.set_iff(with_name)
+	return iff
+
+static func from_control(control: Control) -> IFFTracker:
 	assert(control, "That control isn't valid!")
 	var tags := new()
 	var cam := control.get_viewport().get_camera_3d()
@@ -24,16 +29,11 @@ func track_entity(entity: PhysicsBody3D, with_name: String) -> void:
 	assert(attached_control,  "There's no control attached!")
 	if tracked_entities.has(entity): return
 	
-	var label := Label.new()
-	label.text = with_name
-	label.add_theme_font_size_override("font_size", font_size)
-	label.add_theme_color_override("font_color", text_colour)
-	label.add_theme_color_override("font_outline_color", outline_colour)
-	label.add_theme_constant_override("outline_size", outline_size)
-	label.z_index = 100
+	var iff := new_iff(with_name)
 	
-	attached_control.add_child(label)
-	tracked_entities[entity] = label
+	attached_control.add_child(iff)
+	iff.scale *= scale_modifier
+	tracked_entities[entity] = iff
 
 func stop_tracking_entity(entity: PhysicsBody3D) -> void:
 	if not tracked_entities.has(entity): return
@@ -66,6 +66,7 @@ func update_entity(entity: PhysicsBody3D) -> bool:
 	
 	var screen_pos := camera.unproject_position(entity.global_position)
 	
-	label.position = screen_pos + offset
+	
+	label.position = screen_pos
 	label.visible = true
 	return true

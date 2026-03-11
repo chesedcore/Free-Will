@@ -1,7 +1,7 @@
 class_name CombatUI extends Node
 
 @export var nametags_layer: Control
-@onready var nametags := Nametags.from_control(nametags_layer)
+@onready var nametags := IFFTracker.from_control(nametags_layer)
 
 func track_these_entities(entities: Array[Node]) -> void:
 	for entity in entities:
