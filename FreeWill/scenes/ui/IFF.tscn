@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://brt0p14tg6vwl"]
+
+[ext_resource type="Script" uid="uid://bdek3al6bxpwy" path="res://scripts/ui/IFF.gd" id="1_co4q5"]
+[ext_resource type="Texture2D" uid="uid://imeqaiapcn3f" path="res://assets/ui/square.png" id="2_j724r"]
+[ext_resource type="FontFile" uid="uid://38d0ljavacn8" path="res://assets/fonts/ZenDots-Regular.ttf" id="3_j724r"]
+
+[node name="IFF" type="Node2D" unique_id=1035691610 node_paths=PackedStringArray("inner", "outer", "iff_name")]
+script = ExtResource("1_co4q5")
+inner = NodePath("Inner")
+outer = NodePath("Outer")
+iff_name = NodePath("IFFName")
+
+[node name="Inner" type="Node2D" parent="." unique_id=118454803]
+modulate = Color(0, 1, 0, 1)
+
+[node name="InnerSprite" type="Sprite2D" parent="Inner" unique_id=684541423]
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("2_j724r")
+
+[node name="Outer" type="Node2D" parent="." unique_id=728985078]
+modulate = Color(0, 1, 0, 1)
+
+[node name="OuterSprite" type="Sprite2D" parent="Outer" unique_id=712241670]
+rotation = 0.7853982
+scale = Vector2(1.2057036, 1.2057036)
+texture = ExtResource("2_j724r")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1164007298]
+
+[node name="IFFName" type="Label" parent="." unique_id=1836482453]
+modulate = Color(0, 1, 0, 1)
+offset_left = 57.0
+offset_top = 30.0
+offset_right = 181.0
+offset_bottom = 96.0
+theme_override_fonts/font = ExtResource("3_j724r")
+text = "Ussop why
+the fuck are
+you green"

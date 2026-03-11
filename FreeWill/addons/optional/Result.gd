@@ -40,6 +40,9 @@ static func Ok(v) -> Result:
 static func Err(err) -> Result:
 	return Result.new(err, false)
 
+static func Ok_as_is() -> Result:
+	return Result.Ok(null)
+
 ## Constructs a [Result] from the global [enum @GlobalScope.Error] enum[br]
 ## [constant @GlobalScope.OK] will result in the Ok() variant, everything else will result in Err()
 static func from_gderr(err: int) -> Result:
@@ -361,4 +364,3 @@ static func parse_json_file(path: String) -> Result:
 				.err_info('line', json.get_error_line())
 			)\
 		.map(func(__):	return json.data)
-

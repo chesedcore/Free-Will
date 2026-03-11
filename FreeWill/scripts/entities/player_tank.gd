@@ -53,6 +53,7 @@ func attempt_dash() -> void:
 		UIBus.attempted_dash.emit(Result.Err(error))
 		return
 	dash()
+	UIBus.attempted_dash.emit(Result.Ok_as_is())
 
 
 func dash() -> void:
