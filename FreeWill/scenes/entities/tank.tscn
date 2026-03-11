@@ -81,7 +81,7 @@ radius = 0.37548828
 height = 1.3037109
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tafis"]
-size = Vector3(250, 250, 500)
+size = Vector3(500, 250, 500)
 
 [node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "lockon_area")]
 collision_layer = 2
@@ -141,7 +141,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999966, -0.0024358016, 0.0009016985, -0.0021196387, 0.9659598, 0.2586838, -0.0015011069, 0.258681, -0.96596164, -0.0008017722, 9.991397, -19.987856)
+transform = Transform3D(-0.9999781, -0.0052056275, 0.0040772026, -0.003958007, 0.96517867, 0.26156184, -0.005296822, 0.26154, -0.96517813, 0.016288256, 9.969732, -19.9773)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
