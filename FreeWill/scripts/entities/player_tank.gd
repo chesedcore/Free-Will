@@ -51,6 +51,7 @@ func attempt_dash() -> void:
 		UIBus.attempted_dash.emit(Result.Err(error))
 		return
 	dash()
+	UIBus.attempted_dash.emit(Result.Ok_as_is())
 
 func dash() -> void:
 	var dash_direction := camera_gimbal.global_basis.z
