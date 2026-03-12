@@ -27,6 +27,8 @@ const UI := UIBus.Feedback
 @export var barrel_position_marker: Marker3D
 @export var bullet_spawn_position_marker: Marker3D
 
+@export var cannon_fire_sound: AudioStream = preload("res://audio/sfx/rocket_launch.ogg")
+
 var dash_cooldown_timer := 0.0
 var is_dashing := false
 var dash_effect_timer := 0.0
@@ -127,6 +129,8 @@ func fire_cannon() -> void:
 	# But for now (in the spirit of this jam), this will do just fine.
 	get_tree().root.add_child.call_deferred(new_bullet)
 
+	AudioManager.play_sound_at(barrel_position_marker.global_position, cannon_fire_sound)
+
 
 func damage(amount: float) -> void:
 	health -= amount
@@ -147,4 +151,6 @@ func kill() -> void:
 		(load("res://scenes/entities/game_over_scene.tscn") as PackedScene).instantiate()
 
 	game_over_scene.player = self
+
+	AudioManager.play_sound_at(global_position, preload("res://audio/sfx/large_explosion.ogg"), 15.0)
 	get_tree().root.add_child.call_deferred(game_over_scene)

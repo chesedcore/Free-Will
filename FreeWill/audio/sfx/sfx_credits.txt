@@ -1,0 +1,5 @@
+explosion.ogg = https://opengameart.org/content/q009s-weapon-sounds
+large_explosion.ogg = https://freesound.org/people/Klerrp/sounds/114046/
+wind.ogg = https://freesound.org/people/craigsmith/sounds/438867/
+rocket_launch.ogg / rocket_launch_2.ogg = https://freesound.org/people/Audionautics/sounds/171655/
+rocket_flight.ogg = https://freesound.org/people/KVV_Audio/sounds/745205/

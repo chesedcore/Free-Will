@@ -30,11 +30,12 @@ gdscript/warnings/untyped_declaration=2
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/optional/plugin.cfg", "res://addons/phantom_camera/plugin.cfg", "res://addons/wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/optional/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
+"res://audio/": "purple",
 "res://models/": "orange",
 "res://res/": "pink",
 "res://scenes/": "green",

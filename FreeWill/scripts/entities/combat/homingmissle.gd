@@ -7,6 +7,8 @@ const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.
 @export var turn_speed : float =10
 
 @export var damage_value: float = 10.0
+@export var impact_sound: AudioStream = preload("res://audio/sfx/explosion.ogg")
+@export var spawn_sound: AudioStream = preload("res://audio/sfx/rocket_launch_2.ogg")
 
 var locked_on : bool = true
 var lock_off_dist : float = 25
@@ -15,6 +17,8 @@ var threat_indicator : ThreatIndicator
 
 
 func  _ready() -> void:
+	AudioManager.play_sound_at(global_position, spawn_sound, 10.0)
+
 	if target_node:
 		threat_indicator = THREAT_INDICATOR.instantiate()
 		threat_indicator.target_node = self
@@ -63,5 +67,7 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 			preload("res://scenes/entities/tank_cannon_particles.tscn").instantiate()
 		body.add_child(particles)
 		body.damage(damage_value)
+
+		AudioManager.play_sound_at(global_position, impact_sound, 15.0)
 
 		call_deferred("queue_free")

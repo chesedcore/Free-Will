@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://w1w7mvkqos6t" path="res://scripts/entities/combat/homingmissle.gd" id="1_2glct"]
 [ext_resource type="PackedScene" uid="uid://b2k0tvxc2ybxm" path="res://assets/models/missile.blend" id="2_6ku3j"]
 [ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="3_aa1g3"]
+[ext_resource type="AudioStream" uid="uid://dnpftk548fu71" path="res://audio/sfx/rocket_flight.ogg" id="4_rlfjo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vt8wv"]
 radius = 0.29248047
@@ -34,5 +35,14 @@ collision_mask = 2
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox" unique_id=1814009424]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.032479525, 0.5422527, -3.3075275)
 shape = SubResource("CapsuleShape3D_aa1g3")
+
+[node name="ThrusterSoundPlayer" type="AudioStreamPlayer3D" parent="." unique_id=524493614]
+stream = ExtResource("4_rlfjo")
+volume_db = 10.0
+pitch_scale = 0.7
+autoplay = true
+attenuation_filter_cutoff_hz = 20500.0
+doppler_tracking = 2
+parameters/looping = true
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
