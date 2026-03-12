@@ -27,7 +27,11 @@ var current_fov := BASE_FOV
 @onready var tank: PlayerTank = owner
 @onready var camera := get_viewport().get_camera_3d()
 
+
 func _input(event: InputEvent) -> void:
+	if (tank.is_dead):
+		return
+
 	if (event is InputEventMouseMotion):
 		camera_rotation_update(event.relative)
 
@@ -36,6 +40,7 @@ func _input(event: InputEvent) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		else:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
 
 func _process(delta: float) -> void:
 	speed_shake_update(delta)
@@ -60,6 +65,7 @@ func speed_shake_update(delta: float) -> void:
 	screen_shake_value = tank.linear_velocity.length() * 0.0025
 	phantom_camera.noise.frequency = \
 		lerpf(phantom_camera.noise.frequency, screen_shake_value, 12.0 * delta)
+
 
 func trigger_dash_effect(duration: float, fov_boost: float, cam_pullback: float) -> void:
 	is_dash_active = true
@@ -86,6 +92,7 @@ func start_dash_tween(duration: float, fov_boost: float, cam_pullback: float) ->
 	#return to normal after that duration
 	dash_tween.finished.connect(recover.bind(duration))
 
+
 func recover(duration: float) -> void:
 	if recovery_tween: recovery_tween.kill()
 	recovery_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -93,6 +100,7 @@ func recover(duration: float) -> void:
 	recovery_tween.tween_property(camera, "fov", BASE_FOV, duration * 0.5)
 	recovery_tween.tween_property(phantom_camera, "position:z", base_camera_z, duration * 0.5)
 	recovery_tween.tween_callback(print.bind("balls2"))
+
 
 func dash_effect_update(delta: float) -> void:
 	if not is_dash_active: return

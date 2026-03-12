@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://fkjxbuxgproe"]
+
+[ext_resource type="Script" uid="uid://cw05d0aaex3hh" path="res://scripts/entities/player/game_over_scene.gd" id="1_16vru"]
+
+[node name="GameOverScene" type="Node" unique_id=606026751 node_paths=PackedStringArray("camera_rot_point", "camera", "retry_button", "menu_button")]
+script = ExtResource("1_16vru")
+camera_rot_point = NodePath("CameraRotPoint")
+camera = NodePath("CameraRotPoint/Camera")
+retry_button = NodePath("UI/RetryButton")
+menu_button = NodePath("UI/MenuButton")
+
+[node name="CameraRotPoint" type="Node3D" parent="." unique_id=1068672432]
+
+[node name="Camera" type="Camera3D" parent="CameraRotPoint" unique_id=467895858]
+transform = Transform3D(1, 0, 0, 0, 0.9396926, 0.34202012, 0, -0.34202012, 0.9396926, 0, 30, 60)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1241721067]
+
+[node name="Label" type="Label" parent="UI" unique_id=976952271]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -11.5
+offset_right = 87.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "You dead as hell lmfao"
+
+[node name="RetryButton" type="Button" parent="UI" unique_id=4882079]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 60.0
+offset_right = 128.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retry"
+
+[node name="MenuButton" type="Button" parent="UI" unique_id=2051127403]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = 132.0
+offset_right = 128.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Give Up"

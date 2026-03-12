@@ -28,6 +28,7 @@ const UI := UIBus.Feedback
 var dash_cooldown_timer := 0.0
 var is_dashing := false
 var dash_effect_timer := 0.0
+var is_dead := false
 
 
 func _ready() -> void:
@@ -122,3 +123,19 @@ func fire_cannon() -> void:
 	# then trigger a signal that makes the World handler add the bullet to the Bullets node.
 	# But for now (in the spirit of this jam), this will do just fine.
 	get_tree().root.add_child.call_deferred(new_bullet)
+
+
+func kill() -> void:
+	if (is_dead):
+		return
+
+	is_dead = true
+	freeze = is_dead
+
+	tank_model.hide()
+
+	var game_over_scene: GameOverScene = \
+		(load("res://scenes/entities/game_over_scene.tscn") as PackedScene).instantiate()
+
+	game_over_scene.player = self
+	get_tree().root.add_child.call_deferred(game_over_scene)
