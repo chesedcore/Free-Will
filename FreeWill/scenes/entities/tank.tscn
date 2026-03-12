@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://brqh6t5d1dyrl" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="10_hsoq5"]
 [ext_resource type="Script" uid="uid://cuffvge5ad4aa" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_3d.gd" id="11_ekcgd"]
 [ext_resource type="Shader" uid="uid://cwxrvexdarj2x" path="res://shaderslop/wind_trail.gdshader" id="11_if5yn"]
+[ext_resource type="Script" uid="uid://8ckcjgc3u1r0" path="res://scripts/entities/player/game_ui.gd" id="17_uedwi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6okr"]
 render_priority = 1
@@ -136,7 +137,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.99999285, 0.002913173, -0.0024025666, 0.002193648, 0.9660546, 0.25832883, 0.003073567, 0.2583217, -0.966054, -0.0029034053, 10.017618, -20.012568)
+transform = Transform3D(-0.99999934, 0.0003177545, 0.0011087991, 0.00059557584, 0.965487, 0.26045075, -0.0009877717, 0.26045126, -0.96548647, 0.009681864, 9.994337, -20.003414)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -202,5 +203,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_4sl2t")
+
+[node name="GameUI" type="CanvasLayer" parent="." unique_id=839091213 node_paths=PackedStringArray("temp_health_display_label")]
+script = ExtResource("17_uedwi")
+temp_health_display_label = NodePath("TempHealthDisplayLabel")
+
+[node name="TempHealthDisplayLabel" type="Label" parent="GameUI" unique_id=1085288647]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -88.0
+offset_right = 20.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Health: 100%"
 
 [editable path="TankModel"]

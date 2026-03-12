@@ -15,6 +15,8 @@ const DASH_FOV_BOOST := 20.0
 const DASH_CAMERA_PULLBACK := 10.0
 const DASH_EFFECT_DURATION := 10.0
 
+const MAX_HEALTH: float = 100.0
+
 ##shorthand for the feedback enum
 const UI := UIBus.Feedback
 
@@ -29,6 +31,7 @@ var dash_cooldown_timer := 0.0
 var is_dashing := false
 var dash_effect_timer := 0.0
 var is_dead := false
+var health := MAX_HEALTH
 
 
 func _ready() -> void:
@@ -123,6 +126,12 @@ func fire_cannon() -> void:
 	# then trigger a signal that makes the World handler add the bullet to the Bullets node.
 	# But for now (in the spirit of this jam), this will do just fine.
 	get_tree().root.add_child.call_deferred(new_bullet)
+
+
+func damage(amount: float) -> void:
+	health -= amount
+	if (health <= 0.0):
+		kill()
 
 
 func kill() -> void:
