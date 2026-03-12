@@ -13,7 +13,7 @@ var player: PlayerTank
 
 func _ready() -> void:
 	camera.make_current()
-	camera_rot_point.global_transform = player.global_transform
+	camera_rot_point.global_position = player.global_position
 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
