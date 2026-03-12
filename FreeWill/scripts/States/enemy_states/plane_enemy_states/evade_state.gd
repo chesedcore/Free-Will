@@ -45,7 +45,7 @@ func physics_update(_delta: float) -> void:
 		else:
 			Transitioned.emit(self,EnemyPlane.STATES.INTERCEPT)
 
-
+		evade_target.y = clamp(evade_target.y,150,100000)
 		var desired_direction := (evade_target - enemy.global_position).normalized()
 
 		heading = heading.slerp(desired_direction, turn_speed * _delta).normalized()

@@ -10,7 +10,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_0s5y7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0s5y7"]
-size = Vector3(710.5298, 237.96199, 576.4973)
+size = Vector3(710.5298, 237.96199, 382.22473)
 
 [node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("lock_on_timer", "mesh_instance_3d", "missle_spawner", "line_of_sight")]
 collision_layer = 4
@@ -48,11 +48,8 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="line_of_sight" unique_id=1769567354]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.596893, -22.851494, -292.7882)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.596893, -22.851494, -195.65192)
 shape = SubResource("BoxShape3D_0s5y7")
 
 [node name="thruster_particles" parent="." unique_id=1747782805 instance=ExtResource("4_iyje6")]
 transform = Transform3D(0.2928778, 0, 0, 0, -4.3711385e-08, -0.2111808, 0, 0.99999994, -9.231006e-09, 0, 0, 3.9268136)
-
-[node name="warning_indicator" type="Sprite3D" parent="." unique_id=72973899]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36440206, -4.602668)

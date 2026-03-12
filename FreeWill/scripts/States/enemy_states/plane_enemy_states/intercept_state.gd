@@ -51,6 +51,7 @@ func physics_update(_delta: float) -> void:
 	
 		var forward := -enemy.global_transform.basis.z
 		var target := player.global_position + player_offset + forward * 50
+		target.y = clamp(target.y,150,100000)
 		var desired_direction := (target - enemy.global_position).normalized()
 		heading = heading.slerp(desired_direction, turn_speed * _delta).normalized()
 
@@ -67,9 +68,9 @@ func physics_update(_delta: float) -> void:
 			#return
 
 func start_lock_on() -> void:
-		
+	if AttackState.num_of_attacking_planes < AttackState.MAX_ATTACKING_PLANES:
 		Transitioned.emit(self,EnemyPlane.STATES.ATTACK)
-		#lock_on_timer.start()
+	#lock_on_timer.start()
 
 
 func on_los_body_entered(body: Node3D)->void:

@@ -2,22 +2,41 @@ class_name HomingMissle extends CharacterBody3D
 
 @export var target_node : PhysicsBody3D
 @export var Max_speed : float = 250
-@export var turn_speed : float = 6.0
+@export var turn_speed : float =10
 var locked_on : bool = true
-var lock_off_dist : float = 50
+var lock_off_dist : float = 25
 var lifespan : float = 10
+const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.tscn")
+var threat_indicator : ThreatIndicator
+
+func  _ready() -> void:
+	print(target_node)
+	if target_node:
+		threat_indicator = THREAT_INDICATOR.instantiate()
+		threat_indicator.target_node = self
+		threat_indicator.is_dangerous = true
+		target_node.add_child(threat_indicator)
+
 
 func _physics_process(delta: float) -> void:
 	if not target_node:
 		return
 	if locked_on:
-		var to_target : Vector3 = (target_node.global_position - global_position).normalized()
+		var distance : float = global_position.distance_to(target_node.global_position)
+		var predict_time : float = min(distance/ velocity.length(),1)
+		var predict_target : Vector3
+		if target_node is CharacterBody3D :
+			predict_target= target_node.global_position + target_node.velocity * predict_time
+		elif target_node is RigidBody3D:
+			predict_target= target_node.global_position + target_node.linear_velocity * predict_time
+		var dir_to_predict : Vector3 = (predict_target - global_position).normalized()
 		var forward : Vector3 = -global_transform.basis.z
-		var rotate_amount : Vector3 = forward.cross(to_target)
+		var rotate_amount : Vector3 = forward.cross(dir_to_predict)
 		rotate_object_local(Vector3.UP, rotate_amount.y * turn_speed * delta)
 		rotate_object_local(Vector3.RIGHT, rotate_amount.x * turn_speed * delta)
-		if global_position.distance_to(target_node.global_position)<lock_off_dist:
+		if distance<lock_off_dist:
 			locked_on = false
+			threat_indicator.target_node = null
 	velocity = -global_transform.basis.z * Max_speed
 	move_and_slide()
 	if lifespan>0 :

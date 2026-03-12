@@ -6,11 +6,11 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vt8wv"]
 radius = 0.29248047
-height = 4.3361816
+height = 5.5915833
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aa1g3"]
 radius = 0.32470703
-height = 2.1800842
+height = 2.4991226
 
 [node name="Homingmissle" type="CharacterBody3D" unique_id=1409877024]
 collision_layer = 16
@@ -18,21 +18,21 @@ collision_mask = 2
 script = ExtResource("1_2glct")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1514301715]
-transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -6.1629226e-09, 0.33047834, -0.1485669)
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -3.3600596e-08, 0.33047834, -0.7762677)
 shape = SubResource("CapsuleShape3D_vt8wv")
 
 [node name="missile" parent="." unique_id=1561043600 instance=ExtResource("2_6ku3j")]
-transform = Transform3D(-4.659634e-08, 0, 2.372, 0, 2, 0, -1.066, 0, -1.0368341e-07, 0, 0, 0)
+transform = Transform3D(-8.812589e-08, 0, 5.826574, 0, 3.519803, 0, -2.0160854, 0, -2.5468762e-07, 0, 0, 0)
 
 [node name="thruster_particles" parent="." unique_id=1747782805 instance=ExtResource("3_aa1g3")]
-transform = Transform3D(1, 0, 0, 0, -5.479062e-08, -0.10299675, 0, 1.2534631, -4.5021307e-09, 0, 0.39017785, 2.3618205)
+transform = Transform3D(1, 0, 0, 0, -5.479062e-08, -0.10299675, 0, 1.2534631, -4.5021307e-09, 0, 0.39017785, 3.755088)
 
 [node name="hitbox" type="Area3D" parent="." unique_id=1085087111]
 collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox" unique_id=1814009424]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.05565715, 0.27860445, -1.463893)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.032479525, 0.5422527, -3.3075275)
 shape = SubResource("CapsuleShape3D_aa1g3")
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

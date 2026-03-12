@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://sw5vddixjacn"]
+
+[ext_resource type="Script" uid="uid://616nhgv1p0mv" path="res://scripts/entities/combat/threat_indicator.gd" id="1_i6o16"]
+[ext_resource type="PackedScene" uid="uid://61fubnkdkwoo" path="res://assets/models/threat_indicator.blend" id="2_1qrho"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c8qfe"]
+albedo_color = Color(0.99876505, 0.8921499, 0, 1)
+
+[node name="threat_indicator" type="Node3D" unique_id=1365540695]
+transform = Transform3D(0.99999994, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_i6o16")
+
+[node name="threat_indicator_model" parent="." unique_id=811827876 instance=ExtResource("2_1qrho")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 2, -12)
+
+[node name="Cube" parent="threat_indicator_model" index="0" unique_id=426490571]
+surface_material_override/0 = SubResource("StandardMaterial3D_c8qfe")
+
+[editable path="threat_indicator_model"]
