@@ -9,11 +9,14 @@ const GUN_FIRE_FORCE: float = 50.0
 
 const MAX_SPEED: float = 150.0
 
-const DASH_FORCE := 200.0
-const DASH_COOLDOWN := 4.0
+const DASH_FORCE := 350.0
+const DASH_COOLDOWN := 10.0
+const DASH_MAX_SPEED := MAX_SPEED * 3
 const DASH_FOV_BOOST := 20.0
-const DASH_CAMERA_PULLBACK := 10.0
-const DASH_EFFECT_DURATION := 10.0
+const DASH_CAMERA_PULLBACK := 6.0
+const DASH_EFFECT_DURATION := 5.0
+
+const ACTION_COOLDOWN := 3.25
 
 const MAX_HEALTH: float = 100.0
 
@@ -27,14 +30,26 @@ const UI := UIBus.Feedback
 @export var barrel_position_marker: Marker3D
 @export var bullet_spawn_position_marker: Marker3D
 
+
+@export var turret: MeshInstance3D
+@export var hull: MeshInstance3D
+
+
 @export var cannon_fire_sound: AudioStream = preload("res://audio/sfx/rocket_launch.ogg")
 
 var dash_cooldown_timer := 0.0
 var is_dashing := false
 var dash_effect_timer := 0.0
+
 var is_dead := false
 var health := MAX_HEALTH
 
+var action_cooldown_timer := 0.0
+var is_in_action := false
+var action_window_timer := 0.0
+
+var is_spinning_turret := false
+var is_parrying := false
 
 func _ready() -> void:
 	GameState.player = self
@@ -50,7 +65,23 @@ func _input(event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("dash"):
 		attempt_dash()
+	
+	if Input.is_action_just_pressed("action"):
+		attempt_action()
 
+func spin_turret(by_angle: float) -> void:
+	turret.rotate_y(by_angle)
+
+func attempt_action() -> void:
+	if action_cooldown_timer > 0.0:
+		var error := UI.ACTION_STILL_UNDER_COOLDOWN
+		UIBus.attempted_action.emit(Result.Err(error))
+		return
+	action()
+	UIBus.attempted_action.emit(Result.Ok_as_is())
+
+func action() -> void:
+	static_parry()
 
 func attempt_dash() -> void:
 	if dash_cooldown_timer > 0.0:
@@ -82,25 +113,46 @@ func dash_timer_update(delta: float) -> void:
 		if dash_effect_timer <= 0.0:
 			is_dashing = false
 
+func action_timer_update(delta: float) -> void:
+	if action_cooldown_timer > 0.0:
+		action_cooldown_timer -= delta
+
+	if action_window_timer > 0.0:
+		action_window_timer -= delta
+		if action_window_timer <= 0.0:
+			is_in_action = false
 
 func _process(delta: float) -> void:
 	dash_timer_update(delta)
+	action_timer_update(delta)
 
-
-func _physics_process(_delta: float) -> void:
-	model_transform_update()
+func _physics_process(delta: float) -> void:
+	if not is_in_action: model_transform_update(delta)
 	camera_gimbal.global_position = global_position
+	if is_spinning_turret: spin_turret(70 * delta)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	state.linear_velocity.x = clampf(state.linear_velocity.x, -MAX_SPEED, MAX_SPEED)
-	state.linear_velocity.y = clampf(state.linear_velocity.y, -INF, MAX_SPEED)
-	state.linear_velocity.z = clampf(state.linear_velocity.z, -MAX_SPEED, MAX_SPEED)
+	var max_speed := DASH_MAX_SPEED if is_dashing else MAX_SPEED
+	state.linear_velocity.x = clampf(state.linear_velocity.x, -max_speed, max_speed)
+	state.linear_velocity.y = clampf(state.linear_velocity.y, -INF, max_speed)
+	state.linear_velocity.z = clampf(state.linear_velocity.z, -max_speed, max_speed)
 
 
-func model_transform_update() -> void:
+##this is ugly because allocating a new temp var every frame for a quat might be
+##ugly ass for performance, so no extra allocs are made on purpose
+func model_transform_update(delta: float) -> void:
 	tank_model.global_position = barrel_position_marker.global_position
-	tank_model.look_at(barrel_look_at_marker.global_position, Vector3.UP, true)
+	#tank_model.look_at(barrel_look_at_marker.global_position, Vector3.UP, true)
+	tank_model.global_transform.basis = \
+	tank_model.global_transform.basis.slerp(
+		tank_model.global_transform.looking_at(
+			barrel_look_at_marker.global_position, 
+			Vector3.UP, 
+			true
+		).basis,
+		6.0 * delta	
+	)
 
 
 func fire_cannon() -> void:
@@ -128,6 +180,35 @@ func fire_cannon() -> void:
 	# then trigger a signal that makes the World handler add the bullet to the Bullets node.
 	# But for now (in the spirit of this jam), this will do just fine.
 	get_tree().root.add_child.call_deferred(new_bullet)
+
+var t_action: Tween
+
+
+func static_parry() -> void:
+	if t_action: t_action.kill()
+	t_action = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	t_action.set_parallel(true)
+	t_action.tween_callback(func() -> void: 
+		is_in_action = true
+		action_cooldown_timer = ACTION_COOLDOWN
+	)
+	t_action.tween_property(tank_model, "rotation_degrees:x", -30, 0.2)
+	t_action.chain()
+	t_action.tween_callback(func() -> void: 
+		is_spinning_turret = true
+		is_parrying = true
+		freeze = true
+	)
+	t_action.tween_property(tank_model, "rotation_degrees:x", 120, 0.325)
+	#t_action.tween_property(tank_model, "rotation_degrees:z", 360, 0.5)
+	#t_action.tween_property(tank_model, "rotation_degrees:z", 70, 0.3)
+	t_action.finished.connect(_on_action_recovery)
+
+func _on_action_recovery() -> void:
+	is_in_action = false
+	is_spinning_turret = false
+	is_parrying = false
+	freeze = false
 
 	AudioManager.play_sound_at(barrel_position_marker.global_position, cannon_fire_sound)
 

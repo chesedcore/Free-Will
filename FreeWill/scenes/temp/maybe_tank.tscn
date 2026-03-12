@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://3ofy1dl65a55"]
+
+[ext_resource type="PackedScene" uid="uid://ciqvl3ekbok17" path="res://models/player_tank.blend" id="1_mnax6"]
+
+[node name="player_tank" unique_id=282037210 instance=ExtResource("1_mnax6")]
+
+[node name="Node3D" type="Node3D" parent="." index="3" unique_id=1617605060]

@@ -3,8 +3,8 @@ class_name CameraGimbal extends Node3D
 ## Camera gimbal class. Handles camera rotation and shake.
 
 const MOUSE_SENS: float = 1.0
-const MIN_ROT: float = -80.0
-const MAX_ROT: float = 80.0
+const MIN_ROT: float = -90.0
+const MAX_ROT: float = 90.0
 
 const BASE_FOV := 75.0
 const DASH_FOV_TWEEN_TIME := 0.7
@@ -83,7 +83,7 @@ func start_dash_tween(duration: float, fov_boost: float, cam_pullback: float) ->
 
 	dash_tween.set_parallel(true)
 
-	dash_tween.tween_property(camera, "fov", BASE_FOV + fov_boost, DASH_FOV_TWEEN_TIME)
+	dash_tween.tween_property(camera, "fov", BASE_FOV + fov_boost, 0.05)
 	dash_tween.tween_callback(print.bind("balls"))
 	var target_pos := phantom_camera.position
 	target_pos.z = (base_camera_z - cam_pullback)
