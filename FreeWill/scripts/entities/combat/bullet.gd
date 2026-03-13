@@ -36,7 +36,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var target_position: Vector3 = target.global_position
 
 	if (target is BaseEnemy):
-		target_position += target.get_real_velocity()
+		target_position += target.get_real_velocity() * 0.25
 
 	state.linear_velocity += \
 		global_position.direction_to(target_position) * \
