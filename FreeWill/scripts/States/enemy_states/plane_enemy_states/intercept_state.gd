@@ -17,7 +17,6 @@ var offset_distance : int = randi_range(50,65)
 
 var los : Area3D
 
-var marker : MeshInstance3D
 
 static func intercept_state_from(owner : BaseEnemy,los:Area3D)-> EnemyState:
 	var intercept_state : InterceptState= new()
@@ -58,7 +57,7 @@ func physics_update(_delta: float) -> void:
 		velocity_vec = velocity_vec.move_toward(heading * Max_speed, aceleration * _delta)
 		enemy.look_at(enemy.global_position + heading, Vector3.UP)
 		enemy.velocity = velocity_vec
-		marker.global_position = target
+
 
 #
 #func update(_delta : float) -> void:

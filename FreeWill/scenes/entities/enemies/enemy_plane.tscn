@@ -7,17 +7,14 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_12l03"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_0s5y7"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_0s5y7"]
 size = Vector3(710.5298, 237.96199, 382.22473)
 
-[node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("lock_on_timer", "mesh_instance_3d", "missle_spawner", "line_of_sight")]
+[node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("lock_on_timer", "missle_spawner", "line_of_sight")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_17xuh")
 lock_on_timer = NodePath("lock_on_timer")
-mesh_instance_3d = NodePath("MeshInstance3D")
 missle_spawner = NodePath("missle_spawner")
 line_of_sight = NodePath("line_of_sight")
 
@@ -33,9 +30,6 @@ one_shot = true
 
 [node name="missle_spawner" type="Node3D" parent="." unique_id=405366906]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3676071, -3.7911148)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2091338083]
-mesh = SubResource("BoxMesh_0s5y7")
 
 [node name="missile" parent="." unique_id=1561043600 instance=ExtResource("4_rakmp")]
 transform = Transform3D(0.037673336, 0, 0.9992901, 0, 1, 0, -0.9992901, 0, 0.037673336, 1.2833618, -0.7955308, -1.4830804)

@@ -1,7 +1,7 @@
 class_name EnemyPlane extends BaseEnemy
 
 @export var lock_on_timer: Timer
-@export var mesh_instance_3d: MeshInstance3D
+
 
 @export var missle_spawner: Node3D
 const HOMINGMISSLE = preload("res://scenes/projectiles/enemy_projectie/homingmissle.tscn")
@@ -32,7 +32,7 @@ func create_state(state :STATES)->State:
 		STATES.INTERCEPT:
 			
 			new_state = InterceptState.intercept_state_from(self,line_of_sight)
-			new_state.marker = mesh_instance_3d
+			
 			new_state.Transitioned.connect(on_state_transition)
 		STATES.ATTACK:
 			new_state = AttackState.attack_state_from(self,lock_on_timer,line_of_sight)
@@ -40,7 +40,7 @@ func create_state(state :STATES)->State:
 			new_state.Transitioned.connect(on_state_transition)
 		STATES.EVADE:
 			new_state = EvadeState.evade_state_from(self)
-			new_state.marker = mesh_instance_3d
+			
 			new_state.Transitioned.connect(on_state_transition)
 			
 	return new_state

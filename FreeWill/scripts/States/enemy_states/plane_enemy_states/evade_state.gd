@@ -13,7 +13,6 @@ var heading : Vector3 = Vector3.FORWARD
 
 var evade_offset : Vector3
 var evade_target : Vector3
-var marker : MeshInstance3D
 
 
 static func evade_state_from(owner : BaseEnemy)-> EvadeState:
@@ -55,4 +54,3 @@ func physics_update(_delta: float) -> void:
 
 		enemy.look_at(enemy.global_position + heading, Vector3.UP)
 		enemy.velocity = velocity_vec
-		marker.global_position = evade_target

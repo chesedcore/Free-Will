@@ -12,9 +12,12 @@ const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.
 
 var locked_on : bool = true
 var lock_off_dist : float = 25
-var lifespan : float = 10
+var lifespan : float = 5
 var threat_indicator : ThreatIndicator
 
+func _process(delta: float) -> void:
+	if global_position.y <= -10:
+		call_deferred("queue_free")
 
 func  _ready() -> void:
 	AudioManager.play_sound_at(global_position, spawn_sound, 10.0)
@@ -22,13 +25,14 @@ func  _ready() -> void:
 	if target_node:
 		threat_indicator = THREAT_INDICATOR.instantiate()
 		threat_indicator.target_node = self
-		threat_indicator.is_dangerous = true
+#		threat_indicator.is_dangerous = true
 		target_node.add_child(threat_indicator)
 
 
 func _physics_process(delta: float) -> void:
 	if not target_node:
 		return
+	
 
 	if locked_on:
 		var distance : float = global_position.distance_to(target_node.global_position)
@@ -42,24 +46,28 @@ func _physics_process(delta: float) -> void:
 
 		var dir_to_predict : Vector3 = (predict_target - global_position).normalized()
 		var forward : Vector3 = -global_transform.basis.z
-		var rotate_amount : Vector3 = forward.cross(dir_to_predict)
+		var new_dir :Vector3= forward.slerp(dir_to_predict, turn_speed * delta).normalized()
 
-		rotate_object_local(Vector3.UP, rotate_amount.y * turn_speed * delta)
-		rotate_object_local(Vector3.RIGHT, rotate_amount.x * turn_speed * delta)
+		look_at(global_position + new_dir, Vector3.UP)
 
 		if distance<lock_off_dist:
 			locked_on = false
+			if threat_indicator:
+				threat_indicator.target_node = null
+		
+
+	if lifespan > 0:
+		lifespan -= delta
+		velocity = -global_transform.basis.z * Max_speed
+	else:
+		if threat_indicator:
 			threat_indicator.target_node = null
-
-	velocity = -global_transform.basis.z * Max_speed
-
+		locked_on = false
+		velocity += get_gravity() *2 * delta
+		
 	move_and_slide()
 
-	if lifespan>0 :
-		lifespan-= delta
-	else:
-		call_deferred("queue_free")
-
+	
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body is PlayerTank:
