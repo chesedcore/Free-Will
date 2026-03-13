@@ -1,6 +1,6 @@
 class_name IFFTracker
 
-var tracked_entities: Dictionary[PhysicsBody3D, IFF]
+static var _tracked_entities: Dictionary[PhysicsBody3D, IFF]
 
 @export var font_size: int = 14
 @export var text_colour := Color.WHITE
@@ -35,48 +35,51 @@ static func get_lock_this_frame() -> Option:
 
 	return Option.Some(_locked_entity)
 
-##add some entity to be tracked by a name
-func track_entity(entity: PhysicsBody3D, with_name: String) -> void:
-	assert(attached_control, "There's no control attached!")
-	if tracked_entities.has(entity): return
+static func stop_tracking_entity(entity: PhysicsBody3D) -> void:
+	if not _tracked_entities.has(entity): return
 
-	var iff := new_iff(with_name)
-
-	attached_control.add_child(iff)
-	iff.scale *= scale_modifier
-	tracked_entities[entity] = iff
-
-func stop_tracking_entity(entity: PhysicsBody3D) -> void:
-	if not tracked_entities.has(entity): return
-
-	var label := tracked_entities[entity]
+	var label := _tracked_entities[entity]
 	label.queue_free()
-	tracked_entities.erase(entity)
+	_tracked_entities.erase(entity)
 
 	#clear lock if we were tracking this piece of shit
 	if _locked_entity == entity:
 		_locked_entity = null
 
+static func clear_tracked_entities() -> void:
+	_tracked_entities = {}
+
+##add some entity to be tracked by a name
+func track_entity(entity: PhysicsBody3D, with_name: String) -> void:
+	assert(attached_control, "There's no control attached!")
+	if _tracked_entities.has(entity): return
+
+	var iff := new_iff(with_name)
+
+	attached_control.add_child(iff)
+	iff.scale *= scale_modifier
+	_tracked_entities[entity] = iff
+
 func tick(origin_body: PhysicsBody3D) -> void:
 	if not camera: return
 
-	for entity: PhysicsBody3D in tracked_entities.keys():
+	for entity: PhysicsBody3D in _tracked_entities.keys():
 		if not is_instance_valid(entity):
-			push_warning("The entity %s with name %s isn't valid anymore, you forgot to clean it off" % [str(entity), tracked_entities[entity]])
+			push_warning("The entity %s with name %s isn't valid anymore, you forgot to clean it off" % [str(entity), _tracked_entities[entity]])
 			continue
 		update_entity(entity)
 
 	if not _locked_entity:
 		acquire_lock(origin_body)
 
-	for entity: PhysicsBody3D in tracked_entities.keys():
+	for entity: PhysicsBody3D in _tracked_entities.keys():
 		if not is_instance_valid(entity): continue
 		update_iff_state(entity, origin_body)
 
 ##idk man i was in the middle of a refactor and i lost the previous comment
 ##returns true if the entity's IFF was updated
 func update_entity(entity: PhysicsBody3D) -> bool:
-	var iff := tracked_entities[entity]
+	var iff := _tracked_entities[entity]
 
 	if not camera.is_position_in_frustum(entity.global_position):
 		iff.visible = false
@@ -94,9 +97,9 @@ func acquire_lock(origin_body: PhysicsBody3D) -> void:
 	var best_candidate: PhysicsBody3D = null
 	var best_distance_from_center := INF
 
-	for entity: PhysicsBody3D in tracked_entities.keys():
+	for entity: PhysicsBody3D in _tracked_entities.keys():
 		if not is_instance_valid(entity): continue
-		if not tracked_entities[entity].visible: continue
+		if not _tracked_entities[entity].visible: continue
 
 		var eucl_distance_sq := origin_body.global_position.distance_squared_to(entity.global_position)
 		if eucl_distance_sq >= LOCKON_RANGE_SQ: continue
@@ -112,15 +115,15 @@ func acquire_lock(origin_body: PhysicsBody3D) -> void:
 
 	if best_candidate:
 		_locked_entity = best_candidate
-		tracked_entities[best_candidate].change_state(IFF.State.LOCKED_ON)
+		_tracked_entities[best_candidate].change_state(IFF.State.LOCKED_ON)
 
 ##manually cycle to the next available target
 func cycle_lock(origin_body: PhysicsBody3D) -> void:
 	var lockable_entities: Array[PhysicsBody3D] = []
 
-	for entity: PhysicsBody3D in tracked_entities.keys():
+	for entity: PhysicsBody3D in _tracked_entities.keys():
 		if not is_instance_valid(entity): continue
-		if not tracked_entities[entity].visible: continue
+		if not _tracked_entities[entity].visible: continue
 
 		var eucl_distance_sq := origin_body.global_position.distance_squared_to(entity.global_position)
 		if eucl_distance_sq < LOCKON_RANGE_SQ:
@@ -149,10 +152,10 @@ func cycle_lock(origin_body: PhysicsBody3D) -> void:
 	else:
 		_locked_entity = lockable_entities[0]
 
-	tracked_entities[_locked_entity].change_state(IFF.State.LOCKED_ON)
+	_tracked_entities[_locked_entity].change_state(IFF.State.LOCKED_ON)
 
 func update_iff_state(entity: PhysicsBody3D, origin: PhysicsBody3D) -> void:
-	var iff := tracked_entities[entity]
+	var iff := _tracked_entities[entity]
 	if not iff.visible: return
 
 	var eucl_distance_sq := origin.global_position.distance_squared_to(entity.global_position)

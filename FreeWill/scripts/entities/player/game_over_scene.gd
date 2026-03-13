@@ -26,6 +26,8 @@ func _physics_process(delta: float) -> void:
 
 
 func retry() -> void:
+	IFFTracker.clear_tracked_entities()
+
 	# Bubba:
 	# When we have actual stages this should be replaced with something that is not as shit.
 	queue_free.call_deferred()
