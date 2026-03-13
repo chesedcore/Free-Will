@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="10_7kk30"]
 [ext_resource type="Script" uid="uid://brqh6t5d1dyrl" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="10_hsoq5"]
 [ext_resource type="Script" uid="uid://cuffvge5ad4aa" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_3d.gd" id="11_ekcgd"]
-[ext_resource type="Shader" path="res://shaderslop/wind_trail.gdshader" id="11_if5yn"]
+[ext_resource type="Shader" uid="uid://cwxrvexdarj2x" path="res://shaderslop/wind_trail.gdshader" id="11_if5yn"]
 [ext_resource type="Script" uid="uid://8ckcjgc3u1r0" path="res://scripts/entities/player/game_ui.gd" id="17_uedwi"]
 [ext_resource type="AudioStream" uid="uid://lv5m5ak5a31d" path="res://audio/sfx/bgs/wind.ogg" id="18_tafis"]
 
@@ -99,7 +99,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.99998486, 0.0045476304, -0.0031034374, 0.0035986893, 0.96648896, 0.25668305, 0.004166737, 0.256668, -0.9664906, -0.012659072, 10.023929, -20.020605)
+transform = Transform3D(-0.99999046, -0.0034384974, 0.0026991197, -0.0026117065, 0.9651002, 0.26186803, -0.0035053531, 0.2618585, -0.96509993, 0.018098757, 9.979975, -19.98502)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
