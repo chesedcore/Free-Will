@@ -183,7 +183,6 @@ func fire_cannon() -> void:
 
 var t_action: Tween
 
-
 func static_parry() -> void:
 	if t_action: t_action.kill()
 	t_action = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
