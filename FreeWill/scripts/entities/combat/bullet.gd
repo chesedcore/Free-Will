@@ -44,7 +44,12 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 
 func apply_bullet_force() -> void:
-	linear_velocity += -transform.basis.z * speed
+	var bullet_speed: float = speed
+	if (target):
+		var distance_to_target: float = global_position.distance_to(target.global_position)
+		bullet_speed *= clampf(distance_to_target, 0.1, 2.0)
+
+	linear_velocity += -transform.basis.z * bullet_speed
 
 
 func _on_body_entered(body: Node3D) -> void:
