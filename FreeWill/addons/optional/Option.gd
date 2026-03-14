@@ -1,6 +1,6 @@
 class_name Option extends RefCounted
 ## A generic [code]Option<T>[/code]
-## 
+##
 ## Options are types that explicitly annotate that a value can be [code]null[/code], and forces the user to handle the exception[br]
 ## Basic usage: [br]
 ## [codeblock]
@@ -8,12 +8,12 @@ class_name Option extends RefCounted
 ## func get_player_stats(id: String) -> Option:
 ##     return Option.None() # Represents a null
 ##     return Option.Some( data ) # Sucess!
-## 
+##
 ## var res: Option = get_player_stats("player_3")
 ## if res.is_none():
 ##     print("Player doesn't exist!")
 ##     return
-## 
+##
 ## # Getting the contained value (in order of safety):
 ## var data = res.unwrap_or( 42 ) # Get from default value
 ## var data = res.unwrap_or_else( some_complex_function ) # Get default value from function
@@ -71,7 +71,7 @@ func is_none() -> bool:
 ## var will_not_fail: String = Option.Some("value")\
 ##     .expect("Shouldn't fail because (...) ")
 ## print(will_not_fail) # Prints "value"
-## 
+##
 ## var will_fail = Option.None()\
 ##     .expect("This fails!")
 ## [/codeblock]
@@ -81,12 +81,12 @@ func expect(msg: String) -> Variant:
 
 ## Returns the contained [code]Some[/code] value[br]
 ## Stops the program if the value is a [code]None[/code][br]
-## The use of this method is generally discouraged because it may panic. 
+## The use of this method is generally discouraged because it may panic.
 ## Instead, prefer to handle the [code]None[/code] case explicitly, or call [method unwrap_or], [method unwrap_or_else]
 ## Example: [codeblock]
 ## var will_not_fail: String = Option.Some("air") .unwrap()
 ## print(will_not_fail) # Prints "air"
-## 
+##
 ## var will_fail = Option.None() .unwrap() # Fails
 ## [/codeblock]
 func unwrap() -> Variant:
@@ -149,7 +149,7 @@ func map_mut(f: Callable) -> Option:
 ## Example: [codeblock]
 ## var x = Option.Some("foo")
 ## print( x.map_or(42, func(v):    return v.length()) ) # Prints 3
-## 
+##
 ## var x = Option.None()
 ## print( x.map_or(42, func(v):    return v.length()) ) # Prints 42
 ## [/codeblock]
@@ -195,7 +195,7 @@ func and_opt(optb: Option) -> Option:
 ##     if x > 42:
 ##         return Option.None()
 ##     return Option.Some(x * x)
-## 
+##
 ## print( Option.Some(4) .and_then(square_if_small_enough) ) # Prints Some(16)
 ## print( Option.Some(1000) .and_then(square_if_small_enough) ) # Prints None
 ## print( Option.None() .and_then(square_if_small_enough) ) # Prints None
@@ -226,10 +226,10 @@ func or_opt(optb: Option) -> Option:
 ## [codeblock]
 ## func nobody() -> Option:
 ##     return Option.None()
-## 
+##
 ## func vikings() -> Option:
 ##     return Option.Some("vikings")
-## 
+##
 ## print( Option.Some("barbarians") .or_else(vikings) ) # Prints: Some("barbarians")
 ## print( Option.None .or_else(vikings) ) # Prints: Some("vikings")
 ## print( Option.None .or_else(nobody) ) # Prints: None

@@ -59,7 +59,6 @@ debug_color = Color(0, 0.4333334, 1, 1)
 
 [node name="Tank" parent="." unique_id=290108966 instance=ExtResource("4_3qnke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 335.62222, 0)
-freeze = false
 
 [node name="UI" parent="." unique_id=121542168 instance=ExtResource("7_wtsjf")]
 

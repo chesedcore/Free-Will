@@ -51,6 +51,7 @@ var action_window_timer := 0.0
 var is_spinning_turret := false
 var is_parrying := false
 
+
 func _ready() -> void:
 	GameState.player = self
 	assert(tank_model, "barrel node shouldn't be null.")
@@ -65,12 +66,14 @@ func _input(event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("dash"):
 		attempt_dash()
-	
+
 	if Input.is_action_just_pressed("action"):
 		attempt_action()
 
+
 func spin_turret(by_angle: float) -> void:
 	turret.rotate_y(by_angle)
+
 
 func attempt_action() -> void:
 	if action_cooldown_timer > 0.0:
@@ -80,8 +83,10 @@ func attempt_action() -> void:
 	action()
 	UIBus.attempted_action.emit(Result.Ok_as_is())
 
+
 func action() -> void:
 	static_parry()
+
 
 func attempt_dash() -> void:
 	if dash_cooldown_timer > 0.0:
@@ -113,6 +118,7 @@ func dash_timer_update(delta: float) -> void:
 		if dash_effect_timer <= 0.0:
 			is_dashing = false
 
+
 func action_timer_update(delta: float) -> void:
 	if action_cooldown_timer > 0.0:
 		action_cooldown_timer -= delta
@@ -122,9 +128,11 @@ func action_timer_update(delta: float) -> void:
 		if action_window_timer <= 0.0:
 			is_in_action = false
 
+
 func _process(delta: float) -> void:
 	dash_timer_update(delta)
 	action_timer_update(delta)
+
 
 func _physics_process(delta: float) -> void:
 	if not is_in_action: model_transform_update(delta)
@@ -138,20 +146,18 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	state.linear_velocity.y = clampf(state.linear_velocity.y, -INF, max_speed)
 	state.linear_velocity.z = clampf(state.linear_velocity.z, -max_speed, max_speed)
 
-
 ##this is ugly because allocating a new temp var every frame for a quat might be
 ##ugly ass for performance, so no extra allocs are made on purpose
 func model_transform_update(delta: float) -> void:
 	tank_model.global_position = barrel_position_marker.global_position
-	#tank_model.look_at(barrel_look_at_marker.global_position, Vector3.UP, true)
 	tank_model.global_transform.basis = \
 	tank_model.global_transform.basis.slerp(
 		tank_model.global_transform.looking_at(
-			barrel_look_at_marker.global_position, 
-			Vector3.UP, 
+			barrel_look_at_marker.global_position,
+			Vector3.UP,
 			true
 		).basis,
-		6.0 * delta	
+		6.0 * delta
 	)
 
 
@@ -173,8 +179,12 @@ func fire_cannon() -> void:
 	# Bubba: to prevent the bullets from looking like they're lagging behind, we add a small amount
 	# of the velocity to the bullet's origin
 	new_bullet.transform.origin += linear_velocity * 0.01
-
 	new_bullet.linear_velocity = linear_velocity
+
+	# Bubba: Lockon shit
+	# Iff target CAN be null. The missiles will just not track anything
+	var iff_tracked_target: PhysicsBody3D = IFFTracker.get_lock_this_frame().unwrap_unchecked()
+	new_bullet.target = iff_tracked_target
 
 	# Monarch: Usually I'd make a dedicated `Bullets` Node3D that 'holds' this node as an array,
 	# then trigger a signal that makes the World handler add the bullet to the Bullets node.
@@ -187,13 +197,13 @@ func static_parry() -> void:
 	if t_action: t_action.kill()
 	t_action = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	t_action.set_parallel(true)
-	t_action.tween_callback(func() -> void: 
+	t_action.tween_callback(func() -> void:
 		is_in_action = true
 		action_cooldown_timer = ACTION_COOLDOWN
 	)
 	t_action.tween_property(tank_model, "rotation_degrees:x", -30, 0.2)
 	t_action.chain()
-	t_action.tween_callback(func() -> void: 
+	t_action.tween_callback(func() -> void:
 		is_spinning_turret = true
 		is_parrying = true
 		freeze = true
@@ -202,6 +212,7 @@ func static_parry() -> void:
 	#t_action.tween_property(tank_model, "rotation_degrees:z", 360, 0.5)
 	#t_action.tween_property(tank_model, "rotation_degrees:z", 70, 0.3)
 	t_action.finished.connect(_on_action_recovery)
+
 
 func _on_action_recovery() -> void:
 	is_in_action = false
