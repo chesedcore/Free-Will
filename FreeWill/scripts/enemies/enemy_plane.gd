@@ -31,15 +31,15 @@ func create_state(state :STATES)->State:
 	match  state:
 		STATES.INTERCEPT:
 			
-			new_state = InterceptState.intercept_state_from(self,line_of_sight)
+			new_state = PlaneInterceptState.intercept_state_from(self,line_of_sight)
 			
 			new_state.Transitioned.connect(on_state_transition)
 		STATES.ATTACK:
-			new_state = AttackState.attack_state_from(self,lock_on_timer,line_of_sight)
+			new_state = PlaneAttackState.attack_state_from(self,lock_on_timer,line_of_sight)
 			new_state.fireMissle.connect(on_fire_missile)
 			new_state.Transitioned.connect(on_state_transition)
 		STATES.EVADE:
-			new_state = EvadeState.evade_state_from(self)
+			new_state = PlaneEvadeState.evade_state_from(self)
 			
 			new_state.Transitioned.connect(on_state_transition)
 			

@@ -1,4 +1,4 @@
-class_name EvadeState extends EnemyState
+class_name PlaneEvadeState extends EnemyState
 
 var max_speed : float = 200
 var aceleration : float = 50
@@ -15,8 +15,8 @@ var evade_offset : Vector3
 var evade_target : Vector3
 
 
-static func evade_state_from(owner : BaseEnemy)-> EvadeState:
-	var state : EvadeState= new()
+static func evade_state_from(owner : BaseEnemy)-> EnemyState:
+	var state : PlaneEvadeState= new()
 	state.enemy = owner
 	state.player = GameState.player
 	return state
