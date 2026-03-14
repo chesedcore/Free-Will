@@ -40,16 +40,16 @@ void fragment() {
 	ROUGHNESS = roughness;
 	ALBEDO = out_color.rgb;
 
-	if (beer_factor != 0.0) {
-		float depth = texture(DEPTH_TEXTURE, SCREEN_UV).r;
-
-		depth = depth * 2.0 - 1.0;
-		depth = PROJECTION_MATRIX[3][2] / (depth + PROJECTION_MATRIX[2][2]);
-		depth = depth + VERTEX.z;
-
-		depth = exp(-depth * beer_factor);
-		ALPHA = clamp(1.0 - depth, 0.0, 1.0);
-	} else {
-		ALPHA = out_color.a;
-	}
+	//if (beer_factor != 0.0) {
+		//float depth = texture(DEPTH_TEXTURE, SCREEN_UV).r;
+//
+		//depth = depth * 2.0 - 1.0;
+		//depth = PROJECTION_MATRIX[3][2] / (depth + PROJECTION_MATRIX[2][2]);
+		//depth = depth + VERTEX.z;
+//
+		//depth = exp(-depth * beer_factor);
+		//ALPHA = clamp(1.0 - depth, 0.0, 1.0);
+	//} else {
+		//ALPHA = out_color.a;
+	//}
 }

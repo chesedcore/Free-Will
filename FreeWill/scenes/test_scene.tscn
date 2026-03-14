@@ -2,8 +2,8 @@
 
 [ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="1_7ddre"]
 [ext_resource type="Script" uid="uid://dfj8b4hri7dgl" path="res://scripts/entities/killbox.gd" id="1_g7g4h"]
-[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="1_qjeyg"]
 [ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scenes/master/stage_handler.gd" id="1_rnaij"]
+[ext_resource type="Environment" uid="uid://cprcmfgiqtw3n" path="res://res/world_env/sea_evening_sky.tres" id="2_h3xc6"]
 [ext_resource type="PackedScene" uid="uid://7yq66c566yvi" path="res://scenes/entities/enemies/enemy_plane.tscn" id="3_7ddre"]
 [ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="4_3qnke"]
 [ext_resource type="PackedScene" uid="uid://bl4ycq25qh3pb" path="res://scenes/projectiles/enemy_projectie/homingmissle.tscn" id="6_3qnke"]
@@ -36,12 +36,12 @@ enemies_list = NodePath("EnemiesList")
 tank = NodePath("Tank")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=328075735]
-transform = Transform3D(0.99998426, -0.003607813, 0.0042996043, 0.00017664497, 0.7858931, 0.6183625, -0.0056099645, -0.618352, 0.78588134, 0, 33.85881, 0)
-light_color = Color(1, 0.95000005, 0.75, 1)
+transform = Transform3D(0.99998426, -0.0036078133, 0.0042996025, 0.0022680946, 0.9604571, 0.27841896, -0.005134067, -0.2784048, 0.9604502, 0, 0, 0)
+light_color = Color(1, 0.6125, 0.25, 1)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=513326264]
-environment = ExtResource("1_qjeyg")
+environment = ExtResource("2_h3xc6")
 
 [node name="Ocean" type="MeshInstance3D" parent="." unique_id=139133770]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12763977, 0.11047363, -0.7965088)
