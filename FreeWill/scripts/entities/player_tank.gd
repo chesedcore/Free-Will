@@ -18,6 +18,7 @@ const DASH_EFFECT_DURATION := 5.0
 
 const ACTION_COOLDOWN := 1.25
 const PARRY_TIME := 0.625
+const PARRY_CHAIN_EXTENSION := 0.4
 
 const MAX_HEALTH: float = 100.0
 
@@ -59,7 +60,12 @@ func _ready() -> void:
 	# TEMP: Bubba: should the tank handle changing mouse mode? Maybe.
 	# Monarch: We can change it up later when we have a mission handler.
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	UIBus.missile_parried.connect(extend_parry_window_as_chain)
 
+func extend_parry_window_as_chain() -> void:
+	assert(is_parrying, "Bro you ain't even parrying rn dawg")
+	action_window_timer = PARRY_CHAIN_EXTENSION
+	print_rich("[color=blue]Parry window extended!")
 
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("fire")):
@@ -233,10 +239,12 @@ func try_damage(amount: float) -> Result:
 	damage(amount)
 	return Result.Ok_as_is()
 
+
 func damage(amount: float) -> void:
 	health -= amount
 	if (health <= 0.0):
 		kill()
+
 
 func kill() -> void:
 	if (is_dead):
@@ -244,7 +252,6 @@ func kill() -> void:
 
 	is_dead = true
 	freeze = is_dead
-
 	tank_model.hide()
 
 	var game_over_scene: GameOverScene = \
