@@ -12,24 +12,31 @@ var wander_time : float
 var aceleration : float = 15
 
 func randomize_wander()->void:
-	move_direction = Vector3(randf_range(-1,1),0,randf_range(-1,1)).normalized()
-	wander_time = randf_range(7,10)
+	var forward := -enemy.global_transform.basis.z
+	
+	var random_offset := Vector3(
+		randf_range(-0.6, 0.6),
+		0,
+		randf_range(0.2, 1.0) # always forward
+	)
+	
+	move_direction = (forward + random_offset).normalized()
+	wander_time = randf_range(5,7)
 
 
-
-
-
+var los : Area3D
 
 
 func enter()->void:
-	
+	los.body_entered.connect(on_los_body_entered)
 	randomize_wander()
 
 
-static  func wander_state_from(owner : BaseEnemy,detectors: Array[RayCast3D])->State:
+static  func wander_state_from(owner : BaseEnemy,detectors: Array[RayCast3D],los : Area3D)->State:
 	var state : ShipWanderState = new()
 	state.enemy  = owner
 	state.obstacle_detectors = detectors
+	state.los = los
 	return state
 	
 	
@@ -60,3 +67,9 @@ func get_avoidance() -> Vector3:
 			avoid += ray.get_collision_normal()
 	
 	return avoid
+	
+	
+
+func on_los_body_entered(body : Node3D)-> void:
+	if body is PlayerTank:
+		Transitioned.emit(self,EnemyBattleship.STATES.ATTACK)

@@ -8,7 +8,7 @@ class_name EnemyBattleship extends BaseEnemy
 @export var cannon_barrels : Array[Node3D]
 var current_state : State
 @export var battle_ship_model: Node3D
-
+@export var canon_aims : Array[RayCast3D]
 enum STATES {IDLE,ATTACK}
 
 @export var initial_state : STATES
@@ -21,7 +21,7 @@ func _ready() -> void:
 	
 	new_state.enter()
 	current_state = new_state
-	floating_animation()
+	#floating_animation()
 	
 func create_state(state :STATES)->State:
 	var new_state : State
@@ -29,11 +29,11 @@ func create_state(state :STATES)->State:
 	match  state:
 		STATES.ATTACK:
 			#
-			new_state = ShipAttackState.ship_attackstate_from(self,cannon_bases,cannon_barrels)
+			new_state = ShipAttackState.ship_attackstate_from(self,cannon_bases,cannon_barrels,canon_aims,line_of_sight)
 			
 			new_state.Transitioned.connect(on_state_transition)
 		STATES.IDLE:
-			new_state = ShipWanderState.wander_state_from(self,obstacle_detectors)
+			new_state = ShipWanderState.wander_state_from(self,obstacle_detectors,line_of_sight)
 			new_state.Transitioned.connect(on_state_transition)
 	return new_state
 	
