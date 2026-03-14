@@ -1,0 +1,64 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://bdtrtdm1mpmxe"]
+
+[sub_resource type="Curve" id="Curve_howdy"]
+_data = [Vector2(0.39917699, 0.8089888), 0.0, 0.0, 0, 0, Vector2(0.43820232, 0.74485606), 0.0, 0.0, 0, 0, Vector2(0.8089888, 0.39917699), 0.0, 0.0, 0, 0]
+point_count = 3
+point_0/position = Vector2(0.39917699, 0.8089888)
+point_1/position = Vector2(0.43820232, 0.74485606)
+point_2/position = Vector2(0.8089888, 0.39917699)
+
+[sub_resource type="CurveTexture" id="CurveTexture_k4m21"]
+curve = SubResource("Curve_howdy")
+
+[sub_resource type="Gradient" id="Gradient_5kkcp"]
+interpolation_color_space = 2
+colors = PackedColorArray(0.15487596, 0.154876, 0.15487596, 1, 0.3968896, 0.39688912, 0.39688924, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aaqab"]
+gradient = SubResource("Gradient_5kkcp")
+
+[sub_resource type="Gradient" id="Gradient_pcdco"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.52073735)
+colors = PackedColorArray(0.24477637, 0.2447764, 0.24477637, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mifih"]
+gradient = SubResource("Gradient_pcdco")
+
+[sub_resource type="Curve" id="Curve_tfiak"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 0.14403293), 0.0, 0.0, 0, 0, Vector2(0.127572, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+point_0/position = Vector2(0, 0.14403293)
+point_1/position = Vector2(0.127572, 0)
+point_2/position = Vector2(1, 1)
+
+[sub_resource type="CurveTexture" id="CurveTexture_0aa3u"]
+curve = SubResource("Curve_tfiak")
+
+[sub_resource type="Curve" id="Curve_e30de"]
+_data = [Vector2(0, 0.47191018), 0.0, 0.0, 0, 0, Vector2(0.21729492, 1), 0.0, 0.0, 0, 0, Vector2(0.21729492, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.21729492), 0.0, 0.0, 0, 0]
+point_count = 4
+point_0/position = Vector2(0, 0.47191018)
+point_1/position = Vector2(0.21729492, 1)
+point_2/position = Vector2(0.21729492, 1)
+point_3/position = Vector2(1, 0.21729492)
+
+[sub_resource type="CurveTexture" id="CurveTexture_ji4q3"]
+curve = SubResource("Curve_e30de")
+
+[resource]
+inherit_velocity_ratio = 1.0
+direction = Vector3(0, 0, -1)
+spread = 67.003
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+damping_max = 100.00001
+damping_curve = SubResource("CurveTexture_0aa3u")
+scale_min = 0.5
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_ji4q3")
+color_ramp = SubResource("GradientTexture1D_mifih")
+color_initial_ramp = SubResource("GradientTexture1D_aaqab")
+alpha_curve = SubResource("CurveTexture_k4m21")
