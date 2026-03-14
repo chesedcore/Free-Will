@@ -21,14 +21,13 @@
 
 [sub_resource type="Curve" id="Curve_vvw44"]
 _limits = [0.084254146, 0.17659867, 0.0, 1.0]
-_data = [Vector2(0, 0.14962162), 0.0, -0.015304346, 0, 0, Vector2(0.4847458, 0.14083172), -0.0712738, -0.0712738, 0, 0, Vector2(1, 0.084254146), -0.30403072, 0.0, 0, 0]
+_data = [Vector2(0.084254146, 0.17659867), -0.30403072, 0.0, 0, 0, Vector2(0.14083172, 0.17659867), -0.0712738, -0.0712738, 0, 0, Vector2(0.14962162, 0.084254146), -0.30403072, -0.0712738, 0, 0]
 point_count = 3
-point_0/position = Vector2(0, 0.14962162)
-point_0/right_tangent = -0.015304346
-point_1/position = Vector2(0.4847458, 0.14083172)
+point_0/position = Vector2(0.084254146, 0.17659867)
+point_1/position = Vector2(0.14083172, 0.17659867)
 point_1/left_tangent = -0.0712738
 point_1/right_tangent = -0.0712738
-point_2/position = Vector2(1, 0.084254146)
+point_2/position = Vector2(0.14962162, 0.084254146)
 point_2/left_tangent = -0.30403072
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ekcgd"]
@@ -102,10 +101,9 @@ shader_parameter/vignette_opacity = 0.5
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
 [sub_resource type="Curve" id="Curve_hjnge"]
-_data = [Vector2(0, 1), 0.0, -1.7656529, 0, 0, Vector2(1, 0), -0.864608, 0.0, 0, 0]
+_data = [Vector2(0, 1), -0.864608, 0.0, 0, 0, Vector2(1, 0), -0.864608, -1.7656529, 0, 0]
 point_count = 2
 point_0/position = Vector2(0, 1)
-point_0/right_tangent = -1.7656529
 point_1/position = Vector2(1, 0)
 point_1/left_tangent = -0.864608
 
@@ -210,7 +208,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.99999875, -0.0013196169, 0.0008757083, -0.0010459181, 0.96546984, 0.26051298, -0.0011892472, 0.26051176, -0.96546996, 0.010050739, 9.993198, -19.994003)
+transform = Transform3D(-0.9999959, -0.0024759187, 0.0014605677, -0.002012088, 0.96574116, 0.25949958, -0.00205303, 0.25949556, -0.9657421, 0.004038585, 9.988246, -19.988468)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -326,15 +324,14 @@ pitch_scale = 0.5
 autoplay = true
 parameters/looping = true
 
-[node name="Node3D2" type="Node3D" parent="." unique_id=274969305 node_paths=PackedStringArray("tank")]
+[node name="WindTrails" type="Node3D" parent="." unique_id=274969305 node_paths=PackedStringArray("tank")]
 transform = Transform3D(0.9999985, -0.0014398276, -0.0009505979, 0.0014394387, 0.999999, -0.0004093051, 0.0009511863, 0.000407964, 0.9999995, -0.00226493, -0.013616562, 0.0041503906)
 script = ExtResource("5_hjnge")
 tank = NodePath("..")
 speed_threshold = 150.0
-wind_trail_num = 10
-radius = 12.0
+wind_trail_num = 8
 
-[node name="TrailRenderer" type="Node3D" parent="Node3D2" unique_id=761965894]
+[node name="TrailRenderer" type="Node3D" parent="WindTrails" unique_id=761965894]
 transform = Transform3D(0.9999999, -7.9040774e-11, -1.1641532e-10, 1.0913936e-11, 0.9999999, 0, 0, 0, 0.9999999, -0.014826552, -0.0063586766, -15.587426)
 visible = false
 script = ExtResource("10_hsoq5")
