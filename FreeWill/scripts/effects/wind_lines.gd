@@ -1,6 +1,6 @@
 extends Node3D
 
-@onready var child := $GPUParticles3D
+@onready var child := $TrailRenderer
 
 @export var tank : PlayerTank
 @export var speed_threshold : float = 90.
@@ -8,8 +8,10 @@ extends Node3D
 
 var previous_dir := Vector3.DOWN
 
+var t : float = 0.
+
 #fucking wind lines
-var markers : Array[GPUParticles3D] = []
+var markers : Array[TrailRenderer] = []
 
 func _ready() -> void:
 	if tank:
@@ -17,7 +19,8 @@ func _ready() -> void:
 			var marker := child.duplicate()
 			marker.name = str(i)
 			add_child(marker)
-			marker.emitting = true
+			#marker.emitting = true
+			marker.show()
 			marker.position.x = cos((2.*PI/wind_trail_num) * i + randf_range(-0.25,0.25)) * (15. + randf_range(-2.,5.))
 			marker.position.y = sin((2.*PI/wind_trail_num) * i + randf_range(-0.25,0.25)) * (15. + randf_range(-2.,5.))
 			markers.append(marker)
@@ -27,14 +30,16 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if tank and not markers.is_empty():
 		if tank.linear_velocity.length() > speed_threshold:
-			show()
+			t += delta * randf_range(-1., 2.)
 			for each in markers:
-				each.position.y = sin((2.*PI/wind_trail_num) * int(each.name) + randf_range(-0.25,0.25)) * (15. + randf_range(-2.,5.))
-				each.position.x = cos((2.*PI/wind_trail_num) * int(each.name) + randf_range(-0.25,0.25)) * (15. + randf_range(-2.,5.))
+				each.is_emitting = true
+				each.position.y = sin((2.*PI/wind_trail_num) * int(each.name) + t + randf_range(-0.05,0.05)) * (15. + randf_range(-0.05,0.05))
+				each.position.x = cos((2.*PI/wind_trail_num) * int(each.name) + t + randf_range(-0.05,0.05)) * (15. + randf_range(-0.05,0.05))
 			var velocity_dir := tank.linear_velocity.normalized()
-			var face_direction := previous_dir.move_toward(velocity_dir, delta * 10.)
+			var face_direction := previous_dir.move_toward(velocity_dir, delta * 5.)
 			previous_dir = face_direction
 			look_at(face_direction + global_position)
 		else:
-			hide()
+			for each in markers:
+				each.is_emitting = false
 		

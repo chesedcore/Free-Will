@@ -57,6 +57,29 @@ height = 1.3037109
 
 [sub_resource type="SphereMesh" id="SphereMesh_ig2cu"]
 
+[sub_resource type="Curve" id="Curve_hjnge"]
+_data = [Vector2(0, 1), 0.0, -1.7656529, 0, 0, Vector2(1, 0), -0.864608, 0.0, 0, 0]
+point_count = 2
+point_0/position = Vector2(0, 1)
+point_0/right_tangent = -1.7656529
+point_1/position = Vector2(1, 0)
+point_1/left_tangent = -0.864608
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hjnge"]
+frequency = 0.005
+metadata/_preview_in_3d_space_ = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ig2cu"]
+noise = SubResource("FastNoiseLite_hjnge")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hjnge"]
+render_priority = 0
+shader = ExtResource("11_if5yn")
+shader_parameter/edgefade = 0.10000000475
+shader_parameter/globalfade = 0.50000002375
+shader_parameter/noise = SubResource("NoiseTexture2D_ig2cu")
+
 [node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull")]
 collision_layer = 2
 collision_mask = 5
@@ -104,7 +127,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999927, 0.003070903, -0.0022658599, 0.0023827755, 0.96617854, 0.25786343, 0.0029810984, 0.25785613, -0.9661788, -0.005664033, 10.0170965, -20.013647)
+transform = Transform3D(-0.9999989, 0.0012406318, -0.00079256867, 0.000992321, 0.9657093, 0.25962394, 0.0010874886, 0.25962287, -0.96570945, 0.004775333, 10.006225, -20.005688)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -156,11 +179,13 @@ mesh = SubResource("CapsuleMesh_f8vrt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
 [node name="VFX" type="Node3D" parent="." unique_id=938818672 node_paths=PackedStringArray("trail_renderer_l", "trail_renderer_r")]
+visible = false
 script = ExtResource("7_ywmen")
 trail_renderer_l = NodePath("../TankModel/TrailRendererL")
 trail_renderer_r = NodePath("../TankModel/TrailRendererR")
 
 [node name="ScreenVFX" type="CanvasLayer" parent="VFX" unique_id=455388338]
+visible = false
 
 [node name="SpeedLines" type="ColorRect" parent="VFX/ScreenVFX" unique_id=111747411]
 material = ExtResource("8_rlhxg")
@@ -209,5 +234,16 @@ amount = 10
 visibility_aabb = AABB(-4, -4, -4, 8, 8, 50)
 process_material = SubResource("ParticleProcessMaterial_hjnge")
 draw_pass_1 = SubResource("SphereMesh_ig2cu")
+
+[node name="TrailRenderer" type="Node3D" parent="Node3D2" unique_id=761965894]
+transform = Transform3D(0.9999999, -7.9040774e-11, -1.1641532e-10, 1.0913936e-11, 0.9999999, 0, 0, 0, 0.9999999, -0.014826552, -0.0063586766, -15.587426)
+visible = false
+script = ExtResource("10_hsoq5")
+lifetime = 0.5
+curve = SubResource("Curve_hjnge")
+alignment = 2
+material = SubResource("ShaderMaterial_hjnge")
+texture_mode = 2
+metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 
 [editable path="TankModel"]
