@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cxffdn6nvltft"]
 
 [ext_resource type="Script" uid="uid://g2ml563qqvrx" path="res://scripts/effects/cannon_particles.gd" id="1_yl5gg"]
-[ext_resource type="Material" uid="uid://bdtrtdm1mpmxe" path="res://shaderslop/particleslop/cannon_shoot_smoke.tres" id="2_pc6vm"]
-[ext_resource type="Material" uid="uid://ck7eq80onaxxm" path="res://shaderslop/particleslop/cannon_shoot_fire.tres" id="3_sr7b7"]
+[ext_resource type="Material" uid="uid://bdtrtdm1mpmxe" path="res://shaderslop/particleslop/cannonshoot/cannon_shoot_smoke.tres" id="2_pc6vm"]
+[ext_resource type="Material" uid="uid://ck7eq80onaxxm" path="res://shaderslop/particleslop/cannonshoot/cannon_shoot_fire.tres" id="3_sr7b7"]
 
 [sub_resource type="Gradient" id="Gradient_pc6vm"]
 interpolation_color_space = 2
@@ -15,10 +15,6 @@ gradient = SubResource("Gradient_pc6vm")
 [sub_resource type="Curve" id="Curve_sr7b7"]
 _data = [Vector2(0.21729492, 1), 0.0, 0.0, 0, 0, Vector2(0.21729492, 1), 0.0, 0.0, 0, 0, Vector2(0.47191018, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.21729492), 0.0, 0.0, 0, 0]
 point_count = 4
-point_0/position = Vector2(0.21729492, 1)
-point_1/position = Vector2(0.21729492, 1)
-point_2/position = Vector2(0.47191018, 0)
-point_3/position = Vector2(1, 0.21729492)
 
 [sub_resource type="CurveTexture" id="CurveTexture_sykoq"]
 curve = SubResource("Curve_sr7b7")
