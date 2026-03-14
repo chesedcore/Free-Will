@@ -5,6 +5,7 @@ extends Node3D
 @export var tank : PlayerTank
 @export var speed_threshold : float = 90.
 @export var wind_trail_num : int = 20
+@export var radius : float = 15.
 
 var previous_dir := Vector3.DOWN
 
@@ -21,8 +22,8 @@ func _ready() -> void:
 			add_child(marker)
 			#marker.emitting = true
 			marker.show()
-			marker.position.x = cos((2.*PI/wind_trail_num) * i + randf_range(-0.25,0.25)) * (15. + randf_range(-2.,5.))
-			marker.position.y = sin((2.*PI/wind_trail_num) * i + randf_range(-0.25,0.25)) * (15. + randf_range(-2.,5.))
+			marker.position.x = cos((2.*PI/wind_trail_num) * i + randf_range(-0.25,0.25)) * (radius + randf_range(-2.,5.))
+			marker.position.y = sin((2.*PI/wind_trail_num) * i + randf_range(-0.25,0.25)) * (radius + randf_range(-2.,5.))
 			markers.append(marker)
 	else:
 		printerr(self, " tank is null")
@@ -33,8 +34,8 @@ func _physics_process(delta: float) -> void:
 			t += delta * randf_range(-1., 2.)
 			for each in markers:
 				each.is_emitting = true
-				each.position.y = sin((2.*PI/wind_trail_num) * int(each.name) + t + randf_range(-0.05,0.05)) * (15. + randf_range(-0.05,0.05))
-				each.position.x = cos((2.*PI/wind_trail_num) * int(each.name) + t + randf_range(-0.05,0.05)) * (15. + randf_range(-0.05,0.05))
+				each.position.y = sin((2.*PI/wind_trail_num) * int(each.name) + t + randf_range(-0.05,0.05)) * (radius + randf_range(-0.05,0.05))
+				each.position.x = cos((2.*PI/wind_trail_num) * int(each.name) + t + randf_range(-0.05,0.05)) * (radius + randf_range(-0.05,0.05))
 			var velocity_dir := tank.linear_velocity.normalized()
 			var face_direction := previous_dir.move_toward(velocity_dir, delta * 5.)
 			previous_dir = face_direction
