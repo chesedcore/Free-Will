@@ -1,0 +1,21 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://ck7eq80onaxxm"]
+
+[ext_resource type="Texture2D" uid="uid://bkbqgeyc0opev" path="res://shaderslop/particleslop/cannonshoot/resources/firealphacurve.tres" id="1_tl6ld"]
+[ext_resource type="Texture2D" uid="uid://ckpa7dy463q3a" path="res://shaderslop/particleslop/cannonshoot/resources/firecolorramp.tres" id="2_6q5uk"]
+[ext_resource type="Texture2D" uid="uid://dh15yxs42f5i5" path="res://shaderslop/particleslop/cannonshoot/resources/firedampingcurve.tres" id="3_80cjy"]
+[ext_resource type="Texture2D" uid="uid://bkxkuq3262y5f" path="res://shaderslop/particleslop/cannonshoot/resources/fireemissioncurve.tres" id="4_0jhcd"]
+[ext_resource type="Texture2D" uid="uid://b8rp2d5ysekll" path="res://shaderslop/particleslop/cannonshoot/resources/firescalecurve.tres" id="5_u7ox4"]
+
+[resource]
+direction = Vector3(0, 0, -1)
+spread = 10.0
+initial_velocity_min = 28.47
+initial_velocity_max = 138.77
+gravity = Vector3(0, 0, 0)
+damping_max = 100.00001
+damping_curve = ExtResource("3_80cjy")
+scale_max = 2.0
+scale_curve = ExtResource("5_u7ox4")
+color_ramp = ExtResource("2_6q5uk")
+alpha_curve = ExtResource("1_tl6ld")
+emission_curve = ExtResource("4_0jhcd")

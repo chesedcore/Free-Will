@@ -1,0 +1,6 @@
+[gd_resource type="CurveTexture" format=3 uid="uid://bkxkuq3262y5f"]
+
+[ext_resource type="Curve" uid="uid://c8hv1mndr5jts" path="res://shaderslop/particleslop/cannonshoot/resources/fireemissioncurvecurve.tres" id="1_q02n2"]
+
+[resource]
+curve = ExtResource("1_q02n2")
