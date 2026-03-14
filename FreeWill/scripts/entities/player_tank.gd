@@ -16,7 +16,9 @@ const DASH_FOV_BOOST := 20.0
 const DASH_CAMERA_PULLBACK := 6.0
 const DASH_EFFECT_DURATION := 5.0
 
-const ACTION_COOLDOWN := 3.25
+const ACTION_COOLDOWN := 1.25
+const PARRY_TIME := 0.625
+const PARRY_CHAIN_EXTENSION := 0.4
 
 const MAX_HEALTH: float = 100.0
 
@@ -58,7 +60,12 @@ func _ready() -> void:
 	# TEMP: Bubba: should the tank handle changing mouse mode? Maybe.
 	# Monarch: We can change it up later when we have a mission handler.
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	UIBus.missile_parried.connect(extend_parry_window_as_chain)
 
+func extend_parry_window_as_chain() -> void:
+	assert(is_parrying, "Bro you ain't even parrying rn dawg")
+	action_window_timer = PARRY_CHAIN_EXTENSION
+	print_rich("[color=blue]Parry window extended!")
 
 func _input(event: InputEvent) -> void:
 	if (event.is_action_pressed("fire")):
@@ -208,7 +215,7 @@ func static_parry() -> void:
 		is_parrying = true
 		freeze = true
 	)
-	t_action.tween_property(tank_model, "rotation_degrees:x", 120, 0.325)
+	t_action.tween_property(tank_model, "rotation_degrees:x", 120, PARRY_TIME)
 	#t_action.tween_property(tank_model, "rotation_degrees:z", 360, 0.5)
 	#t_action.tween_property(tank_model, "rotation_degrees:z", 70, 0.3)
 	t_action.finished.connect(_on_action_recovery)
@@ -221,6 +228,16 @@ func _on_action_recovery() -> void:
 	freeze = false
 
 	AudioManager.play_sound_at(barrel_position_marker.global_position, cannon_fire_sound)
+
+##if the damage attempt failed (because the tank is parrying), returns a Result.Err
+##containing info about that parry. otherwise the damage goes through.
+func try_damage(amount: float) -> Result:
+	
+	if is_parrying:
+		return Result.Err(ParryReport.as_normal())
+	
+	damage(amount)
+	return Result.Ok_as_is()
 
 
 func damage(amount: float) -> void:
@@ -235,7 +252,6 @@ func kill() -> void:
 
 	is_dead = true
 	freeze = is_dead
-
 	tank_model.hide()
 
 	var game_over_scene: GameOverScene = \
