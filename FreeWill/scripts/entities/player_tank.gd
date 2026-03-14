@@ -16,7 +16,8 @@ const DASH_FOV_BOOST := 20.0
 const DASH_CAMERA_PULLBACK := 6.0
 const DASH_EFFECT_DURATION := 5.0
 
-const ACTION_COOLDOWN := 3.25
+const ACTION_COOLDOWN := 1.25
+const PARRY_TIME := 0.625
 
 const MAX_HEALTH: float = 100.0
 
@@ -208,7 +209,7 @@ func static_parry() -> void:
 		is_parrying = true
 		freeze = true
 	)
-	t_action.tween_property(tank_model, "rotation_degrees:x", 120, 0.325)
+	t_action.tween_property(tank_model, "rotation_degrees:x", 120, PARRY_TIME)
 	#t_action.tween_property(tank_model, "rotation_degrees:z", 360, 0.5)
 	#t_action.tween_property(tank_model, "rotation_degrees:z", 70, 0.3)
 	t_action.finished.connect(_on_action_recovery)
@@ -222,12 +223,20 @@ func _on_action_recovery() -> void:
 
 	AudioManager.play_sound_at(barrel_position_marker.global_position, cannon_fire_sound)
 
+##if the damage attempt failed (because the tank is parrying), returns a Result.Err
+##containing info about that parry. otherwise the damage goes through.
+func try_damage(amount: float) -> Result:
+	
+	if is_parrying:
+		return Result.Err(ParryReport.as_normal())
+	
+	damage(amount)
+	return Result.Ok_as_is()
 
 func damage(amount: float) -> void:
 	health -= amount
 	if (health <= 0.0):
 		kill()
-
 
 func kill() -> void:
 	if (is_dead):

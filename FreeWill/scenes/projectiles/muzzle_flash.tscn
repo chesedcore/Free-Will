@@ -98,10 +98,9 @@ vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("5_fct3u")
 
 [sub_resource type="Curve" id="Curve_khpym"]
-_data = [Vector2(0, 1), 0.0, -2.8057525, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, -2.8057525, 0, 0]
 point_count = 2
 point_0/position = Vector2(0, 1)
-point_0/right_tangent = -2.8057525
 point_1/position = Vector2(1, 0)
 
 [sub_resource type="CurveTexture" id="CurveTexture_mhpqb"]
@@ -130,7 +129,6 @@ emitting = false
 amount = 1
 lifetime = 0.6
 one_shot = true
-randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_khpym")
 draw_pass_1 = ExtResource("1_g73s5")
 
@@ -140,7 +138,6 @@ emitting = false
 amount = 1
 lifetime = 0.6
 one_shot = true
-randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_khpym")
 draw_pass_1 = ExtResource("4_fct3u")
 
@@ -150,7 +147,6 @@ emitting = false
 amount = 1
 lifetime = 0.6
 one_shot = true
-randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_nfpo5")
 draw_pass_1 = SubResource("QuadMesh_mhpqb")
 
@@ -161,6 +157,5 @@ amount = 24
 lifetime = 0.6
 one_shot = true
 explosiveness = 0.8
-randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_wb32j")
 draw_pass_1 = SubResource("QuadMesh_jiko3")
