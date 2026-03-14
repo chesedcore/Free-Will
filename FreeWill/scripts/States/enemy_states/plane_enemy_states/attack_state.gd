@@ -1,4 +1,4 @@
-class_name PlaneAttackState extends EnemyState
+class_name AttackState extends EnemyState
 
 signal fireMissle
 
@@ -20,8 +20,8 @@ var danger_range: float = 100
 var is_locked_on : bool = true
 var los : Area3D
 #var threat_indicator : ThreatIndicator
-static func attack_state_from(owner : BaseEnemy, lock_on_timer : Timer,los : Area3D)-> EnemyState:
-	var state : PlaneAttackState= new()
+static func attack_state_from(owner : BaseEnemy, lock_on_timer : Timer,los : Area3D)-> AttackState:
+	var state : AttackState= new()
 	state.enemy = owner
 	state.lock_on_timer = lock_on_timer
 	state.los = los

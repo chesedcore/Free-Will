@@ -1,7 +1,7 @@
 class_name PlaneWander extends EnemyState
 
-var move_speed : float = 10.0
-var turn_speed : float = 2.5
+@export var move_speed : float = 10.0
+@export var turn_speed : float = 2.5
 
 var heading : Vector3 = Vector3.FORWARD
 var move_direction : Vector3
