@@ -10,14 +10,14 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_0s5y7"]
 size = Vector3(710.5298, 237.96199, 382.22473)
 
-[node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("lock_on_timer", "missle_spawner", "line_of_sight", "model")]
+[node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("lock_on_timer", "missle_spawner", "line_of_sight")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_17xuh")
 lock_on_timer = NodePath("lock_on_timer")
 missle_spawner = NodePath("missle_spawner")
 line_of_sight = NodePath("line_of_sight")
-model = NodePath("prototype_plane")
+initial_state = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2012983732]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
