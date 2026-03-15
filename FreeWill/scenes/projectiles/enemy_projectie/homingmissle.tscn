@@ -17,7 +17,7 @@ height = 2.4991226
 
 [sub_resource type="Curve" id="Curve_rdogb"]
 resource_local_to_scene = true
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.0985482, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), -0.9893111, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_buov0"]
@@ -27,7 +27,7 @@ offsets = PackedFloat32Array(0.044067796, 1)
 seed = 1
 frequency = 0.002
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ckbxl"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_buov0"]
 noise = SubResource("FastNoiseLite_5ybko")
 color_ramp = SubResource("Gradient_buov0")
 seamless = true
@@ -39,8 +39,8 @@ shader = ExtResource("6_04gat")
 shader_parameter/edgefade = 0.0
 shader_parameter/globalfade = 0.400000019
 shader_parameter/max_alpha = 0.50000002375
-shader_parameter/color_tint = Color(0.59717613, 0.59717613, 0.5971761, 1)
-shader_parameter/noise = SubResource("NoiseTexture2D_ckbxl")
+shader_parameter/color_tint = Color(0.41981313, 0.41981313, 0.4198131, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_buov0")
 
 [node name="Homingmissle" type="CharacterBody3D" unique_id=1409877024]
 collision_layer = 16
