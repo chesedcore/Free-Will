@@ -80,7 +80,7 @@ transform = Transform3D(2, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, 0, 0
 [node name="TrailRenderer" type="Node3D" parent="." unique_id=113082823]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.032669663, 4.6461067)
 script = ExtResource("5_8et62")
-lifetime = 10.0
+lifetime = 50.0
 curve = SubResource("Curve_rdogb")
 alignment = 0
 material = SubResource("ShaderMaterial_asrlt")
