@@ -227,10 +227,6 @@ func fire_cannon() -> void:
     # Iff target CAN be null. The missiles will just not track anything
     var iff_tracked_target: PhysicsBody3D = IFFTracker.get_lock_this_frame().unwrap_unchecked()
     new_bullet.target = iff_tracked_target
-
-    # Monarch: Usually I'd make a dedicated `Bullets` Node3D that 'holds' this node as an array,
-    # then trigger a signal that makes the World handler add the bullet to the Bullets node.
-    # But for now (in the spirit of this jam), this will do just fine.
     get_tree().root.add_child.call_deferred(new_bullet)
 
 var t_action: Tween
