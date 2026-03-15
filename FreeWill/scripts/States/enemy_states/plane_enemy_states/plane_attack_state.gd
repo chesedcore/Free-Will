@@ -1,4 +1,4 @@
-class_name AttackState extends EnemyState
+class_name PlaneAttackState extends EnemyState
 
 signal fireMissle
 

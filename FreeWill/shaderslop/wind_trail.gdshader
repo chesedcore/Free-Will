@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded;
+render_mode unshaded, cull_disabled;
 
 uniform lowp float edgefade : hint_range(0, 1) = 0.2;
 uniform lowp float globalfade : hint_range(0, 1) = 0.5;

@@ -11,6 +11,15 @@ class_name Bullet extends RigidBody3D
 var target: PhysicsBody3D
 var homing_time_left: float = 0.0
 
+static func fire_bullet_from_tank(tank: PlayerTank) -> void:
+	var new_bullet := Registry.create_bullet()
+	new_bullet.transform = tank.bullet_spawn_position_marker.global_transform
+	new_bullet.transform.origin += tank.linear_velocity * 0.01
+	new_bullet.linear_velocity = tank.linear_velocity
+	
+	var attack_target := IFFTracker.get_lock_this_frame().unwrap_unchecked() as PhysicsBody3D
+	new_bullet.target = attack_target
+	tank.get_tree().root.add_child.call_deferred(new_bullet)
 
 func _ready() -> void:
 	apply_bullet_force()
@@ -53,7 +62,7 @@ func apply_bullet_force() -> void:
 
 
 func _on_body_entered(body: Node3D) -> void:
-	if (body is BaseEnemy):
-		body.damage(damage)
-		print("DAMAGED")
-		queue_free()
+	if body is not BaseEnemy: return
+	body.damage(damage)
+	print("DAMAGED")
+	queue_free()

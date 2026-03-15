@@ -4,20 +4,48 @@
 [ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="4_iyje6"]
 [ext_resource type="PackedScene" uid="uid://b2k0tvxc2ybxm" path="res://assets/models/missile.blend" id="4_rakmp"]
 [ext_resource type="PackedScene" uid="uid://dnghcfqawmidu" path="res://assets/models/prototype_plane.blend" id="4_rhn42"]
+[ext_resource type="Script" uid="uid://brqh6t5d1dyrl" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="5_8et62"]
+[ext_resource type="Shader" uid="uid://cwxrvexdarj2x" path="res://shaderslop/wind_trail.gdshader" id="6_kpdvg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_12l03"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0s5y7"]
 size = Vector3(710.5298, 237.96199, 382.22473)
 
-[node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("lock_on_timer", "missle_spawner", "line_of_sight", "model")]
+[sub_resource type="Curve" id="Curve_rdogb"]
+resource_local_to_scene = true
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), -0.9893111, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_8et62"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kpdvg"]
+seed = 1
+frequency = 0.0018
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_blpt2"]
+noise = SubResource("FastNoiseLite_kpdvg")
+color_ramp = SubResource("Gradient_8et62")
+seamless = true
+normalize = false
+seamless_blend_skirt = 0.315
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_asrlt"]
+render_priority = 0
+shader = ExtResource("6_kpdvg")
+shader_parameter/edgefade = 0.0
+shader_parameter/globalfade = 0.400000019
+shader_parameter/max_alpha = 0.50000002375
+shader_parameter/color_tint = Color(1, 1, 1, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_blpt2")
+
+[node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("lock_on_timer", "missle_spawner", "line_of_sight")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_17xuh")
 lock_on_timer = NodePath("lock_on_timer")
 missle_spawner = NodePath("missle_spawner")
 line_of_sight = NodePath("line_of_sight")
-model = NodePath("prototype_plane")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2012983732]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
@@ -47,4 +75,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.596893, -22.851494, -195.
 shape = SubResource("BoxShape3D_0s5y7")
 
 [node name="thruster_particles" parent="." unique_id=1747782805 instance=ExtResource("4_iyje6")]
-transform = Transform3D(0.2928778, 0, 0, 0, -4.3711385e-08, -0.2111808, 0, 0.99999994, -9.231006e-09, 0, 0, 3.9268136)
+transform = Transform3D(2, 0, 0, 0, -4.371139e-08, -2, 0, 1, -8.742278e-08, 0, 0, 3.9268136)
+
+[node name="TrailRenderer" type="Node3D" parent="." unique_id=113082823]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.032669663, 4.6461067)
+script = ExtResource("5_8et62")
+lifetime = 50.0
+curve = SubResource("Curve_rdogb")
+alignment = 0
+material = SubResource("ShaderMaterial_asrlt")
+texture_mode = 2
+metadata/_custom_type_script = "uid://brqh6t5d1dyrl"

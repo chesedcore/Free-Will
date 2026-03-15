@@ -3,8 +3,8 @@ class_name CameraGimbal extends Node3D
 ## Camera gimbal class. Handles camera rotation and shake.
 
 const MOUSE_SENS: float = 1.0
-const MIN_ROT: float = -90.0
-const MAX_ROT: float = 90.0
+const MIN_ROT: float = -87.5
+const MAX_ROT: float = 87.5
 
 const BASE_FOV := 75.0
 const DASH_FOV_TWEEN_TIME := 0.7
@@ -84,7 +84,6 @@ func start_dash_tween(duration: float, fov_boost: float, cam_pullback: float) ->
 	dash_tween.set_parallel(true)
 
 	dash_tween.tween_property(camera, "fov", BASE_FOV + fov_boost, 0.05)
-	dash_tween.tween_callback(print.bind("balls"))
 	var target_pos := phantom_camera.position
 	target_pos.z = (base_camera_z - cam_pullback)
 	dash_tween.tween_property(phantom_camera, "position:z", target_pos.z, DASH_CAMERA_TWEEN_TIME)
@@ -99,7 +98,6 @@ func recover(duration: float) -> void:
 	recovery_tween.set_parallel(true)
 	recovery_tween.tween_property(camera, "fov", BASE_FOV, duration * 0.5)
 	recovery_tween.tween_property(phantom_camera, "position:z", base_camera_z, duration * 0.5)
-	recovery_tween.tween_callback(print.bind("balls2"))
 
 
 func dash_effect_update(delta: float) -> void:
@@ -108,6 +106,5 @@ func dash_effect_update(delta: float) -> void:
 
 	if dash_timer <= 0.0:
 		is_dash_active = false
-		#set back to proper base
 		camera.fov = BASE_FOV
 		phantom_camera.position.z = base_camera_z
