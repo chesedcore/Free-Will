@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://nu0cniohybqx"]
 
 [ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="1_7ddre"]
-[ext_resource type="Script" uid="uid://dfj8b4hri7dgl" path="res://scripts/entities/killbox.gd" id="1_g7g4h"]
 [ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="1_qjeyg"]
 [ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scenes/master/stage_handler.gd" id="1_rnaij"]
 [ext_resource type="PackedScene" uid="uid://7yq66c566yvi" path="res://scenes/entities/enemies/enemy_plane.tscn" id="3_7ddre"]
@@ -27,8 +26,6 @@ size = Vector2(10000, 10000)
 subdivide_width = 250
 subdivide_depth = 250
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j8ivh"]
-
 [node name="TestScene" type="Node3D" unique_id=1841801107 node_paths=PackedStringArray("ui", "enemies_list", "tank")]
 script = ExtResource("1_rnaij")
 ui = NodePath("UI")
@@ -46,16 +43,6 @@ environment = ExtResource("1_qjeyg")
 [node name="Ocean" type="MeshInstance3D" parent="." unique_id=139133770]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12763977, 0.11047363, -0.7965088)
 mesh = SubResource("PlaneMesh_g7g4h")
-
-[node name="Killbox" type="Area3D" parent="Ocean" unique_id=820843103]
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("1_g7g4h")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ocean/Killbox" unique_id=1975205493]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.118681, 0)
-shape = SubResource("WorldBoundaryShape3D_j8ivh")
-debug_color = Color(0, 0.4333334, 1, 1)
 
 [node name="Tank" parent="." unique_id=290108966 instance=ExtResource("4_3qnke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 335.62222, 0)

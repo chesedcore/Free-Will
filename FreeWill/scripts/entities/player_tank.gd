@@ -144,9 +144,13 @@ func action_timer_update(delta: float) -> void:
 
 
 func _process(delta: float) -> void:
+	poll_tank_death()
 	dash_timer_update(delta)
 	action_timer_update(delta)
 
+func poll_tank_death() -> void:
+	if self.global_position.y < -5.0:
+		self.kill()
 
 func _physics_process(delta: float) -> void:
 	if not is_in_action and  not _stop_gimbal_update: model_transform_update(delta)
