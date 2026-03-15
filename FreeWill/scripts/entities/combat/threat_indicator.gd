@@ -23,7 +23,7 @@ func change_to_red()-> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if target_node == null:
-		call_deferred("queue_free")
+		queue_free.call_deferred()
 	else:
 		#if global_position.distance_to(target_node.global_position)<visible_range and visible == false:
 			#visible = true

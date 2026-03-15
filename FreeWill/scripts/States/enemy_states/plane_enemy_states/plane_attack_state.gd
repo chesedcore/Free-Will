@@ -20,6 +20,7 @@ var danger_range: float = 100
 var is_locked_on : bool = true
 var los : Area3D
 #var threat_indicator : ThreatIndicator
+@warning_ignore("shadowed_variable")
 static func attack_state_from(owner : BaseEnemy, lock_on_timer : Timer,los : Area3D)-> EnemyState:
 	var state : PlaneAttackState= new()
 	state.enemy = owner

@@ -10,7 +10,7 @@ const GUN_FIRE_FORCE: float = 50.0
 const MAX_SPEED: float = 150.0
 
 const DASH_FORCE := 350.0
-const DASH_COOLDOWN := 10.0
+const DASH_COOLDOWN := 4.0
 const DASH_MAX_SPEED := MAX_SPEED * 3
 const DASH_FOV_BOOST := 20.0
 const DASH_CAMERA_PULLBACK := 6.0
@@ -53,6 +53,8 @@ var action_window_timer := 0.0
 var is_spinning_turret := false
 var is_parrying := false
 
+var _stop_gimbal_update := false
+
 
 func _ready() -> void:
 	GameState.player = self
@@ -81,6 +83,11 @@ func _input(event: InputEvent) -> void:
 func spin_turret(by_angle: float) -> void:
 	turret.rotate_y(by_angle)
 
+func stop_model_update() -> void:
+	_stop_gimbal_update = true
+
+func start_model_update() -> void:
+	_stop_gimbal_update = false
 
 func attempt_action() -> void:
 	if action_cooldown_timer > 0.0:
@@ -142,7 +149,7 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not is_in_action: model_transform_update(delta)
+	if not is_in_action and  not _stop_gimbal_update: model_transform_update(delta)
 	camera_gimbal.global_position = global_position
 	if is_spinning_turret: spin_turret(70 * delta)
 
@@ -166,6 +173,7 @@ func model_transform_update(delta: float) -> void:
 		).basis,
 		6.0 * delta
 	)
+	turret.rotation.y = lerpf(turret.rotation.y, 0, 6.0 * delta)
 
 
 func fire_cannon() -> void:
