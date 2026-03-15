@@ -93,13 +93,14 @@ func _attempt_dash() -> void:
 
 func grapple() -> void:
 	grappled_target = IFFTracker.get_lock_this_frame().unwrap_unchecked()
-	if grappled_target.is_none(): return
+	if not grappled_target: return
 	print("GRAPPLED")
 
 
 func ungrapple() -> void:
 	if (grappled_target):
 		grappled_target = null
+		"UNGRAPPLED" #in honour of le bubbson
 		return
 
 
