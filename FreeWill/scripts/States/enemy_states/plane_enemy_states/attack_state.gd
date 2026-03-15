@@ -1,4 +1,4 @@
-class_name PlaneAttackState extends EnemyState
+class_name AttackState extends EnemyState
 
 signal fireMissle
 
@@ -22,7 +22,7 @@ var los : Area3D
 #var threat_indicator : ThreatIndicator
 @warning_ignore("shadowed_variable")
 static func attack_state_from(owner : BaseEnemy, lock_on_timer : Timer,los : Area3D)-> EnemyState:
-	var state : PlaneAttackState = new()
+	var state: AttackState = new()
 	state.enemy = owner
 	state.lock_on_timer = lock_on_timer
 	state.los = los

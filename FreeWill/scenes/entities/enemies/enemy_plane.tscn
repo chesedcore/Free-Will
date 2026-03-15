@@ -12,6 +12,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_0s5y7"]
 size = Vector3(710.5298, 237.96199, 382.22473)
 
+[node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("lock_on_timer", "missle_spawner", "line_of_sight", "model")]
 [sub_resource type="Curve" id="Curve_rdogb"]
 resource_local_to_scene = true
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), -0.9893111, 0.0, 0, 0]

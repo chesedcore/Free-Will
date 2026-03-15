@@ -86,7 +86,7 @@ func _attempt_dash() -> void:
 	if not dash_cooldown.is_ready():
 		UIBus.attempted_dash.emit(Result.Err(UI.DASH_STILL_UNDER_COOLDOWN))
 		return
-	
+
 	_execute_dash()
 	UIBus.attempted_dash.emit(Result.Ok_as_is())
 
@@ -115,9 +115,9 @@ func grapple_update() -> void:
 func _execute_dash() -> void:
 	var dash_direction := camera_gimbal.global_basis.z
 	linear_velocity += dash_direction * DASH_FORCE
-	
+
 	camera_gimbal.trigger_dash_effect(DASH_EFFECT_DURATION, DASH_FOV_BOOST, DASH_CAMERA_PULLBACK)
-	
+
 	dash_cooldown.start_cooldown()
 	dash_effect_timer.start_cooldown()
 
@@ -126,7 +126,7 @@ func _attempt_parry() -> void:
 	if not parry_cooldown.is_ready():
 		UIBus.attempted_action.emit(Result.Err(UI.ACTION_STILL_UNDER_COOLDOWN))
 		return
-	
+
 	_execute_parry()
 	UIBus.attempted_action.emit(Result.Ok_as_is())
 
@@ -134,16 +134,16 @@ func _attempt_parry() -> void:
 func _execute_parry() -> void:
 	if _parry_tween:
 		_parry_tween.kill()
-	
+
 	_parry_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	_parry_tween.set_parallel(true)
-	
+
 	#windup happens here
 	_parry_tween.tween_callback(func() -> void:
 		_stop_gimbal_update = true
 	)
 	_parry_tween.tween_property(tank_model, "rotation_degrees:x", -30, PARRY_WINDUP)
-	
+
 	#windup ends, active parry window here
 	_parry_tween.chain()
 	_parry_tween.tween_callback(func() -> void:
@@ -152,7 +152,7 @@ func _execute_parry() -> void:
 	)
 	_parry_tween.tween_property(tank_model, "rotation_degrees:x", 120, PARRY_WINDOW)
 	_parry_tween.finished.connect(_on_parry_finished)
-	
+
 	parry_cooldown.start_cooldown()
 
 
@@ -183,7 +183,7 @@ func _fire_cannon() -> void:
 func try_damage(amount: float) -> Result:
 	if parry_window_timer.is_active():
 		return Result.Err(ParryReport.as_normal())
-	
+
 	damage(amount)
 	return Result.Ok_as_is()
 
@@ -202,12 +202,12 @@ func _kill() -> void:
 
 func _physics_process(delta: float) -> void:
 	_poll_tank_death()
-	
+
 	if not _stop_gimbal_update and not parry_window_timer.is_active():
 		_update_model_transform(delta)
-	
+
 	camera_gimbal.global_position = global_position
-	
+
 	#spin turret during parry!!
 	if parry_window_timer.is_active():
 		turret.rotate_y(70 * delta)

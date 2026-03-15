@@ -1,5 +1,14 @@
 [gd_scene format=3 uid="uid://nu0cniohybqx"]
 
+[ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scenes/master/stage_handler.gd" id="1_2l77h"]
+[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="2_nqdth"]
+[ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="3_5cypo"]
+[ext_resource type="Script" uid="uid://dfj8b4hri7dgl" path="res://scripts/entities/killbox.gd" id="4_o6v7o"]
+[ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="5_wjob3"]
+[ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="6_8xp80"]
+[ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scenes/master/enemies_list.gd" id="7_sp04v"]
+[ext_resource type="PackedScene" uid="uid://7yq66c566yvi" path="res://scenes/entities/enemies/enemy_plane.tscn" id="8_ihbck"]
+[ext_resource type="PackedScene" uid="uid://bl4ycq25qh3pb" path="res://scenes/projectiles/enemy_projectie/homingmissle.tscn" id="9_vnsdt"]
 [ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="1_7ddre"]
 [ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scenes/master/stage_handler.gd" id="1_rnaij"]
 [ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="2_h3xc6"]
@@ -56,6 +65,47 @@ seabound_enemies = NodePath("SeaboundEnemies")
 
 [node name="AirborneEnemies" type="Node3D" parent="EnemiesList" unique_id=949551153]
 
+[node name="Enemy_plane" parent="EnemiesList/AirborneEnemies" unique_id=187691756 instance=ExtResource("8_ihbck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -83.031876, 46.393684, 0)
+
+[node name="Enemy_plane2" parent="EnemiesList/AirborneEnemies" unique_id=1897209183 instance=ExtResource("8_ihbck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.499405, 46.393684, 0)
+
+[node name="Enemy_plane3" parent="EnemiesList/AirborneEnemies" unique_id=1140772667 instance=ExtResource("8_ihbck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 242.52855, 46.393684, 0)
+
+[node name="Enemy_plane4" parent="EnemiesList/AirborneEnemies" unique_id=1248955236 instance=ExtResource("8_ihbck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 242.52855, 46.393684, 107.87222)
+
+[node name="Enemy_plane5" parent="EnemiesList/AirborneEnemies" unique_id=473138733 instance=ExtResource("8_ihbck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6975555, 46.393684, 107.87222)
+
+[node name="Enemy_plane6" parent="EnemiesList/AirborneEnemies" unique_id=423110217 instance=ExtResource("8_ihbck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -109.64972, 46.393684, 107.87222)
+
+[node name="Enemy_plane7" parent="EnemiesList/AirborneEnemies" unique_id=1380472499 instance=ExtResource("8_ihbck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -199.7468, 46.393684, 107.87222)
+
+[node name="Enemy_plane8" parent="EnemiesList/AirborneEnemies" unique_id=1125492626 instance=ExtResource("8_ihbck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -212.29749, 0, -277)
+
+[node name="Enemy_plane9" parent="EnemiesList/AirborneEnemies" unique_id=1771648245 instance=ExtResource("8_ihbck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -212.29749, 0, 265.86255)
+
+[node name="Enemy_plane10" parent="EnemiesList/AirborneEnemies" unique_id=422871223 instance=ExtResource("8_ihbck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 219.6778, 0, 265.86255)
+
+[node name="Enemy_plane11" parent="EnemiesList/AirborneEnemies" unique_id=1639526335 instance=ExtResource("8_ihbck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 219.6778, 0, -344.5125)
+
+[node name="Enemy_plane12" parent="EnemiesList/AirborneEnemies" unique_id=1267330643 instance=ExtResource("8_ihbck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 665.61127, 0, -344.5125)
+
+[node name="Enemy_plane13" parent="EnemiesList/AirborneEnemies" unique_id=778763880 instance=ExtResource("8_ihbck")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 665.61127, 0, -344.5125)
+
+[node name="Homingmissle" parent="EnemiesList/AirborneEnemies" unique_id=1409877024 instance=ExtResource("9_vnsdt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -211.99522, 0, -154.57654)
 [node name="Enemy_plane" parent="EnemiesList/AirborneEnemies" unique_id=187691756 instance=ExtResource("3_7ddre")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.110764, 431.3087, 1157.189)
 

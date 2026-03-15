@@ -1,4 +1,4 @@
-class_name PlaneInterceptState extends EnemyState
+class_name InterceptState extends EnemyState
 
 
 @export var Max_speed : float = 200.0
@@ -19,7 +19,7 @@ var los : Area3D
 
 
 static func intercept_state_from(owner : BaseEnemy,los:Area3D)-> EnemyState:
-	var intercept_state : PlaneInterceptState= new()
+	var intercept_state : InterceptState= new()
 	intercept_state.enemy = owner
 	intercept_state.los = los
 	intercept_state.player = GameState.player
@@ -38,9 +38,9 @@ func enter() -> void:
 	var offset_dirs := [
 	
 	(right + up).normalized(),
-	(right).normalized(),
+	(right - up).normalized(),
 	(-right + up).normalized(),
-	(-right).normalized()
+	(-right - up).normalized()
 ]	
 	player_offset = offset_dirs.pick_random() * offset_distance
 
@@ -53,6 +53,7 @@ func physics_update(_delta: float) -> void:
 		target.y = clamp(target.y,150,100000)
 		var desired_direction := (target - enemy.global_position).normalized()
 		heading = heading.slerp(desired_direction, turn_speed * _delta).normalized()
+
 		velocity_vec = velocity_vec.move_toward(heading * Max_speed, aceleration * _delta)
 		enemy.look_at(enemy.global_position + heading, Vector3.UP)
 		enemy.velocity = velocity_vec
@@ -66,7 +67,7 @@ func physics_update(_delta: float) -> void:
 			#return
 
 func start_lock_on() -> void:
-	if PlaneAttackState.num_of_attacking_planes < PlaneAttackState.MAX_ATTACKING_PLANES:
+	if AttackState.num_of_attacking_planes < AttackState.MAX_ATTACKING_PLANES:
 		Transitioned.emit(self,EnemyPlane.STATES.ATTACK)
 	#lock_on_timer.start()
 
