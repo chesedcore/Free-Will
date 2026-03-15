@@ -81,7 +81,3 @@ func kill() -> void:
 		remove_child(trail)
 		get_tree().root.add_child(trail)
 	super()
-	
-
-
-	
