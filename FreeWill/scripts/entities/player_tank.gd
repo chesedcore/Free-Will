@@ -16,6 +16,8 @@ const DASH_FOV_BOOST := 20.0
 const DASH_CAMERA_PULLBACK := 6.0
 const DASH_EFFECT_DURATION := 5.0
 
+const GRAPPLE_STRENGTH: float = 25.0
+
 const ACTION_COOLDOWN := 3.25
 
 const MAX_HEALTH: float = 100.0
@@ -52,6 +54,8 @@ var is_spinning_turret := false
 var is_parrying := false
 var is_grappling := true
 
+var grappled_target: PhysicsBody3D = null
+
 
 func _ready() -> void:
     GameState.player = self
@@ -66,13 +70,35 @@ func _input(event: InputEvent) -> void:
         fire_cannon()
 
     if (event.is_action_pressed("grapple")):
-        grapple_target()
+        grapple()
+
+    if (event.is_action_released("grapple")):
+        ungrapple()
 
     if Input.is_action_just_pressed("dash"):
         attempt_dash()
 
     if Input.is_action_just_pressed("action"):
         attempt_action()
+
+
+func _process(delta: float) -> void:
+    dash_timer_update(delta)
+    action_timer_update(delta)
+
+
+func _physics_process(delta: float) -> void:
+    if not is_in_action: model_transform_update(delta)
+    camera_gimbal.global_position = global_position
+    if is_spinning_turret: spin_turret(70 * delta)
+
+
+func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+    grapple_update()
+    var max_speed := DASH_MAX_SPEED if is_dashing else MAX_SPEED
+    state.linear_velocity.x = clampf(state.linear_velocity.x, -max_speed, max_speed)
+    state.linear_velocity.y = clampf(state.linear_velocity.y, -INF, max_speed)
+    state.linear_velocity.z = clampf(state.linear_velocity.z, -max_speed, max_speed)
 
 
 func spin_turret(by_angle: float) -> void:
@@ -113,6 +139,29 @@ func dash() -> void:
     dash_effect_timer = DASH_EFFECT_DURATION
 
 
+func grapple() -> void:
+    grappled_target = IFFTracker.get_lock_this_frame().unwrap_unchecked()
+    if (!grappled_target):
+        return
+
+    print("GRAPPLED")
+
+
+func ungrapple() -> void:
+    if (grappled_target):
+        grappled_target = null
+        "UNGRAPPLED"
+        return
+
+
+func grapple_update() -> void:
+    if (grappled_target):
+        linear_velocity += \
+            global_position.direction_to(grappled_target.global_position) * GRAPPLE_STRENGTH
+        if (global_position.distance_squared_to(grappled_target.global_position) < 500.0):
+            grappled_target = null
+
+
 func dash_timer_update(delta: float) -> void:
     if dash_cooldown_timer > 0.0:
         dash_cooldown_timer -= delta
@@ -133,23 +182,6 @@ func action_timer_update(delta: float) -> void:
             is_in_action = false
 
 
-func _process(delta: float) -> void:
-    dash_timer_update(delta)
-    action_timer_update(delta)
-
-
-func _physics_process(delta: float) -> void:
-    if not is_in_action: model_transform_update(delta)
-    camera_gimbal.global_position = global_position
-    if is_spinning_turret: spin_turret(70 * delta)
-
-
-func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-    var max_speed := DASH_MAX_SPEED if is_dashing else MAX_SPEED
-    state.linear_velocity.x = clampf(state.linear_velocity.x, -max_speed, max_speed)
-    state.linear_velocity.y = clampf(state.linear_velocity.y, -INF, max_speed)
-    state.linear_velocity.z = clampf(state.linear_velocity.z, -max_speed, max_speed)
-
 ##this is ugly because allocating a new temp var every frame for a quat might be
 ##ugly ass for performance, so no extra allocs are made on purpose
 func model_transform_update(delta: float) -> void:
@@ -163,14 +195,6 @@ func model_transform_update(delta: float) -> void:
         ).basis,
         6.0 * delta
     )
-
-
-func grapple_target() -> void:
-    var target: PhysicsBody3D = IFFTracker.get_lock_this_frame().unwrap_unchecked()
-    if (!target):
-        return
-
-    print("Grapple")
 
 
 func fire_cannon() -> void:
