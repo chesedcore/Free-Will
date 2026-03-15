@@ -65,6 +65,11 @@ func _ready() -> void:
     Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
+func _wire_up_signals() -> void:
+	UIBus.missile_parried.connect(_extend_parry_window)
+	parry_window_timer.timeout.connect(_end_parry)
+
+
 func _input(event: InputEvent) -> void:
     if (event.is_action_pressed("fire")):
         fire_cannon()
@@ -91,6 +96,7 @@ func _physics_process(delta: float) -> void:
     if not is_in_action: model_transform_update(delta)
     camera_gimbal.global_position = global_position
     if is_spinning_turret: spin_turret(70 * delta)
+
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:

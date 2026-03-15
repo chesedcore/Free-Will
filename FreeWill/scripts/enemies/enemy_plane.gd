@@ -70,3 +70,11 @@ func on_state_transition(from_state: State, to_state: STATES)->void:
 
 	new_state.enter()
 	current_state = new_state
+
+func kill() -> void:
+	var trail := $TrailRenderer
+	if is_instance_valid(trail):
+		trail.is_emitting = false
+		remove_child(trail)
+		get_tree().root.add_child(trail)
+	super()

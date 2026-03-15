@@ -20,8 +20,9 @@ var danger_range: float = 100
 var is_locked_on : bool = true
 var los : Area3D
 #var threat_indicator : ThreatIndicator
-static func attack_state_from(owner : BaseEnemy, lock_on_timer : Timer,los : Area3D)-> AttackState:
-	var state : AttackState= new()
+@warning_ignore("shadowed_variable")
+static func attack_state_from(owner : BaseEnemy, lock_on_timer : Timer,los : Area3D)-> EnemyState:
+	var state : AttackState = new()
 	state.enemy = owner
 	state.lock_on_timer = lock_on_timer
 	state.los = los
@@ -31,7 +32,7 @@ static func attack_state_from(owner : BaseEnemy, lock_on_timer : Timer,los : Are
 
 func enter() -> void:
 	num_of_attacking_planes +=1
-	
+
 	lock_on_timer.timeout.connect(on_locked_on)
 	heading = enemy.velocity.normalized()
 	lock_on_timer.start()
@@ -47,7 +48,7 @@ func  physics_update(_delta :float) -> void:
 		Transitioned.emit(self,EnemyPlane.STATES.EVADE)
 		return
 	var target_velocity : Vector3 = heading * attack_speed
-	
+
 	enemy.velocity = enemy.velocity.move_toward(
 		target_velocity,
 		acceleration * _delta
@@ -61,22 +62,22 @@ func exit() -> void:
 
 func on_los_body_exit(body : Node3D)->void:
 	if body is PlayerTank:
-		
+
 		lock_on_timer.stop()
-		
-	
+
+
 
 func on_locked_on()->void:
 	if is_locked_on:
-		
+
 		fireMissle.emit(player)
 		print("fire")
 	else:
 		print("lost lock")
 
 	Transitioned.emit(self,EnemyPlane.STATES.EVADE)
-	
-	
+
+
 
 func on_los_body_exited(body : Node3D)->void:
 	if body is PlayerTank:

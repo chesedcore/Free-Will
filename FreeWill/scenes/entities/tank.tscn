@@ -142,7 +142,7 @@ hull = NodePath("TankModel/Base")
 
 [node name="TankModel" parent="." unique_id=710921557 instance=ExtResource("2_fn73n")]
 
-[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(710921557, 352268761) index="0" unique_id=1789710507]
+[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(710921557, 12866291) index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
 script = ExtResource("10_hsoq5")
 min_vertex_distance = 0.1
@@ -208,7 +208,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999978, -0.0015567472, 0.0013954479, -0.0011411966, 0.9657271, 0.25955734, -0.001751687, 0.2595552, -0.96572673, 0.004381117, 9.989969, -19.99346)
+transform = Transform3D(-0.9999988, -0.0011382079, 0.001023088, -0.00083439203, 0.9658774, 0.2589984, -0.0012829716, 0.25899723, -0.9658772, 0.0010645877, 9.99265, -19.995218)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
