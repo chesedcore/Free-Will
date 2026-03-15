@@ -34,9 +34,9 @@ gdscript/warnings/untyped_declaration=2
 
 [display]
 
+window/size/mode=2
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
-window/size/mode=2
 
 [editor_plugins]
 

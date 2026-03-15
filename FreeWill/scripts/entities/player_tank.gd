@@ -66,28 +66,20 @@ func _wire_up_signals() -> void:
 	parry_window_timer.timeout.connect(_end_parry)
 
 func _input(event: InputEvent) -> void:
-    if (event.is_action_pressed("fire")):
-        fire_cannon()
+	if (event.is_action_pressed("fire")):
+		_fire_cannon()
 
-    if (event.is_action_pressed("grapple")):
-        grapple()
+	if (event.is_action_pressed("grapple")):
+		grapple()
 
-    if (event.is_action_released("grapple")):
-        ungrapple()
+	if (event.is_action_released("grapple")):
+		ungrapple()
 
-    if Input.is_action_just_pressed("dash"):
-        attempt_dash()
+	if Input.is_action_just_pressed("dash"):
+		_attempt_dash()
 
-    if Input.is_action_just_pressed("action"):
-        attempt_action()
-
-
-func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-    grapple_update()
-    var max_speed := DASH_MAX_SPEED if is_dashing else MAX_SPEED
-    state.linear_velocity.x = clampf(state.linear_velocity.x, -max_speed, max_speed)
-    state.linear_velocity.y = clampf(state.linear_velocity.y, -INF, max_speed)
-    state.linear_velocity.z = clampf(state.linear_velocity.z, -max_speed, max_speed)
+	if Input.is_action_just_pressed("action"):
+		_attempt_parry()
 
 
 func _attempt_dash() -> void:
@@ -100,24 +92,23 @@ func _attempt_dash() -> void:
 
 
 func grapple() -> void:
-    grappled_target = IFFTracker.get_lock_this_frame().unwrap_unchecked()
-    if grappled_target.is_none(): return
-    print("GRAPPLED")
+	grappled_target = IFFTracker.get_lock_this_frame().unwrap_unchecked()
+	if grappled_target.is_none(): return
+	print("GRAPPLED")
 
 
 func ungrapple() -> void:
-    if (grappled_target):
-        grappled_target = null
-        "UNGRAPPLED"
-        return
+	if (grappled_target):
+		grappled_target = null
+		return
 
 
 func grapple_update() -> void:
-    if (grappled_target):
-        linear_velocity += \
-            global_position.direction_to(grappled_target.global_position) * GRAPPLE_STRENGTH
-        if (global_position.distance_squared_to(grappled_target.global_position) < 500.0):
-            grappled_target = null
+	if (grappled_target):
+		linear_velocity += \
+			global_position.direction_to(grappled_target.global_position) * GRAPPLE_STRENGTH
+		if (global_position.distance_squared_to(grappled_target.global_position) < 500.0):
+			grappled_target = null
 
 
 func _execute_dash() -> void:
@@ -224,6 +215,7 @@ func _poll_tank_death() -> void:
 	if global_position.y < -5.0: _kill()
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	grapple_update()
 	var max_speed := DASH_MAX_SPEED if dash_effect_timer.is_active() else MAX_SPEED
 	state.linear_velocity.x = clampf(state.linear_velocity.x, -max_speed, max_speed)
 	state.linear_velocity.y = clampf(state.linear_velocity.y, -INF, max_speed)
