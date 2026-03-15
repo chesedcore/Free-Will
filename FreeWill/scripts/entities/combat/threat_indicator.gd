@@ -21,9 +21,9 @@ func change_to_red()-> void:
 		mesh.set_surface_override_material(0, material)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if target_node == null:
-		call_deferred("queue_free")
+		queue_free.call_deferred()
 	else:
 		#if global_position.distance_to(target_node.global_position)<visible_range and visible == false:
 			#visible = true

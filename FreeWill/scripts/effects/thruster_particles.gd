@@ -5,5 +5,4 @@ extends Node3D
 
 
 func _ready() -> void:
-	thrust_effect.emitting = true
 	thrust_effect.restart()

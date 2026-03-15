@@ -10,6 +10,7 @@ enum STATES {INTERCEPT,EVADE,ATTACK}
 @export var initial_state : STATES
 
 var current_state : State
+@onready var trail_renderer: TrailRenderer = $TrailRenderer
 
 
 func _ready() -> void:
@@ -52,6 +53,8 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	trail_renderer.position.x = randf_range(-0.5,.5)
+	trail_renderer.position.y = -0.033 + randf_range(-0.5,0.5)
 	if current_state:
 		current_state.physics_update(delta)
 	move_and_slide()
@@ -70,3 +73,15 @@ func on_state_transition(from_state: State, to_state: STATES)->void:
 
 	new_state.enter()
 	current_state = new_state
+
+func kill() -> void:
+	var trail := $TrailRenderer
+	if is_instance_valid(trail):
+		trail.is_emitting = false
+		remove_child(trail)
+		get_tree().root.add_child(trail)
+	super()
+	
+
+
+	

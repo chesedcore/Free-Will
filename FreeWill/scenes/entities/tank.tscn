@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c7xy4j8d6608x" path="res://scripts/entities/player_tank.gd" id="1_xcn37"]
 [ext_resource type="PackedScene" uid="uid://ciqvl3ekbok17" path="res://models/player_tank.blend" id="2_fn73n"]
+[ext_resource type="AudioStream" uid="uid://l52ex3drqvuq" path="res://audio/sfx/rocket_launch.ogg" id="2_oqcw2"]
 [ext_resource type="Script" uid="uid://ygulxcf75ylm" path="res://scripts/effects/wind_lines.gd" id="5_hjnge"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_uedwi"]
 [ext_resource type="Script" uid="uid://wel3y4ne2cus" path="res://scripts/effects/tank_wind_trail.gd" id="7_ywmen"]
@@ -23,13 +24,6 @@
 _limits = [0.084254146, 0.17659867, 0.0, 1.0]
 _data = [Vector2(0.14083172, 0.17659867), -0.30403072, -0.0712738, 0, 0, Vector2(0.14083172, 0.17659867), -0.30403072, -0.0712738, 0, 0, Vector2(0.17659867, 0.14083172), -0.30403072, -0.0712738, 0, 0]
 point_count = 3
-point_0/position = Vector2(0.14083172, 0.17659867)
-point_0/right_tangent = -0.0712738
-point_1/position = Vector2(0.14083172, 0.17659867)
-point_1/left_tangent = -0.30403072
-point_1/right_tangent = -0.0712738
-point_2/position = Vector2(0.17659867, 0.14083172)
-point_2/left_tangent = -0.30403072
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ekcgd"]
 render_priority = 0
@@ -73,16 +67,6 @@ metadata/_custom_type_script = "uid://cuffvge5ad4aa"
 
 [sub_resource type="BoxMesh" id="BoxMesh_3lr38"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_hjkd7"]
-radius = 0.20800781
-height = 2.703125
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_e1uyo"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_f8vrt"]
-radius = 0.37548828
-height = 1.3037109
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tafis"]
 shader = ExtResource("13_uedwi")
 shader_parameter/blur_radius = 0.2
@@ -104,10 +88,6 @@ shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 [sub_resource type="Curve" id="Curve_hjnge"]
 _data = [Vector2(0, 1), -0.864608, -1.7656529, 0, 0, Vector2(1, 0), -0.864608, 0.0, 0, 0]
 point_count = 2
-point_0/position = Vector2(0, 1)
-point_0/right_tangent = -1.7656529
-point_1/position = Vector2(1, 0)
-point_1/left_tangent = -0.864608
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hjnge"]
 frequency = 0.0028
@@ -141,6 +121,7 @@ barrel_position_marker = NodePath("BarrelPositionMarker")
 bullet_spawn_position_marker = NodePath("TankModel/BulletSpawnPositionMarker")
 turret = NodePath("TankModel/Barrel")
 hull = NodePath("TankModel/Base")
+cannon_fire_sound = ExtResource("2_oqcw2")
 
 [node name="TankModel" parent="." unique_id=710921557 instance=ExtResource("2_fn73n")]
 
@@ -210,7 +191,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999733, 0.0048061037, -0.0055066124, 0.0032515987, 0.9672661, 0.2537438, 0.006545878, 0.25371912, -0.96725583, -0.03006073, 10.037645, -20.018593)
+transform = Transform3D(-0.9999987, 0.0015059452, -0.0005923183, 0.001301355, 0.96593213, 0.25879255, 0.00096186664, 0.25879145, -0.9659327, -0.00015694273, 10.005511, -20.007456)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -236,27 +217,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13)
 
 [node name="Marker3D" type="MeshInstance3D" parent="CameraGimbal/BarrelLookAtMarker" unique_id=499308636]
 mesh = SubResource("BoxMesh_3lr38")
-
-[node name="Barrel" type="Node3D" parent="." unique_id=95074020]
-transform = Transform3D(1, 0, 0, 0, -0.84568185, -0.53368735, 0, 0.53368735, -0.84568185, 0, 0.54932356, 0)
-top_level = true
-
-[node name="Mesh" type="MeshInstance3D" parent="Barrel" unique_id=1121618740]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -1.2470703)
-mesh = SubResource("CapsuleMesh_hjkd7")
-
-[node name="BodyModel" type="Node3D" parent="Barrel" unique_id=1795060039]
-transform = Transform3D(1, 0, 0, 0, -0.84568185, 0.53368735, 0, -0.53368735, -0.84568185, 0, 0.46455297, 0.29316702)
-
-[node name="Body" type="MeshInstance3D" parent="Barrel/BodyModel" unique_id=1191182585]
-transform = Transform3D(0.972211, 0, 0, 0, -4.371139e-08, -0.7426199, 0, 1, -3.2460946e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_e1uyo")
-
-[node name="TurretModel" type="Node3D" parent="Barrel/BodyModel" unique_id=173374742]
-
-[node name="Gun" type="MeshInstance3D" parent="Barrel/BodyModel/TurretModel" unique_id=813788881]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.54932356, 0)
-mesh = SubResource("CapsuleMesh_f8vrt")
 
 [node name="BarrelPositionMarker" type="Marker3D" parent="." unique_id=1035784397]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)

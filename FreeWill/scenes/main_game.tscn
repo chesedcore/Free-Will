@@ -9,10 +9,18 @@
 [ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scenes/master/enemies_list.gd" id="7_sp04v"]
 [ext_resource type="PackedScene" uid="uid://7yq66c566yvi" path="res://scenes/entities/enemies/enemy_plane.tscn" id="8_ihbck"]
 [ext_resource type="PackedScene" uid="uid://bl4ycq25qh3pb" path="res://scenes/projectiles/enemy_projectie/homingmissle.tscn" id="9_vnsdt"]
+[ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="1_7ddre"]
+[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="1_qjeyg"]
+[ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scenes/master/stage_handler.gd" id="1_rnaij"]
+[ext_resource type="PackedScene" uid="uid://7yq66c566yvi" path="res://scenes/entities/enemies/enemy_plane.tscn" id="3_7ddre"]
+[ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="4_3qnke"]
+[ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scenes/master/enemies_list.gd" id="7_h3xc6"]
+[ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="7_wtsjf"]
+[ext_resource type="PackedScene" uid="uid://u7wkfykuxl3h" path="res://scenes/entities/enemies/enemy_battle_ship.tscn" id="10_s36qc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjeyg"]
 render_priority = 0
-shader = ExtResource("3_5cypo")
+shader = ExtResource("1_7ddre")
 shader_parameter/out_color = Color(0, 0.3666668, 1, 1)
 shader_parameter/amount = 15.00000022351799
 shader_parameter/speed = 1.0
@@ -27,10 +35,8 @@ size = Vector2(10000, 10000)
 subdivide_width = 250
 subdivide_depth = 250
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_j8ivh"]
-
-[node name="StageHandler" type="Node3D" unique_id=1841801107 node_paths=PackedStringArray("ui", "enemies_list", "tank")]
-script = ExtResource("1_2l77h")
+[node name="TestScene" type="Node3D" unique_id=1841801107 node_paths=PackedStringArray("ui", "enemies_list", "tank")]
+script = ExtResource("1_rnaij")
 ui = NodePath("UI")
 enemies_list = NodePath("EnemiesList")
 tank = NodePath("Tank")
@@ -41,30 +47,21 @@ light_color = Color(1, 0.95000005, 0.75, 1)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=513326264]
-environment = ExtResource("2_nqdth")
+environment = ExtResource("1_qjeyg")
 
 [node name="Ocean" type="MeshInstance3D" parent="." unique_id=139133770]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12763977, 0.11047363, -0.7965088)
 mesh = SubResource("PlaneMesh_g7g4h")
 
-[node name="Killbox" type="Area3D" parent="Ocean" unique_id=820843103]
-collision_layer = 3
-collision_mask = 3
-script = ExtResource("4_o6v7o")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ocean/Killbox" unique_id=1975205493]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.118681, 0)
-shape = SubResource("WorldBoundaryShape3D_j8ivh")
-debug_color = Color(0, 0.4333334, 1, 1)
-
-[node name="Tank" parent="." unique_id=290108966 instance=ExtResource("5_wjob3")]
+[node name="Tank" parent="." unique_id=290108966 instance=ExtResource("4_3qnke")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 335.62222, 0)
 
-[node name="UI" parent="." unique_id=121542168 instance=ExtResource("6_8xp80")]
+[node name="UI" parent="." unique_id=121542168 instance=ExtResource("7_wtsjf")]
 
-[node name="EnemiesList" type="Node3D" parent="." unique_id=1064861688 node_paths=PackedStringArray("airborne_enemies")]
-script = ExtResource("7_sp04v")
+[node name="EnemiesList" type="Node3D" parent="." unique_id=1064861688 node_paths=PackedStringArray("airborne_enemies", "seabound_enemies")]
+script = ExtResource("7_h3xc6")
 airborne_enemies = NodePath("AirborneEnemies")
+seabound_enemies = NodePath("SeaboundEnemies")
 
 [node name="AirborneEnemies" type="Node3D" parent="EnemiesList" unique_id=949551153]
 
@@ -109,3 +106,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 665.61127, 0, -344.5125)
 
 [node name="Homingmissle" parent="EnemiesList/AirborneEnemies" unique_id=1409877024 instance=ExtResource("9_vnsdt")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -211.99522, 0, -154.57654)
+[node name="Enemy_plane" parent="EnemiesList/AirborneEnemies" unique_id=187691756 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.110764, 431.3087, 1157.189)
+
+[node name="Enemy_plane2" parent="EnemiesList/AirborneEnemies" unique_id=976449470 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 314.69977, 431.3087, 1157.189)
+
+[node name="Enemy_plane3" parent="EnemiesList/AirborneEnemies" unique_id=820872429 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -814.351, 431.3087, 1157.189)
+
+[node name="Enemy_plane4" parent="EnemiesList/AirborneEnemies" unique_id=1554037679 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -814.351, -104.793976, 1157.189)
+
+[node name="Enemy_plane5" parent="EnemiesList/AirborneEnemies" unique_id=1496668793 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -814.351, -104.793976, 234.32227)
+
+[node name="Enemy_plane6" parent="EnemiesList/AirborneEnemies" unique_id=1205370817 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2714.2502, -104.793976, 234.32227)
+
+[node name="Enemy_plane7" parent="EnemiesList/AirborneEnemies" unique_id=556951354 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 760.76196, -104.793976, 234.32227)
+
+[node name="Enemy_plane8" parent="EnemiesList/AirborneEnemies" unique_id=1752756191 instance=ExtResource("3_7ddre")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 760.76196, -104.793976, -2353.1772)
+
+[node name="SeaboundEnemies" type="Node3D" parent="EnemiesList" unique_id=394319499]
+
+[node name="enemy_battle_ship" parent="EnemiesList/SeaboundEnemies" unique_id=657349981 instance=ExtResource("10_s36qc")]
+
+[node name="enemy_battle_ship2" parent="EnemiesList/SeaboundEnemies" unique_id=773249211 instance=ExtResource("10_s36qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -141.76224, 0, 0)
+
+[node name="enemy_battle_ship3" parent="EnemiesList/SeaboundEnemies" unique_id=747838696 instance=ExtResource("10_s36qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350.72714, 0, 0)
+
+[node name="enemy_battle_ship4" parent="EnemiesList/SeaboundEnemies" unique_id=1814704108 instance=ExtResource("10_s36qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 350.72714, 0, -456.12595)
+
+[node name="enemy_battle_ship5" parent="EnemiesList/SeaboundEnemies" unique_id=623569668 instance=ExtResource("10_s36qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -379.55844, 6.1035156e-05, -456.12595)
+
+[node name="enemy_battle_ship6" parent="EnemiesList/SeaboundEnemies" unique_id=1676145265 instance=ExtResource("10_s36qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1138.2018, 6.1035156e-05, -456.12595)
+
+[node name="enemy_battle_ship7" parent="EnemiesList/SeaboundEnemies" unique_id=1966783298 instance=ExtResource("10_s36qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1138.2018, 6.1035156e-05, 738.64185)
+
+[node name="enemy_battle_ship8" parent="EnemiesList/SeaboundEnemies" unique_id=877434149 instance=ExtResource("10_s36qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1076.1832, 6.1035156e-05, 738.64185)
+
+[node name="enemy_battle_ship9" parent="EnemiesList/SeaboundEnemies" unique_id=171824424 instance=ExtResource("10_s36qc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1076.1832, 6.1035156e-05, -533.81616)
