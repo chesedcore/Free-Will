@@ -23,13 +23,6 @@
 _limits = [0.084254146, 0.17659867, 0.0, 1.0]
 _data = [Vector2(0.14083172, 0.17659867), -0.30403072, -0.0712738, 0, 0, Vector2(0.14083172, 0.17659867), -0.30403072, -0.0712738, 0, 0, Vector2(0.17659867, 0.14083172), -0.30403072, -0.0712738, 0, 0]
 point_count = 3
-point_0/position = Vector2(0.14083172, 0.17659867)
-point_0/right_tangent = -0.0712738
-point_1/position = Vector2(0.14083172, 0.17659867)
-point_1/left_tangent = -0.30403072
-point_1/right_tangent = -0.0712738
-point_2/position = Vector2(0.17659867, 0.14083172)
-point_2/left_tangent = -0.30403072
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ekcgd"]
 render_priority = 0
@@ -104,10 +97,6 @@ shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 [sub_resource type="Curve" id="Curve_hjnge"]
 _data = [Vector2(0, 1), -0.864608, -1.7656529, 0, 0, Vector2(1, 0), -0.864608, 0.0, 0, 0]
 point_count = 2
-point_0/position = Vector2(0, 1)
-point_0/right_tangent = -1.7656529
-point_1/position = Vector2(1, 0)
-point_1/left_tangent = -0.864608
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hjnge"]
 frequency = 0.0028
@@ -144,7 +133,7 @@ hull = NodePath("TankModel/Base")
 
 [node name="TankModel" parent="." unique_id=710921557 instance=ExtResource("2_fn73n")]
 
-[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(710921557, 1952999716) index="0" unique_id=1789710507]
+[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(710921557, 1947280835) index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
 script = ExtResource("10_hsoq5")
 min_vertex_distance = 0.1
@@ -210,8 +199,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999733, 0.0048061037, -0.0055066124, 0.0032515987, 0.9672661, 0.2537438, 0.006545878, 0.25371912, -0.96725583, -0.03006073, 10.037645, -20.018593)
-top_level = true
+transform = Transform3D(-0.99999946, 0.00059192453, -0.0008390731, 0.0003554814, 0.96616554, 0.2579226, 0.00096335413, 0.25792214, -0.96616524, -0.0053165914, 10.005522, -20.002035)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
 process_priority = 300

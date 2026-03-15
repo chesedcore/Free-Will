@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://b2k0tvxc2ybxm" path="res://assets/models/missile.blend" id="2_6ku3j"]
 [ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="3_aa1g3"]
 [ext_resource type="AudioStream" uid="uid://dnpftk548fu71" path="res://audio/sfx/rocket_flight.ogg" id="4_rlfjo"]
+[ext_resource type="Script" uid="uid://brqh6t5d1dyrl" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="5_buov0"]
+[ext_resource type="Shader" uid="uid://cwxrvexdarj2x" path="res://shaderslop/wind_trail.gdshader" id="6_04gat"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vt8wv"]
 radius = 0.29248047
@@ -12,6 +14,33 @@ height = 5.5915833
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aa1g3"]
 radius = 0.32470703
 height = 2.4991226
+
+[sub_resource type="Curve" id="Curve_rdogb"]
+resource_local_to_scene = true
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.0985482, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_buov0"]
+offsets = PackedFloat32Array(0.044067796, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5ybko"]
+seed = 1
+frequency = 0.002
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ckbxl"]
+noise = SubResource("FastNoiseLite_5ybko")
+color_ramp = SubResource("Gradient_buov0")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jpf17"]
+render_priority = 0
+shader = ExtResource("6_04gat")
+shader_parameter/edgefade = 0.0
+shader_parameter/globalfade = 0.400000019
+shader_parameter/max_alpha = 0.50000002375
+shader_parameter/color_tint = Color(0.59717613, 0.59717613, 0.5971761, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_ckbxl")
 
 [node name="Homingmissle" type="CharacterBody3D" unique_id=1409877024]
 collision_layer = 16
@@ -26,7 +55,7 @@ shape = SubResource("CapsuleShape3D_vt8wv")
 transform = Transform3D(-8.812589e-08, 0, 5.826574, 0, 3.519803, 0, -2.0160854, 0, -2.5468762e-07, 0, 0, 0)
 
 [node name="thruster_particles" parent="." unique_id=1747782805 instance=ExtResource("3_aa1g3")]
-transform = Transform3D(1, 0, 0, 0, -5.479062e-08, -0.10299675, 0, 1.2534631, -4.5021307e-09, 0, 0.39017785, 3.755088)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.5303794, 3.755088)
 
 [node name="hitbox" type="Area3D" parent="." unique_id=1085087111]
 collision_layer = 8
@@ -44,5 +73,16 @@ autoplay = true
 attenuation_filter_cutoff_hz = 20500.0
 doppler_tracking = 2
 parameters/looping = true
+
+[node name="TrailRenderer" type="Node3D" parent="." unique_id=1044265490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52449524, 3.973237)
+script = ExtResource("5_buov0")
+lifetime = 10.0
+min_vertex_distance = 0.1
+curve = SubResource("Curve_rdogb")
+alignment = 0
+material = SubResource("ShaderMaterial_jpf17")
+texture_mode = 2
+metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
