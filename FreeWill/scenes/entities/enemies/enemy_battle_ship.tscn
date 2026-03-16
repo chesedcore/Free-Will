@@ -37,16 +37,16 @@ shape = SubResource("BoxShape3D_w3oou")
 [node name="battle_ship_model" parent="." unique_id=165609570 instance=ExtResource("2_v25cr")]
 transform = Transform3D(-4.371139e-07, 0, 10, 0, 10, 0, -10, 0, -4.371139e-07, 0, 0, 0)
 
-[node name="Cube" parent="battle_ship_model" index="0" unique_id=1046964064]
+[node name="Cube" parent="battle_ship_model" index="0" unique_id=126324606]
 surface_material_override/0 = SubResource("StandardMaterial3D_dh4vq")
 
-[node name="Cube_001" parent="battle_ship_model" index="1" unique_id=238207621]
+[node name="Cube_001" parent="battle_ship_model" index="1" unique_id=829342408]
 surface_material_override/0 = SubResource("StandardMaterial3D_5w4r6")
 
-[node name="Cannon" parent="battle_ship_model" index="2" unique_id=1530160563]
+[node name="Cannon" parent="battle_ship_model" index="2" unique_id=506630755]
 material_override = ExtResource("2_w3oou")
 
-[node name="Cube_002" parent="battle_ship_model/Cannon" index="0" unique_id=1220974199]
+[node name="Cube_002" parent="battle_ship_model/Cannon" index="0" unique_id=1766836491]
 transform = Transform3D(-9.0597496e-08, 0, 0.40000013, 0, 0.40000013, 0, -0.40000013, 0, -9.0597496e-08, 0, 1, 0)
 material_override = ExtResource("2_w3oou")
 
@@ -55,10 +55,10 @@ transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 3.269
 target_position = Vector3(350, 0, 0)
 collision_mask = 2
 
-[node name="Cannon_001" parent="battle_ship_model" index="3" unique_id=1702716145]
+[node name="Cannon_001" parent="battle_ship_model" index="3" unique_id=1195193004]
 material_override = ExtResource("2_w3oou")
 
-[node name="Cube_003" parent="battle_ship_model/Cannon_001" index="0" unique_id=140413905]
+[node name="Cube_003" parent="battle_ship_model/Cannon_001" index="0" unique_id=1535890629]
 transform = Transform3D(5.245368e-08, 0, 0.4000001, 0, 0.4000001, 0, -0.4000001, 0, 5.245368e-08, 0, 1, 0)
 material_override = ExtResource("2_w3oou")
 
@@ -67,22 +67,23 @@ transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 3.443
 target_position = Vector3(350, -1, 0)
 collision_mask = 2
 
-[node name="Cannon_002" parent="battle_ship_model" index="4" unique_id=2026241977]
+[node name="Cannon_002" parent="battle_ship_model" index="4" unique_id=1303953083]
 material_override = ExtResource("2_w3oou")
 
-[node name="Cube_004" parent="battle_ship_model/Cannon_002" index="0" unique_id=42477649]
+[node name="Cube_004" parent="battle_ship_model/Cannon_002" index="0" unique_id=1952120088]
 transform = Transform3D(5.245368e-08, 0, 0.4000001, 0, 0.4000001, 0, -0.4000001, 0, 5.245368e-08, 0, 1, 0)
 material_override = ExtResource("2_w3oou")
 
 [node name="shell_spawner3" type="RayCast3D" parent="battle_ship_model/Cannon_002/Cube_004" index="0" unique_id=1152413318]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 3.616869, 0, 0)
 target_position = Vector3(350, 0, 0)
+collision_mask = 2
 
-[node name="Cannon_003" parent="battle_ship_model" index="5" unique_id=1124345142]
+[node name="Cannon_003" parent="battle_ship_model" index="5" unique_id=1541013553]
 transform = Transform3D(-0.35999998, 0, -1.1730288e-07, 0, 0.35999998, 0, 1.1730288e-07, 0, -0.35999998, -3.7000003, 0.70000005, 0)
 material_override = ExtResource("2_w3oou")
 
-[node name="Cube_005" parent="battle_ship_model/Cannon_003" index="0" unique_id=2085786430]
+[node name="Cube_005" parent="battle_ship_model/Cannon_003" index="0" unique_id=1810901312]
 transform = Transform3D(-1.7484552e-08, 0, 0.4000001, 0, 0.4000001, 0, -0.4000001, 0, -1.7484552e-08, 0, 1, 0)
 material_override = ExtResource("2_w3oou")
 

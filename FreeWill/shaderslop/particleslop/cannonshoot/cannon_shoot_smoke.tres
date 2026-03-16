@@ -3,6 +3,8 @@
 [sub_resource type="Curve" id="Curve_howdy"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
+point_0/position = Vector2(0, 1)
+point_1/position = Vector2(1, 0)
 
 [sub_resource type="CurveTexture" id="CurveTexture_k4m21"]
 curve = SubResource("Curve_howdy")
@@ -24,6 +26,9 @@ gradient = SubResource("Gradient_pcdco")
 _limits = [0.0, 100.0, 0.0, 1.0]
 _data = [Vector2(0, 0.127572), 0.0, 0.0, 0, 0, Vector2(0.127572, 0), 0.0, 0.0, 0, 0, Vector2(1, 14.295044), 0.0, 0.0, 0, 0]
 point_count = 3
+point_0/position = Vector2(0, 0.127572)
+point_1/position = Vector2(0.127572, 0)
+point_2/position = Vector2(1, 14.295044)
 
 [sub_resource type="CurveTexture" id="CurveTexture_0aa3u"]
 curve = SubResource("Curve_tfiak")
@@ -32,16 +37,22 @@ curve = SubResource("Curve_tfiak")
 _limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
+point_0/position = Vector2(0, 1)
+point_1/position = Vector2(1, 1)
 
 [sub_resource type="Curve" id="Curve_p3t1y"]
 _limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
+point_0/position = Vector2(0, 1)
+point_1/position = Vector2(1, 1)
 
 [sub_resource type="Curve" id="Curve_5lqbt"]
 _limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, -0.0026109219), 0.0, 0.0, 0, 0]
 point_count = 2
+point_0/position = Vector2(0, 2)
+point_1/position = Vector2(1, -0.0026109219)
 
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_cgmdh"]
 curve_x = SubResource("Curve_cgmdh")
@@ -51,6 +62,9 @@ curve_z = SubResource("Curve_5lqbt")
 [sub_resource type="Curve" id="Curve_e30de"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.8219978, 0.0, 0, 0]
 point_count = 2
+point_0/position = Vector2(0, 1)
+point_1/position = Vector2(1, 0)
+point_1/left_tangent = -1.8219978
 
 [sub_resource type="CurveTexture" id="CurveTexture_ji4q3"]
 curve = SubResource("Curve_e30de")

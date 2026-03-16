@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://b5oi77k2llexl"]
+
+[ext_resource type="ArrayMesh" uid="uid://ct3gsrqtyu7nu" path="res://assets/models/pillar_bottom.res" id="1_hjo03"]
+[ext_resource type="ArrayMesh" uid="uid://d0qrc3gplo7ym" path="res://assets/models/pillar_mid.res" id="2_hpypo"]
+[ext_resource type="ArrayMesh" uid="uid://dhbfpbk7403s5" path="res://assets/models/pillar_top_.res" id="3_xnpp2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hjo03"]
+cull_mode = 2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hjo03"]
+height = 7.3389893
+radius = 0.75097656
+
+[node name="pillar_enviorment_prop" type="StaticBody3D" unique_id=1395337680]
+
+[node name="top" type="MeshInstance3D" parent="." unique_id=1253579231]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.8606653, 0)
+mesh = ExtResource("3_xnpp2")
+surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
+
+[node name="mid" type="MeshInstance3D" parent="." unique_id=1740687350]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7031672, 0)
+mesh = ExtResource("2_hpypo")
+
+[node name="bottom" type="MeshInstance3D" parent="." unique_id=2116577679]
+mesh = ExtResource("1_hjo03")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1237726937]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6694946, 0)
+shape = SubResource("CylinderShape3D_hjo03")
