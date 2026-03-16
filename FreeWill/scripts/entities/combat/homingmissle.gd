@@ -10,14 +10,21 @@ const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.
 @export var impact_sound: AudioStream = preload("res://audio/sfx/explosion.ogg")
 @export var spawn_sound: AudioStream = preload("res://audio/sfx/rocket_launch_2.ogg")
 
+@onready var trail_renderer: TrailRenderer = $TrailRenderer
+
 var locked_on : bool = true
 var lock_off_dist : float = 25
 var lifespan : float = 5
 var threat_indicator : ThreatIndicator
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if global_position.y <= -10:
-		call_deferred("queue_free")
+		var trail := $TrailRenderer
+		if is_instance_valid(trail):
+			trail.is_emitting = false
+			remove_child(trail)
+			get_tree().root.add_child(trail)
+		queue_free.call_deferred()
 
 func  _ready() -> void:
 	AudioManager.play_sound_at(global_position, spawn_sound, 10.0)
@@ -30,6 +37,8 @@ func  _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	trail_renderer.position.x = randf_range(-0.5,.5)
+	trail_renderer.position.y = 0.524 + randf_range(-0.5,0.5)
 	if not target_node:
 		return
 	
@@ -67,7 +76,7 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 
-	
+
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body is PlayerTank:
@@ -77,5 +86,9 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 		body.damage(damage_value)
 
 		AudioManager.play_sound_at(global_position, impact_sound, 15.0)
-
-		call_deferred("queue_free")
+		var trail := $TrailRenderer
+		if is_instance_valid(trail):
+			trail.is_emitting = false
+			remove_child(trail)
+			get_tree().root.add_child(trail)
+		queue_free.call_deferred()
