@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://g2ml563qqvrx" path="res://scripts/effects/cannon_particles.gd" id="1_yl5gg"]
 [ext_resource type="Material" uid="uid://bdtrtdm1mpmxe" path="res://shaderslop/particleslop/cannonshoot/cannon_shoot_smoke.tres" id="2_pc6vm"]
 [ext_resource type="Material" uid="uid://ck7eq80onaxxm" path="res://shaderslop/particleslop/cannonshoot/cannon_shoot_fire.tres" id="3_sr7b7"]
-[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="4_ft0en"]
 
 [sub_resource type="Gradient" id="Gradient_pc6vm"]
 interpolation_color_space = 2
@@ -124,6 +123,3 @@ explosiveness = 1.0
 local_coords = true
 process_material = ExtResource("3_sr7b7")
 draw_pass_1 = SubResource("SphereMesh_pc6vm")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=987183791]
-environment = ExtResource("4_ft0en")
