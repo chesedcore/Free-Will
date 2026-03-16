@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://g2ml563qqvrx" path="res://scripts/effects/cannon_particles.gd" id="1_yl5gg"]
 [ext_resource type="Material" uid="uid://bdtrtdm1mpmxe" path="res://shaderslop/particleslop/cannonshoot/cannon_shoot_smoke.tres" id="2_pc6vm"]
 [ext_resource type="Material" uid="uid://ck7eq80onaxxm" path="res://shaderslop/particleslop/cannonshoot/cannon_shoot_fire.tres" id="3_sr7b7"]
+[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="4_ft0en"]
 
 [sub_resource type="Gradient" id="Gradient_pc6vm"]
 interpolation_color_space = 2
@@ -63,6 +64,8 @@ rings = 3
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6epd"]
 transparency = 1
+diffuse_mode = 3
+specular_mode = 1
 vertex_color_use_as_albedo = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_jc34l"]
@@ -71,9 +74,14 @@ radial_segments = 8
 rings = 4
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sr7b7"]
+render_priority = 1
 transparency = 1
+blend_mode = 1
+no_depth_test = true
+diffuse_mode = 3
+specular_mode = 1
 vertex_color_use_as_albedo = true
-albedo_color = Color(1, 0.03137255, 0, 1)
+albedo_color = Color(1, 0.3372549, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_pc6vm"]
 material = SubResource("StandardMaterial3D_sr7b7")
@@ -99,11 +107,10 @@ draw_pass_1 = SubResource("SphereMesh_bdemy")
 
 [node name="SmokeParticles" type="GPUParticles3D" parent="." unique_id=2022523199]
 emitting = false
-amount = 24
-lifetime = 1.5
+amount = 50
 one_shot = true
-preprocess = 0.2
-explosiveness = 0.91
+speed_scale = 2.0
+explosiveness = 0.85
 local_coords = true
 process_material = ExtResource("2_pc6vm")
 draw_pass_1 = SubResource("SphereMesh_jc34l")
@@ -117,3 +124,6 @@ explosiveness = 1.0
 local_coords = true
 process_material = ExtResource("3_sr7b7")
 draw_pass_1 = SubResource("SphereMesh_pc6vm")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=987183791]
+environment = ExtResource("4_ft0en")
