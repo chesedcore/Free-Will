@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://d4liki7bitmtm"]
 
 [ext_resource type="Script" uid="uid://cqobodcwcl446" path="res://scripts/effects/thruster_particles.gd" id="1_e2oqq"]
-[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="2_sm20r"]
 
 [sub_resource type="Curve" id="Curve_e2oqq"]
 _data = [Vector2(0, 0.6), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.1042919, 0.0, 0, 0]
@@ -80,6 +79,3 @@ lifetime = 0.2
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_oprjo")
 draw_pass_1 = SubResource("SphereMesh_dwwqi")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=832076959]
-environment = ExtResource("2_sm20r")
