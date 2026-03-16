@@ -23,12 +23,6 @@
 _limits = [0.084254146, 0.17659867, 0.0, 1.0]
 _data = [Vector2(0.084254146, 0.17659867), -0.30403072, 0.0, 0, 0, Vector2(0.14083172, 0.17659867), -0.0712738, -0.0712738, 0, 0, Vector2(0.14962162, 0.084254146), -0.30403072, -0.0712738, 0, 0]
 point_count = 3
-point_0/position = Vector2(0.084254146, 0.17659867)
-point_1/position = Vector2(0.14083172, 0.17659867)
-point_1/left_tangent = -0.0712738
-point_1/right_tangent = -0.0712738
-point_2/position = Vector2(0.14962162, 0.084254146)
-point_2/left_tangent = -0.30403072
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ekcgd"]
 render_priority = 0
@@ -103,9 +97,6 @@ shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 [sub_resource type="Curve" id="Curve_hjnge"]
 _data = [Vector2(0, 1), -0.864608, 0.0, 0, 0, Vector2(1, 0), -0.864608, -1.7656529, 0, 0]
 point_count = 2
-point_0/position = Vector2(0, 1)
-point_1/position = Vector2(1, 0)
-point_1/left_tangent = -0.864608
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hjnge"]
 frequency = 0.0028
@@ -208,7 +199,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999988, -0.0011382079, 0.001023088, -0.00083439203, 0.9658774, 0.2589984, -0.0012829716, 0.25899723, -0.9658772, 0.0010645877, 9.99265, -19.995218)
+transform = Transform3D(-0.9999995, -0.00038955503, 0.00088900805, -0.00014542391, 0.9657191, 0.25958925, -0.00095965643, 0.259589, -0.9657187, 0.004569545, 9.994503, -19.999166)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]

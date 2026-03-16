@@ -1,5 +1,7 @@
 class_name Bullet extends RigidBody3D
 
+signal deleted
+
 @export_group("Bullet Data")
 @export var speed: float = 150.0
 @export var damage: float = 25.0
@@ -15,7 +17,7 @@ var homing_time_left: float = 0.0
 func _ready() -> void:
 	apply_bullet_force()
 	homing_time_left = homing_time_seconds
-	get_tree().create_timer(despawn_time).timeout.connect(queue_free)
+	get_tree().create_timer(despawn_time).timeout.connect(delete)
 	body_entered.connect(_on_body_entered)
 
 
@@ -56,4 +58,9 @@ func _on_body_entered(body: Node3D) -> void:
 	if (body is BaseEnemy):
 		body.damage(damage)
 		print("DAMAGED")
-		queue_free()
+		delete()
+
+
+func delete() -> void:
+	deleted.emit()
+	queue_free()

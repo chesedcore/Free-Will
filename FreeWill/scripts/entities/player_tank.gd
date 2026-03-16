@@ -5,7 +5,7 @@ class_name PlayerTank extends RigidBody3D
 const BARREL_ROTATION_SPEED: float = 7.5
 const GUN_GIMBAL_ROTATION_SPEED: float = 6.0
 const BODY_ROTATION_SPEED: float = 1.0
-const GUN_FIRE_FORCE: float = 50.0
+const GUN_FIRE_FORCE: float = 80.0
 
 const MAX_SPEED: float = 150.0
 
@@ -15,6 +15,8 @@ const DASH_MAX_SPEED := MAX_SPEED * 3
 const DASH_FOV_BOOST := 20.0
 const DASH_CAMERA_PULLBACK := 6.0
 const DASH_EFFECT_DURATION := 5.0
+
+const MAX_MISSILES: int = 3
 
 const GRAPPLE_STRENGTH: float = 25.0
 
@@ -53,6 +55,8 @@ var action_window_timer := 0.0
 var is_spinning_turret := false
 var is_parrying := false
 var is_grappling := true
+
+var active_missiles := 0
 
 var grappled_target: PhysicsBody3D = null
 
@@ -205,6 +209,11 @@ func model_transform_update(delta: float) -> void:
 
 
 func fire_cannon() -> void:
+	if (active_missiles >= MAX_MISSILES):
+		return
+
+	active_missiles += 1
+
 	# Particles
 	var particles: Node3D = \
 		preload("res://scenes/entities/tank_cannon_particles.tscn").instantiate()
@@ -229,10 +238,16 @@ func fire_cannon() -> void:
 	var iff_tracked_target: PhysicsBody3D = IFFTracker.get_lock_this_frame().unwrap_unchecked()
 	new_bullet.target = iff_tracked_target
 
+	new_bullet.deleted.connect(missile_deleted)
+
 	# Monarch: Usually I'd make a dedicated `Bullets` Node3D that 'holds' this node as an array,
 	# then trigger a signal that makes the World handler add the bullet to the Bullets node.
 	# But for now (in the spirit of this jam), this will do just fine.
 	get_tree().root.add_child.call_deferred(new_bullet)
+
+func missile_deleted() -> void:
+	active_missiles -= 1
+
 
 var t_action: Tween
 
