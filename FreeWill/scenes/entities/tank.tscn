@@ -23,12 +23,6 @@
 _limits = [0.084254146, 0.17659867, 0.0, 1.0]
 _data = [Vector2(0.084254146, 0.17659867), -0.30403072, 0.0, 0, 0, Vector2(0.14083172, 0.17659867), -0.0712738, -0.0712738, 0, 0, Vector2(0.14962162, 0.084254146), -0.30403072, -0.0712738, 0, 0]
 point_count = 3
-point_0/position = Vector2(0.084254146, 0.17659867)
-point_1/position = Vector2(0.14083172, 0.17659867)
-point_1/left_tangent = -0.0712738
-point_1/right_tangent = -0.0712738
-point_2/position = Vector2(0.14962162, 0.084254146)
-point_2/left_tangent = -0.30403072
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ekcgd"]
 render_priority = 0
@@ -82,17 +76,17 @@ height = 2.703125
 radius = 0.37548828
 height = 1.3037109
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oqcw2"]
+shader = ExtResource("15_tafis")
+shader_parameter/grain_amount = 0.05
+shader_parameter/grain_size = 0.10000000149012
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tafis"]
 shader = ExtResource("13_uedwi")
 shader_parameter/blur_radius = 0.2
 shader_parameter/blur_amount = 1.0
 shader_parameter/blur_inner = 0.6
 shader_parameter/blur_outer = 0.66
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oqcw2"]
-shader = ExtResource("15_tafis")
-shader_parameter/grain_amount = 0.05
-shader_parameter/grain_size = 0.10000000149012
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uedwi"]
 shader = ExtResource("13_ig2cu")
@@ -103,9 +97,6 @@ shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 [sub_resource type="Curve" id="Curve_hjnge"]
 _data = [Vector2(0, 1), -0.864608, 0.0, 0, 0, Vector2(1, 0), -0.864608, -1.7656529, 0, 0]
 point_count = 2
-point_0/position = Vector2(0, 1)
-point_1/position = Vector2(1, 0)
-point_1/left_tangent = -0.864608
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_hjnge"]
 frequency = 0.0028
@@ -142,7 +133,7 @@ hull = NodePath("TankModel/Base")
 
 [node name="TankModel" parent="." unique_id=710921557 instance=ExtResource("2_fn73n")]
 
-[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(710921557, 12866291) index="0" unique_id=1789710507]
+[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(710921557, 1947280835) index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
 script = ExtResource("10_hsoq5")
 min_vertex_distance = 0.1
@@ -208,7 +199,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999988, -0.0011382079, 0.001023088, -0.00083439203, 0.9658774, 0.2589984, -0.0012829716, 0.25899723, -0.9658772, 0.0010645877, 9.99265, -19.995218)
+transform = Transform3D(-0.99997073, 0.005621456, -0.0051863464, 0.004114707, 0.9669931, 0.2547695, 0.006447336, 0.25474072, -0.9669879, -0.023986854, 10.037071, -20.02354)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -275,16 +266,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_4sl2t")
 
-[node name="EdgeBlur" type="ColorRect" parent="VFX/ScreenVFX" unique_id=1949541961]
-material = SubResource("ShaderMaterial_tafis")
+[node name="FilmGrain" type="ColorRect" parent="VFX/ScreenVFX" unique_id=1374272164]
+material = SubResource("ShaderMaterial_oqcw2")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FilmGrain" type="ColorRect" parent="VFX/ScreenVFX" unique_id=1374272164]
-material = SubResource("ShaderMaterial_oqcw2")
+[node name="EdgeBlur" type="ColorRect" parent="VFX/ScreenVFX" unique_id=1949541961]
+material = SubResource("ShaderMaterial_tafis")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
