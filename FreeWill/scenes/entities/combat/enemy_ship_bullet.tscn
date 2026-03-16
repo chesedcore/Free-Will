@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c3s3p5mfjgxyg"]
+
+[ext_resource type="Script" uid="uid://dtdy5kr03jcfi" path="res://scripts/entities/combat/enemy_ship_bullet.gd" id="1_kjjra"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_55px0"]
+radius = 2.1575308
+
+[sub_resource type="SphereMesh" id="SphereMesh_55px0"]
+radius = 1.19
+height = 3.595
+
+[node name="enemy_ship_bullet" type="RigidBody3D" unique_id=1502758373 node_paths=PackedStringArray("bullet_model")]
+collision_layer = 8
+collision_mask = 2
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_kjjra")
+speed = 300.0
+damage = 10.0
+bullet_model = NodePath("BulletMesh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1881556136]
+shape = SubResource("SphereShape3D_55px0")
+debug_color = Color(0.7, 0, 0.011666489, 1)
+
+[node name="BulletMesh" type="MeshInstance3D" parent="." unique_id=103870519]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = SubResource("SphereMesh_55px0")
