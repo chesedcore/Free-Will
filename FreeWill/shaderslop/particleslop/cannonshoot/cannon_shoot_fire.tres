@@ -6,12 +6,31 @@
 [ext_resource type="Texture2D" uid="uid://bkxkuq3262y5f" path="res://shaderslop/particleslop/cannonshoot/resources/fireemissioncurve.tres" id="4_0jhcd"]
 [ext_resource type="Texture2D" uid="uid://b8rp2d5ysekll" path="res://shaderslop/particleslop/cannonshoot/resources/firescalecurve.tres" id="5_u7ox4"]
 
+[sub_resource type="Curve" id="Curve_6q5uk"]
+
+[sub_resource type="Curve" id="Curve_80cjy"]
+
+[sub_resource type="Curve" id="Curve_tl6ld"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.6422975), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_6q5uk"]
+curve_x = SubResource("Curve_6q5uk")
+curve_y = SubResource("Curve_80cjy")
+curve_z = SubResource("Curve_tl6ld")
+
 [resource]
+lifetime_randomness = 1.0
 direction = Vector3(0, 0, -1)
 spread = 10.0
-initial_velocity_min = 28.47
-initial_velocity_max = 138.77
+initial_velocity_min = 16.94
+initial_velocity_max = 46.55
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 1.0
+orbit_velocity_curve = SubResource("CurveXYZTexture_6q5uk")
 gravity = Vector3(0, 0, 0)
+damping_min = 1.2980001
 damping_max = 100.00001
 damping_curve = ExtResource("3_80cjy")
 scale_max = 2.0
