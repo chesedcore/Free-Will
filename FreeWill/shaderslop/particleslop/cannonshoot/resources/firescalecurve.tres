@@ -3,12 +3,6 @@
 [sub_resource type="Curve" id="Curve_um1y3"]
 _data = [Vector2(0, 0.5), 0.0, 9.516436, 0, 0, Vector2(0.24595469, 0.46540463), -1.3088865, -1.3088865, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
-point_0/position = Vector2(0, 0.5)
-point_0/right_tangent = 9.516436
-point_1/position = Vector2(0.24595469, 0.46540463)
-point_1/left_tangent = -1.3088865
-point_1/right_tangent = -1.3088865
-point_2/position = Vector2(1, 0)
 
 [resource]
 curve = SubResource("Curve_um1y3")

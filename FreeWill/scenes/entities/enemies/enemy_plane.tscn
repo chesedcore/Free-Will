@@ -13,9 +13,6 @@
 resource_local_to_scene = true
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), -0.9893111, 0.0, 0, 0]
 point_count = 2
-point_0/position = Vector2(0, 1)
-point_1/position = Vector2(1, 0.20224726)
-point_1/left_tangent = -0.9893111
 
 [sub_resource type="Gradient" id="Gradient_8et62"]
 
@@ -68,18 +65,10 @@ transform = Transform3D(0.037673336, 0, 0.9992901, 0, 1, 0, -0.9992901, 0, 0.037
 [node name="missile2" parent="prototype_plane" unique_id=1092546641 instance=ExtResource("4_rakmp")]
 transform = Transform3D(0.037673336, 0, 0.9992901, 0, 1, 0, -0.9992901, 0, 0.037673336, -2.0393302, -0.7955308, -1.4830804)
 
-[node name="line_of_sight" type="Area3D" parent="." unique_id=772401812]
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="line_of_sight" unique_id=1769567354]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.596893, -22.851494, -195.65192)
-shape = SubResource("BoxShape3D_0s5y7")
-
-[node name="thruster_particles" parent="." unique_id=1747782805 instance=ExtResource("4_iyje6")]
+[node name="thruster_particles" parent="prototype_plane" unique_id=1747782805 instance=ExtResource("4_iyje6")]
 transform = Transform3D(1.2, 0, 0, 0, -4.371139e-08, -1.2, 0, 1, -5.2453668e-08, 0, 0, 3.9268136)
 
-[node name="TrailRenderer" type="Node3D" parent="." unique_id=797945014]
+[node name="TrailRenderer" type="Node3D" parent="prototype_plane" unique_id=797945014]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.032669663, 4.6461067)
 script = ExtResource("5_8et62")
 lifetime = 10.0
@@ -90,18 +79,17 @@ material = SubResource("ShaderMaterial_asrlt")
 texture_mode = 2
 metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 
-[node name="lock_on_timer" type="Timer" parent="." unique_id=1804442152]
-wait_time = 2.0
-one_shot = true
-
 [node name="line_of_sight" type="Area3D" parent="." unique_id=772401812]
 collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="line_of_sight" unique_id=1769567354]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.596893, -22.851494, -195.65192)
-visible = false
 shape = SubResource("BoxShape3D_0s5y7")
+
+[node name="lock_on_timer" type="Timer" parent="." unique_id=1804442152]
+wait_time = 2.0
+one_shot = true
 
 [node name="obstacle_detector" type="Node3D" parent="." unique_id=1598205390]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.454365)
