@@ -55,5 +55,5 @@ func apply_bullet_force() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if (body is BaseEnemy):
 		body.damage(damage)
-		print("DAMAGED")
+		#print("DAMAGED")
 		queue_free()
