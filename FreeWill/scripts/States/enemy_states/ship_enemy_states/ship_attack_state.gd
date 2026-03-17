@@ -16,6 +16,7 @@ signal shoot
 func enter() -> void:
 	los.body_exited.connect(on_los_body_exited)
 	for aim in cannon_aims:
+		aim.enabled = true
 		remaining_fire_time.append(fire_time)
 		threat_indicators.append(null)
 static  func  ship_attackstate_from(owner : BaseEnemy,bases: Array[Node3D],barrels : Array[Node3D],aims : Array[RayCast3D],los: Area3D)->State:
@@ -71,6 +72,9 @@ func on_los_body_exited(body : Node3D)->void:
 		Transitioned.emit(self,EnemyBattleship.STATES.IDLE)
 
 func exit() -> void:
+	for aim in cannon_aims:
+		aim.enabled = false
+	los.body_exited.disconnect(on_los_body_exited)
 	for i in threat_indicators.size():
 		if threat_indicators[i]:
 			threat_indicators[i].target_node = null

@@ -13,7 +13,8 @@ static  func  ship_idlekstate_from(owner : BaseEnemy,los: Area3D)->State:
 	state.los = los
 	return state
 
-
+func exit() -> void:
+	los.body_entered.disconnect(on_los_body_entered)
 
 func on_los_body_entered(body : Node3D)->void:
 	if body is PlayerTank:
