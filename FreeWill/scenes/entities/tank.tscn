@@ -199,7 +199,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.99997073, 0.005621456, -0.0051863464, 0.004114707, 0.9669931, 0.2547695, 0.006447336, 0.25474072, -0.9669879, -0.023986854, 10.037071, -20.02354)
+transform = Transform3D(-0.9999998, -0.0002060773, 0.0005962649, -4.4190325e-05, 0.96570325, 0.25964832, -0.0006293226, 0.25964823, -0.965703, 0.0049197497, 9.996395, -19.999746)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -326,7 +326,7 @@ wind_trail_num = 8
 transform = Transform3D(0.9999999, -7.9040774e-11, -1.1641532e-10, 1.0913936e-11, 0.9999999, 0, 0, 0, 0.9999999, -0.014826552, -0.0063586766, -15.587426)
 visible = false
 script = ExtResource("10_hsoq5")
-lifetime = 0.5
+lifetime = 0.3
 curve = SubResource("Curve_hjnge")
 alignment = 0
 material = SubResource("ShaderMaterial_hjnge")

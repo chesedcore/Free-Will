@@ -39,7 +39,8 @@ func _physics_process(delta: float) -> void:
 			var velocity_dir := tank.linear_velocity.normalized()
 			var face_direction := previous_dir.move_toward(velocity_dir, delta * 5.)
 			previous_dir = face_direction
-			look_at(face_direction + global_position)
+			if not face_direction.cross(Vector3.UP).is_zero_approx():
+				look_at(face_direction + global_position)
 		else:
 			for each in markers:
 				each.is_emitting = false

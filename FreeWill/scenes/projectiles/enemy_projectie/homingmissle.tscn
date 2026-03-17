@@ -77,8 +77,8 @@ parameters/looping = true
 [node name="TrailRenderer" type="Node3D" parent="." unique_id=1044265490]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52449524, 3.973237)
 script = ExtResource("5_buov0")
-lifetime = 40.0
-min_vertex_distance = 0.1
+lifetime = 10.0
+min_vertex_distance = 5.0
 curve = SubResource("Curve_rdogb")
 alignment = 0
 material = SubResource("ShaderMaterial_jpf17")

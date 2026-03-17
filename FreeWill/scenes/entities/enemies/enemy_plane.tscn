@@ -78,10 +78,11 @@ shape = SubResource("BoxShape3D_0s5y7")
 [node name="thruster_particles" parent="." unique_id=1747782805 instance=ExtResource("4_iyje6")]
 transform = Transform3D(1.2, 0, 0, 0, -4.371139e-08, -1.2, 0, 1, -5.2453668e-08, 0, 0, 3.9268136)
 
-[node name="TrailRenderer" type="Node3D" parent="." unique_id=113082823]
+[node name="TrailRenderer" type="Node3D" parent="." unique_id=797945014]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.032669663, 4.6461067)
 script = ExtResource("5_8et62")
 lifetime = 10.0
+min_vertex_distance = 5.0
 curve = SubResource("Curve_rdogb")
 alignment = 0
 material = SubResource("ShaderMaterial_asrlt")
