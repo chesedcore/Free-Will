@@ -15,7 +15,7 @@ func _enter_tree() -> void:
 	_trail_pieces.append(TrailPiece.new(self))
 
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	if not _is_emitting_last_frame and is_emitting:
 		if _trail_pieces.size() == 0 or _trail_pieces[0].is_dirty():
 			_trail_pieces.insert(0, TrailPiece.new(self))

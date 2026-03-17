@@ -34,12 +34,13 @@ func _physics_process(delta: float) -> void:
 			t += delta * randf_range(-1., 2.)
 			for each in markers:
 				each.is_emitting = true
-				each.position.y = sin((2.*PI/wind_trail_num) * int(each.name) + t + randf_range(-0.05,0.05)) * (radius + randf_range(-0.05,0.05))
-				each.position.x = cos((2.*PI/wind_trail_num) * int(each.name) + t + randf_range(-0.05,0.05)) * (radius + randf_range(-0.05,0.05))
+				each.position.y = sin((2.*PI/wind_trail_num) * float(each.name) + t + randf_range(-0.05,0.05)) * (radius + randf_range(-0.1,0.1))
+				each.position.x = cos((2.*PI/wind_trail_num) * float(each.name) + t + randf_range(-0.05,0.05)) * (radius + randf_range(-0.1,0.1))
 			var velocity_dir := tank.linear_velocity.normalized()
 			var face_direction := previous_dir.move_toward(velocity_dir, delta * 5.)
 			previous_dir = face_direction
-			look_at(face_direction + global_position)
+			if not face_direction.cross(Vector3.UP).is_zero_approx():
+				look_at(face_direction + global_position)
 		else:
 			for each in markers:
 				each.is_emitting = false

@@ -68,13 +68,22 @@ transform = Transform3D(0.037673336, 0, 0.9992901, 0, 1, 0, -0.9992901, 0, 0.037
 [node name="missile2" parent="prototype_plane" unique_id=1092546641 instance=ExtResource("4_rakmp")]
 transform = Transform3D(0.037673336, 0, 0.9992901, 0, 1, 0, -0.9992901, 0, 0.037673336, -2.0393302, -0.7955308, -1.4830804)
 
-[node name="thruster_particles" parent="prototype_plane" unique_id=1747782805 instance=ExtResource("4_iyje6")]
-transform = Transform3D(0.2928778, 0, 0, 0, -4.3711385e-08, -0.2111808, 0, 0.99999994, -9.231006e-09, 0, 0, 3.9268136)
+[node name="line_of_sight" type="Area3D" parent="." unique_id=772401812]
+collision_layer = 4
+collision_mask = 2
 
-[node name="TrailRenderer" type="Node3D" parent="prototype_plane" unique_id=113082823]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="line_of_sight" unique_id=1769567354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.596893, -22.851494, -195.65192)
+shape = SubResource("BoxShape3D_0s5y7")
+
+[node name="thruster_particles" parent="." unique_id=1747782805 instance=ExtResource("4_iyje6")]
+transform = Transform3D(1.2, 0, 0, 0, -4.371139e-08, -1.2, 0, 1, -5.2453668e-08, 0, 0, 3.9268136)
+
+[node name="TrailRenderer" type="Node3D" parent="." unique_id=797945014]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, -0.032669663, 4.6461067)
 script = ExtResource("5_8et62")
 lifetime = 10.0
+min_vertex_distance = 5.0
 curve = SubResource("Curve_rdogb")
 alignment = 0
 material = SubResource("ShaderMaterial_asrlt")
