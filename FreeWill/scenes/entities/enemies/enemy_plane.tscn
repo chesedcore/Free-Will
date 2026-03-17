@@ -9,13 +9,13 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_12l03"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0s5y7"]
-size = Vector3(710.5298, 237.96199, 382.22473)
-
 [sub_resource type="Curve" id="Curve_rdogb"]
 resource_local_to_scene = true
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), -0.9893111, 0.0, 0, 0]
 point_count = 2
+point_0/position = Vector2(0, 1)
+point_1/position = Vector2(1, 0.20224726)
+point_1/left_tangent = -0.9893111
 
 [sub_resource type="Gradient" id="Gradient_8et62"]
 
@@ -39,14 +39,19 @@ shader_parameter/max_alpha = 0.50000002375
 shader_parameter/color_tint = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_blpt2")
 
-[node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("lock_on_timer", "missle_spawner", "line_of_sight", "model")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_0s5y7"]
+size = Vector3(710.5298, 237.96199, 382.22473)
+
+[node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("obstacle_detectors", "lock_on_timer", "missle_spawner", "line_of_sight", "model")]
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_17xuh")
+obstacle_detectors = [NodePath("obstacle_detector/front"), NodePath("obstacle_detector/left"), NodePath("obstacle_detector/right"), NodePath("obstacle_detector/frontleft"), NodePath("obstacle_detector/downleft"), NodePath("obstacle_detector/upleft"), NodePath("obstacle_detector/frontright"), NodePath("obstacle_detector/downright"), NodePath("obstacle_detector/upright")]
 lock_on_timer = NodePath("lock_on_timer")
-missle_spawner = NodePath("missle_spawner")
+missle_spawner = NodePath("prototype_plane/missle_spawner")
 line_of_sight = NodePath("line_of_sight")
 model = NodePath("prototype_plane")
+health = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2012983732]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
@@ -54,17 +59,13 @@ shape = SubResource("CapsuleShape3D_12l03")
 
 [node name="prototype_plane" parent="." unique_id=392001002 instance=ExtResource("4_rhn42")]
 
-[node name="lock_on_timer" type="Timer" parent="." unique_id=1804442152]
-wait_time = 2.0
-one_shot = true
-
-[node name="missle_spawner" type="Node3D" parent="." unique_id=405366906]
+[node name="missle_spawner" type="Node3D" parent="prototype_plane" unique_id=405366906]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3676071, -3.7911148)
 
-[node name="missile" parent="." unique_id=1561043600 instance=ExtResource("4_rakmp")]
+[node name="missile" parent="prototype_plane" unique_id=1561043600 instance=ExtResource("4_rakmp")]
 transform = Transform3D(0.037673336, 0, 0.9992901, 0, 1, 0, -0.9992901, 0, 0.037673336, 1.2833618, -0.7955308, -1.4830804)
 
-[node name="missile2" parent="." unique_id=1092546641 instance=ExtResource("4_rakmp")]
+[node name="missile2" parent="prototype_plane" unique_id=1092546641 instance=ExtResource("4_rakmp")]
 transform = Transform3D(0.037673336, 0, 0.9992901, 0, 1, 0, -0.9992901, 0, 0.037673336, -2.0393302, -0.7955308, -1.4830804)
 
 [node name="line_of_sight" type="Area3D" parent="." unique_id=772401812]
@@ -88,3 +89,69 @@ alignment = 0
 material = SubResource("ShaderMaterial_asrlt")
 texture_mode = 2
 metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
+
+[node name="lock_on_timer" type="Timer" parent="." unique_id=1804442152]
+wait_time = 2.0
+one_shot = true
+
+[node name="line_of_sight" type="Area3D" parent="." unique_id=772401812]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="line_of_sight" unique_id=1769567354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.596893, -22.851494, -195.65192)
+visible = false
+shape = SubResource("BoxShape3D_0s5y7")
+
+[node name="obstacle_detector" type="Node3D" parent="." unique_id=1598205390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.454365)
+
+[node name="front" type="RayCast3D" parent="obstacle_detector" unique_id=1852777415]
+target_position = Vector3(0, 0, -150)
+collision_mask = 7
+
+[node name="frontdown" type="RayCast3D" parent="obstacle_detector" unique_id=533211587]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, 0)
+target_position = Vector3(0, 0, -150)
+collision_mask = 7
+
+[node name="frontup" type="RayCast3D" parent="obstacle_detector" unique_id=1404862539]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0)
+target_position = Vector3(0, 0, -150)
+collision_mask = 7
+
+[node name="left" type="RayCast3D" parent="obstacle_detector" unique_id=894585248]
+target_position = Vector3(150, 0, 0)
+collision_mask = 7
+
+[node name="right" type="RayCast3D" parent="obstacle_detector" unique_id=423732379]
+target_position = Vector3(-150, 0, 0)
+collision_mask = 7
+
+[node name="frontleft" type="RayCast3D" parent="obstacle_detector" unique_id=1807710696]
+target_position = Vector3(75, 0, -75)
+collision_mask = 7
+
+[node name="downleft" type="RayCast3D" parent="obstacle_detector" unique_id=666994677]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, 0)
+target_position = Vector3(75, 0, -75)
+collision_mask = 7
+
+[node name="upleft" type="RayCast3D" parent="obstacle_detector" unique_id=510983682]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, -0.86602545, 0, 0.86602545, 0.49999997, 0, 0, 0)
+target_position = Vector3(75, 0, -75)
+collision_mask = 7
+
+[node name="frontright" type="RayCast3D" parent="obstacle_detector" unique_id=49184764]
+target_position = Vector3(-75, 0, -75)
+collision_mask = 7
+
+[node name="downright" type="RayCast3D" parent="obstacle_detector" unique_id=740555409]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 0, 0)
+target_position = Vector3(-75, 0, -75)
+collision_mask = 7
+
+[node name="upright" type="RayCast3D" parent="obstacle_detector" unique_id=1164745657]
+transform = Transform3D(1, 0, 0, 0, 0.5, -0.86602545, 0, 0.86602545, 0.5, 0, 0, 0)
+target_position = Vector3(-75, 0, -75)
+collision_mask = 7

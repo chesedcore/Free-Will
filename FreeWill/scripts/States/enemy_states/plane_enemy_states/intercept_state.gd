@@ -3,11 +3,13 @@ class_name InterceptState extends EnemyState
 
 @export var Max_speed : float = 200.0
 @export var aceleration : float = 50
-@export var turn_speed : float = 1.5
-var velocity :Vector3
-var rot :Vector3
-#@export var detect_range : float = 200.0
-#@export var detect_angle : float = 0.7
+@export var turn_speed : float = 1.25
+
+
+
+var max_bank_angle : float = 35.0
+var bank_speed : float = 4.0
+var current_bank : float = 0.0
 
 var velocity_vec : Vector3 = Vector3.ZERO
 var heading : Vector3 = Vector3.FORWARD
@@ -16,13 +18,16 @@ var player_offset : Vector3
 var offset_distance : int = randi_range(50,65)
 
 var los : Area3D
-
-
-static func intercept_state_from(owner : BaseEnemy,los:Area3D)-> EnemyState:
+var obstacle_detectors: Array[RayCast3D]
+var model:Node3D
+static func intercept_state_from(owner : BaseEnemy,model: Node3D,los:Area3D,detectors : Array[RayCast3D])-> EnemyState:
 	var intercept_state : InterceptState= new()
 	intercept_state.enemy = owner
+	intercept_state.model = model
 	intercept_state.los = los
 	intercept_state.player = GameState.player
+	intercept_state.obstacle_detectors = detectors
+	
 	return intercept_state
 
 
@@ -43,23 +48,38 @@ func enter() -> void:
 	(-right - up).normalized()
 ]	
 	player_offset = offset_dirs.pick_random() * offset_distance
+const AVOID_FORCE : float =20
+func physics_update(delta: float) -> void:
+	var player_forward :Vector3= -player.global_transform.basis.z
+	
+	var target :Vector3= player.global_position + player_offset + player_forward * 50
+	target.y = clamp(target.y,150,100000)
+	var desired_direction : Vector3= (target - enemy.global_position).normalized()
+	var avoid :Vector3= get_avoidance().normalized()
+	var new_dir :Vector3= (desired_direction + avoid * AVOID_FORCE).normalized()
+	var old_heading :Vector3 = heading
+	heading = heading.slerp(new_dir, turn_speed * delta).normalized()
+	velocity_vec = velocity_vec.move_toward(heading * Max_speed, aceleration * delta)
+	enemy.velocity = velocity_vec
+	enemy.look_at(enemy.global_position + heading, Vector3.UP)
+	var right :Vector3= enemy.global_transform.basis.x
+	var heading_change :Vector3= heading - old_heading
+	var turn_amount :float = clamp(right.dot(heading_change) * 10.0, -1.0, 1.0)
 
-
-func physics_update(_delta: float) -> void:
+	var target_bank : float= turn_amount * max_bank_angle
+	current_bank = lerp(current_bank, target_bank, bank_speed * delta)
+	model.rotation_degrees.z = current_bank
+func get_avoidance() -> Vector3:
+	var avoid := Vector3.ZERO
+	
+	for ray in obstacle_detectors:
+		if ray.is_colliding():
+			avoid += ray.get_collision_normal()
+	
+	return avoid
 	
 	
-		var forward := -enemy.global_transform.basis.z
-		var target := player.global_position + player_offset + forward * 50
-		target.y = clamp(target.y,150,100000)
-		var desired_direction := (target - enemy.global_position).normalized()
-		heading = heading.slerp(desired_direction, turn_speed * _delta).normalized()
 
-		velocity_vec = velocity_vec.move_toward(heading * Max_speed, aceleration * _delta)
-		enemy.look_at(enemy.global_position + heading, Vector3.UP)
-		enemy.velocity = velocity_vec
-
-
-#
 #func update(_delta : float) -> void:
 	#if enemy and player:
 		#if player_in_front():

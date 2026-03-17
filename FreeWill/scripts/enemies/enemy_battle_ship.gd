@@ -1,12 +1,13 @@
 class_name EnemyBattleship extends BaseEnemy
 
+const ENEMY_SHIP_BULLET = preload("res://scenes/entities/combat/enemy_ship_bullet.tscn")
 
 
 @export var obstacle_detectors : Array[RayCast3D]
 @export var line_of_sight: Area3D
 @export var cannon_bases : Array[Node3D]
 @export var cannon_barrels : Array[Node3D]
-var current_state : State
+var current_state : EnemyState
 @export var battle_ship_model: Node3D
 @export var canon_aims : Array[RayCast3D]
 enum STATES {IDLE,ATTACK}
@@ -32,6 +33,7 @@ func create_state(state :STATES)->State:
 			new_state = ShipAttackState.ship_attackstate_from(self,cannon_bases,cannon_barrels,canon_aims,line_of_sight)
 			
 			new_state.Transitioned.connect(on_state_transition)
+			new_state.shoot.connect(shoot)
 		STATES.IDLE:
 			new_state = ShipidleState.ship_idlekstate_from(self,line_of_sight)
 			new_state.Transitioned.connect(on_state_transition)
@@ -68,6 +70,23 @@ var bob_up_pos:float = 5
 var bob_up_deg: float = 5
 var bob_down_pos:float = -5
 var bob_down_deg: float = -10
+
+func shoot(cannon_index: float)->void:
+	var particles: Node3D = \
+		preload("res://scenes/entities/tank_cannon_particles.tscn").instantiate()
+	particles.rotation_degrees.y -= 90
+	canon_aims[cannon_index].add_child.call_deferred(particles)
+	
+	var new_bullet: Enemy_bullet = ENEMY_SHIP_BULLET.instantiate()
+	new_bullet.position =  canon_aims[cannon_index].global_position
+
+	new_bullet.target = current_state.player
+
+	# Monarch: Usually I'd make a dedicated `Bullets` Node3D that 'holds' this node as an array,
+	# then trigger a signal that makes the World handler add the bullet to the Bullets node.
+	# But for now (in the spirit of this jam), this will do just fine.
+	get_tree().root.add_child.call_deferred(new_bullet)
+
 
 
 func floating_animation()->void:

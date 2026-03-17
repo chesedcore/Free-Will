@@ -9,8 +9,7 @@ var remaining_fire_time: Array[float] =[]
 var los : Area3D
 const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.tscn")
 var threat_indicators :Array[ThreatIndicator]
-const ENEMY_SHIP_BULLET = preload("res://scenes/entities/combat/enemy_ship_bullet.tscn")
-
+signal shoot
 #const TANK_CANNON_PARTICLES = preload("res://scenes/entities/tank_cannon_particles.tscn")
 @export var impact_sound: AudioStream = preload("res://audio/sfx/explosion.ogg")
 
@@ -41,7 +40,7 @@ func update(_delta : float) -> void:
 			remaining_fire_time[i] -= _delta
 			if remaining_fire_time[i] <= 0:
 				
-				shoot(cannon_aims[i].global_transform)
+				shoot.emit(i)
 				if threat_indicators[i]:
 					threat_indicators[i].target_node = null
 					threat_indicators[i] = null
@@ -77,13 +76,13 @@ func exit() -> void:
 			threat_indicators[i].target_node = null
 			threat_indicators[i] = null
 
-func shoot(pos:Transform3D)->void:
-	var new_bullet: Enemy_bullet = ENEMY_SHIP_BULLET.instantiate()
-	new_bullet.transform = pos
-
-	new_bullet.target = player
-
-	# Monarch: Usually I'd make a dedicated `Bullets` Node3D that 'holds' this node as an array,
-	# then trigger a signal that makes the World handler add the bullet to the Bullets node.
-	# But for now (in the spirit of this jam), this will do just fine.
-	UIBus.get_tree().root.add_child.call_deferred(new_bullet)
+#func shoot(pos:Transform3D)->void:
+	#var new_bullet: Enemy_bullet = ENEMY_SHIP_BULLET.instantiate()
+	#new_bullet.transform = pos
+#
+	#new_bullet.target = player
+#
+	## Monarch: Usually I'd make a dedicated `Bullets` Node3D that 'holds' this node as an array,
+	## then trigger a signal that makes the World handler add the bullet to the Bullets node.
+	## But for now (in the spirit of this jam), this will do just fine.
+	#UIBus.get_tree().root.add_child.call_deferred(new_bullet)

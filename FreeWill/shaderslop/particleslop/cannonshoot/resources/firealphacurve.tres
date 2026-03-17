@@ -3,6 +3,17 @@
 [sub_resource type="Curve" id="Curve_306og"]
 _data = [Vector2(0.46090537, 1), nan, nan, 1, 1, Vector2(0.46090537, 1), nan, -1.0, 1, 1, Vector2(1, 0.46090537), -1.0, inf_neg, 1, 1]
 point_count = 3
+point_0/position = Vector2(0.46090537, 1)
+point_0/right_tangent = nan
+point_0/right_mode = 1
+point_1/position = Vector2(0.46090537, 1)
+point_1/left_tangent = nan
+point_1/left_mode = 1
+point_1/right_tangent = -1.0
+point_1/right_mode = 1
+point_2/position = Vector2(1, 0.46090537)
+point_2/left_tangent = -1.0
+point_2/left_mode = 1
 
 [resource]
 curve = SubResource("Curve_306og")

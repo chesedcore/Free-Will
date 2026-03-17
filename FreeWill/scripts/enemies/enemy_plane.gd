@@ -2,6 +2,10 @@ class_name EnemyPlane extends BaseEnemy
 
 const HOMINGMISSLE = preload("res://scenes/projectiles/enemy_projectie/homingmissle.tscn")
 
+
+@export var obstacle_detectors : Array[RayCast3D]
+
+
 enum STATES {INTERCEPT,EVADE,ATTACK}
 
 @export var lock_on_timer: Timer
@@ -23,7 +27,7 @@ func create_state(state :STATES)->State:
 
 	match  state:
 		STATES.INTERCEPT:
-			new_state = InterceptState.intercept_state_from(self,line_of_sight)
+			new_state = InterceptState.intercept_state_from(self,model,line_of_sight,obstacle_detectors)
 			new_state.Transitioned.connect(on_state_transition)
 
 		STATES.ATTACK:
@@ -32,7 +36,7 @@ func create_state(state :STATES)->State:
 			new_state.Transitioned.connect(on_state_transition)
 
 		STATES.EVADE:
-			new_state = EvadeState.evade_state_from(self)
+			new_state = EvadeState.evade_state_from(self,model,obstacle_detectors)
 			new_state.Transitioned.connect(on_state_transition)
 
 	return new_state

@@ -14,6 +14,8 @@
 _limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.6422975), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
 point_count = 2
+point_0/position = Vector2(0, 0.6422975)
+point_1/position = Vector2(1, 2)
 
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_6q5uk"]
 curve_x = SubResource("Curve_6q5uk")
