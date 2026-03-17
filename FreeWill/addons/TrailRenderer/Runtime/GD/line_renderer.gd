@@ -50,7 +50,6 @@ func _add_vertex(vec :Vector3) -> void:
 	
 
 func _physics_process(_delta: float) -> void:
-	#var start := Time.get_ticks_usec()
 	_camera = get_viewport().get_camera_3d()
 	_mesh_instance.cast_shadow = cast_shadows
 	_mesh_instance.global_transform = (
@@ -62,6 +61,7 @@ func _physics_process(_delta: float) -> void:
 		return
 
 	_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
+	var start := Time.get_ticks_usec()
 	for i: int in range(points.size()):
 		var current_point: Point = points[i]
 
@@ -83,7 +83,7 @@ func _physics_process(_delta: float) -> void:
 
 		var bitangent: Vector3 = alignment_vec.cross(tangent).normalized()
 		var normal: Vector3 = tangent.cross(bitangent).normalized()
-		
+
 		var t: float = i / (points.size() - 1.0)
 		bitangent *= curve.sample(t)
 
@@ -107,11 +107,10 @@ func _physics_process(_delta: float) -> void:
 		_mesh.surface_set_uv(Vector2(1, 1 - current_point.texture_offset))
 		_mesh.surface_set_normal(normal)
 		_add_vertex(current_point.position + bitangent)
+	var end := Time.get_ticks_usec()
+	#print((end-start)/1000.0, " ms |", get_parent().get_parent().name)
 	
 	_mesh.surface_end()
-	#var end := Time.get_ticks_usec()
-	#if get_parent().get_parent().name.begins_with("Enemy"):
-		#print((end-start)/1000.0, " ms | ", get_parent().get_parent().name)
 
 
 func copy_values(lr: LineRenderer) -> void:
