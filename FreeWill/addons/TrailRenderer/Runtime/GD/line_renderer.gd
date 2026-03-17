@@ -108,7 +108,7 @@ func _physics_process(_delta: float) -> void:
 		_mesh.surface_set_normal(normal)
 		_add_vertex(current_point.position + bitangent)
 	var end := Time.get_ticks_usec()
-	#print((end-start)/1000.0, " ms |", get_parent().get_parent().name)
+	print((end-start)/1000.0, " ms |", get_parent().get_parent().name)
 	
 	_mesh.surface_end()
 

@@ -13,7 +13,7 @@ var heading : Vector3 = Vector3.FORWARD
 
 var evade_offset : Vector3
 var evade_target : Vector3
-
+var cached_avoid : Vector3 = Vector3.ZERO
 
 var max_bank_angle : float = 35.0
 var bank_speed : float = 4.0
@@ -51,16 +51,24 @@ func get_avoidance() -> Vector3:
 	var avoid := Vector3.ZERO
 	
 	for ray in obstacle_detectors:
+		ray.enabled = true
+		ray.force_raycast_update()
 		if ray.is_colliding():
 			avoid += ray.get_collision_normal()
-	
+		ray.enabled = false
 	return avoid
 	
-	
+
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		print("bye bye2")
+
 
 const  AVOID_FORCE : float = 20
 
-
+const RAY_CAST_FRAME :int  = 15
 
 func physics_update(_delta: float) -> void:
 	if enemy and player:
@@ -70,8 +78,10 @@ func physics_update(_delta: float) -> void:
 			Transitioned.emit(self,EnemyPlane.STATES.INTERCEPT)
 		evade_target.y = clamp(evade_target.y,150,100000)
 		var desired_direction := (evade_target - enemy.global_position).normalized()
-		var avoid :Vector3= get_avoidance().normalized()
-		var new_dir :Vector3= (desired_direction + avoid * AVOID_FORCE).normalized()
+
+		if Engine.get_physics_frames() % RAY_CAST_FRAME==0:
+			cached_avoid = get_avoidance().normalized()
+		var new_dir :Vector3= (desired_direction + (cached_avoid * AVOID_FORCE)).normalized()
 		var old_heading :Vector3 = heading
 		heading = heading.slerp(new_dir, turn_speed * _delta).normalized()
 		velocity_vec = velocity_vec.move_toward(heading * max_speed, aceleration * _delta)

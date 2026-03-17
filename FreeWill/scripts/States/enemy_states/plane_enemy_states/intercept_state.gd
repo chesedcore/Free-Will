@@ -49,14 +49,19 @@ func enter() -> void:
 ]	
 	player_offset = offset_dirs.pick_random() * offset_distance
 const AVOID_FORCE : float =20
+const RAY_CAST_FRAME :int  = 15
+var cached_avoid : Vector3 = Vector3.ZERO
 func physics_update(delta: float) -> void:
+	
 	var player_forward :Vector3= -player.global_transform.basis.z
 	
 	var target :Vector3= player.global_position + player_offset + player_forward * 50
 	target.y = clamp(target.y,150,100000)
 	var desired_direction : Vector3= (target - enemy.global_position).normalized()
-	var avoid :Vector3= get_avoidance().normalized()
-	var new_dir :Vector3= (desired_direction + avoid * AVOID_FORCE).normalized()
+
+	if Engine.get_physics_frames() % RAY_CAST_FRAME ==0:
+		cached_avoid = get_avoidance().normalized()
+	var new_dir :Vector3= (desired_direction + (cached_avoid * AVOID_FORCE)).normalized()
 	var old_heading :Vector3 = heading
 	heading = heading.slerp(new_dir, turn_speed * delta).normalized()
 	velocity_vec = velocity_vec.move_toward(heading * Max_speed, aceleration * delta)
@@ -73,18 +78,17 @@ func get_avoidance() -> Vector3:
 	var avoid := Vector3.ZERO
 	
 	for ray in obstacle_detectors:
+		ray.enabled = true
+		ray.force_raycast_update()
 		if ray.is_colliding():
 			avoid += ray.get_collision_normal()
-	
+		ray.enabled = false
 	return avoid
 	
 	
 
-#func update(_delta : float) -> void:
-	#if enemy and player:
-		#if player_in_front():
-			#start_lock_on()
-			#return
+
+
 
 func start_lock_on() -> void:
 	if AttackState.num_of_attacking_planes < AttackState.MAX_ATTACKING_PLANES:
@@ -97,18 +101,17 @@ func on_los_body_entered(body: Node3D)->void:
 		start_lock_on()
 
 
-#func player_in_front() -> bool:
-	#if player == null:
-		#return false
-		#
-	#var to_player :Vector3 = player.global_position - enemy.global_position
-	#var distance :float = to_player.length()
-	#
-	#if distance > detect_range:
-		#return false
-	#
-	#var forward : = -enemy.global_transform.basis.z
-	#var dir := to_player.normalized()
-	#
-	#var dot := forward.dot(dir)
-	#return dot > detect_angle
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		print("bye bye1")
+
+
+
+	#los.body_entered.disconnect(on_los_body_entered)
+	#enemy = null
+	#model = null
+	#los = null
+#
+	#obstacle_detectors = []
+	

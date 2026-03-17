@@ -18,12 +18,11 @@ albedo_color = Color(0, 0.5176471, 0.61960787, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_dh4vq"]
 size = Vector3(1203.4314, 918.1282, 1846.4026)
 
-[node name="enemy_battle_ship" type="CharacterBody3D" unique_id=657349981 node_paths=PackedStringArray("obstacle_detectors", "line_of_sight", "cannon_bases", "cannon_barrels", "battle_ship_model", "canon_aims")]
+[node name="enemy_battle_ship" type="CharacterBody3D" unique_id=657349981 node_paths=PackedStringArray("line_of_sight", "cannon_bases", "cannon_barrels", "battle_ship_model", "canon_aims")]
 collision_layer = 4
 collision_mask = 15
 motion_mode = 1
 script = ExtResource("1_w3oou")
-obstacle_detectors = [NodePath("obstacle_detector/front"), NodePath("obstacle_detector/left"), NodePath("obstacle_detector/right"), NodePath("obstacle_detector/frontleft"), NodePath("obstacle_detector/frontright")]
 line_of_sight = NodePath("line_of_sight")
 cannon_bases = [NodePath("battle_ship_model/Cannon"), NodePath("battle_ship_model/Cannon_001"), NodePath("battle_ship_model/Cannon_002"), NodePath("battle_ship_model/Cannon_003")]
 cannon_barrels = [NodePath("battle_ship_model/Cannon/Cube_002"), NodePath("battle_ship_model/Cannon_001/Cube_003"), NodePath("battle_ship_model/Cannon_002/Cube_004"), NodePath("battle_ship_model/Cannon_003/Cube_005")]
@@ -52,6 +51,7 @@ material_override = ExtResource("2_w3oou")
 
 [node name="shell_spawner" type="RayCast3D" parent="battle_ship_model/Cannon/Cube_002" index="0" unique_id=856864496]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 3.2696476, 0, 0)
+enabled = false
 target_position = Vector3(350, 0, 0)
 collision_mask = 2
 
@@ -64,6 +64,7 @@ material_override = ExtResource("2_w3oou")
 
 [node name="shell_spawner2" type="RayCast3D" parent="battle_ship_model/Cannon_001/Cube_003" index="0" unique_id=509951371]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 3.4432583, 0, 0)
+enabled = false
 target_position = Vector3(350, -1, 0)
 collision_mask = 2
 
@@ -76,6 +77,7 @@ material_override = ExtResource("2_w3oou")
 
 [node name="shell_spawner3" type="RayCast3D" parent="battle_ship_model/Cannon_002/Cube_004" index="0" unique_id=1152413318]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 3.616869, 0, 0)
+enabled = false
 target_position = Vector3(350, 0, 0)
 collision_mask = 2
 
@@ -89,36 +91,9 @@ material_override = ExtResource("2_w3oou")
 
 [node name="shell_spawner4" type="RayCast3D" parent="battle_ship_model/Cannon_003/Cube_005" index="0" unique_id=1816269032]
 transform = Transform3D(-0.9999999, 0, 3.258414e-07, 0, 0.9999999, 0, -3.258414e-07, 0, -0.9999999, 3.3275738, 0, 1.0842577e-06)
+enabled = false
 target_position = Vector3(-350, 0, 0)
 collision_mask = 2
-
-[node name="obstacle_detector" type="Node3D" parent="." unique_id=1939485155]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.9905853, 0)
-
-[node name="front" type="RayCast3D" parent="obstacle_detector" unique_id=162844507]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.96859, -44.677017)
-target_position = Vector3(0, 0, -150)
-collision_mask = 6
-
-[node name="left" type="RayCast3D" parent="obstacle_detector" unique_id=696486108]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.96859, -44.677017)
-target_position = Vector3(150, 0, 0)
-collision_mask = 6
-
-[node name="right" type="RayCast3D" parent="obstacle_detector" unique_id=2092671605]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.96859, -44.677017)
-target_position = Vector3(-150, 0, 0)
-collision_mask = 6
-
-[node name="frontleft" type="RayCast3D" parent="obstacle_detector" unique_id=1203609942]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.96859, -44.677017)
-target_position = Vector3(75, 0, -75)
-collision_mask = 6
-
-[node name="frontright" type="RayCast3D" parent="obstacle_detector" unique_id=744495176]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.96859, -44.677017)
-target_position = Vector3(-75, 0, -75)
-collision_mask = 6
 
 [node name="line_of_sight" type="Area3D" parent="." unique_id=276965312]
 collision_layer = 4
