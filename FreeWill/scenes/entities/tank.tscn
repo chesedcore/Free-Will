@@ -136,7 +136,6 @@ hull = NodePath("TankModel/Base")
 [node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(710921557, 1947280835) index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
 script = ExtResource("10_hsoq5")
-min_vertex_distance = 0.1
 curve = SubResource("Curve_vvw44")
 alignment = 0
 material = SubResource("ShaderMaterial_ekcgd")
@@ -154,6 +153,7 @@ trail_renderer_r2 = NodePath("TrailRendererR2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9332368, 1.6604223, -4.9746923)
 script = ExtResource("10_hsoq5")
 lifetime = 0.25
+min_vertex_distance = 1.5
 curve = SubResource("Curve_vvw44")
 alignment = 0
 material = SubResource("ShaderMaterial_vvw44")
@@ -164,6 +164,7 @@ metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9332368, 1.6604223, 4.7129316)
 script = ExtResource("10_hsoq5")
 lifetime = 0.25
+min_vertex_distance = 1.5
 curve = SubResource("Curve_vvw44")
 alignment = 0
 material = SubResource("ShaderMaterial_vvw44")
@@ -174,6 +175,7 @@ metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1183863, 1.737783, -4.8951263)
 script = ExtResource("10_hsoq5")
 lifetime = 0.25
+min_vertex_distance = 1.5
 curve = SubResource("Curve_vvw44")
 alignment = 0
 material = SubResource("ShaderMaterial_vvw44")
@@ -184,6 +186,7 @@ metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1183863, 1.737783, 4.726001)
 script = ExtResource("10_hsoq5")
 lifetime = 0.25
+min_vertex_distance = 1.5
 curve = SubResource("Curve_vvw44")
 alignment = 0
 material = SubResource("ShaderMaterial_vvw44")
@@ -199,7 +202,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999998, -0.0002060773, 0.0005962649, -4.4190325e-05, 0.96570325, 0.25964832, -0.0006293226, 0.25964823, -0.965703, 0.0049197497, 9.996395, -19.999746)
+transform = Transform3D(-1, -0.00020976181, -6.8352594e-05, -0.00022030566, 0.965918, 0.25884846, 1.1726475e-05, 0.2588485, -0.96591794, 0.00017435882, 10.000067, -19.998737)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -327,6 +330,7 @@ transform = Transform3D(0.9999999, -7.9040774e-11, -1.1641532e-10, 1.0913936e-11
 visible = false
 script = ExtResource("10_hsoq5")
 lifetime = 0.3
+min_vertex_distance = 1.0
 curve = SubResource("Curve_hjnge")
 alignment = 0
 material = SubResource("ShaderMaterial_hjnge")
