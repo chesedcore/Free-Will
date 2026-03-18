@@ -54,7 +54,7 @@ static func from_gderr(err: int) -> Result:
 ## Also see [method to_custom_error]
 static func error(err: int) -> Result:
 	if err == OK:	return Result.new(OK, true)
-	return Result.new(Error.new(err), false)
+	return Result.new(ErrorType.new(err), false)
 
 func _to_string() -> String:
 	if _is_ok:
@@ -166,7 +166,7 @@ func stringify_err() -> Result:
 ## Also see [method error]
 func to_custom_error() -> Result:
 	if _is_ok or typeof(_value) != TYPE_INT:	return self
-	_value = Error.new(_value)
+	_value = ErrorType.new(_value)
 	return self
 
 ## Set the message to show when converting to string or printing if this is an [code]Err[/code]
@@ -200,7 +200,7 @@ func err_cause(cause: Variant) -> Result:
 func err_as_cause(err: int) -> Result:
 	if _is_ok or !(_value is Error):	return self
 	# Error::as_cause_mut() expanded
-	var inner: Error = Error.new(_value.type, _value.details)
+	var inner := ErrorType.new(_value.type, _value.details)
 	inner.message = _value.message
 	
 	_value.type = err
@@ -343,7 +343,7 @@ func matches_err(rhs: Variant) -> bool:
 static func open_file(path: String, flags: FileAccess.ModeFlags) -> Result:
 	var f = FileAccess.open(path, flags)
 	if f == null:
-		return Result.Err( Error.new(FileAccess.get_open_error()) .info('path', path) )
+		return Result.Err( ErrorType.new(FileAccess.get_open_error()) .info('path', path) )
 	return Result.Ok(f)
 
 ## Open and parse the given file as JSON[br]
