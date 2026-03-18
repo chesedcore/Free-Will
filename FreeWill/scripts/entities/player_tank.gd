@@ -236,6 +236,8 @@ func fire_cannon() -> void:
 	# Bubba: Lockon shit
 	# Iff target CAN be null. The missiles will just not track anything
 	var iff_tracked_target: PhysicsBody3D = IFFTracker.get_lock_this_frame().unwrap_unchecked()
+	if (iff_tracked_target):
+		AudioManager.play_sound(preload("res://audio/sfx/lockon_fire.ogg"), -15.0, false)
 	new_bullet.target = iff_tracked_target
 
 	new_bullet.deleted.connect(missile_deleted)

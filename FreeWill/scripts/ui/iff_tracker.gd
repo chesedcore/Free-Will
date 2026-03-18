@@ -116,6 +116,7 @@ func acquire_lock(origin_body: PhysicsBody3D) -> void:
 	if best_candidate:
 		_locked_entity = best_candidate
 		_tracked_entities[best_candidate].change_state(IFF.State.LOCKED_ON)
+		AudioManager.play_sound(preload("res://audio/sfx/lockon.ogg"), -15.0, false)
 
 ##manually cycle to the next available target
 func cycle_lock(origin_body: PhysicsBody3D) -> void:
