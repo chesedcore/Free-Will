@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DialogicStyle" format=3 uid="uid://cwpnrwmktb276"]
+
+[ext_resource type="PackedScene" uid="uid://cqpb3ie51rwl5" path="res://addons/dialogic/Modules/DefaultLayoutParts/Base_Default/default_layout_base.tscn" id="1_oph68"]
+[ext_resource type="Script" uid="uid://bwg6yncmh2cml" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_3b6mj"]
+[ext_resource type="PackedScene" uid="uid://c6knnghhpb2b2" path="res://scenes/ui/dialogcontainer.tscn" id="3_olh26"]
+[ext_resource type="Script" uid="uid://dv08k6ljua6fm" path="res://addons/dialogic/Resources/dialogic_style.gd" id="11_j1tsw"]
+
+[sub_resource type="Resource" id="Resource_14l5u"]
+script = ExtResource("2_3b6mj")
+scene = ExtResource("1_oph68")
+
+[sub_resource type="Resource" id="Resource_go2yk"]
+script = ExtResource("2_3b6mj")
+scene = ExtResource("3_olh26")
+
+[resource]
+script = ExtResource("11_j1tsw")
+name = "ac7"
+layer_list = Array[String](["13"])
+layer_info = {
+"": SubResource("Resource_14l5u"),
+"13": SubResource("Resource_go2yk")
+}
+metadata/_latest_layer = "13"

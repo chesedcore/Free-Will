@@ -1,10 +1,20 @@
 [gd_scene format=3 uid="uid://c6knnghhpb2b2"]
 
 [ext_resource type="FontFile" uid="uid://38d0ljavacn8" path="res://assets/fonts/ZenDots-Regular.ttf" id="1_76c33"]
-[ext_resource type="Script" uid="uid://tl04324aquo1" path="res://scripts/ui/dialogcontainer.gd" id="1_nxe8e"]
+[ext_resource type="Script" uid="uid://cgf8a1vidcd4g" path="res://scripts/ui/layoutbase.gd" id="1_aa845"]
+[ext_resource type="Script" uid="uid://bak74s0kcr0ao" path="res://addons/dialogic/Modules/Text/node_name_label.gd" id="2_aa845"]
 [ext_resource type="Texture2D" uid="uid://dbrkgtpcdb1bj" path="res://assets/ui/Brace.png" id="2_nxe8e"]
+[ext_resource type="Script" uid="uid://drhfq6rmdeuri" path="res://addons/dialogic/Modules/Text/node_dialog_text.gd" id="5_rj12k"]
 
-[node name="dialogcontainer" type="MarginContainer" unique_id=1706210908 node_paths=PackedStringArray("name_text", "text_margin", "dialog_text", "dialog_audio")]
+[node name="layoutbase" type="Node" unique_id=1265386540 node_paths=PackedStringArray("dialogcontainer", "name_text", "text_margin", "dialog_text")]
+script = ExtResource("1_aa845")
+dialogcontainer = NodePath("dialogcontainer")
+name_text = NodePath("dialogcontainer/VBoxContainer/Name_text")
+text_margin = NodePath("dialogcontainer/VBoxContainer/textControl/text_margin")
+dialog_text = NodePath("dialogcontainer/VBoxContainer/textControl/text_margin/text container/MarginContainer/dialog_text")
+
+[node name="dialogcontainer" type="MarginContainer" parent="." unique_id=1706210908]
+z_index = 3
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -14,32 +24,27 @@ offset_bottom = 31.0
 grow_horizontal = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_constants/margin_top = 4
-script = ExtResource("1_nxe8e")
-name_text = NodePath("VBoxContainer/Name_text")
-text_margin = NodePath("VBoxContainer/textControl/text_margin")
-dialog_text = NodePath("VBoxContainer/textControl/text_margin/text container/MarginContainer/dialog_text")
-dialog_audio = NodePath("dialog_audio")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2058281250]
+[node name="VBoxContainer" type="VBoxContainer" parent="dialogcontainer" unique_id=2058281250]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Name_text" type="RichTextLabel" parent="VBoxContainer" unique_id=1477246637]
+[node name="Name_text" type="Label" parent="dialogcontainer/VBoxContainer" unique_id=1339666564]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_fonts/normal_font = ExtResource("1_76c33")
+theme_override_fonts/font = ExtResource("1_76c33")
 text = "Sargent Balls"
-fit_content = true
-autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("2_aa845")
+hide_when_empty = false
+metadata/_custom_type_script = "uid://bak74s0kcr0ao"
 
-[node name="textControl" type="Control" parent="VBoxContainer" unique_id=240301467]
+[node name="textControl" type="Control" parent="dialogcontainer/VBoxContainer" unique_id=240301467]
 layout_mode = 2
 
-[node name="text_margin" type="MarginContainer" parent="VBoxContainer/textControl" unique_id=1199268859]
+[node name="text_margin" type="MarginContainer" parent="dialogcontainer/VBoxContainer/textControl" unique_id=1199268859]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -51,15 +56,15 @@ grow_horizontal = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_constants/margin_right = 20
 
-[node name="text container" type="HBoxContainer" parent="VBoxContainer/textControl/text_margin" unique_id=1971456537]
+[node name="text container" type="HBoxContainer" parent="dialogcontainer/VBoxContainer/textControl/text_margin" unique_id=1971456537]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="leftbrace" type="Control" parent="VBoxContainer/textControl/text_margin/text container" unique_id=486051108]
+[node name="leftbrace" type="Control" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container" unique_id=486051108]
 modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/textControl/text_margin/text container/leftbrace" unique_id=665489979]
+[node name="TextureRect" type="TextureRect" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container/leftbrace" unique_id=665489979]
 custom_minimum_size = Vector2(23, 0)
 layout_mode = 0
 offset_right = 23.0
@@ -68,11 +73,11 @@ texture = ExtResource("2_nxe8e")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="leftbrace2" type="Control" parent="VBoxContainer/textControl/text_margin/text container" unique_id=956626549]
+[node name="leftbrace2" type="Control" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container" unique_id=956626549]
 modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/textControl/text_margin/text container/leftbrace2" unique_id=799623120]
+[node name="TextureRect2" type="TextureRect" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container/leftbrace2" unique_id=799623120]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 0
 offset_right = 50.0
@@ -81,12 +86,12 @@ texture = ExtResource("2_nxe8e")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/textControl/text_margin/text container" unique_id=951136426]
+[node name="MarginContainer" type="MarginContainer" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container" unique_id=951136426]
 layout_mode = 2
 theme_override_constants/margin_left = 21
 theme_override_constants/margin_top = 7
 
-[node name="dialog_text" type="RichTextLabel" parent="VBoxContainer/textControl/text_margin/text container/MarginContainer" unique_id=300240418]
+[node name="dialog_text" type="RichTextLabel" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container/MarginContainer" unique_id=1687118704]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_76c33")
@@ -95,12 +100,15 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("5_rj12k")
+hide_when_empty = true
+metadata/_custom_type_script = "uid://drhfq6rmdeuri"
 
-[node name="leftbrace3" type="Control" parent="VBoxContainer/textControl/text_margin/text container" unique_id=881984283]
+[node name="leftbrace3" type="Control" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container" unique_id=881984283]
 modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/textControl/text_margin/text container/leftbrace3" unique_id=206348322]
+[node name="TextureRect" type="TextureRect" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container/leftbrace3" unique_id=206348322]
 custom_minimum_size = Vector2(23, 0)
 layout_mode = 0
 offset_right = 23.0
@@ -110,11 +118,11 @@ expand_mode = 1
 stretch_mode = 4
 flip_h = true
 
-[node name="leftbrace4" type="Control" parent="VBoxContainer/textControl/text_margin/text container" unique_id=140997949]
+[node name="leftbrace4" type="Control" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container" unique_id=140997949]
 modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/textControl/text_margin/text container/leftbrace4" unique_id=1699758631]
+[node name="TextureRect2" type="TextureRect" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container/leftbrace4" unique_id=1699758631]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 0
 offset_right = 50.0
@@ -123,5 +131,3 @@ texture = ExtResource("2_nxe8e")
 expand_mode = 1
 stretch_mode = 4
 flip_h = true
-
-[node name="dialog_audio" type="AudioStreamPlayer" parent="." unique_id=2015695301]
