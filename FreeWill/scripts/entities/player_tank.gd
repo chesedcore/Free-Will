@@ -33,6 +33,7 @@ const UI := UIBus.Feedback
 @export var barrel_look_at_marker: Marker3D
 @export var barrel_position_marker: Marker3D
 @export var bullet_spawn_position_marker: Marker3D
+@export var grapple_rope_mesh: MeshInstance3D
 
 
 @export var turret: MeshInstance3D
@@ -166,7 +167,12 @@ func ungrapple() -> void:
 
 
 func grapple_update() -> void:
+	grapple_rope_mesh.visible = (grappled_target != null)
 	if (grappled_target):
+		(grapple_rope_mesh.material_override as ShaderMaterial).set_shader_parameter(
+			"end_position",
+			grappled_target.global_position)
+
 		linear_velocity += \
 			global_position.direction_to(grappled_target.global_position) * GRAPPLE_STRENGTH
 		if (global_position.distance_squared_to(grappled_target.global_position) < 500.0):

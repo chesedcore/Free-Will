@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://8ckcjgc3u1r0" path="res://scripts/entities/player/game_ui.gd" id="17_uedwi"]
 [ext_resource type="Texture2D" uid="uid://bikdyals6oo81" path="res://assets/ui/health_bar_front.png" id="18_ekcgd"]
 [ext_resource type="AudioStream" uid="uid://lv5m5ak5a31d" path="res://audio/sfx/bgs/wind.ogg" id="18_tafis"]
+[ext_resource type="Shader" uid="uid://dewwkri53s35" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
 
 [sub_resource type="Curve" id="Curve_vvw44"]
 _limits = [0.084254146, 0.17659867, 0.0, 1.0]
@@ -117,7 +118,32 @@ shader_parameter/max_alpha = 0.1370000065075
 shader_parameter/color_tint = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_ig2cu")
 
-[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull")]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rlhxg"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4sl2t"]
+noise = SubResource("FastNoiseLite_rlhxg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsoq5"]
+render_priority = 0
+shader = ExtResource("21_ekcgd")
+shader_parameter/albedo = Color(0.96, 0.592, 0, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_4sl2t")
+shader_parameter/albedo_texture_size = Vector2i(512, 512)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/end_position = Vector3(0, -2.715, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ywmen"]
+
+[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "grapple_rope_mesh", "turret", "hull")]
 collision_layer = 2
 collision_mask = 5
 mass = 200.0
@@ -130,6 +156,7 @@ tank_model = NodePath("TankModel")
 barrel_look_at_marker = NodePath("CameraGimbal/BarrelLookAtMarker")
 barrel_position_marker = NodePath("BarrelPositionMarker")
 bullet_spawn_position_marker = NodePath("TankModel/BulletSpawnPositionMarker")
+grapple_rope_mesh = NodePath("Grapple/GrappleRopeMesh")
 turret = NodePath("TankModel/Barrel")
 hull = NodePath("TankModel/Base")
 
@@ -201,7 +228,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.99999124, 0.0023927735, -0.0034424723, 0.0014373404, 0.9670364, 0.25463426, 0.0039382777, 0.25462708, -0.9670313, -0.024799557, 10.022622, -20.00822)
+transform = Transform3D(-0.9999698, -0.0056250193, 0.0053690034, -0.004010651, 0.96461475, 0.26363316, -0.006661961, 0.26360363, -0.964608, 0.028596932, 9.961983, -19.976978)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -353,5 +380,11 @@ alignment = 0
 material = SubResource("ShaderMaterial_hjnge")
 texture_mode = 2
 metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
+
+[node name="Grapple" type="Node3D" parent="." unique_id=1502807043]
+
+[node name="GrappleRopeMesh" type="MeshInstance3D" parent="Grapple" unique_id=417183369]
+material_override = SubResource("ShaderMaterial_hsoq5")
+mesh = SubResource("QuadMesh_ywmen")
 
 [editable path="TankModel"]

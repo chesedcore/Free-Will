@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://diwyys5vhd02i"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_78qek"]
+
+[node name="RopeTest" type="Node3D" unique_id=1198960907]
+
+[node name="TankRope" type="Node3D" parent="." unique_id=1656797754]
+
+[node name="StartMarker" type="Marker3D" parent="TankRope" unique_id=524699625]
+
+[node name="EndMarker" type="Marker3D" parent="TankRope" unique_id=1593334216]
+
+[node name="RopeMesh" type="MeshInstance3D" parent="TankRope" unique_id=747589626]
+mesh = SubResource("CylinderMesh_78qek")
