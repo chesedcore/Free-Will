@@ -149,8 +149,7 @@ func _fire_cannon() -> void:
 
 func try_damage(amount: float) -> Result:
 	if parry_window_timer.is_active():
-		#return Result.Err(ParryReport.as_normal())
-		pass
+		return Result.Err(ParryReport.as_normal())
 	
 	damage(amount)
 	return Result.Ok_as_is()
