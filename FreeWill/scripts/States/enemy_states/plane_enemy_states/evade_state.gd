@@ -23,6 +23,7 @@ var current_bank : float = 0.0
 var model : Node3D
 var obstacle_detectors: Array[RayCast3D]
 
+@warning_ignore("shadowed_variable")
 static func evade_state_from(owner : BaseEnemy,model:Node3D,detectors: Array[RayCast3D])-> EvadeState:
 	var state : EvadeState= new()
 	state.enemy = owner

@@ -31,7 +31,7 @@ func apply_bullet_force() -> void:
 		linear_velocity = -transform.basis.z * speed
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if linear_velocity.length() > 0:
 		bullet_model.look_at(global_position + linear_velocity)
 

@@ -19,6 +19,7 @@ func enter() -> void:
 		aim.enabled = true
 		remaining_fire_time.append(fire_time)
 		threat_indicators.append(null)
+@warning_ignore("shadowed_variable")
 static  func  ship_attackstate_from(owner : BaseEnemy,bases: Array[Node3D],barrels : Array[Node3D],aims : Array[RayCast3D],los: Area3D)->State:
 	var state: ShipAttackState = new()
 	state.enemy = owner

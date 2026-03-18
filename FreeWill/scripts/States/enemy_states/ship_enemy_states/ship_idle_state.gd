@@ -6,6 +6,7 @@ var los : Area3D
 func enter() -> void:
 	los.body_entered.connect(on_los_body_entered)
 
+@warning_ignore("shadowed_variable")
 static  func  ship_idlekstate_from(owner : BaseEnemy,los: Area3D)->State:
 	var state: ShipidleState = new()
 	state.enemy = owner

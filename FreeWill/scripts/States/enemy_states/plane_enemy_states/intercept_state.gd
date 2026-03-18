@@ -20,6 +20,7 @@ var offset_distance : int = randi_range(50,65)
 var los : Area3D
 var obstacle_detectors: Array[RayCast3D]
 var model:Node3D
+@warning_ignore("shadowed_variable")
 static func intercept_state_from(owner : BaseEnemy,model: Node3D,los:Area3D,detectors : Array[RayCast3D])-> EnemyState:
 	var intercept_state : InterceptState= new()
 	intercept_state.enemy = owner
