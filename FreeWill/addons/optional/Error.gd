@@ -117,4 +117,3 @@ func _to_string() -> String:
 	# Custom error
 	var s = get_script().get_script_constant_map() .find_key(type)
 	return msgstr + (s if s != null else '(Invalid error type: %s)' % type) + infostr
-

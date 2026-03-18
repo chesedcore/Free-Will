@@ -43,7 +43,7 @@ func create_state(state :STATES)->State:
 
 
 func on_fire_missile(target : Node3D)->void:
-	var new_missile :HomingMissle = HOMINGMISSLE.instantiate()
+	var new_missile :HomingMissile = HOMINGMISSLE.instantiate()
 
 	new_missile.target_node = target
 	get_tree().root.add_child(new_missile)

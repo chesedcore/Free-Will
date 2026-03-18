@@ -42,7 +42,7 @@ shader_parameter/max_alpha = 0.50000002375
 shader_parameter/color_tint = Color(0.41981313, 0.41981313, 0.4198131, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_buov0")
 
-[node name="Homingmissle" type="CharacterBody3D" unique_id=1409877024]
+[node name="Homingmissile" type="CharacterBody3D" unique_id=1409877024]
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_2glct")

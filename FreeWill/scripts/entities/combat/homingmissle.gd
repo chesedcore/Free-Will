@@ -1,4 +1,4 @@
-class_name HomingMissle extends CharacterBody3D
+class_name HomingMissile extends CharacterBody3D
 
 const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.tscn")
 
