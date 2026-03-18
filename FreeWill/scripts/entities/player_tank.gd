@@ -8,6 +8,7 @@ const BARREL_ROTATION_SPEED: float = 7.5
 const GUN_GIMBAL_ROTATION_SPEED: float = 6.0
 const BODY_ROTATION_SPEED: float = 1.0
 const GUN_FIRE_FORCE: float = 50.0
+const GRAPPLE_STRENGTH: float = 25.0
 
 const MAX_SPEED: float = 150.0
 
@@ -48,6 +49,8 @@ var health := MAX_HEALTH
 var is_dead := false
 var _stop_gimbal_update := false
 var _parry_tween: Tween
+var grappled_target: Node3D
+
 
 
 func _ready() -> void:
@@ -68,6 +71,12 @@ func _input(event: InputEvent) -> void:
 	
 	if Input.is_action_just_pressed("action"):
 		_attempt_parry()
+	
+	#if (event.is_action_pressed("grapple")):
+		#grapple()
+#
+	#if (event.is_action_released("grapple")):
+		#ungrapple()
 
 
 func _attempt_dash() -> void:
@@ -201,6 +210,23 @@ func _update_model_transform(delta: float) -> void:
 	)
 	turret.rotation.y = lerpf(turret.rotation.y, 0.0, 6.0 * delta)
 
+func grapple() -> void:
+	grappled_target = IFFTracker.get_lock_this_frame().unwrap_unchecked()
+	if (!grappled_target):
+		return
+	print("GRAPPLED")
+
+func ungrapple() -> void:
+	if (grappled_target):
+		grappled_target = null
+		return
+
+func grapple_update() -> void:
+	if (grappled_target):
+		linear_velocity += \
+			global_position.direction_to(grappled_target.global_position) * GRAPPLE_STRENGTH
+		if (global_position.distance_squared_to(grappled_target.global_position) < 500.0):
+			grappled_target = null
 
 func stop_model_update() -> void:
 	_stop_gimbal_update = true
