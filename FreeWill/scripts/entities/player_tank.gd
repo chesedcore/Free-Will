@@ -123,7 +123,6 @@ func _execute_parry() -> void:
 	#windup ends, active parry window here
 	_parry_tween.chain()
 	_parry_tween.tween_callback(func() -> void:
-		freeze = true
 		parry_window_timer.start_cooldown()
 	)
 	_parry_tween.tween_property(tank_model, "rotation_degrees:x", 120, PARRY_WINDOW)
@@ -139,7 +138,6 @@ func _on_parry_finished() -> void:
 
 
 func _end_parry() -> void:
-	freeze = false
 	_stop_gimbal_update = false
 	AudioManager.play_sound_at(barrel_position_marker.global_position, cannon_fire_sound)
 
