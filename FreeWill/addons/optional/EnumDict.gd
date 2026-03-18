@@ -66,11 +66,11 @@ func contains(enum_dict: Dictionary) -> Result:
 	assert(enum_dict.has("EnumDict"), "Parameter enum_dict must be an EnumDict variant")
 	
 	if !_variants.has(enum_dict.EnumDict):
-		return Result.error(Error.NotContained)\
+		return Result.error(ErrorType.NotContained)\
 			.err_info('variant', enum_dict.EnumDict)\
 			.err_msg("This enum does not have the specified variant")
 	elif !enum_dict.has_all( _variants[enum_dict.EnumDict].keys() ):
-		return Result.error(Error.MissingParameters)\
+		return Result.error(ErrorType.MissingParameters)\
 			.err_info('expected', _variants[enum_dict.EnumDict].keys())\
 			.err_info('found', enum_dict.keys())\
 			.err_msg("The enum dict is missing some paramters")
@@ -107,4 +107,3 @@ static func stringify(enum_dict: Dictionary) -> String:
 	var values: Dictionary = enum_dict.duplicate()
 	values.erase("EnumDict")
 	return '%s %s' % [ enum_dict.EnumDict, values ]
-
