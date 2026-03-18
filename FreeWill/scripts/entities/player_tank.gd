@@ -72,11 +72,11 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("action"):
 		_attempt_parry()
 	
-	#if (event.is_action_pressed("grapple")):
-		#grapple()
-#
-	#if (event.is_action_released("grapple")):
-		#ungrapple()
+	if (event.is_action_pressed("grapple")):
+		grapple()
+
+	if (event.is_action_released("grapple")):
+		ungrapple()
 
 
 func _attempt_dash() -> void:
