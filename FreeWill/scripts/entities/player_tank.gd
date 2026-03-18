@@ -142,9 +142,9 @@ func _extend_parry_window() -> void:
 
 
 func _fire_cannon() -> void:
-	#CannonParticles.attach_to(bullet_spawn_position_marker)
+	CannonParticles.attach_to(bullet_spawn_position_marker)
 	linear_velocity += -camera_gimbal.global_transform.basis.z * GUN_FIRE_FORCE
-	#Bullet.fire_bullet_from_tank(self)
+	Bullet.fire_bullet_from_tank(self)
 
 
 func try_damage(amount: float) -> Result:
