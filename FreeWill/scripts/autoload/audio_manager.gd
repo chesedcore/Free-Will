@@ -8,6 +8,7 @@ func play_sound_at(position: Vector3, sound: AudioStream, volume_db: float = 0.0
 
 	new_sound_player.bus = "SFX"
 	new_sound_player.attenuation_filter_cutoff_hz = 20000
+	new_sound_player.max_distance = 1500.0
 
 	if (randomize_pitch):
 		new_sound_player.pitch_scale = randf_range(0.92, 1.13)

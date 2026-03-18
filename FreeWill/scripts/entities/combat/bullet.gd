@@ -57,7 +57,18 @@ func apply_bullet_force() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if (body is BaseEnemy):
 		body.damage(damage)
-		print("DAMAGED")
+
+		# Play SFX
+		AudioManager.play_sound_at(global_position,
+			preload("res://audio/sfx/explosion.ogg"),
+			0.0, true)
+
+		# Spawn Hitmarker
+		add_sibling(preload("res://scenes/ui/hitmarker.tscn").instantiate())
+		var explosion: Node3D = preload("res://scenes/entities/explosion_effect.tscn").instantiate()
+		explosion.transform = transform
+		add_sibling(explosion)
+
 		delete()
 
 
