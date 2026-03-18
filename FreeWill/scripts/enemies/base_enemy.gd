@@ -4,6 +4,7 @@ class_name  BaseEnemy extends CharacterBody3D
 @export var model: Node3D
 @export var health: float = 100.0
 
+signal died
 
 func damage(amount: float) -> void:
 	health -= amount
@@ -13,4 +14,5 @@ func damage(amount: float) -> void:
 
 func kill() -> void:
 	IFFTracker.stop_tracking_entity(self)
+	died.emit()
 	queue_free()

@@ -10,9 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="7_wtsjf"]
 [ext_resource type="PackedScene" uid="uid://u7wkfykuxl3h" path="res://scenes/entities/enemies/enemy_battle_ship.tscn" id="8_s36qc"]
 [ext_resource type="PackedScene" uid="uid://b5oi77k2llexl" path="res://scenes/enviorment/pillar_enviorment_prop.tscn" id="11_gthg3"]
-[ext_resource type="ArrayMesh" uid="uid://yxvh6yabfccp" path="res://assets/models/pillar_broken.res" id="12_ntc4i"]
+[ext_resource type="ArrayMesh" uid="uid://cwk8o07kwhwne" path="res://assets/models/pillar_broken.res" id="12_ntc4i"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjeyg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6qxox"]
 render_priority = 0
 shader = ExtResource("1_7ddre")
 shader_parameter/out_color = Color(0, 0.3666668, 1, 1)
@@ -24,7 +24,7 @@ shader_parameter/specular = 0.85
 shader_parameter/roughness = 0.105
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g7g4h"]
-material = SubResource("ShaderMaterial_qjeyg")
+material = SubResource("ShaderMaterial_6qxox")
 size = Vector2(10000, 10000)
 subdivide_width = 250
 subdivide_depth = 250

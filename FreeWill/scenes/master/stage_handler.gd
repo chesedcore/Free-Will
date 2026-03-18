@@ -11,8 +11,6 @@ func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	_wire_up_signals()
 	_setup_name_tracking()
-	Dialogic.Inputs.block_input(10000)
-	Dialogic.start("test")
 
 var _is_under_hitstop := false
 

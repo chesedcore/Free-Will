@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://cai8mvk6qhbkl"]
+
+[ext_resource type="Script" uid="uid://hkuju2my0qay" path="res://scripts/master/missionhandler.gd" id="1_ofajp"]
+[ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scenes/master/stage_handler.gd" id="2_1yy2c"]
+[ext_resource type="Script" uid="uid://capww07pslxpm" path="res://scripts/master/waveresource.gd" id="2_orw40"]
+[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="3_orw40"]
+[ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="4_ul4u8"]
+[ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="5_ecl3i"]
+[ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="6_slcjq"]
+[ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scenes/master/enemies_list.gd" id="7_hjrno"]
+
+[sub_resource type="Resource" id="Resource_ul4u8"]
+script = ExtResource("2_orw40")
+waveinfo = Dictionary[int, int]({
+0: 3
+})
+metadata/_custom_type_script = "uid://capww07pslxpm"
+
+[sub_resource type="Resource" id="Resource_1yy2c"]
+script = ExtResource("2_orw40")
+waveinfo = Dictionary[int, int]({
+0: 5
+})
+metadata/_custom_type_script = "uid://capww07pslxpm"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjeyg"]
+render_priority = 0
+shader = ExtResource("4_ul4u8")
+shader_parameter/out_color = Color(0, 0.3666668, 1, 1)
+shader_parameter/amount = 15.00000022351799
+shader_parameter/speed = 1.0
+shader_parameter/beer_factor = 0.2
+shader_parameter/metallic = -0.15
+shader_parameter/specular = 0.85
+shader_parameter/roughness = 0.105
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rvw3x"]
+material = SubResource("ShaderMaterial_qjeyg")
+size = Vector2(10000, 10000)
+subdivide_width = 250
+subdivide_depth = 250
+
+[node name="Testmission" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("stagehandler", "spawnpoints", "enemies_list")]
+script = ExtResource("1_ofajp")
+stagehandler = NodePath("stagehandler")
+waves = Array[ExtResource("2_orw40")]([SubResource("Resource_ul4u8"), SubResource("Resource_1yy2c")])
+spawnpoints = NodePath("spawnpoints")
+enemies_list = NodePath("EnemiesList")
+
+[node name="stagehandler" type="Node3D" parent="." unique_id=810361068 node_paths=PackedStringArray("ui", "enemies_list", "tank")]
+script = ExtResource("2_1yy2c")
+ui = NodePath("UI")
+enemies_list = NodePath("../EnemiesList")
+tank = NodePath("Tank")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="stagehandler" unique_id=234805234]
+transform = Transform3D(0.99998426, -0.0036078133, 0.0042996025, 0.0022680946, 0.9604571, 0.27841896, -0.005134067, -0.2784048, 0.9604502, 0, 0, 0)
+light_color = Color(1, 0.6125, 0.25, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="stagehandler" unique_id=1398625798]
+environment = ExtResource("3_orw40")
+
+[node name="Ocean" type="MeshInstance3D" parent="stagehandler" unique_id=1652546582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12763977, 0.11047363, -0.7965088)
+mesh = SubResource("PlaneMesh_rvw3x")
+
+[node name="Tank" parent="stagehandler" unique_id=290108966 instance=ExtResource("5_ecl3i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 335.62222, 0)
+
+[node name="UI" parent="stagehandler" unique_id=121542168 instance=ExtResource("6_slcjq")]
+
+[node name="EnemiesList" type="Node3D" parent="." unique_id=1848485939 node_paths=PackedStringArray("airborne_enemies")]
+script = ExtResource("7_hjrno")
+airborne_enemies = NodePath("AirborneEnemies")
+
+[node name="AirborneEnemies" type="Node3D" parent="EnemiesList" unique_id=676954822]
+
+[node name="Seaborne enemies" type="Node3D" parent="EnemiesList" unique_id=386092668]
+
+[node name="spawnpoints" type="Node3D" parent="." unique_id=578110763]
+
+[node name="spawnpoint" type="Node3D" parent="spawnpoints" unique_id=416100832]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3978.8499)
+
+[node name="spawnpoint2" type="Node3D" parent="spawnpoints" unique_id=1162161091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3206.98, 0, 3978.8499)
+
+[node name="spawnpoint3" type="Node3D" parent="spawnpoints" unique_id=1899343557]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3206.98, 0, -3964.2869)
+
+[node name="spawnpoint4" type="Node3D" parent="spawnpoints" unique_id=1722255186]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -254.86462, 0, -3964.2869)
+
+[node name="spawnpoint5" type="Node3D" parent="spawnpoints" unique_id=1953111077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5538.0635, 0, -3964.2869)
+
+[node name="spawnpoint6" type="Node3D" parent="spawnpoints" unique_id=381901489]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5538.0635, 0, 136.83911)
