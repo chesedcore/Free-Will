@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://jd28w21mkf1u"]
+
+[ext_resource type="PackedScene" uid="uid://bdxubxrun4in8" path="res://models/tanktankshellgobrrrrrits3amineedsleep.glb" id="1_yx6ii"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpufx"]
+albedo_color = Color(1, 0.48235294, 0, 1)
+metallic = 1.0
+roughness = 0.3
+emission_enabled = true
+emission = Color(1, 0.6901961, 0, 1)
+emission_energy_multiplier = 0.6
+
+[node name="tanktankshellgobrrrrrits3amineedsleep" unique_id=774039758 instance=ExtResource("1_yx6ii")]
+
+[node name="Circle" parent="." index="0" unique_id=1703831477]
+surface_material_override/0 = SubResource("StandardMaterial3D_xpufx")
