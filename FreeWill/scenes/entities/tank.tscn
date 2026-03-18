@@ -199,7 +199,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999789, -0.0042247926, 0.0049384804, -0.002778878, 0.9648632, 0.26273835, -0.0058749737, 0.26271906, -0.9648545, 0.023279382, 9.966433, -19.984053)
+transform = Transform3D(-0.9999994, 0.0010216936, -0.000445349, 0.00087166455, 0.96594363, 0.25875112, 0.0006945464, 0.25875056, -0.9659439, -0.0004029557, 10.00398, -20.004993)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
