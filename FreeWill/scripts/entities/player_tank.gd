@@ -2,6 +2,8 @@ class_name PlayerTank extends RigidBody3D
 
 ## Sick ass fuckin flying player tank class
 
+signal fucking_exploded
+
 const BARREL_ROTATION_SPEED: float = 7.5
 const GUN_GIMBAL_ROTATION_SPEED: float = 6.0
 const BODY_ROTATION_SPEED: float = 1.0
@@ -10,15 +12,16 @@ const GUN_FIRE_FORCE: float = 50.0
 const MAX_SPEED: float = 150.0
 
 const DASH_FORCE := 350.0
-const DASH_COOLDOWN := 10.0
+const DASH_COOLDOWN := 6.325
 const DASH_MAX_SPEED := MAX_SPEED * 3
 const DASH_FOV_BOOST := 20.0
 const DASH_CAMERA_PULLBACK := 6.0
 const DASH_EFFECT_DURATION := 5.0
 
-const GRAPPLE_STRENGTH: float = 25.0
-
-const ACTION_COOLDOWN := 3.25
+const PARRY_COOLDOWN := 1.25
+const PARRY_WINDUP := 0.2
+const PARRY_WINDOW := 0.625
+const PARRY_CHAIN_EXTENSION := 0.4
 
 const MAX_HEALTH: float = 100.0
 
@@ -27,174 +30,169 @@ const UI := UIBus.Feedback
 
 @export var camera_gimbal: CameraGimbal
 @export var tank_model: Node3D
-
 @export var barrel_look_at_marker: Marker3D
 @export var barrel_position_marker: Marker3D
 @export var bullet_spawn_position_marker: Marker3D
-
-
 @export var turret: MeshInstance3D
 @export var hull: MeshInstance3D
+@export var cannon_fire_sound: AudioStream
 
+#cooldowns
+@onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
+@onready var parry_cooldown := Cooldown.from_time(PARRY_COOLDOWN, self)
+@onready var parry_window_timer := Cooldown.from_time(PARRY_WINDOW, self)
+@onready var dash_effect_timer := Cooldown.from_time(DASH_EFFECT_DURATION, self)
 
-@export var cannon_fire_sound: AudioStream = preload("res://audio/sfx/rocket_launch.ogg")
-
-var dash_cooldown_timer := 0.0
-var is_dashing := false
-var dash_effect_timer := 0.0
-
-var is_dead := false
+#flag hell
 var health := MAX_HEALTH
-
-var action_cooldown_timer := 0.0
-var is_in_action := false
-var action_window_timer := 0.0
-
-var is_spinning_turret := false
-var is_parrying := false
-var is_grappling := true
-
-var grappled_target: PhysicsBody3D = null
+var is_dead := false
+var _stop_gimbal_update := false
+var _parry_tween: Tween
 
 
 func _ready() -> void:
+	_wire_up_signals()
+	assert(tank_model, "Tank model shouldn't be null.")
 	GameState.player = self
-	assert(tank_model, "barrel node shouldn't be null.")
-	# TEMP: Bubba: should the tank handle changing mouse mode? Maybe.
-	# Monarch: We can change it up later when we have a mission handler.
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
 
 func _wire_up_signals() -> void:
 	UIBus.missile_parried.connect(_extend_parry_window)
+	parry_window_timer.timeout.connect(_end_parry)
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("fire"):
+		_fire_cannon()
+	
+	if Input.is_action_just_pressed("dash"):
+		_attempt_dash()
+	
+	if Input.is_action_just_pressed("action"):
+		_attempt_parry()
+
+
+func _attempt_dash() -> void:
+	if not dash_cooldown.is_ready():
+		UIBus.attempted_dash.emit(Result.Err(UI.DASH_STILL_UNDER_COOLDOWN))
+		return
+	
+	_execute_dash()
+	UIBus.attempted_dash.emit(Result.Ok_as_is())
+
+
+func _execute_dash() -> void:
+	var dash_direction := camera_gimbal.global_basis.z
+	linear_velocity += dash_direction * DASH_FORCE
+	
+	camera_gimbal.trigger_dash_effect(DASH_EFFECT_DURATION, DASH_FOV_BOOST, DASH_CAMERA_PULLBACK)
+	
+	dash_cooldown.start_cooldown()
+	dash_effect_timer.start_cooldown()
+
+
+func _attempt_parry() -> void:
+	if not parry_cooldown.is_ready():
+		UIBus.attempted_action.emit(Result.Err(UI.ACTION_STILL_UNDER_COOLDOWN))
+		return
+	
+	_execute_parry()
+	UIBus.attempted_action.emit(Result.Ok_as_is())
+
+
+func _execute_parry() -> void:
+	if _parry_tween:
+		_parry_tween.kill()
+	
+	_parry_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	_parry_tween.set_parallel(true)
+	
+	#windup happens here
+	_parry_tween.tween_callback(func() -> void:
+		_stop_gimbal_update = true
+	)
+	_parry_tween.tween_property(tank_model, "rotation_degrees:x", -30, PARRY_WINDUP)
+	
+	#windup ends, active parry window here
+	_parry_tween.chain()
+	_parry_tween.tween_callback(func() -> void:
+		freeze = true
+		parry_window_timer.start_cooldown()
+	)
+	_parry_tween.tween_property(tank_model, "rotation_degrees:x", 120, PARRY_WINDOW)
+	_parry_tween.finished.connect(_on_parry_finished)
+	
+	parry_cooldown.start_cooldown()
+
+
+func _on_parry_finished() -> void:
+	#animation is done, but that damned window might still be active
+	if parry_window_timer.is_ready():
+		_end_parry()
+
+
+func _end_parry() -> void:
+	freeze = false
+	_stop_gimbal_update = false
+	AudioManager.play_sound_at(barrel_position_marker.global_position, cannon_fire_sound)
 
 
 func _extend_parry_window() -> void:
-	pass
-
-func _input(event: InputEvent) -> void:
-	if (event.is_action_pressed("fire")):
-		fire_cannon()
-
-	if (event.is_action_pressed("grapple")):
-		grapple()
-
-	if (event.is_action_released("grapple")):
-		ungrapple()
-
-	if Input.is_action_just_pressed("dash"):
-		attempt_dash()
-
-	if Input.is_action_just_pressed("action"):
-		attempt_action()
+	if parry_window_timer.is_active():
+		parry_window_timer.start(PARRY_CHAIN_EXTENSION)
+		print_rich("[color=blue]Parry window extended!")
 
 
-func _process(delta: float) -> void:
-	dash_timer_update(delta)
-	action_timer_update(delta)
+func _fire_cannon() -> void:
+	#CannonParticles.attach_to(bullet_spawn_position_marker)
+	linear_velocity += -camera_gimbal.global_transform.basis.z * GUN_FIRE_FORCE
+	#Bullet.fire_bullet_from_tank(self)
+
+
+func try_damage(amount: float) -> Result:
+	if parry_window_timer.is_active():
+		#return Result.Err(ParryReport.as_normal())
+		pass
+	
+	damage(amount)
+	return Result.Ok_as_is()
+
+
+func damage(amount: float) -> void:
+	health -= amount
+	if health <= 0.0: _kill()
+
+
+func _kill() -> void:
+	if is_dead: return
+	is_dead = true
+	freeze = true
+	fucking_exploded.emit()
 
 
 func _physics_process(delta: float) -> void:
-	if not is_in_action: model_transform_update(delta)
+	_poll_tank_death()
+	
+	if not _stop_gimbal_update and not parry_window_timer.is_active():
+		_update_model_transform(delta)
+	
 	camera_gimbal.global_position = global_position
-	if is_spinning_turret: spin_turret(70 * delta)
+	
+	#spin turret during parry!!
+	if parry_window_timer.is_active():
+		turret.rotate_y(70 * delta)
 
-
+func _poll_tank_death() -> void:
+	if global_position.y < -5.0: _kill()
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	grapple_update()
-	var max_speed := DASH_MAX_SPEED if is_dashing else MAX_SPEED
+	var max_speed := DASH_MAX_SPEED if dash_effect_timer.is_active() else MAX_SPEED
 	state.linear_velocity.x = clampf(state.linear_velocity.x, -max_speed, max_speed)
 	state.linear_velocity.y = clampf(state.linear_velocity.y, -INF, max_speed)
 	state.linear_velocity.z = clampf(state.linear_velocity.z, -max_speed, max_speed)
 
 
-func spin_turret(by_angle: float) -> void:
-	turret.rotate_y(by_angle)
-
-
-func attempt_action() -> void:
-	if action_cooldown_timer > 0.0:
-		var error := UI.ACTION_STILL_UNDER_COOLDOWN
-		UIBus.attempted_action.emit(Result.Err(error))
-		return
-	action()
-	UIBus.attempted_action.emit(Result.Ok_as_is())
-
-
-func action() -> void:
-	static_parry()
-
-
-func attempt_dash() -> void:
-	if dash_cooldown_timer > 0.0:
-		var error := UI.DASH_STILL_UNDER_COOLDOWN
-		UIBus.attempted_dash.emit(Result.Err(error))
-		return
-	dash()
-	UIBus.attempted_dash.emit(Result.Ok_as_is())
-
-
-func dash() -> void:
-	var dash_direction := camera_gimbal.global_basis.z
-	linear_velocity += dash_direction * DASH_FORCE
-
-	camera_gimbal.trigger_dash_effect(DASH_EFFECT_DURATION, DASH_FOV_BOOST, DASH_CAMERA_PULLBACK)
-
-	#cooldown
-	dash_cooldown_timer = DASH_COOLDOWN
-	is_dashing = true
-	dash_effect_timer = DASH_EFFECT_DURATION
-
-
-func grapple() -> void:
-	grappled_target = IFFTracker.get_lock_this_frame().unwrap_unchecked()
-	if (!grappled_target):
-		return
-
-	print("GRAPPLED")
-
-
-func ungrapple() -> void:
-	if (grappled_target):
-		grappled_target = null
-		return
-
-
-func grapple_update() -> void:
-	if (grappled_target):
-		linear_velocity += \
-			global_position.direction_to(grappled_target.global_position) * GRAPPLE_STRENGTH
-		if (global_position.distance_squared_to(grappled_target.global_position) < 500.0):
-			grappled_target = null
-
-
-func dash_timer_update(delta: float) -> void:
-	if dash_cooldown_timer > 0.0:
-		dash_cooldown_timer -= delta
-
-	if dash_effect_timer > 0.0:
-		dash_effect_timer -= delta
-		if dash_effect_timer <= 0.0:
-			is_dashing = false
-
-
-func action_timer_update(delta: float) -> void:
-	if action_cooldown_timer > 0.0:
-		action_cooldown_timer -= delta
-
-	if action_window_timer > 0.0:
-		action_window_timer -= delta
-		if action_window_timer <= 0.0:
-			is_in_action = false
-
-
-##this is ugly because allocating a new temp var every frame for a quat might be
-##ugly ass for performance, so no extra allocs are made on purpose
-func model_transform_update(delta: float) -> void:
+func _update_model_transform(delta: float) -> void:
 	tank_model.global_position = barrel_position_marker.global_position
-	tank_model.global_transform.basis = \
-	tank_model.global_transform.basis.slerp(
+	tank_model.global_transform.basis = tank_model.global_transform.basis.slerp(
 		tank_model.global_transform.looking_at(
 			barrel_look_at_marker.global_position,
 			Vector3.UP,
@@ -202,89 +200,11 @@ func model_transform_update(delta: float) -> void:
 		).basis,
 		6.0 * delta
 	)
+	turret.rotation.y = lerpf(turret.rotation.y, 0.0, 6.0 * delta)
 
 
-func fire_cannon() -> void:
-	# Particles
-	var particles: Node3D = \
-		preload("res://scenes/entities/tank_cannon_particles.tscn").instantiate()
+func stop_model_update() -> void:
+	_stop_gimbal_update = true
 
-	#particles.global_transform = bullet_spawn_position_marker.global_transform
-	bullet_spawn_position_marker.add_child(particles)
-
-	linear_velocity += -camera_gimbal.global_transform.basis.z * GUN_FIRE_FORCE
-	#angular_velocity += -camera_gimbal.global_transform.basis.x * GUN_FIRE_FORCE * 0.1
-
-	# TODO: a better bullet system would be way better. But for now this works.
-	var new_bullet: Bullet = preload("res://scenes/projectiles/tank_bullet.scn").instantiate()
-	new_bullet.transform = bullet_spawn_position_marker.global_transform
-
-	# Bubba: to prevent the bullets from looking like they're lagging behind, we add a small amount
-	# of the velocity to the bullet's origin
-	new_bullet.transform.origin += linear_velocity * 0.01
-	new_bullet.linear_velocity = linear_velocity
-
-	# Bubba: Lockon shit
-	# Iff target CAN be null. The missiles will just not track anything
-	var iff_tracked_target: PhysicsBody3D = IFFTracker.get_lock_this_frame().unwrap_unchecked()
-	new_bullet.target = iff_tracked_target
-
-	# Monarch: Usually I'd make a dedicated `Bullets` Node3D that 'holds' this node as an array,
-	# then trigger a signal that makes the World handler add the bullet to the Bullets node.
-	# But for now (in the spirit of this jam), this will do just fine.
-	get_tree().root.add_child.call_deferred(new_bullet)
-
-var t_action: Tween
-
-func static_parry() -> void:
-	if t_action: t_action.kill()
-	t_action = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
-	t_action.set_parallel(true)
-	t_action.tween_callback(func() -> void:
-		is_in_action = true
-		action_cooldown_timer = ACTION_COOLDOWN
-	)
-	t_action.tween_property(tank_model, "rotation_degrees:x", -30, 0.2)
-	t_action.chain()
-	t_action.tween_callback(func() -> void:
-		is_spinning_turret = true
-		is_parrying = true
-		freeze = true
-	)
-	t_action.tween_property(tank_model, "rotation_degrees:x", 120, 0.325)
-	#t_action.tween_property(tank_model, "rotation_degrees:z", 360, 0.5)
-	#t_action.tween_property(tank_model, "rotation_degrees:z", 70, 0.3)
-	t_action.finished.connect(_on_action_recovery)
-
-
-func _on_action_recovery() -> void:
-	is_in_action = false
-	is_spinning_turret = false
-	is_parrying = false
-	freeze = false
-
-	AudioManager.play_sound_at(barrel_position_marker.global_position, cannon_fire_sound)
-
-
-func damage(amount: float) -> void:
-	health -= amount
-	if (health <= 0.0):
-		kill()
-
-
-func kill() -> void:
-	if (is_dead):
-		return
-
-	is_dead = true
-	freeze = is_dead
-
-	tank_model.hide()
-
-	var game_over_scene: GameOverScene = \
-		(load("res://scenes/entities/game_over_scene.tscn") as PackedScene).instantiate()
-
-	game_over_scene.player = self
-
-	AudioManager.play_sound_at(global_position, preload("res://audio/sfx/large_explosion.ogg"), 15.0)
-	get_tree().root.add_child.call_deferred(game_over_scene)
+func start_model_update() -> void:
+	_stop_gimbal_update = false
