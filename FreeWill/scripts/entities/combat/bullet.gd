@@ -39,6 +39,10 @@ func _process(delta: float) -> void:
 
 	homing_time_left -= delta
 
+	# Delete when hit water
+	if (position.y <= 0.0):
+		delete()
+
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if (homing_time_left < 0.0):
