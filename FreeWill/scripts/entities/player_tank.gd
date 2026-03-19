@@ -43,6 +43,7 @@ const UI := UIBus.Feedback
 @export var hull: MeshInstance3D
 @export var cannon_fire_sound: AudioStream
 @export var shake_component: Shaker
+@export var grapple_rope_mesh: MeshInstance3D
 
 #cooldowns
 @onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
@@ -238,7 +239,12 @@ func ungrapple() -> void:
 		return
 
 func grapple_update() -> void:
+	grapple_rope_mesh.visible = (grappled_target != null)
 	if (grappled_target):
+		(grapple_rope_mesh.material_override as ShaderMaterial).set_shader_parameter(
+			"end_position",
+			grappled_target.global_position)
+
 		linear_velocity += \
 			global_position.direction_to(grappled_target.global_position) * GRAPPLE_STRENGTH
 		if (global_position.distance_squared_to(grappled_target.global_position) < 500.0):
