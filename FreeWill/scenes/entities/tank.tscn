@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c7xy4j8d6608x" path="res://scripts/entities/player_tank.gd" id="1_xcn37"]
 [ext_resource type="PackedScene" uid="uid://ciqvl3ekbok17" path="res://models/player_tank.blend" id="2_fn73n"]
 [ext_resource type="Script" uid="uid://ygulxcf75ylm" path="res://scripts/effects/wind_lines.gd" id="5_hjnge"]
+[ext_resource type="PackedScene" uid="uid://bigipu066vsh1" path="res://models/kunai.blend" id="6_rlhxg"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_uedwi"]
 [ext_resource type="Script" uid="uid://wel3y4ne2cus" path="res://scripts/effects/tank_wind_trail.gd" id="7_ywmen"]
 [ext_resource type="Material" uid="uid://cumspkgnerlec" path="res://shaderslop/speed_lines.material" id="8_rlhxg"]
@@ -22,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://lv5m5ak5a31d" path="res://audio/sfx/bgs/wind.ogg" id="18_tafis"]
 [ext_resource type="Script" uid="uid://cicma3kluvpxo" path="res://scripts/util_scripts/shake.gd" id="19_oqcw2"]
 [ext_resource type="Shader" uid="uid://drd3l3yes5apm" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
+[ext_resource type="Texture2D" uid="uid://vwb6m76hhawe" path="res://assets/textures/chain.png" id="24_4sl2t"]
 
 [sub_resource type="Curve" id="Curve_vvw44"]
 _limits = [0.084254146, 0.17659867, 0.0, 1.0]
@@ -111,16 +113,11 @@ shader_parameter/max_alpha = 0.1370000065075
 shader_parameter/color_tint = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_ig2cu")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_rlhxg"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4sl2t"]
-noise = SubResource("FastNoiseLite_rlhxg")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hsoq5"]
 render_priority = 0
 shader = ExtResource("21_ekcgd")
-shader_parameter/albedo = Color(0.96, 0.592, 0, 1)
-shader_parameter/texture_albedo = SubResource("NoiseTexture2D_4sl2t")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("24_4sl2t")
 shader_parameter/albedo_texture_size = Vector2i(512, 512)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
@@ -132,11 +129,11 @@ shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/end_position = Vector3(0, -2.715, 0)
+shader_parameter/end_position = Vector3(14.365, -2.715, 0)
 
 [sub_resource type="QuadMesh" id="QuadMesh_ywmen"]
 
-[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component", "grapple_rope_mesh")]
+[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component", "grapple_rope_mesh_1", "grapple_rope_mesh_2", "kunai_model")]
 collision_layer = 2
 collision_mask = 5
 mass = 200.0
@@ -152,11 +149,13 @@ bullet_spawn_position_marker = NodePath("TankModel/BulletSpawnPositionMarker")
 turret = NodePath("TankModel/Barrel")
 hull = NodePath("TankModel/Base")
 shake_component = NodePath("ShakeComponent")
-grapple_rope_mesh = NodePath("Grapple/GrappleRopeMesh")
+grapple_rope_mesh_1 = NodePath("Grapple/GrappleRopeMesh")
+grapple_rope_mesh_2 = NodePath("Grapple/GrappleRopeMesh2")
+kunai_model = NodePath("Grapple/kunai_model")
 
-[node name="TankModel" parent="." unique_id=710921557 instance=ExtResource("2_fn73n")]
+[node name="TankModel" parent="." unique_id=650479505 instance=ExtResource("2_fn73n")]
 
-[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(710921557, 12866291) index="0" unique_id=1789710507]
+[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(650479505, 160149673) index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
 script = ExtResource("10_hsoq5")
 min_vertex_distance = 0.1
@@ -216,9 +215,13 @@ metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 [node name="BulletSpawnPositionMarker" type="Marker3D" parent="TankModel" unique_id=110604597]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.0878064, 2.6, 8)
 
+[node name="kunai" parent="TankModel" unique_id=1936580332 instance=ExtResource("6_rlhxg")]
+transform = Transform3D(1, 0, 0, 0, 0.75519663, 0.6554983, 0, -0.6554983, 0.75519663, -0.27468443, 3.3819237, -1.5112387)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1289681647]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23927891, 0)
 shape = SubResource("SphereShape3D_3lr38")
+debug_color = Color(0, 0.5950001, 0.7, 1)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
@@ -353,15 +356,24 @@ material = SubResource("ShaderMaterial_hjnge")
 texture_mode = 2
 metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 
-[node name="ShakeComponent" type="Node3D" parent="." unique_id=564894313]
-script = ExtResource("19_oqcw2")
-decay_rate = 0.5
-return_speed = 9.0
-
 [node name="Grapple" type="Node3D" parent="." unique_id=1832517313]
 
 [node name="GrappleRopeMesh" type="MeshInstance3D" parent="Grapple" unique_id=1457401487]
 material_override = SubResource("ShaderMaterial_hsoq5")
 mesh = SubResource("QuadMesh_ywmen")
+
+[node name="GrappleRopeMesh2" type="MeshInstance3D" parent="Grapple" unique_id=224438382]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_hsoq5")
+mesh = SubResource("QuadMesh_ywmen")
+
+[node name="kunai_model" parent="Grapple" unique_id=1146163474 instance=ExtResource("6_rlhxg")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+top_level = true
+
+[node name="ShakeComponent" type="Node3D" parent="." unique_id=564894313]
+script = ExtResource("19_oqcw2")
+decay_rate = 0.5
+return_speed = 9.0
 
 [editable path="TankModel"]
