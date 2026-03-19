@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://8ckcjgc3u1r0" path="res://scripts/entities/player/game_ui.gd" id="17_uedwi"]
 [ext_resource type="AudioStream" uid="uid://lv5m5ak5a31d" path="res://audio/sfx/bgs/wind.ogg" id="18_tafis"]
 [ext_resource type="Script" uid="uid://cicma3kluvpxo" path="res://scripts/util_scripts/shake.gd" id="19_oqcw2"]
+[ext_resource type="Shader" uid="uid://drd3l3yes5apm" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
 
 [sub_resource type="Curve" id="Curve_vvw44"]
 _limits = [0.084254146, 0.17659867, 0.0, 1.0]
@@ -106,6 +107,31 @@ shader_parameter/max_alpha = 0.1370000065075
 shader_parameter/color_tint = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_ig2cu")
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rlhxg"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4sl2t"]
+noise = SubResource("FastNoiseLite_rlhxg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsoq5"]
+render_priority = 0
+shader = ExtResource("21_ekcgd")
+shader_parameter/albedo = Color(0.96, 0.592, 0, 1)
+shader_parameter/texture_albedo = SubResource("NoiseTexture2D_4sl2t")
+shader_parameter/albedo_texture_size = Vector2i(512, 512)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/end_position = Vector3(0, -2.715, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ywmen"]
+
 [node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component")]
 collision_layer = 2
 collision_mask = 5
@@ -191,7 +217,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999903, 0.003158819, -0.003080335, 0.002263519, 0.96657366, 0.2563793, 0.0037872263, 0.25636983, -0.9665714, -0.014459843, 10.021743, -20.012957)
+transform = Transform3D(-0.99999607, 0.002269534, -0.0016541813, 0.0017637024, 0.9658806, 0.25898203, 0.00218551, 0.25897813, -0.96588075, 0.00096880493, 10.01252, -20.010105)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -308,5 +334,11 @@ metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 script = ExtResource("19_oqcw2")
 decay_rate = 0.5
 return_speed = 9.0
+
+[node name="Grapple" type="Node3D" parent="." unique_id=1832517313]
+
+[node name="GrappleRopeMesh" type="MeshInstance3D" parent="Grapple" unique_id=1457401487]
+material_override = SubResource("ShaderMaterial_hsoq5")
+mesh = SubResource("QuadMesh_ywmen")
 
 [editable path="TankModel"]
