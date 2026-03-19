@@ -16,6 +16,7 @@ var homing_time_left: float = 0.0
 static func fire_bullet_from_tank(tank: PlayerTank) -> void:
 	var new_bullet := Registry.create_bullet()
 	new_bullet.transform = tank.bullet_spawn_position_marker.global_transform
+	new_bullet.basis = tank.camera_gimbal.phantom_camera.global_basis
 	new_bullet.transform.origin += tank.linear_velocity * 0.01
 	new_bullet.linear_velocity = tank.linear_velocity
 
@@ -37,6 +38,10 @@ func _process(delta: float) -> void:
 		bullet_model.look_at(linear_velocity + global_position)
 
 	homing_time_left -= delta
+
+	# Delete when hit water
+	if (position.y <= 0.0):
+		delete()
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:

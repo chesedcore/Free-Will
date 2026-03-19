@@ -68,8 +68,6 @@ frequency = 0.05
 positional_noise = true
 metadata/_custom_type_script = "uid://cuffvge5ad4aa"
 
-[sub_resource type="BoxMesh" id="BoxMesh_3lr38"]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oqcw2"]
 shader = ExtResource("15_tafis")
 shader_parameter/grain_amount = 0.05
@@ -87,6 +85,10 @@ shader = ExtResource("13_ig2cu")
 shader_parameter/vignette_intensity = 0.5
 shader_parameter/vignette_opacity = 0.5
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ywmen"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Curve" id="Curve_hjnge"]
 _data = [Vector2(0, 1), -0.864608, 0.0, 0, 0, Vector2(1, 0), -0.864608, -1.7656529, 0, 0]
@@ -220,7 +222,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999829, 0.0037897115, -0.004457541, 0.002536016, 0.96733445, 0.25349095, 0.0052725896, 0.2534753, -0.9673275, -0.031566396, 10.030326, -20.0145)
+transform = Transform3D(-1, 0, -8.742278e-08, -2.262668e-08, 0.9659259, 0.25881907, 8.444392e-08, 0.25881907, -0.9659258, 0, 10, -20)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -239,13 +241,11 @@ script = ExtResource("9_oqcw2")
 look_at_mode = 1
 tween_resource = SubResource("Resource_2krvj")
 noise = SubResource("Resource_xupi1")
+_preview_noise = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="BarrelLookAtMarker" type="Marker3D" parent="CameraGimbal" unique_id=259733600]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13)
-
-[node name="Marker3D" type="MeshInstance3D" parent="CameraGimbal/BarrelLookAtMarker" unique_id=499308636]
-mesh = SubResource("BoxMesh_3lr38")
 
 [node name="BarrelPositionMarker" type="Marker3D" parent="." unique_id=1035784397]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
@@ -311,6 +311,22 @@ value = 43.0
 nine_patch_stretch = true
 texture_under = ExtResource("17_7kk30")
 texture_progress = ExtResource("18_ekcgd")
+
+[node name="Reticle" type="Label" parent="GameUI" unique_id=161218908]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "+"
+label_settings = SubResource("LabelSettings_ywmen")
+horizontal_alignment = 1
 
 [node name="BGWind" type="AudioStreamPlayer" parent="." unique_id=1474296681]
 stream = ExtResource("18_tafis")
