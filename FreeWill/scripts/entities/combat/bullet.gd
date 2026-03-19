@@ -16,6 +16,7 @@ var homing_time_left: float = 0.0
 static func fire_bullet_from_tank(tank: PlayerTank) -> void:
 	var new_bullet := Registry.create_bullet()
 	new_bullet.transform = tank.bullet_spawn_position_marker.global_transform
+	new_bullet.basis = tank.camera_gimbal.phantom_camera.global_basis
 	new_bullet.transform.origin += tank.linear_velocity * 0.01
 	new_bullet.linear_velocity = tank.linear_velocity
 

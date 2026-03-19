@@ -86,6 +86,10 @@ shader_parameter/vignette_intensity = 0.5
 shader_parameter/vignette_opacity = 0.5
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_ywmen"]
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="Curve" id="Curve_hjnge"]
 _data = [Vector2(0, 1), -0.864608, 0.0, 0, 0, Vector2(1, 0), -0.864608, -1.7656529, 0, 0]
 point_count = 2
@@ -218,7 +222,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999928, 0.0028322008, -0.0025355741, 0.002086586, 0.966502, 0.25665072, 0.0031775236, 0.25664356, -0.9665009, -0.012853212, 10.018241, -20.011946)
+transform = Transform3D(-0.99999636, -0.0014918596, 0.0022529657, -0.00085054553, 0.9651772, 0.26159582, -0.002564775, 0.26159292, -0.9651749, 0.016481025, 9.985328, -19.995121)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -306,6 +310,22 @@ value = 43.0
 nine_patch_stretch = true
 texture_under = ExtResource("17_7kk30")
 texture_progress = ExtResource("18_ekcgd")
+
+[node name="Reticle" type="Label" parent="GameUI" unique_id=161218908]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "+"
+label_settings = SubResource("LabelSettings_ywmen")
+horizontal_alignment = 1
 
 [node name="BGWind" type="AudioStreamPlayer" parent="." unique_id=1474296681]
 stream = ExtResource("18_tafis")
