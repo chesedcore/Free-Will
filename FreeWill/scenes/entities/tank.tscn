@@ -222,7 +222,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.99999636, -0.0014918596, 0.0022529657, -0.00085054553, 0.9651772, 0.26159582, -0.002564775, 0.26159292, -0.9651749, 0.016481025, 9.985328, -19.995121)
+transform = Transform3D(-1, 0, -8.742278e-08, -2.262668e-08, 0.9659259, 0.25881907, 8.444392e-08, 0.25881907, -0.9659258, 0, 10, -20)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -241,6 +241,7 @@ script = ExtResource("9_oqcw2")
 look_at_mode = 1
 tween_resource = SubResource("Resource_2krvj")
 noise = SubResource("Resource_xupi1")
+_preview_noise = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="BarrelLookAtMarker" type="Marker3D" parent="CameraGimbal" unique_id=259733600]
