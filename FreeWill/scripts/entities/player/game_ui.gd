@@ -1,7 +1,7 @@
 class_name GameUI extends CanvasLayer
 
+@export var health_bar: TextureProgressBar
 @onready var tank: PlayerTank = owner
-@export var temp_health_display_label: Label
 
 
 func _process(_delta: float) -> void:
@@ -9,4 +9,5 @@ func _process(_delta: float) -> void:
 
 
 func health_display_update() -> void:
-	temp_health_display_label.text = "Health: %s" % [tank.health]
+	health_bar.value = tank.health
+	health_bar.max_value = tank.MAX_HEALTH

@@ -79,16 +79,16 @@ func _physics_process(delta: float) -> void:
 func try_damage_tank(body: PlayerTank, amount: float) -> Result:
 	var result := body.try_damage(amount)
 	if result.is_ok(): return result
-	
+
 	#now we know that the attack failed.
 	var reason: ParryReport = result.unwrap_err()
-	
+
 	print_rich("[color=red]PARRIED")
 	UIBus.missile_parried.emit()
-	
+
 	match reason.type:
 		ParryReport.Type.NORMAL: deflect_this_missile()
-	
+
 	return result
 
 func deflect_this_missile() -> void:

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b4b4p0axi0h7o"]
+[gd_scene format=3 uid="uid://nu0cniohybqx"]
 
 [ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="1_7ddre"]
 [ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scenes/master/stage_handler.gd" id="1_rnaij"]

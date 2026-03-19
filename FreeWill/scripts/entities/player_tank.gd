@@ -19,6 +19,11 @@ const DASH_FOV_BOOST := 20.0
 const DASH_CAMERA_PULLBACK := 6.0
 const DASH_EFFECT_DURATION := 5.0
 
+# TODO: Bubba: this may be too few missles. I do think preventing the player from spamming
+# the missiles is a good idea. Probably needs adjusting tho
+const MAX_MISSILES: int = 3
+
+const ACTION_COOLDOWN := 3.25
 const PARRY_COOLDOWN := 1.25
 const PARRY_WINDUP := 0.2
 const PARRY_WINDOW := 0.625
@@ -38,6 +43,7 @@ const UI := UIBus.Feedback
 @export var hull: MeshInstance3D
 @export var cannon_fire_sound: AudioStream
 @export var shake_component: Shaker
+@export var grapple_rope_mesh: MeshInstance3D
 
 #cooldowns
 @onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
@@ -51,6 +57,7 @@ var is_dead := false
 var _stop_gimbal_update := false
 var _parry_tween: Tween
 var grappled_target: Node3D
+var active_missiles: int = 0
 
 
 
@@ -67,13 +74,13 @@ func _wire_up_signals() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("fire"):
 		_fire_cannon()
-	
+
 	if Input.is_action_just_pressed("dash"):
 		_attempt_dash()
-	
+
 	if Input.is_action_just_pressed("action"):
 		_attempt_parry()
-	
+
 	if (event.is_action_pressed("grapple")):
 		grapple()
 
@@ -85,7 +92,7 @@ func _attempt_dash() -> void:
 	if not dash_cooldown.is_ready():
 		UIBus.attempted_dash.emit(Result.Err(UI.DASH_STILL_UNDER_COOLDOWN))
 		return
-	
+
 	_execute_dash()
 	UIBus.attempted_dash.emit(Result.Ok_as_is())
 
@@ -93,9 +100,9 @@ func _attempt_dash() -> void:
 func _execute_dash() -> void:
 	var dash_direction := camera_gimbal.global_basis.z
 	linear_velocity += dash_direction * DASH_FORCE
-	
+
 	camera_gimbal.trigger_dash_effect(DASH_EFFECT_DURATION, DASH_FOV_BOOST, DASH_CAMERA_PULLBACK)
-	
+
 	dash_cooldown.start_cooldown()
 	dash_effect_timer.start_cooldown()
 
@@ -104,7 +111,7 @@ func _attempt_parry() -> void:
 	if not parry_cooldown.is_ready():
 		UIBus.attempted_action.emit(Result.Err(UI.ACTION_STILL_UNDER_COOLDOWN))
 		return
-	
+
 	_execute_parry()
 	UIBus.attempted_action.emit(Result.Ok_as_is())
 
@@ -112,16 +119,16 @@ func _attempt_parry() -> void:
 func _execute_parry() -> void:
 	if _parry_tween:
 		_parry_tween.kill()
-	
+
 	_parry_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	_parry_tween.set_parallel(true)
-	
+
 	#windup happens here
 	_parry_tween.tween_callback(func() -> void:
 		_stop_gimbal_update = true
 	)
 	_parry_tween.tween_property(tank_model, "rotation_degrees:x", -30, PARRY_WINDUP)
-	
+
 	#windup ends, active parry window here
 	_parry_tween.chain()
 	_parry_tween.tween_callback(func() -> void:
@@ -129,7 +136,7 @@ func _execute_parry() -> void:
 	)
 	_parry_tween.tween_property(tank_model, "rotation_degrees:x", 120, PARRY_WINDOW)
 	_parry_tween.finished.connect(_on_parry_finished)
-	
+
 	parry_cooldown.start_cooldown()
 
 
@@ -151,15 +158,24 @@ func _extend_parry_window() -> void:
 
 
 func _fire_cannon() -> void:
+	if (active_missiles >= MAX_MISSILES):
+		return
+
 	CannonParticles.attach_to(bullet_spawn_position_marker)
 	linear_velocity += -camera_gimbal.global_transform.basis.z * GUN_FIRE_FORCE
 	Bullet.fire_bullet_from_tank(self)
+	active_missiles += 1
+
+
+func bullet_deleted() -> void:
+	print("DELTED")
+	active_missiles -= 1
 
 
 func try_damage(amount: float) -> Result:
 	if parry_window_timer.is_active():
 		return Result.Err(ParryReport.as_normal())
-	
+
 	damage(amount)
 	return Result.Ok_as_is()
 
@@ -177,13 +193,14 @@ func _kill() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	grapple_update()
 	_poll_tank_death()
-	
+
 	if not _stop_gimbal_update and not parry_window_timer.is_active():
 		_update_model_transform(delta)
-	
+
 	camera_gimbal.global_position = global_position
-	
+
 	#spin turret during parry!!
 	if parry_window_timer.is_active():
 		turret.rotate_y(70 * delta)
@@ -222,7 +239,12 @@ func ungrapple() -> void:
 		return
 
 func grapple_update() -> void:
+	grapple_rope_mesh.visible = (grappled_target != null)
 	if (grappled_target):
+		(grapple_rope_mesh.material_override as ShaderMaterial).set_shader_parameter(
+			"end_position",
+			grappled_target.global_position)
+
 		linear_velocity += \
 			global_position.direction_to(grappled_target.global_position) * GRAPPLE_STRENGTH
 		if (global_position.distance_squared_to(grappled_target.global_position) < 500.0):
