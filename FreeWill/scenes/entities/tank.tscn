@@ -106,7 +106,7 @@ shader_parameter/max_alpha = 0.1370000065075
 shader_parameter/color_tint = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_ig2cu")
 
-[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull")]
+[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component")]
 collision_layer = 2
 collision_mask = 5
 mass = 200.0
@@ -121,10 +121,11 @@ barrel_position_marker = NodePath("BarrelPositionMarker")
 bullet_spawn_position_marker = NodePath("TankModel/BulletSpawnPositionMarker")
 turret = NodePath("TankModel/Barrel")
 hull = NodePath("TankModel/Base")
+shake_component = NodePath("ShakeComponent")
 
 [node name="TankModel" parent="." unique_id=710921557 instance=ExtResource("2_fn73n")]
 
-[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(710921557, 1952999716) index="0" unique_id=1789710507]
+[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(710921557, 667717174) index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
 script = ExtResource("10_hsoq5")
 min_vertex_distance = 0.1
@@ -190,7 +191,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.99999523, -0.0017933409, 0.0025155086, -0.0010729586, 0.9651868, 0.2615596, -0.002897001, 0.26155567, -0.96518403, 0.016267214, 9.983429, -19.993845)
+transform = Transform3D(-0.9999964, 0.0015529855, -0.0021733744, 0.00094278116, 0.9664637, 0.25680175, 0.0024992968, 0.25679874, -0.9664617, -0.011959254, 10.014338, -20.005398)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -305,5 +306,7 @@ metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 
 [node name="ShakeComponent" type="Node3D" parent="." unique_id=564894313]
 script = ExtResource("19_oqcw2")
+decay_rate = 0.5
+return_speed = 9.0
 
 [editable path="TankModel"]

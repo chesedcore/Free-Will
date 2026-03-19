@@ -109,12 +109,12 @@ func contains(enum_variant: EnumVar) -> Result:
 			.err_msg("The variant is from a different enum")
 	
 	elif !_variants.has(enum_variant.variant):
-		return Result.error(Error.NotContained)\
+		return Result.error(ErrorType.NotContained)\
 			.err_info('variant', enum_variant.variant)\
 			.err_msg("This enum does not have the specified variant")
 	
 	elif !enum_variant.values.has_all( _variants[enum_variant.variant].keys() ):
-		return Result.error(Error.MissingParameters)\
+		return Result.error(ErrorType.MissingParameters)\
 			.err_info('expected', _variants[enum_variant.variant].keys())\
 			.err_info('found', enum_variant.values.keys())\
 			.err_msg("The enum dict is missing some paramters")
@@ -136,4 +136,3 @@ func _get(property: StringName) -> Variant:
 func _get_property_list():
 	return _variants.keys()\
 		.map(func(key: StringName):	return { 'name': key, 'type': TYPE_DICTIONARY })
-

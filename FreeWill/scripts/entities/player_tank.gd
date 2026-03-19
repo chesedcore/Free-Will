@@ -37,6 +37,7 @@ const UI := UIBus.Feedback
 @export var turret: MeshInstance3D
 @export var hull: MeshInstance3D
 @export var cannon_fire_sound: AudioStream
+@export var shake_component: Shaker
 
 #cooldowns
 @onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
@@ -57,6 +58,7 @@ func _ready() -> void:
 	_wire_up_signals()
 	assert(tank_model, "Tank model shouldn't be null.")
 	GameState.player = self
+	shake_component.set_target(tank_model)
 
 func _wire_up_signals() -> void:
 	UIBus.missile_parried.connect(_extend_parry_window)
@@ -231,3 +233,6 @@ func stop_model_update() -> void:
 
 func start_model_update() -> void:
 	_stop_gimbal_update = false
+
+func shake(for_time: float = 1.5) -> void:
+	shake_component.shake(for_time)

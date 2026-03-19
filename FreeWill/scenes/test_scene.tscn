@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="7_wtsjf"]
 [ext_resource type="PackedScene" uid="uid://u7wkfykuxl3h" path="res://scenes/entities/enemies/enemy_battle_ship.tscn" id="8_s36qc"]
 [ext_resource type="PackedScene" uid="uid://b5oi77k2llexl" path="res://scenes/enviorment/pillar_enviorment_prop.tscn" id="11_gthg3"]
-[ext_resource type="ArrayMesh" uid="uid://yxvh6yabfccp" path="res://assets/models/pillar_broken.res" id="12_ntc4i"]
+[ext_resource type="ArrayMesh" uid="uid://cwk8o07kwhwne" path="res://assets/models/pillar_broken.res" id="12_ntc4i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjeyg"]
 render_priority = 0
