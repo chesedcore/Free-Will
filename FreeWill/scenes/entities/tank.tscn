@@ -16,7 +16,9 @@
 [ext_resource type="Shader" uid="uid://cgvoo24srn2kn" path="res://shaderslop/vignette.gdshader" id="13_ig2cu"]
 [ext_resource type="Shader" uid="uid://ywoqnuhd07r3" path="res://shaderslop/edgeblur.gdshader" id="13_uedwi"]
 [ext_resource type="Shader" uid="uid://cj0vp4oks780m" path="res://shaderslop/filmgrain.gdshader" id="15_tafis"]
+[ext_resource type="Texture2D" path="res://assets/ui/health_bar_back.png" id="17_7kk30"]
 [ext_resource type="Script" uid="uid://8ckcjgc3u1r0" path="res://scripts/entities/player/game_ui.gd" id="17_uedwi"]
+[ext_resource type="Texture2D" path="res://assets/ui/health_bar_front.png" id="18_ekcgd"]
 [ext_resource type="AudioStream" uid="uid://lv5m5ak5a31d" path="res://audio/sfx/bgs/wind.ogg" id="18_tafis"]
 [ext_resource type="Script" uid="uid://cicma3kluvpxo" path="res://scripts/util_scripts/shake.gd" id="19_oqcw2"]
 [ext_resource type="Shader" uid="uid://drd3l3yes5apm" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
@@ -218,7 +220,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999861, -0.003999542, 0.0034264792, -0.0029669153, 0.9653517, 0.2609356, -0.0043513803, 0.2609218, -0.96535015, 0.012567309, 9.975116, -19.982988)
+transform = Transform3D(-0.99999565, -0.0026323583, 0.0013122957, -0.0022013201, 0.9656975, 0.25966042, -0.0019508, 0.25965643, -0.9656991, 0.0049924986, 9.988835, -19.987385)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -290,21 +292,25 @@ grow_vertical = 2
 
 [node name="GameUI" type="CanvasLayer" parent="." unique_id=839091213 node_paths=PackedStringArray("temp_health_display_label")]
 script = ExtResource("17_uedwi")
-temp_health_display_label = NodePath("TempHealthDisplayLabel")
+temp_health_display_label = NodePath("")
 
-[node name="TempHealthDisplayLabel" type="Label" parent="GameUI" unique_id=1085288647]
+[node name="HealthBar" type="TextureProgressBar" parent="GameUI" unique_id=1270017156]
+modulate = Color(0.85, 0.98249996, 1, 0.3647059)
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -88.0
-offset_right = 20.0
-offset_bottom = -65.0
+offset_left = -192.0
+offset_top = -96.0
+offset_right = 192.0
+offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 0
-text = "Health: 100%"
+value = 43.0
+nine_patch_stretch = true
+texture_under = ExtResource("17_7kk30")
+texture_progress = ExtResource("18_ekcgd")
 
 [node name="BGWind" type="AudioStreamPlayer" parent="." unique_id=1474296681]
 stream = ExtResource("18_tafis")
