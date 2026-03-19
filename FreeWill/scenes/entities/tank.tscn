@@ -16,9 +16,9 @@
 [ext_resource type="Shader" uid="uid://cgvoo24srn2kn" path="res://shaderslop/vignette.gdshader" id="13_ig2cu"]
 [ext_resource type="Shader" uid="uid://ywoqnuhd07r3" path="res://shaderslop/edgeblur.gdshader" id="13_uedwi"]
 [ext_resource type="Shader" uid="uid://cj0vp4oks780m" path="res://shaderslop/filmgrain.gdshader" id="15_tafis"]
-[ext_resource type="Texture2D" path="res://assets/ui/health_bar_back.png" id="17_7kk30"]
+[ext_resource type="Texture2D" uid="uid://k60ak1h147t0" path="res://assets/ui/health_bar_back.png" id="17_7kk30"]
 [ext_resource type="Script" uid="uid://8ckcjgc3u1r0" path="res://scripts/entities/player/game_ui.gd" id="17_uedwi"]
-[ext_resource type="Texture2D" path="res://assets/ui/health_bar_front.png" id="18_ekcgd"]
+[ext_resource type="Texture2D" uid="uid://b1aaow6gsi7yb" path="res://assets/ui/health_bar_front.png" id="18_ekcgd"]
 [ext_resource type="AudioStream" uid="uid://lv5m5ak5a31d" path="res://audio/sfx/bgs/wind.ogg" id="18_tafis"]
 [ext_resource type="Script" uid="uid://cicma3kluvpxo" path="res://scripts/util_scripts/shake.gd" id="19_oqcw2"]
 [ext_resource type="Shader" uid="uid://drd3l3yes5apm" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
@@ -220,7 +220,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999998, -0.00019849358, 0.0005309319, -5.4162898e-05, 0.96585613, 0.25907907, -0.0005642294, 0.259079, -0.96585596, 0.0015426372, 9.996767, -19.99969)
+transform = Transform3D(-0.9999829, 0.0037897115, -0.004457541, 0.002536016, 0.96733445, 0.25349095, 0.0052725896, 0.2534753, -0.9673275, -0.031566396, 10.030326, -20.0145)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
