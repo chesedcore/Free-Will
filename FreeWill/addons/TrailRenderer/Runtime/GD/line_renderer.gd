@@ -18,12 +18,6 @@ enum TextureMode { Stretch, Tile, PerSegment }
 		if _mesh_instance != null:
 			_mesh_instance.material_override = material
 @export var cast_shadows: GeometryInstance3D.ShadowCastingSetting = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-@export var color_gradient: Gradient:
-	get:
-		return color_gradient
-	set (value):
-		if value != null:
-			color_gradient = value
 @export var texture_mode: TextureMode
 
 var points: Array = []
@@ -34,11 +28,6 @@ var _camera: Camera3D
 
 
 func _enter_tree() -> void:
-	if color_gradient == null:
-		color_gradient = Gradient.new()
-		color_gradient.add_point(0.0, Color(1.0, 1.0, 1.0))
-		color_gradient.add_point(1.0, Color(1.0, 1.0, 1.0))
-
 	if curve == null:
 		curve = Curve.new()
 		curve.add_point(Vector2(0.0, 0.5), 0.0, 0.0, Curve.TANGENT_FREE, Curve.TANGENT_LINEAR)
@@ -52,20 +41,27 @@ func _enter_tree() -> void:
 	_mesh_instance.material_override = material
 	_mesh_instance.top_level = true
 
+func _clear_surfaces() -> void:
+	_mesh.clear_surfaces()
 
-func _process(_delta: float) -> void:
+func _add_vertex(vec :Vector3) -> void:
+	
+	_mesh.surface_add_vertex(vec)
+	
+
+func _physics_process(_delta: float) -> void:
 	_camera = get_viewport().get_camera_3d()
 	_mesh_instance.cast_shadow = cast_shadows
 	_mesh_instance.global_transform = (
 		Transform3D.IDENTITY if world_space else global_transform
 	)
 
-	_mesh.clear_surfaces()
+	_clear_surfaces()
 	if points.size() < 2:
 		return
 
 	_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP)
-
+	var start := Time.get_ticks_usec()
 	for i: int in range(points.size()):
 		var current_point: Point = points[i]
 
@@ -89,7 +85,6 @@ func _process(_delta: float) -> void:
 		var normal: Vector3 = tangent.cross(bitangent).normalized()
 
 		var t: float = i / (points.size() - 1.0)
-		var color: Color = color_gradient.sample(t)
 		bitangent *= curve.sample(t)
 
 		match texture_mode:
@@ -107,14 +102,14 @@ func _process(_delta: float) -> void:
 
 		_mesh.surface_set_uv(Vector2(0, 1 - current_point.texture_offset))
 		_mesh.surface_set_normal(normal)
-		_mesh.surface_set_color(color)
-		_mesh.surface_add_vertex(current_point.position - bitangent)
+		_add_vertex(current_point.position - bitangent)
 
 		_mesh.surface_set_uv(Vector2(1, 1 - current_point.texture_offset))
 		_mesh.surface_set_normal(normal)
-		_mesh.surface_set_color(color)
-		_mesh.surface_add_vertex(current_point.position + bitangent)
-
+		_add_vertex(current_point.position + bitangent)
+	var end := Time.get_ticks_usec()
+	print((end-start)/1000.0, " ms |", get_parent().get_parent().name)
+	
 	_mesh.surface_end()
 
 
@@ -124,7 +119,6 @@ func copy_values(lr: LineRenderer) -> void:
 	world_space = lr.world_space
 	material = lr.material
 	cast_shadows = lr.cast_shadows
-	color_gradient = lr.color_gradient
 	texture_mode = lr.texture_mode
 
 

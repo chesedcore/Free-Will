@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c7xy4j8d6608x" path="res://scripts/entities/player_tank.gd" id="1_xcn37"]
 [ext_resource type="PackedScene" uid="uid://ciqvl3ekbok17" path="res://models/player_tank.blend" id="2_fn73n"]
+[ext_resource type="AudioStream" uid="uid://l52ex3drqvuq" path="res://audio/sfx/rocket_launch.ogg" id="2_rlhxg"]
 [ext_resource type="Script" uid="uid://ygulxcf75ylm" path="res://scripts/effects/wind_lines.gd" id="5_hjnge"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_uedwi"]
 [ext_resource type="Script" uid="uid://wel3y4ne2cus" path="res://scripts/effects/tank_wind_trail.gd" id="7_ywmen"]
@@ -20,6 +21,7 @@
 [ext_resource type="Script" uid="uid://8ckcjgc3u1r0" path="res://scripts/entities/player/game_ui.gd" id="17_uedwi"]
 [ext_resource type="Texture2D" uid="uid://bikdyals6oo81" path="res://assets/ui/health_bar_front.png" id="18_ekcgd"]
 [ext_resource type="AudioStream" uid="uid://lv5m5ak5a31d" path="res://audio/sfx/bgs/wind.ogg" id="18_tafis"]
+[ext_resource type="Script" uid="uid://cicma3kluvpxo" path="res://scripts/util_scripts/shake.gd" id="19_oqcw2"]
 [ext_resource type="Shader" uid="uid://dewwkri53s35" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
 
 [sub_resource type="Curve" id="Curve_vvw44"]
@@ -69,15 +71,10 @@ metadata/_custom_type_script = "uid://cuffvge5ad4aa"
 
 [sub_resource type="BoxMesh" id="BoxMesh_3lr38"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_hjkd7"]
-radius = 0.20800781
-height = 2.703125
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_e1uyo"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_f8vrt"]
-radius = 0.37548828
-height = 1.3037109
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oqcw2"]
+shader = ExtResource("15_tafis")
+shader_parameter/grain_amount = 0.05
+shader_parameter/grain_size = 0.10000000149012
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tafis"]
 shader = ExtResource("13_uedwi")
@@ -85,11 +82,6 @@ shader_parameter/blur_radius = 0.2
 shader_parameter/blur_amount = 1.0
 shader_parameter/blur_inner = 0.6
 shader_parameter/blur_outer = 0.66
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oqcw2"]
-shader = ExtResource("15_tafis")
-shader_parameter/grain_amount = 0.05
-shader_parameter/grain_size = 0.10000000149012
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uedwi"]
 shader = ExtResource("13_ig2cu")
@@ -143,7 +135,7 @@ shader_parameter/end_position = Vector3(0, -2.715, 0)
 
 [sub_resource type="QuadMesh" id="QuadMesh_ywmen"]
 
-[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "grapple_rope_mesh", "turret", "hull")]
+[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "grapple_rope_mesh", "turret", "hull", "shake_component")]
 collision_layer = 2
 collision_mask = 5
 mass = 200.0
@@ -159,10 +151,12 @@ bullet_spawn_position_marker = NodePath("TankModel/BulletSpawnPositionMarker")
 grapple_rope_mesh = NodePath("Grapple/GrappleRopeMesh")
 turret = NodePath("TankModel/Barrel")
 hull = NodePath("TankModel/Base")
+cannon_fire_sound = ExtResource("2_rlhxg")
+shake_component = NodePath("ShakeComponent")
 
 [node name="TankModel" parent="." unique_id=710921557 instance=ExtResource("2_fn73n")]
 
-[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(710921557, 12866291) index="0" unique_id=1789710507]
+[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(710921557, 667717174) index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
 script = ExtResource("10_hsoq5")
 min_vertex_distance = 0.1
@@ -228,7 +222,7 @@ shape = SubResource("SphereShape3D_3lr38")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-0.9999698, -0.0056250193, 0.0053690034, -0.004010651, 0.96461475, 0.26363316, -0.006661961, 0.26360363, -0.964608, 0.028596932, 9.961983, -19.976978)
+transform = Transform3D(-0.99999166, -0.003246149, 0.00247551, -0.0024875274, 0.96533495, 0.26100257, -0.0032369492, 0.26099426, -0.96533495, 0.012960594, 9.981494, -19.985737)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -255,27 +249,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13)
 [node name="Marker3D" type="MeshInstance3D" parent="CameraGimbal/BarrelLookAtMarker" unique_id=499308636]
 mesh = SubResource("BoxMesh_3lr38")
 
-[node name="Barrel" type="Node3D" parent="." unique_id=95074020]
-transform = Transform3D(1, 0, 0, 0, -0.84568185, -0.53368735, 0, 0.53368735, -0.84568185, 0, 0.54932356, 0)
-top_level = true
-
-[node name="Mesh" type="MeshInstance3D" parent="Barrel" unique_id=1121618740]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -1.2470703)
-mesh = SubResource("CapsuleMesh_hjkd7")
-
-[node name="BodyModel" type="Node3D" parent="Barrel" unique_id=1795060039]
-transform = Transform3D(1, 0, 0, 0, -0.84568185, 0.53368735, 0, -0.53368735, -0.84568185, 0, 0.46455297, 0.29316702)
-
-[node name="Body" type="MeshInstance3D" parent="Barrel/BodyModel" unique_id=1191182585]
-transform = Transform3D(0.972211, 0, 0, 0, -4.371139e-08, -0.7426199, 0, 1, -3.2460946e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_e1uyo")
-
-[node name="TurretModel" type="Node3D" parent="Barrel/BodyModel" unique_id=173374742]
-
-[node name="Gun" type="MeshInstance3D" parent="Barrel/BodyModel/TurretModel" unique_id=813788881]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.54932356, 0)
-mesh = SubResource("CapsuleMesh_f8vrt")
-
 [node name="BarrelPositionMarker" type="Marker3D" parent="." unique_id=1035784397]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
@@ -295,16 +268,16 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("9_4sl2t")
 
-[node name="EdgeBlur" type="ColorRect" parent="VFX/ScreenVFX" unique_id=1949541961]
-material = SubResource("ShaderMaterial_tafis")
+[node name="FilmGrain" type="ColorRect" parent="VFX/ScreenVFX" unique_id=1374272164]
+material = SubResource("ShaderMaterial_oqcw2")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FilmGrain" type="ColorRect" parent="VFX/ScreenVFX" unique_id=1374272164]
-material = SubResource("ShaderMaterial_oqcw2")
+[node name="EdgeBlur" type="ColorRect" parent="VFX/ScreenVFX" unique_id=1949541961]
+material = SubResource("ShaderMaterial_tafis")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -374,7 +347,7 @@ wind_trail_num = 8
 transform = Transform3D(0.9999999, -7.9040774e-11, -1.1641532e-10, 1.0913936e-11, 0.9999999, 0, 0, 0, 0.9999999, -0.014826552, -0.0063586766, -15.587426)
 visible = false
 script = ExtResource("10_hsoq5")
-lifetime = 0.5
+lifetime = 0.3
 curve = SubResource("Curve_hjnge")
 alignment = 0
 material = SubResource("ShaderMaterial_hjnge")
@@ -386,5 +359,10 @@ metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 [node name="GrappleRopeMesh" type="MeshInstance3D" parent="Grapple" unique_id=417183369]
 material_override = SubResource("ShaderMaterial_hsoq5")
 mesh = SubResource("QuadMesh_ywmen")
+
+[node name="ShakeComponent" type="Node3D" parent="." unique_id=564894313]
+script = ExtResource("19_oqcw2")
+decay_rate = 0.5
+return_speed = 9.0
 
 [editable path="TankModel"]

@@ -9,16 +9,17 @@ var remaining_fire_time: Array[float] =[]
 var los : Area3D
 const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.tscn")
 var threat_indicators :Array[ThreatIndicator]
-const ENEMY_SHIP_BULLET = preload("res://scenes/entities/combat/enemy_ship_bullet.tscn")
-
+signal shoot
 #const TANK_CANNON_PARTICLES = preload("res://scenes/entities/tank_cannon_particles.tscn")
 @export var impact_sound: AudioStream = preload("res://audio/sfx/explosion.ogg")
 
 func enter() -> void:
 	los.body_exited.connect(on_los_body_exited)
 	for aim in cannon_aims:
+		aim.enabled = true
 		remaining_fire_time.append(fire_time)
 		threat_indicators.append(null)
+@warning_ignore("shadowed_variable")
 static  func  ship_attackstate_from(owner : BaseEnemy,bases: Array[Node3D],barrels : Array[Node3D],aims : Array[RayCast3D],los: Area3D)->State:
 	var state: ShipAttackState = new()
 	state.enemy = owner
@@ -41,7 +42,7 @@ func update(_delta : float) -> void:
 			remaining_fire_time[i] -= _delta
 			if remaining_fire_time[i] <= 0:
 				
-				shoot(cannon_aims[i].global_transform)
+				shoot.emit(i)
 				if threat_indicators[i]:
 					threat_indicators[i].target_node = null
 					threat_indicators[i] = null
@@ -72,18 +73,21 @@ func on_los_body_exited(body : Node3D)->void:
 		Transitioned.emit(self,EnemyBattleship.STATES.IDLE)
 
 func exit() -> void:
+	for aim in cannon_aims:
+		aim.enabled = false
+	los.body_exited.disconnect(on_los_body_exited)
 	for i in threat_indicators.size():
 		if threat_indicators[i]:
 			threat_indicators[i].target_node = null
 			threat_indicators[i] = null
 
-func shoot(pos:Transform3D)->void:
-	var new_bullet: Enemy_bullet = ENEMY_SHIP_BULLET.instantiate()
-	new_bullet.transform = pos
-
-	new_bullet.target = player
-
-	# Monarch: Usually I'd make a dedicated `Bullets` Node3D that 'holds' this node as an array,
-	# then trigger a signal that makes the World handler add the bullet to the Bullets node.
-	# But for now (in the spirit of this jam), this will do just fine.
-	UIBus.get_tree().root.add_child.call_deferred(new_bullet)
+#func shoot(pos:Transform3D)->void:
+	#var new_bullet: Enemy_bullet = ENEMY_SHIP_BULLET.instantiate()
+	#new_bullet.transform = pos
+#
+	#new_bullet.target = player
+#
+	## Monarch: Usually I'd make a dedicated `Bullets` Node3D that 'holds' this node as an array,
+	## then trigger a signal that makes the World handler add the bullet to the Bullets node.
+	## But for now (in the spirit of this jam), this will do just fine.
+	#UIBus.get_tree().root.add_child.call_deferred(new_bullet)

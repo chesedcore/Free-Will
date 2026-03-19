@@ -4,6 +4,9 @@ class_name CombatUI extends Node
 @onready var iff_tracker := IFFTracker.from_control(iff_layer)
 var tank: PlayerTank
 
+func set_tank(p_tank: PlayerTank) -> void:
+	assert(p_tank, "That's fucking empty!")
+	tank = p_tank
 
 func track_these_entities(entities: Array[Node]) -> void:
 	assert(tank, "No tank slotted in!")

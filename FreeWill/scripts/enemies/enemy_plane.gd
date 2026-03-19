@@ -2,6 +2,10 @@ class_name EnemyPlane extends BaseEnemy
 
 const HOMINGMISSLE = preload("res://scenes/projectiles/enemy_projectie/homingmissle.tscn")
 
+@export var obstacle_detectors : Array[RayCast3D]
+@export var trail_renderer: TrailRenderer
+
+
 enum STATES {INTERCEPT,EVADE,ATTACK}
 
 @export var lock_on_timer: Timer
@@ -23,7 +27,7 @@ func create_state(state :STATES)->State:
 
 	match  state:
 		STATES.INTERCEPT:
-			new_state = InterceptState.intercept_state_from(self,line_of_sight)
+			new_state = InterceptState.intercept_state_from(self,model,line_of_sight,obstacle_detectors)
 			new_state.Transitioned.connect(on_state_transition)
 
 		STATES.ATTACK:
@@ -32,14 +36,14 @@ func create_state(state :STATES)->State:
 			new_state.Transitioned.connect(on_state_transition)
 
 		STATES.EVADE:
-			new_state = EvadeState.evade_state_from(self)
+			new_state = EvadeState.evade_state_from(self,model,obstacle_detectors)
 			new_state.Transitioned.connect(on_state_transition)
 
 	return new_state
 
 
 func on_fire_missile(target : Node3D)->void:
-	var new_missile :HomingMissle = HOMINGMISSLE.instantiate()
+	var new_missile :HomingMissile = HOMINGMISSLE.instantiate()
 
 	new_missile.target_node = target
 	get_tree().root.add_child(new_missile)
@@ -71,10 +75,10 @@ func on_state_transition(from_state: State, to_state: STATES)->void:
 	new_state.enter()
 	current_state = new_state
 
-func kill() -> void:
-	var trail := $TrailRenderer
-	if is_instance_valid(trail):
-		trail.is_emitting = false
-		remove_child(trail)
-		get_tree().root.add_child(trail)
-	super()
+#func kill() -> void:
+	#var trail := trail_renderer
+	#if is_instance_valid(trail):
+		#trail.is_emitting = false
+		#remove_child(trail)
+		#get_tree().root.add_child(trail)
+	#super()

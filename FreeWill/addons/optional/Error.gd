@@ -1,4 +1,4 @@
-class_name Error extends RefCounted
+class_name ErrorType extends RefCounted
 ## A class for user-defined error types
 ## 
 ## The aim is to allow for errors to carry with them details about the exception, leading to better error handling[br]
@@ -59,14 +59,14 @@ func _init(t: int, _details: Dictionary = {}):
 	details = _details
 
 ## Set the message to show when converting to string or printing
-func msg(message_: String) -> Error:
+func msg(message_: String) -> ErrorType:
 	message = message_
 	return self
 
 ## Shorthand for[br]
 ## [code]Error.new(some_type, { 'cause' : [/code][param cause][code] })[/code][br]
 ## Returns self
-func cause(cause: Variant) -> Error:
+func cause(cause: Variant) -> ErrorType:
 	details.cause = cause
 	return self
 
@@ -75,14 +75,14 @@ func cause(cause: Variant) -> Error:
 ## [codeblock]
 ## Error.new(t) .cause(error)
 ## [/codeblock]
-func as_cause(t: int) -> Error:
-	return Error.new(t).cause(self)
+func as_cause(t: int) -> ErrorType:
+	return ErrorType.new(t).cause(self)
 
 ## Puts [code]self[/code] as the cause of [code]Error([/code][param t][code])[/code] by modifying [code]self[/code][br]
 ## The difference between this and [method as_cause] is [method as_cause_mut] modifies [code]self[/code] instead of 
 ## creating a new one and potentially having 2 [Error]s floating around in your code
-func as_cause_mut(t: int) -> Error:
-	var inner: Error = Error.new(type, details)
+func as_cause_mut(t: int) -> ErrorType:
+	var inner := ErrorType.new(type, details)
 	inner.message = message
 	
 	type = t
@@ -93,7 +93,7 @@ func as_cause_mut(t: int) -> Error:
 ## Adds additional info to this error. Shorthand for[br]
 ## [code]Error.new(some_type, { [/code][param key][code] : [/code][param value][code] })[/code][br]
 ## Returns self
-func info(key: String, value: Variant) -> Error:
+func info(key: String, value: Variant) -> ErrorType:
 	details[key] = value
 	return self
 
@@ -117,4 +117,3 @@ func _to_string() -> String:
 	# Custom error
 	var s = get_script().get_script_constant_map() .find_key(type)
 	return msgstr + (s if s != null else '(Invalid error type: %s)' % type) + infostr
-

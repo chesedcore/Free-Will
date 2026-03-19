@@ -7,3 +7,4 @@ enum Feedback {
 
 signal attempted_dash(res: Result)
 signal attempted_action(res: Result)
+signal missile_parried

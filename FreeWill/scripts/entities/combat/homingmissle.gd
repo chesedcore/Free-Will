@@ -1,4 +1,4 @@
-class_name HomingMissle extends CharacterBody3D
+class_name HomingMissile extends CharacterBody3D
 
 const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.tscn")
 
@@ -76,14 +76,32 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func try_damage_tank(body: PlayerTank, amount: float) -> Result:
+	var result := body.try_damage(amount)
+	if result.is_ok(): return result
+	
+	#now we know that the attack failed.
+	var reason: ParryReport = result.unwrap_err()
+	
+	print_rich("[color=red]PARRIED")
+	UIBus.missile_parried.emit()
+	
+	match reason.type:
+		ParryReport.Type.NORMAL: deflect_this_missile()
+	
+	return result
 
+func deflect_this_missile() -> void:
+	locked_on = false
+	basis = basis.rotated(self.basis.y, 3.141592653589793)
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body is PlayerTank:
 		var particles: Node3D = \
 			preload("res://scenes/entities/tank_cannon_particles.tscn").instantiate()
 		body.add_child(particles)
-		body.damage(damage_value)
+		var res := try_damage_tank(body, damage_value)
+		if res.is_err(): return
 
 		AudioManager.play_sound_at(global_position, impact_sound, 15.0)
 		var trail := $TrailRenderer
