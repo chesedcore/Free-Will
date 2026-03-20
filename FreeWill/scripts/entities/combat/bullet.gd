@@ -73,10 +73,11 @@ func apply_bullet_force() -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body is not BaseEnemy: return
 	body.damage(damage)
+	print("DAMAGED")
 	delete()
 
 
 func delete() -> void:
-	print("DAMAGED")
+	
 	deleted.emit()
 	queue_free()

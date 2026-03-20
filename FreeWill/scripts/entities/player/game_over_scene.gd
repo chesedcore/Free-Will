@@ -42,4 +42,5 @@ func retry() -> void:
 func return_to_menu() -> void:
 	# Bubba:
 	# When we can this should be replaced with a main menu
-	get_tree().change_scene_to_packed(MISSION_SELECT)
+	IFFTracker.clear_tracked_entities()
+	get_tree().change_scene_to_packed.call_deferred(MISSION_SELECT)

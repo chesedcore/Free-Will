@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://yfaua8q24qyy"]
+
+[ext_resource type="Script" uid="uid://dmxvdy4eibha1" path="res://scripts/entities/combat/shield.gd" id="1_pj6p0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_40gup"]
+radius = 0.5209356
+
+[sub_resource type="SphereMesh" id="SphereMesh_pj6p0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40gup"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 1, 1, 0.23921569)
+
+[node name="Shield" type="Area3D" unique_id=1476353986]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_pj6p0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=801961427]
+shape = SubResource("SphereShape3D_40gup")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1947294510]
+mesh = SubResource("SphereMesh_pj6p0")
+surface_material_override/0 = SubResource("StandardMaterial3D_40gup")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

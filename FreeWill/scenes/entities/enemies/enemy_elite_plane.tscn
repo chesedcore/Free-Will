@@ -1,44 +1,54 @@
-[gd_scene format=3 uid="uid://7yq66c566yvi"]
+[gd_scene format=3 uid="uid://dqvop2jyx621l"]
 
-[ext_resource type="Script" uid="uid://jp6qfe0e22kw" path="res://scripts/enemies/enemy_plane.gd" id="1_17xuh"]
-[ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="4_iyje6"]
-[ext_resource type="PackedScene" uid="uid://b2k0tvxc2ybxm" path="res://assets/models/missile.blend" id="4_rakmp"]
-[ext_resource type="PackedScene" uid="uid://dnghcfqawmidu" path="res://assets/models/prototype_plane.blend" id="4_rhn42"]
+[ext_resource type="Script" uid="uid://jp6qfe0e22kw" path="res://scripts/enemies/enemy_plane.gd" id="1_4dp5g"]
+[ext_resource type="PackedScene" uid="uid://dnghcfqawmidu" path="res://assets/models/prototype_plane.blend" id="2_rdc4f"]
+[ext_resource type="PackedScene" uid="uid://b2k0tvxc2ybxm" path="res://assets/models/missile.blend" id="3_wpakw"]
+[ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="4_qdwt0"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_12l03"]
-radius = 3.5682678
-height = 7.1365356
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4dp5g"]
+radius = 6.1899414
+height = 15.747559
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0s5y7"]
-size = Vector3(710.5298, 265.8328, 966.73)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_61i36"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.5219322, 0.14176264, 0, 1)
+emission_energy_multiplier = 0.21
 
-[node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("obstacle_detectors", "lock_on_timer", "missle_spawner", "line_of_sight", "model")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_rdc4f"]
+size = Vector3(710.5298, 265.8328, 751.81256)
+
+[node name="Enemy_elite_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("obstacle_detectors", "lock_on_timer", "missle_spawner", "line_of_sight", "model")]
 collision_layer = 4
 collision_mask = 5
-script = ExtResource("1_17xuh")
+script = ExtResource("1_4dp5g")
 obstacle_detectors = [NodePath("obstacle_detector/front"), NodePath("obstacle_detector/downleft"), NodePath("obstacle_detector/upleft"), NodePath("obstacle_detector/downright"), NodePath("obstacle_detector/upright")]
 lock_on_timer = NodePath("lock_on_timer")
 missle_spawner = NodePath("prototype_plane/missle_spawner")
 line_of_sight = NodePath("line_of_sight")
+shield_scale = 20.0
 model = NodePath("prototype_plane")
-health = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2012983732]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -3.081464e-10, 0.0070495605)
-shape = SubResource("CapsuleShape3D_12l03")
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -1.7320211e-08, 0.39624023)
+shape = SubResource("CapsuleShape3D_4dp5g")
 
-[node name="prototype_plane" parent="." unique_id=392001002 instance=ExtResource("4_rhn42")]
+[node name="prototype_plane" parent="." unique_id=392001002 instance=ExtResource("2_rdc4f")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="Cube" parent="prototype_plane" index="0" unique_id=115257026]
+surface_material_override/0 = SubResource("StandardMaterial3D_61i36")
 
 [node name="missle_spawner" type="Node3D" parent="prototype_plane" unique_id=405366906]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3676071, -3.7911148)
 
-[node name="missile" parent="prototype_plane" unique_id=1561043600 instance=ExtResource("4_rakmp")]
+[node name="missile" parent="prototype_plane" unique_id=1561043600 instance=ExtResource("3_wpakw")]
 transform = Transform3D(0.037673336, 0, 0.9992901, 0, 1, 0, -0.9992901, 0, 0.037673336, 1.2833618, -0.7955308, -1.4830804)
 
-[node name="missile2" parent="prototype_plane" unique_id=1092546641 instance=ExtResource("4_rakmp")]
+[node name="missile2" parent="prototype_plane" unique_id=1092546641 instance=ExtResource("3_wpakw")]
 transform = Transform3D(0.037673336, 0, 0.9992901, 0, 1, 0, -0.9992901, 0, 0.037673336, -2.0393302, -0.7955308, -1.4830804)
 
-[node name="thruster_particles" parent="prototype_plane" unique_id=1747782805 instance=ExtResource("4_iyje6")]
+[node name="thruster_particles" parent="prototype_plane" unique_id=1747782805 instance=ExtResource("4_qdwt0")]
 transform = Transform3D(1.2, 0, 0, 0, -4.371139e-08, -1.2, 0, 1, -5.2453668e-08, 0, 0, 3.9268136)
 
 [node name="line_of_sight" type="Area3D" parent="." unique_id=772401812]
@@ -46,15 +56,15 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="line_of_sight" unique_id=1769567354]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.596893, -22.851494, -505.11362)
-shape = SubResource("BoxShape3D_0s5y7")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.596893, -8.916077, -380.44583)
+shape = SubResource("BoxShape3D_rdc4f")
 
 [node name="lock_on_timer" type="Timer" parent="." unique_id=1804442152]
 wait_time = 2.0
 one_shot = true
 
 [node name="obstacle_detector" type="Node3D" parent="." unique_id=1598205390]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.454365)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.464556)
 
 [node name="front" type="RayCast3D" parent="obstacle_detector" unique_id=1852777415]
 enabled = false
@@ -84,3 +94,5 @@ transform = Transform3D(0.96592575, -0.22414386, -0.12940952, 0.1294095, 0.85127
 enabled = false
 target_position = Vector3(-75, 0, -75)
 collision_mask = 7
+
+[editable path="prototype_plane"]

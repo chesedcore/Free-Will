@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 	new_state.enter()
 	current_state = new_state
-	#floating_animation()
+	floating_animation()
 	
 func create_state(state :STATES)->State:
 	var new_state : State

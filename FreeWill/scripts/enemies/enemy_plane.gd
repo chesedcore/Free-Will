@@ -1,6 +1,7 @@
 class_name EnemyPlane extends BaseEnemy
 
 const HOMINGMISSLE = preload("res://scenes/projectiles/enemy_projectie/homingmissle.tscn")
+const SHIELD = preload("res://scenes/entities/combat/shield.tscn")
 
 @export var obstacle_detectors : Array[RayCast3D]
 @export var trail_renderer: TrailRenderer
@@ -14,12 +15,40 @@ enum STATES {INTERCEPT,EVADE,ATTACK}
 @export var initial_state : STATES
 
 var current_state : State
+var shield : Node3D
+var is_shield_active : bool = false
+@export var shield_scale: float = 15
+
+
+func wire_signals()->void:
+	EnemySignalBus.cargo_ship_shield.connect(on_shield)
+	EnemySignalBus.cargo_ship_deactivate_shield.connect(on_deactivate_shield)
+
+
+
+func on_shield()->void :
+	if !is_shield_active:
+		is_shield_active = true
+		shield = SHIELD.instantiate()
+		shield.scale = shield.scale * shield_scale
+		add_child(shield)
+		print("added")
+
+func on_deactivate_shield()->void:
+	if is_shield_active:
+		
+		shield.queue_free.call_deferred()
+		shield = null
+		print("removed")
+		is_shield_active = false
 
 
 func _ready() -> void:
+	wire_signals()
 	var new_state : State = create_state(initial_state)
 	new_state.enter()
 	current_state = new_state
+
 
 
 func create_state(state :STATES)->State:

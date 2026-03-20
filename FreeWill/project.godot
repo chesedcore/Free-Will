@@ -27,6 +27,7 @@ UIBus="*uid://by5bsoo2lrnko"
 AudioManager="*uid://ccewu7gffr4af"
 Dialogic="*uid://ds2q0uclmolvu"
 MissionStatus="*uid://65hct6fp2nba"
+EnemySignalBus="*uid://03vt4btrtru2"
 
 [debug]
 
