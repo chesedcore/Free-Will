@@ -2,9 +2,10 @@ extends Node
 
 
 enum Statuses{Locked,Unlocked,Completed}
-enum MISSION_TITLES {TEST,TESTSCENE}
+enum MISSION_TITLES {TEST,TESTSCENE,Act1Mission1}
 var missions : Dictionary[MISSION_TITLES,Statuses]={
 	MISSION_TITLES.TEST : Statuses.Unlocked,
+	MISSION_TITLES.Act1Mission1: Statuses.Unlocked,
 	MISSION_TITLES.TESTSCENE: Statuses.Locked
 	
 	
