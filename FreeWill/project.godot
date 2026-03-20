@@ -26,6 +26,7 @@ SceneManager="*uid://dc2y0g36pw0lt"
 UIBus="*uid://by5bsoo2lrnko"
 AudioManager="*uid://ccewu7gffr4af"
 Dialogic="*uid://ds2q0uclmolvu"
+MissionStatus="*uid://65hct6fp2nba"
 
 [debug]
 
@@ -36,10 +37,14 @@ gdscript/warnings/untyped_declaration=2
 [dialogic]
 
 directories/dch_directory={
+"dudebro": "res://Dialogic_stuff/characters/dudebro.dch",
 "sargentballs": "res://Dialogic_stuff/characters/sargentballs.dch"
 }
 directories/dtl_directory={
-"test": "res://Dialogic_stuff/timelines/test.dtl"
+"test": "res://Dialogic_stuff/timelines/test.dtl",
+"test_mission_end": "res://Dialogic_stuff/timelines/testmission/test_mission_end.dtl",
+"test_mission_wave1": "res://Dialogic_stuff/timelines/testmission/test_mission_wave1.dtl",
+"test_mission_wave2": "res://Dialogic_stuff/timelines/testmission/test_mission_wave2.dtl"
 }
 layout/style_directory={
 "": "res://Dialogic_stuff/styles/ac7.tres",

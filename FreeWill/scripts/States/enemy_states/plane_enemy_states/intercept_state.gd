@@ -44,9 +44,9 @@ func enter() -> void:
 	var offset_dirs := [
 	
 	(right + up).normalized(),
-	(right - up).normalized(),
+
 	(-right + up).normalized(),
-	(-right - up).normalized()
+
 ]	
 	player_offset = offset_dirs.pick_random() * offset_distance
 const AVOID_FORCE : float =20
@@ -100,12 +100,12 @@ func start_lock_on() -> void:
 func on_los_body_entered(body: Node3D)->void:
 	if body is PlayerTank:
 		start_lock_on()
-
-
-
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		print("bye bye1")
+#
+#
+#
+#func _notification(what: int) -> void:
+	#if what == NOTIFICATION_PREDELETE:
+		#print("bye bye1")
 
 
 

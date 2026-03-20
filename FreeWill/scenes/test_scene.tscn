@@ -52,9 +52,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 335.62222, 0)
 
 [node name="UI" parent="." unique_id=121542168 instance=ExtResource("7_wtsjf")]
 
-[node name="EnemiesList" type="Node3D" parent="." unique_id=1064861688 node_paths=PackedStringArray("airborne_enemies")]
+[node name="EnemiesList" type="Node3D" parent="." unique_id=1064861688 node_paths=PackedStringArray("airborne_enemies", "seaborne_enemies")]
 script = ExtResource("7_h3xc6")
 airborne_enemies = NodePath("AirborneEnemies")
+seaborne_enemies = NodePath("Seaborne enemies")
 
 [node name="AirborneEnemies" type="Node3D" parent="EnemiesList" unique_id=949551153]
 
@@ -103,7 +104,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -211.99522, 0, -154.57654)
 [node name="Seaborne enemies" type="Node3D" parent="EnemiesList" unique_id=1323751591]
 
 [node name="enemy_battle_ship" parent="EnemiesList/Seaborne enemies" unique_id=657349981 instance=ExtResource("8_s36qc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.6223755, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="enemy_battle_ship2" parent="EnemiesList/Seaborne enemies" unique_id=764879905 instance=ExtResource("8_s36qc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 527.45184, -2.6223755, 0)

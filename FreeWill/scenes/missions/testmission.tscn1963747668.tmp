@@ -17,6 +17,15 @@ waveinfo = Dictionary[int, int]({
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
+[sub_resource type="Resource" id="Resource_orw40"]
+script = ExtResource("2_orw40")
+spawn_dialog = "test_mission_wave2"
+waveinfo = Dictionary[int, int]({
+0: 5,
+1: 4
+})
+metadata/_custom_type_script = "uid://capww07pslxpm"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjeyg"]
 render_priority = 0
 shader = ExtResource("4_ul4u8")
@@ -36,9 +45,10 @@ subdivide_depth = 250
 
 [node name="Testmission" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("stagehandler", "spawnpoints", "enemies_list")]
 script = ExtResource("1_ofajp")
+mission_key = "test_mission"
 stagehandler = NodePath("stagehandler")
 mission_end_dialog = "test_mission_end"
-waves = Array[ExtResource("2_orw40")]([SubResource("Resource_1yy2c")])
+waves = Array[ExtResource("2_orw40")]([SubResource("Resource_1yy2c"), SubResource("Resource_orw40")])
 spawnpoints = NodePath("stagehandler/Tank/spawnpoints")
 enemies_list = NodePath("EnemiesList")
 

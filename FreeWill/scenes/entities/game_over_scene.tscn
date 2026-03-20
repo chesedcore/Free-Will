@@ -2,12 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cw05d0aaex3hh" path="res://scripts/entities/player/game_over_scene.gd" id="1_16vru"]
 
-[node name="GameOverScene" type="Node" unique_id=606026751 node_paths=PackedStringArray("camera_rot_point", "camera", "retry_button", "menu_button")]
+[node name="GameOverScene" type="Node" unique_id=606026751 node_paths=PackedStringArray("camera_rot_point", "camera", "retry_button", "menu_button", "label")]
 script = ExtResource("1_16vru")
 camera_rot_point = NodePath("CameraRotPoint")
 camera = NodePath("CameraRotPoint/Camera")
 retry_button = NodePath("UI/RetryButton")
 menu_button = NodePath("UI/MenuButton")
+label = NodePath("UI/Label")
 
 [node name="CameraRotPoint" type="Node3D" parent="." unique_id=1068672432]
 
@@ -29,6 +30,8 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "You dead as hell lmfao"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="RetryButton" type="Button" parent="UI" unique_id=4882079]
 anchors_preset = 8
@@ -42,7 +45,7 @@ offset_right = 128.0
 offset_bottom = 116.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Retry"
+text = "Replay"
 
 [node name="MenuButton" type="Button" parent="UI" unique_id=2051127403]
 anchors_preset = 8
@@ -56,4 +59,4 @@ offset_right = 128.0
 offset_bottom = 188.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Give Up"
+text = "Mission Select"

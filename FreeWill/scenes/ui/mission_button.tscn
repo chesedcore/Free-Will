@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bvy3efthhtbu"]
+
+[ext_resource type="Script" uid="uid://mk78oy1v0w3w" path="res://scripts/ui/mission_button.gd" id="1_k0542"]
+
+[node name="mission_button" type="Button" unique_id=827613528]
+offset_right = 91.0
+offset_bottom = 66.0
+script = ExtResource("1_k0542")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -60,11 +60,11 @@ func get_avoidance() -> Vector3:
 	return avoid
 	
 
-
-
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		print("bye bye2")
+#
+#
+#func _notification(what: int) -> void:
+	#if what == NOTIFICATION_PREDELETE:
+		#print("bye bye2")
 
 
 const  AVOID_FORCE : float = 20

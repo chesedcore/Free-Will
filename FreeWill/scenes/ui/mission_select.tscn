@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dpnsprlwv7p4d"]
+
+[ext_resource type="PackedScene" uid="uid://bvy3efthhtbu" path="res://scenes/ui/mission_button.tscn" id="1_0j1vg"]
+[ext_resource type="Script" uid="uid://cfq4pdkquu005" path="res://scripts/ui/mission__resource.gd" id="2_86c2e"]
+
+[sub_resource type="Resource" id="Resource_bhe88"]
+script = ExtResource("2_86c2e")
+mission_name = "Testmission"
+is_unlocked = true
+mission_scene_path = "res://scenes/missions/testmission.tscn"
+metadata/_custom_type_script = "uid://cfq4pdkquu005"
+
+[sub_resource type="Resource" id="Resource_14uyc"]
+script = ExtResource("2_86c2e")
+mission_title = 1
+mission_name = "TestScene"
+prerequisite_missions = Array[int]([0])
+mission_scene_path = "res://scenes/test_scene.tscn"
+metadata/_custom_type_script = "uid://cfq4pdkquu005"
+
+[node name="mission_select" type="Control" unique_id=87687107]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="mission_button" parent="." unique_id=827613528 instance=ExtResource("1_0j1vg")]
+layout_mode = 0
+offset_left = 166.0
+offset_top = 199.0
+offset_right = 257.0
+offset_bottom = 265.0
+mission_info = SubResource("Resource_bhe88")
+
+[node name="mission_button2" parent="." unique_id=2090424827 instance=ExtResource("1_0j1vg")]
+layout_mode = 0
+offset_left = 395.0
+offset_top = 200.0
+offset_right = 486.0
+offset_bottom = 266.0
+mission_info = SubResource("Resource_14uyc")

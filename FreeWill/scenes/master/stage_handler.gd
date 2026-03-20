@@ -41,7 +41,19 @@ func _on_tank_fucking_exploded() -> void:
 		(load("res://scenes/entities/game_over_scene.tscn") as PackedScene).instantiate()
 	game_over_scene.player = tank
 	AudioManager.play_sound_at(tank.global_position, preload("res://audio/sfx/large_explosion.ogg"), 15.0)
+
+	#Gael : for some reason the game over screen causes the  camera crash if its not a child of stage handler
+	#get_tree().root.add_child.call_deferred(game_over_scene)
 	add_child.call_deferred(game_over_scene)
+
+func mission_complete_screen()->void:
+	var game_over_scene: GameOverScene = \
+		(load("res://scenes/entities/game_over_scene.tscn") as PackedScene).instantiate()
+	game_over_scene.player = tank
+	game_over_scene.completed = true
+	#get_tree().root.add_child.call_deferred(game_over_scene)
+	add_child.call_deferred(game_over_scene)
+	tank.freeze = true
 
 func _on_missile_parried() -> void:
 	_hitstop()

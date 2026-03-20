@@ -4,7 +4,7 @@ const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.
 
 @export var target_node : PhysicsBody3D
 @export var Max_speed : float = 250
-@export var turn_speed : float =10
+@export var turn_speed : float =5
 
 @export var damage_value: float = 10.0
 @export var impact_sound: AudioStream = preload("res://audio/sfx/explosion.ogg")

@@ -30,6 +30,10 @@ static func attack_state_from(owner : BaseEnemy, lock_on_timer : Timer,los : Are
 	return state
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		num_of_attacking_planes -=1
+		print(num_of_attacking_planes)
 func enter() -> void:
 	num_of_attacking_planes +=1
 
@@ -58,7 +62,6 @@ func  physics_update(_delta :float) -> void:
 func exit() -> void:
 	lock_on_timer.stop()
 	#threat_indicator.queue_free.call_deferred()
-	num_of_attacking_planes -=1
 
 func on_los_body_exit(body : Node3D)->void:
 	if body is PlayerTank:

@@ -2,7 +2,7 @@
 "@path": "res://addons/dialogic/Resources/character.gd",
 "@subpath": NodePath(""),
 &"_translation_id": "",
-&"color": Color(0, 1, 0.099999905, 1),
+&"color": Color(0.14240243, 0.990625, 0, 1),
 &"custom_info": {
 "prefix": "",
 "sound_mood_default": "",
@@ -12,7 +12,7 @@
 },
 &"default_portrait": "",
 &"description": "",
-&"display_name": "Sargentbells",
+&"display_name": "DudeBro",
 &"mirror": false,
 &"nicknames": [""],
 &"offset": Vector2(0, 0),
