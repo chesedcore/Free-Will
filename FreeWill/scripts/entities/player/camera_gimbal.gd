@@ -75,8 +75,25 @@ func trigger_dash_effect(duration: float, fov_boost: float, cam_pullback: float)
 	target_camera_z = base_camera_z - cam_pullback
 	start_dash_tween(duration, fov_boost, cam_pullback)
 
-var dash_tween: Tween
+var shoot_tween : Tween
 var recovery_tween: Tween
+func start_shoot_tween(duration: float, amplitude : float) -> void:
+	if shoot_tween: shoot_tween.kill()
+	if recovery_tween: recovery_tween.kill()
+
+	tank.shake(duration, amplitude)
+
+	shoot_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+
+	shoot_tween.set_parallel(true)
+
+	var target_pos := phantom_camera.position
+	shoot_tween.tween_property(phantom_camera, "position:z", target_pos.z, DASH_CAMERA_TWEEN_TIME)
+
+	#return to normal after that duration
+	shoot_tween.finished.connect(recover.bind(duration))
+
+var dash_tween: Tween
 func start_dash_tween(duration: float, fov_boost: float, cam_pullback: float) -> void:
 	if dash_tween: dash_tween.kill()
 	if recovery_tween: recovery_tween.kill()
