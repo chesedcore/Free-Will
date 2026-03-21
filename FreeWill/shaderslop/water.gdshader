@@ -1,7 +1,5 @@
 shader_type spatial;
 
-render_mode blend_mul;
-
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 
 // Water color
@@ -40,9 +38,10 @@ vec3 applyDistortion(vec3 vertex, float time) {
 }
 
 void vertex() {
-	float v1 = pow(1.1, texture(noise_texture_1, (UV * noise_1_strength) + TIME * speed * 0.005).r);
-	float v2 = pow(2, texture(noise_texture_2, (UV * noise_2_strength + TIME * speed * 0.5) + TIME * speed * 0.1).r);
-	VERTEX.y = v1 + v2 * amplitude;
+	// TODO: CARGO SHIPS NEED TO FOLLOW THE WAVES. COPY THIS MUHFUCKA TO DO IT AND SHIT
+	float v1 = pow(2, texture(noise_texture_1, (UV * noise_1_strength + TIME * speed * 0.05) + TIME * speed * 0.01).r);
+	float v2 = pow(2, texture(noise_texture_2, (UV * noise_2_strength + TIME * speed * 0.75) + TIME * speed).r);
+	VERTEX.y = (v1 + v2) * amplitude;
 }
 
 void fragment() {
