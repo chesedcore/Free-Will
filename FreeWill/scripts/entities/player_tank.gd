@@ -43,7 +43,9 @@ const UI := UIBus.Feedback
 @export var hull: MeshInstance3D
 @export var cannon_fire_sound: AudioStream
 @export var shake_component: Shaker
-@export var grapple_rope_mesh: MeshInstance3D
+@export var grapple_rope_mesh_1: MeshInstance3D
+@export var grapple_rope_mesh_2: MeshInstance3D
+@export var kunai_model: Node3D
 
 #cooldowns
 @onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
@@ -239,9 +241,22 @@ func ungrapple() -> void:
 		return
 
 func grapple_update() -> void:
-	grapple_rope_mesh.visible = (grappled_target != null)
+	grapple_rope_mesh_1.visible = (grappled_target != null)
+	grapple_rope_mesh_2.visible = (grappled_target != null)
+	kunai_model.visible = (grappled_target != null)
+
 	if (grappled_target):
-		(grapple_rope_mesh.material_override as ShaderMaterial).set_shader_parameter(
+		kunai_model.global_position = \
+			kunai_model.global_position.lerp(grappled_target.global_position, 15.0 * get_physics_process_delta_time())
+
+		if (kunai_model.global_position.distance_squared_to(grappled_target.global_position) > 100.0):
+			kunai_model.rotation.x += 50.0 * get_physics_process_delta_time()
+
+		(grapple_rope_mesh_1.material_override as ShaderMaterial).set_shader_parameter(
+			"end_position",
+			grappled_target.global_position)
+
+		(grapple_rope_mesh_2.material_override as ShaderMaterial).set_shader_parameter(
 			"end_position",
 			grappled_target.global_position)
 
@@ -249,6 +264,8 @@ func grapple_update() -> void:
 			global_position.direction_to(grappled_target.global_position) * GRAPPLE_STRENGTH
 		if (global_position.distance_squared_to(grappled_target.global_position) < 500.0):
 			grappled_target = null
+	else:
+		kunai_model.global_position = global_position
 
 func stop_model_update() -> void:
 	_stop_gimbal_update = true
