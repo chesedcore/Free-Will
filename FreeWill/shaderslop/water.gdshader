@@ -1,5 +1,7 @@
 shader_type spatial;
 
+render_mode blend_mul;
+
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 
 // Water color
@@ -13,6 +15,14 @@ uniform float beer_factor = 0.2;
 uniform float metallic = 0.6;
 uniform float specular = 0.5;
 uniform float roughness = 0.2;
+
+uniform sampler2D noise_texture_1;
+uniform sampler2D noise_texture_2;
+
+uniform float noise_1_strength = 50.0;
+uniform float noise_2_strength = 100.0;
+
+uniform float amplitude = 15.0;
 
 float generateOffset(float x, float z, float val1, float val2, float time) {
 	float radiansX = ((mod(x + z * x * val1, amount) / amount) + (time * speed) * mod(x * 0.8 + z, 1.5)) * 2.0 * 3.14;
@@ -30,7 +40,9 @@ vec3 applyDistortion(vec3 vertex, float time) {
 }
 
 void vertex() {
-	VERTEX = applyDistortion(VERTEX, TIME * 0.1);
+	float v1 = pow(1.1, texture(noise_texture_1, (UV * noise_1_strength) + TIME * speed * 0.005).r);
+	float v2 = pow(2, texture(noise_texture_2, (UV * noise_2_strength + TIME * speed * 0.5) + TIME * speed * 0.1).r);
+	VERTEX.y = v1 + v2 * amplitude;
 }
 
 void fragment() {
@@ -39,17 +51,4 @@ void fragment() {
 	SPECULAR = specular;
 	ROUGHNESS = roughness;
 	ALBEDO = out_color.rgb;
-
-	//if (beer_factor != 0.0) {
-		//float depth = texture(DEPTH_TEXTURE, SCREEN_UV).r;
-//
-		//depth = depth * 2.0 - 1.0;
-		//depth = PROJECTION_MATRIX[3][2] / (depth + PROJECTION_MATRIX[2][2]);
-		//depth = depth + VERTEX.z;
-//
-		//depth = exp(-depth * beer_factor);
-		//ALPHA = clamp(1.0 - depth, 0.0, 1.0);
-	//} else {
-		//ALPHA = out_color.a;
-	//}
 }
