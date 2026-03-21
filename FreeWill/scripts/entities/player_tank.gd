@@ -13,7 +13,7 @@ const GRAPPLE_STRENGTH: float = 25.0
 const MAX_SPEED: float = 150.0
 
 const DASH_FORCE := 350.0
-const DASH_COOLDOWN := 6.325
+const DASH_COOLDOWN := 2.325
 const DASH_MAX_SPEED := MAX_SPEED * 3
 const DASH_FOV_BOOST := 20.0
 const DASH_CAMERA_PULLBACK := 6.0
@@ -101,10 +101,12 @@ func _attempt_dash() -> void:
 
 
 func _execute_dash() -> void:
-	var dash_direction := camera_gimbal.global_basis.z
+	var input_dir: Vector2 = Input.get_vector("left", "right", "up", "down")
+	var move_dir: Vector3 = Vector3(-input_dir.x, 0.0, -input_dir.y).rotated(Vector3.UP, camera_gimbal.rotation.y)
+	var dash_direction := move_dir
 	linear_velocity += dash_direction * DASH_FORCE
 
-	camera_gimbal.trigger_dash_effect(DASH_EFFECT_DURATION, DASH_FOV_BOOST, DASH_CAMERA_PULLBACK)
+	#camera_gimbal.trigger_dash_effect(DASH_EFFECT_DURATION, DASH_FOV_BOOST, DASH_CAMERA_PULLBACK)
 
 	dash_cooldown.start_cooldown()
 	dash_effect_timer.start_cooldown()

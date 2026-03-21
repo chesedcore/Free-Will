@@ -90,7 +90,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.110764, 431.3087, 1157.18
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 314.69977, 431.3087, 1157.189)
 
 [node name="Enemy_plane3" parent="EnemiesList/AirborneEnemies" unique_id=820872429 instance=ExtResource("3_7ddre")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -814.351, 431.3087, 1157.189)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -820.71454, 434.17783, 1157.2488)
 
 [node name="Enemy_plane4" parent="EnemiesList/AirborneEnemies" unique_id=1554037679 instance=ExtResource("3_7ddre")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -814.351, -104.793976, 1157.189)
