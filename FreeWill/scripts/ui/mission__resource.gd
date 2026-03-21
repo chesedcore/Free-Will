@@ -11,7 +11,7 @@ class_name MissionResource extends Resource
 
 func check_unlock()->void:
 	var status : MissionStatus.Statuses =  MissionStatus.Statuses.Unlocked
-	for mission in prerequisite_missions:
+	for mission: MissionStatus.MISSION_TITLES in prerequisite_missions:
 		if MissionStatus.missions.has(mission):
 			if  MissionStatus.missions.get(mission) == MissionStatus.Statuses.Completed:
 				continue

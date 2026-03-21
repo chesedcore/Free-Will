@@ -74,6 +74,7 @@ func _physics_process(delta: float) -> void:
 
 	if _camera == null:
 		_camera = get_viewport().get_camera_3d()
+		if not _camera: return
 
 	#edge starts here
 	if not _last_emitting_state and is_emitting:
