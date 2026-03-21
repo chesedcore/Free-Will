@@ -253,7 +253,7 @@ func grapple_update(delta: float) -> void:
 		kunai_model.global_position = global_position
 		return
 
-	if (grapple_hold_time < 0.5):
+	if (grapple_hold_time < 0.25):
 		kunai_model.global_position = \
 			kunai_model.global_position.lerp(grappled_target.global_position, grapple_speed * delta)
 
