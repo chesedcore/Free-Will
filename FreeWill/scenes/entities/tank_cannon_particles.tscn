@@ -61,18 +61,18 @@ height = 0.5
 radial_segments = 8
 rings = 3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l6epd"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ft0en"]
 transparency = 1
 diffuse_mode = 3
 specular_mode = 1
 vertex_color_use_as_albedo = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_jc34l"]
-material = SubResource("StandardMaterial3D_l6epd")
+material = SubResource("StandardMaterial3D_ft0en")
 radial_segments = 8
 rings = 4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sr7b7"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bdemy"]
 render_priority = 1
 transparency = 1
 blend_mode = 1
@@ -83,7 +83,7 @@ vertex_color_use_as_albedo = true
 albedo_color = Color(1, 0.3372549, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_pc6vm"]
-material = SubResource("StandardMaterial3D_sr7b7")
+material = SubResource("StandardMaterial3D_bdemy")
 radial_segments = 8
 rings = 4
 
