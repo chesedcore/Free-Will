@@ -60,6 +60,7 @@ var _stop_gimbal_update := false
 var _parry_tween: Tween
 var grappled_target: Node3D
 var active_missiles: int = 0
+var grapple_hold_time: float = 0.0
 
 
 
@@ -195,7 +196,7 @@ func _kill() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	grapple_update()
+	grapple_update(delta)
 	_poll_tank_death()
 
 	if not _stop_gimbal_update and not parry_window_timer.is_active():
@@ -237,35 +238,45 @@ func grapple() -> void:
 
 func ungrapple() -> void:
 	if (grappled_target):
+		grapple_hold_time = 0.0
 		grappled_target = null
 		return
 
-func grapple_update() -> void:
+func grapple_update(delta: float) -> void:
+	var grapple_speed: float = 5.0
+
 	grapple_rope_mesh_1.visible = (grappled_target != null)
 	grapple_rope_mesh_2.visible = (grappled_target != null)
 	kunai_model.visible = (grappled_target != null)
 
-	if (grappled_target):
+	if (!grappled_target):
+		kunai_model.global_position = global_position
+		return
+
+	if (grapple_hold_time < 0.5):
 		kunai_model.global_position = \
-			kunai_model.global_position.lerp(grappled_target.global_position, 15.0 * get_physics_process_delta_time())
+			kunai_model.global_position.lerp(grappled_target.global_position, grapple_speed * delta)
 
 		if (kunai_model.global_position.distance_squared_to(grappled_target.global_position) > 100.0):
-			kunai_model.rotation.x += 50.0 * get_physics_process_delta_time()
-
-		(grapple_rope_mesh_1.material_override as ShaderMaterial).set_shader_parameter(
-			"end_position",
-			grappled_target.global_position)
-
-		(grapple_rope_mesh_2.material_override as ShaderMaterial).set_shader_parameter(
-			"end_position",
-			grappled_target.global_position)
-
-		linear_velocity += \
-			global_position.direction_to(grappled_target.global_position) * GRAPPLE_STRENGTH
-		if (global_position.distance_squared_to(grappled_target.global_position) < 500.0):
-			grappled_target = null
+			kunai_model.rotation.x += 25.0 * delta
 	else:
-		kunai_model.global_position = global_position
+		kunai_model.global_position = grappled_target.global_position
+
+	grapple_hold_time += delta
+
+	(grapple_rope_mesh_1.material_override as ShaderMaterial).set_shader_parameter(
+		"end_position",
+		kunai_model.global_position)
+
+	(grapple_rope_mesh_2.material_override as ShaderMaterial).set_shader_parameter(
+		"end_position",
+		kunai_model.global_position)
+
+	linear_velocity += \
+		global_position.direction_to(grappled_target.global_position) * GRAPPLE_STRENGTH
+
+	if (global_position.distance_squared_to(grappled_target.global_position) < 500.0):
+		grappled_target = null
 
 func stop_model_update() -> void:
 	_stop_gimbal_update = true
