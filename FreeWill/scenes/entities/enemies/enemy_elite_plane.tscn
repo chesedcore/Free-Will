@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="4_qdwt0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4dp5g"]
-radius = 7.133789
-height = 33.771606
+radius = 41.527832
+height = 83.055664
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc4f"]
 size = Vector3(710.5298, 265.8328, 751.81256)

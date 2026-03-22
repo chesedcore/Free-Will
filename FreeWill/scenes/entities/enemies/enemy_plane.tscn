@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dnghcfqawmidu" path="res://assets/models/prototype_plane.blend" id="4_rhn42"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_12l03"]
-radius = 4.145996
-height = 20.907215
+radius = 30.731934
+height = 61.463867
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0s5y7"]
 size = Vector3(710.5298, 265.8328, 966.73)

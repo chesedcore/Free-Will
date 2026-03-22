@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="4_lhfu2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_awjt7"]
-radius = 7.126465
-height = 40.21286
+radius = 35.90674
+height = 71.81348
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2lh61"]
 
@@ -122,15 +122,15 @@ collision_mask = 7
 [node name="decoy_holder" type="Node3D" parent="." unique_id=1906563259]
 
 [node name="decoy_pos1" type="Node3D" parent="decoy_holder" unique_id=170941766]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -46.18901, 0)
 
 [node name="decoy_pos2" type="Node3D" parent="decoy_holder" unique_id=1293792413]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 44.723198, 0)
 
 [node name="decoy_pos3" type="Node3D" parent="decoy_holder" unique_id=89453283]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.654533, 0, 0)
 
 [node name="decoy_pos4" type="Node3D" parent="decoy_holder" unique_id=262683156]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.12079, 0, 0)
 
 [editable path="su57"]
