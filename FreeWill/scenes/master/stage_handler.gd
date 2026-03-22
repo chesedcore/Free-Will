@@ -5,7 +5,7 @@ class_name StageHandler extends Node3D
 @export var tank: PlayerTank
 
 const HITSTOP_TIME := 0.25
-const HITSTOP_SLOW_DOWN_FACTOR := 0.00
+const HITSTOP_SLOW_DOWN_FACTOR := 0.001
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

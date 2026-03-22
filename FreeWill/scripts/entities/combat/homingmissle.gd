@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 	trail_renderer.position.y = 0.524 + randf_range(-0.5,0.5)
 	if not target_node:
 		return
-	
+
 
 	if locked_on:
 		var distance : float = global_position.distance_to(target_node.global_position)
@@ -63,7 +63,7 @@ func _physics_process(delta: float) -> void:
 			locked_on = false
 			if threat_indicator:
 				threat_indicator.target_node = null
-		
+
 
 	if lifespan > 0:
 		lifespan -= delta
@@ -73,7 +73,7 @@ func _physics_process(delta: float) -> void:
 			threat_indicator.target_node = null
 		locked_on = false
 		velocity += get_gravity() *2 * delta
-		
+
 	move_and_slide()
 
 func try_damage_tank(body: PlayerTank, amount: float) -> Result:
@@ -93,7 +93,7 @@ func try_damage_tank(body: PlayerTank, amount: float) -> Result:
 
 func deflect_this_missile() -> void:
 	locked_on = false
-	basis = basis.rotated(self.basis.y, 3.141592653589793)
+	flip_basis.call_deferred()
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body is PlayerTank:
@@ -110,3 +110,7 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 			remove_child(trail)
 			get_tree().root.add_child(trail)
 		queue_free.call_deferred()
+
+
+func flip_basis() -> void:
+	basis = basis.rotated(self.basis.y, 3.141592653589793)

@@ -38,7 +38,7 @@ func enter() -> void:
 
 	var basis := enemy.global_transform.basis
 	var right := basis.x
-	
+
 	var evade_dirs := [
 		right,
 		-right,
@@ -50,7 +50,7 @@ func enter() -> void:
 
 func get_avoidance() -> Vector3:
 	var avoid := Vector3.ZERO
-	
+
 	for ray in obstacle_detectors:
 		ray.enabled = true
 		ray.force_raycast_update()
@@ -58,7 +58,7 @@ func get_avoidance() -> Vector3:
 			avoid += ray.get_collision_normal()
 		ray.enabled = false
 	return avoid
-	
+
 
 #
 #

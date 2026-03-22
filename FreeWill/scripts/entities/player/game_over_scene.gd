@@ -36,7 +36,7 @@ func retry() -> void:
 	# When we have actual stages this should be replaced with something that is not as shit.
 	queue_free.call_deferred()
 	get_tree().reload_current_scene.call_deferred()
-	
+
 
 
 func return_to_menu() -> void:

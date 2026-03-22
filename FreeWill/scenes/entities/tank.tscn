@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://b1aaow6gsi7yb" path="res://assets/ui/health_bar_front.png" id="18_ekcgd"]
 [ext_resource type="AudioStream" uid="uid://lv5m5ak5a31d" path="res://audio/sfx/bgs/wind.ogg" id="18_tafis"]
 [ext_resource type="Script" uid="uid://cicma3kluvpxo" path="res://scripts/util_scripts/shake.gd" id="19_oqcw2"]
-[ext_resource type="Shader" uid="uid://drd3l3yes5apm" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
+[ext_resource type="Shader" uid="uid://dewwkri53s35" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
 [ext_resource type="Texture2D" uid="uid://vwb6m76hhawe" path="res://assets/textures/chain.png" id="24_4sl2t"]
 
 [sub_resource type="Curve" id="Curve_vvw44"]
@@ -56,6 +56,26 @@ shader_parameter/globalfade = 0.5
 shader_parameter/max_alpha = 0.1450000068875
 shader_parameter/color_tint = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_oqcw2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsoq5"]
+render_priority = 0
+shader = ExtResource("21_ekcgd")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("24_4sl2t")
+shader_parameter/albedo_texture_size = Vector2i(512, 512)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_blend_sharpness = 1.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+shader_parameter/end_position = Vector3(14.365, -2.715, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ywmen"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3lr38"]
 radius = 5.503188
@@ -113,27 +133,7 @@ shader_parameter/max_alpha = 0.1370000065075
 shader_parameter/color_tint = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_ig2cu")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hsoq5"]
-render_priority = 0
-shader = ExtResource("21_ekcgd")
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/texture_albedo = ExtResource("24_4sl2t")
-shader_parameter/albedo_texture_size = Vector2i(512, 512)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 1.0
-shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 0.0
-shader_parameter/uv1_blend_sharpness = 1.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-shader_parameter/end_position = Vector3(14.365, -2.715, 0)
-
-[sub_resource type="QuadMesh" id="QuadMesh_ywmen"]
-
-[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component", "grapple_rope_mesh_1", "grapple_rope_mesh_2", "kunai_model")]
+[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component", "grapple_rope_mesh_1", "grapple_rope_mesh_2", "kunai_model", "idle_kunai_model")]
 collision_layer = 2
 collision_mask = 5
 mass = 200.0
@@ -149,11 +149,12 @@ bullet_spawn_position_marker = NodePath("TankModel/BulletSpawnPositionMarker")
 turret = NodePath("TankModel/Barrel")
 hull = NodePath("TankModel/Base")
 shake_component = NodePath("ShakeComponent")
-grapple_rope_mesh_1 = NodePath("Grapple/GrappleRopeMesh")
-grapple_rope_mesh_2 = NodePath("Grapple/GrappleRopeMesh2")
+grapple_rope_mesh_1 = NodePath("TankModel/GrappleRopeMesh")
+grapple_rope_mesh_2 = NodePath("TankModel/GrappleRopeMesh2")
 kunai_model = NodePath("Grapple/kunai_model")
+idle_kunai_model = NodePath("TankModel/IdleKunaiModel")
 
-[node name="TankModel" parent="." unique_id=650479505 instance=ExtResource("2_fn73n")]
+[node name="TankModel" parent="." unique_id=1331045763 instance=ExtResource("2_fn73n")]
 
 [node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(650479505, 1643959153) index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
@@ -215,8 +216,18 @@ metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 [node name="BulletSpawnPositionMarker" type="Marker3D" parent="TankModel" unique_id=110604597]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.0878064, 2.6, 8)
 
-[node name="kunai" parent="TankModel" unique_id=1936580332 instance=ExtResource("6_rlhxg")]
-transform = Transform3D(1, 0, 0, 0, 0.75519663, 0.6554983, 0, -0.6554983, 0.75519663, -0.27468443, 3.3819237, -1.5112387)
+[node name="IdleKunaiModel" parent="TankModel" unique_id=1936580332 instance=ExtResource("6_rlhxg")]
+transform = Transform3D(0.37188384, 0, 0, 0, 0.30845535, 0.20773269, 0, -0.20773269, 0.30845535, -0.7223202, 3.6428447, -0.23234469)
+
+[node name="GrappleRopeMesh" type="MeshInstance3D" parent="TankModel" unique_id=1457401487]
+transform = Transform3D(0.45631856, 0, 0, 0, 0.45631856, 0, 0, 0, 0.45631856, -0.72016346, 3.6447363, -0.19689202)
+material_override = SubResource("ShaderMaterial_hsoq5")
+mesh = SubResource("QuadMesh_ywmen")
+
+[node name="GrappleRopeMesh2" type="MeshInstance3D" parent="TankModel" unique_id=224438382]
+transform = Transform3D(0.45631856, 0, 0, 0, -1.9946318e-08, -0.45631856, 0, 0.45631856, -1.9946318e-08, -0.72016346, 3.6447363, -0.19689202)
+material_override = SubResource("ShaderMaterial_hsoq5")
+mesh = SubResource("QuadMesh_ywmen")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1289681647]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23927891, 0)
@@ -358,18 +369,10 @@ metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 
 [node name="Grapple" type="Node3D" parent="." unique_id=1832517313]
 
-[node name="GrappleRopeMesh" type="MeshInstance3D" parent="Grapple" unique_id=1457401487]
-material_override = SubResource("ShaderMaterial_hsoq5")
-mesh = SubResource("QuadMesh_ywmen")
-
-[node name="GrappleRopeMesh2" type="MeshInstance3D" parent="Grapple" unique_id=224438382]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-material_override = SubResource("ShaderMaterial_hsoq5")
-mesh = SubResource("QuadMesh_ywmen")
-
 [node name="kunai_model" parent="Grapple" unique_id=1146163474 instance=ExtResource("6_rlhxg")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+transform = Transform3D(0.372, 0, 0, 0, 0.372, 0, 0, 0, 0.372, 0, 0, 0)
 top_level = true
+visible = false
 
 [node name="ShakeComponent" type="Node3D" parent="." unique_id=564894313]
 script = ExtResource("19_oqcw2")

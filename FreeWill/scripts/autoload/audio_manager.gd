@@ -18,7 +18,9 @@ func play_sound_at(position: Vector3, sound: AudioStream, volume_db: float = 0.0
 
 	add_child(new_sound_player)
 	new_sound_player.position = position
-	new_sound_player.play()
+
+	if (new_sound_player.global_position != Vector3(NAN, NAN, NAN)):
+		new_sound_player.play()
 
 
 func play_sound(sound: AudioStream, volume_db: float = 0.0, randomize_pitch: bool = true) -> void:
