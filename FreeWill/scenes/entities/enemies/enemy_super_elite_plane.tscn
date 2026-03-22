@@ -1,76 +1,79 @@
-[gd_scene format=3 uid="uid://dqvop2jyx621l"]
+[gd_scene format=3 uid="uid://1fmuyf3co4p5"]
 
-[ext_resource type="Script" uid="uid://jp6qfe0e22kw" path="res://scripts/enemies/enemy_plane.gd" id="1_4dp5g"]
-[ext_resource type="PackedScene" uid="uid://bcdibooj3vqkf" path="res://assets/models/su57.glb" id="2_4dp5g"]
-[ext_resource type="Material" uid="uid://bynafwykgaw02" path="res://assets/models/color_red.tres" id="3_rdc4f"]
-[ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="4_qdwt0"]
+[ext_resource type="Script" uid="uid://p5pd11ehhloh" path="res://scripts/enemies/enemy_super_elite_plane.gd" id="1_2lh61"]
+[ext_resource type="PackedScene" uid="uid://bcdibooj3vqkf" path="res://assets/models/su57.glb" id="2_na4k2"]
+[ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="4_lhfu2"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4dp5g"]
-radius = 7.133789
-height = 33.771606
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_awjt7"]
+radius = 7.126465
+height = 40.21286
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2lh61"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc4f"]
 size = Vector3(710.5298, 265.8328, 751.81256)
 
-[node name="Enemy_elite_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("obstacle_detectors", "lock_on_timer", "missle_spawner", "line_of_sight", "model")]
+[node name="Enemy_super_elite_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("decoy_holder", "obstacle_detectors", "lock_on_timer", "missle_spawner", "line_of_sight", "model")]
 collision_layer = 4
 collision_mask = 5
-script = ExtResource("1_4dp5g")
+script = ExtResource("1_2lh61")
+decoy_holder = NodePath("decoy_holder")
 obstacle_detectors = [NodePath("obstacle_detector/front"), NodePath("obstacle_detector/downleft"), NodePath("obstacle_detector/upleft"), NodePath("obstacle_detector/downright"), NodePath("obstacle_detector/upright")]
+speed = 300.0
+turn_speed = 1.5
 lock_on_timer = NodePath("lock_on_timer")
 missle_spawner = NodePath("su57/missle_spawner")
 line_of_sight = NodePath("line_of_sight")
-shield_scale = 20.0
 model = NodePath("su57")
 
-[node name="su57" parent="." unique_id=165544230 instance=ExtResource("2_4dp5g")]
-transform = Transform3D(-14, 0, -2.1139413e-06, 0, 14, 0, 2.1139413e-06, 0, -14, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2012983732]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -4.694158e-08, 1.0738983)
+shape = SubResource("CapsuleShape3D_awjt7")
+
+[node name="su57" parent="." unique_id=165544230 instance=ExtResource("2_na4k2")]
+transform = Transform3D(-16, 0, -2.4159328e-06, 0, 16, 0, 2.4159328e-06, 0, -16, 0, 0, 0)
 
 [node name="Body" parent="su57" index="0" unique_id=1818984955]
-surface_material_override/0 = ExtResource("3_rdc4f")
+surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
 [node name="Stabiliser" parent="su57" index="1" unique_id=1118536717]
-surface_material_override/0 = ExtResource("3_rdc4f")
+surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
 [node name="Wing" parent="su57" index="2" unique_id=199881314]
-surface_material_override/0 = ExtResource("3_rdc4f")
+surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
 [node name="StabilatorBase" parent="su57" index="3" unique_id=61140354]
-surface_material_override/0 = ExtResource("3_rdc4f")
+surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
 [node name="AileronL" parent="su57" index="5" unique_id=2104401652]
-surface_material_override/0 = ExtResource("3_rdc4f")
+surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
 [node name="FlaperonL" parent="su57" index="6" unique_id=912710888]
-surface_material_override/0 = ExtResource("3_rdc4f")
+surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
 [node name="SlatL" parent="su57" index="7" unique_id=862103431]
-surface_material_override/0 = ExtResource("3_rdc4f")
+surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
 [node name="SlatR" parent="su57" index="8" unique_id=1673070194]
-surface_material_override/0 = ExtResource("3_rdc4f")
+surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
 [node name="AileronR" parent="su57" index="9" unique_id=1522285184]
-surface_material_override/0 = ExtResource("3_rdc4f")
+surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
 [node name="FlaperonR" parent="su57" index="10" unique_id=1686706507]
-surface_material_override/0 = ExtResource("3_rdc4f")
+surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
 [node name="Thruster" parent="su57" index="11" unique_id=335631471]
-surface_material_override/0 = ExtResource("3_rdc4f")
+surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="missle_spawner" type="Node3D" parent="su57" unique_id=106688113]
+[node name="missle_spawner" type="Node3D" parent="su57" unique_id=710169650]
 transform = Transform3D(-0.25, 0, 2.1855694e-08, 0, 0.25, 0, -2.1855694e-08, 0, -0.25, -8.285745e-08, -0.34190178, 0.9477787)
 
-[node name="thruster_particles" parent="su57" unique_id=1747782805 instance=ExtResource("4_qdwt0")]
+[node name="thruster_particles" parent="su57" unique_id=1747782805 instance=ExtResource("4_lhfu2")]
 transform = Transform3D(-0.175, 2.2196383e-08, -1.1550413e-15, 0, -6.4255743e-09, -0.175, -2.6424265e-08, -0.147, 7.649493e-09, -0.21393065, -0.03126824, -1.146539)
 
-[node name="thruster_particles2" parent="su57" unique_id=402155924 instance=ExtResource("4_qdwt0")]
+[node name="thruster_particles2" parent="su57" unique_id=1517510663 instance=ExtResource("4_lhfu2")]
 transform = Transform3D(-0.175, 2.2196383e-08, -1.1550413e-15, 0, -6.4255743e-09, -0.175, -2.6424265e-08, -0.147, 7.649493e-09, 0.21184112, -0.03126824, -1.146539)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2012983732]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -4.3810104e-08, 1.0022583)
-shape = SubResource("CapsuleShape3D_4dp5g")
 
 [node name="line_of_sight" type="Area3D" parent="." unique_id=772401812]
 collision_layer = 4
@@ -85,7 +88,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="obstacle_detector" type="Node3D" parent="." unique_id=1598205390]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -17.978075)
+transform = Transform3D(0.99992794, 0.0029714135, 0.011632397, -0.002906777, 0.9999803, -0.0055685574, -0.011648717, 0.005534337, 0.9999168, 0, 0, -20.850153)
 
 [node name="front" type="RayCast3D" parent="obstacle_detector" unique_id=1852777415]
 enabled = false
@@ -115,5 +118,19 @@ transform = Transform3D(0.96592575, -0.22414386, -0.12940952, 0.1294095, 0.85127
 enabled = false
 target_position = Vector3(-75, 0, -75)
 collision_mask = 7
+
+[node name="decoy_holder" type="Node3D" parent="." unique_id=1906563259]
+
+[node name="decoy_pos1" type="Node3D" parent="decoy_holder" unique_id=170941766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -30, 0)
+
+[node name="decoy_pos2" type="Node3D" parent="decoy_holder" unique_id=1293792413]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
+
+[node name="decoy_pos3" type="Node3D" parent="decoy_holder" unique_id=89453283]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 0)
+
+[node name="decoy_pos4" type="Node3D" parent="decoy_holder" unique_id=262683156]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 0)
 
 [editable path="su57"]

@@ -38,10 +38,12 @@ gdscript/warnings/untyped_declaration=2
 [dialogic]
 
 directories/dch_directory={
+"Warning": "res://Dialogic_stuff/characters/Warning.dch",
 "dudebro": "res://Dialogic_stuff/characters/dudebro.dch",
 "sargentballs": "res://Dialogic_stuff/characters/sargentballs.dch"
 }
 directories/dtl_directory={
+"death_missile_warning": "res://Dialogic_stuff/timelines/death_missile_warning.dtl",
 "test": "res://Dialogic_stuff/timelines/test.dtl",
 "test_mission_end": "res://Dialogic_stuff/timelines/testmission/test_mission_end.dtl",
 "test_mission_wave1": "res://Dialogic_stuff/timelines/testmission/test_mission_wave1.dtl",

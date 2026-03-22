@@ -1,7 +1,7 @@
 class_name InterceptState extends EnemyState
 
 
-@export var Max_speed : float = 200.0
+@export var speed : float = 200.0
 @export var aceleration : float = 50
 @export var turn_speed : float = 1.25
 
@@ -65,7 +65,7 @@ func physics_update(delta: float) -> void:
 	var new_dir :Vector3= (desired_direction + (cached_avoid * AVOID_FORCE)).normalized()
 	var old_heading :Vector3 = heading
 	heading = heading.slerp(new_dir, turn_speed * delta).normalized()
-	velocity_vec = velocity_vec.move_toward(heading * Max_speed, aceleration * delta)
+	velocity_vec = velocity_vec.move_toward(heading * speed, aceleration * delta)
 	enemy.velocity = velocity_vec
 	enemy.look_at(enemy.global_position + heading, Vector3.UP)
 	var right :Vector3= enemy.global_transform.basis.x

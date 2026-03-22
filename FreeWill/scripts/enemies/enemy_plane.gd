@@ -5,7 +5,8 @@ const SHIELD = preload("res://scenes/entities/combat/shield.tscn")
 
 @export var obstacle_detectors : Array[RayCast3D]
 @export var trail_renderer: TrailRenderer
-
+@export var speed : float  = 200.0
+@export var turn_speed : float= 1.25
 
 enum STATES {INTERCEPT,EVADE,ATTACK}
 
@@ -57,15 +58,20 @@ func create_state(state :STATES)->State:
 	match  state:
 		STATES.INTERCEPT:
 			new_state = InterceptState.intercept_state_from(self,model,line_of_sight,obstacle_detectors)
+			new_state.speed = speed
+			new_state.turn_speed = turn_speed
 			new_state.Transitioned.connect(on_state_transition)
 
 		STATES.ATTACK:
 			new_state = AttackState.attack_state_from(self,lock_on_timer,line_of_sight)
 			new_state.fireMissle.connect(on_fire_missile)
+			new_state.speed = speed
 			new_state.Transitioned.connect(on_state_transition)
 
 		STATES.EVADE:
 			new_state = EvadeState.evade_state_from(self,model,obstacle_detectors)
+			new_state.speed = speed
+			new_state.turn_speed = turn_speed
 			new_state.Transitioned.connect(on_state_transition)
 
 	return new_state

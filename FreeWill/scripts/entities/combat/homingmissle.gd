@@ -13,8 +13,8 @@ const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.
 @onready var trail_renderer: TrailRenderer = $TrailRenderer
 
 var locked_on : bool = true
-var lock_off_dist : float = 25
-var lifespan : float = 5
+@export var lock_off_dist : float = 25
+@export var lifespan : float = 5
 var threat_indicator : ThreatIndicator
 
 func _process(_delta: float) -> void:

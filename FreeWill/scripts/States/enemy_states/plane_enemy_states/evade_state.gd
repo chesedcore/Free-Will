@@ -1,6 +1,6 @@
 class_name EvadeState extends EnemyState
 
-var max_speed : float = 200
+var speed : float = 200
 var aceleration : float = 50
 var turn_speed : float = 1.25
 var evade_distance : float = 200
@@ -85,7 +85,7 @@ func physics_update(_delta: float) -> void:
 		var new_dir :Vector3= (desired_direction + (cached_avoid * AVOID_FORCE)).normalized()
 		var old_heading :Vector3 = heading
 		heading = heading.slerp(new_dir, turn_speed * _delta).normalized()
-		velocity_vec = velocity_vec.move_toward(heading * max_speed, aceleration * _delta)
+		velocity_vec = velocity_vec.move_toward(heading * speed, aceleration * _delta)
 		enemy.velocity = velocity_vec
 		enemy.look_at(enemy.global_position + heading, Vector3.UP)
 		var right :Vector3= enemy.global_transform.basis.x

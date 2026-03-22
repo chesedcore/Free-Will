@@ -4,7 +4,7 @@ var cannon_bases : Array[Node3D]
 var cannon_barrels : Array[Node3D]
 var rotation_speed: float = 5.0
 var cannon_aims : Array[RayCast3D]
-var fire_time :float = .5
+var fire_time :float = 1
 var remaining_fire_time: Array[float] =[]
 var los : Area3D
 const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.tscn")

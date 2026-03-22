@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dnghcfqawmidu" path="res://assets/models/prototype_plane.blend" id="4_rhn42"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_12l03"]
-radius = 1.4711914
-height = 10.60054
+radius = 4.145996
+height = 20.907215
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0s5y7"]
 size = Vector3(710.5298, 265.8328, 966.73)
@@ -20,15 +20,16 @@ obstacle_detectors = [NodePath("obstacle_detector/front"), NodePath("obstacle_de
 lock_on_timer = NodePath("lock_on_timer")
 missle_spawner = NodePath("su57/missle_spawner")
 line_of_sight = NodePath("line_of_sight")
+shield_scale = 25.0
 model = NodePath("su57")
 health = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2012983732]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -2.3464791e-08, 0.5368118)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -3.7465853e-08, 0.8571186)
 shape = SubResource("CapsuleShape3D_12l03")
 
 [node name="su57" parent="." unique_id=518090294 instance=ExtResource("2_rakmp")]
-transform = Transform3D(-4, 0, -3.496911e-07, 0, 4, 0, 3.496911e-07, 0, -4, 0, 0, 0)
+transform = Transform3D(-8, 0, -1.2079664e-06, 0, 8, 0, 1.2079664e-06, 0, -8, 0, 0, 0)
 
 [node name="missle_spawner" type="Node3D" parent="su57" unique_id=405366906]
 transform = Transform3D(-0.25, 0, 2.1855694e-08, 0, 0.25, 0, -2.1855694e-08, 0, -0.25, -8.285745e-08, -0.34190178, 0.9477787)
@@ -55,7 +56,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="obstacle_detector" type="Node3D" parent="." unique_id=1598205390]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.454365)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.292897)
 
 [node name="front" type="RayCast3D" parent="obstacle_detector" unique_id=1852777415]
 enabled = false

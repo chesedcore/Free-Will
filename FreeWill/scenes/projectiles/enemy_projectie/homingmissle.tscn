@@ -7,11 +7,11 @@
 [ext_resource type="Script" uid="uid://brqh6t5d1dyrl" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="5_buov0"]
 [ext_resource type="Shader" uid="uid://cwxrvexdarj2x" path="res://shaderslop/wind_trail.gdshader" id="6_04gat"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vt8wv"]
-radius = 0.29248047
-height = 5.5915833
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_buov0"]
+radius = 0.36035156
+height = 8.253241
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aa1g3"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_04gat"]
 radius = 0.32470703
 height = 2.4991226
 
@@ -48,8 +48,8 @@ collision_mask = 2
 script = ExtResource("1_2glct")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1514301715]
-transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -3.3600596e-08, 0.33047834, -0.7762677)
-shape = SubResource("CapsuleShape3D_vt8wv")
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -1.5690606e-08, 0.4863505, -0.3665347)
+shape = SubResource("CapsuleShape3D_buov0")
 
 [node name="missile" parent="." unique_id=1561043600 instance=ExtResource("2_6ku3j")]
 transform = Transform3D(-8.812589e-08, 0, 5.826574, 0, 3.519803, 0, -2.0160854, 0, -2.5468762e-07, 0, 0, 0)
@@ -63,7 +63,7 @@ collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox" unique_id=1814009424]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.032479525, 0.5422527, -3.3075275)
-shape = SubResource("CapsuleShape3D_aa1g3")
+shape = SubResource("CapsuleShape3D_04gat")
 
 [node name="ThrusterSoundPlayer" type="AudioStreamPlayer3D" parent="." unique_id=524493614]
 stream = ExtResource("4_rlfjo")
