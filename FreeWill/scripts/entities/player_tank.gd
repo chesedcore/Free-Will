@@ -45,6 +45,7 @@ const UI := UIBus.Feedback
 @export var grapple_rope_mesh_1: MeshInstance3D
 @export var grapple_rope_mesh_2: MeshInstance3D
 @export var kunai_model: Node3D
+@export var idle_kunai_model: Node3D
 
 #cooldowns
 @onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
@@ -254,10 +255,12 @@ func ungrapple() -> void:
 
 func grapple_update(delta: float) -> void:
 	var grapple_speed: float = 5.0
+	var visible_check: bool = (grappled_target != null)
 
-	grapple_rope_mesh_1.visible = (grappled_target != null)
-	grapple_rope_mesh_2.visible = (grappled_target != null)
-	kunai_model.visible = (grappled_target != null)
+	grapple_rope_mesh_1.visible = visible_check
+	grapple_rope_mesh_2.visible = visible_check
+	idle_kunai_model.visible = !visible_check
+	kunai_model.visible = visible_check
 
 	if (!grappled_target):
 		kunai_model.global_position = global_position
