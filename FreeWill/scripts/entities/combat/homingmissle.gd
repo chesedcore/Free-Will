@@ -97,11 +97,11 @@ func deflect_this_missile() -> void:
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body is PlayerTank:
-		var particles: Node3D = \
-			preload("res://scenes/entities/tank_cannon_particles.tscn").instantiate()
-		body.add_child(particles)
 		var res := try_damage_tank(body, damage_value)
 		if res.is_err(): return
+		var particles: Node3D = \
+			preload("res://scenes/projectiles/enemy_projectie/missie_explosion_particles.tscn").instantiate()
+		body.add_child(particles)
 
 		AudioManager.play_sound_at(global_position, impact_sound, 15.0)
 		var trail := $TrailRenderer

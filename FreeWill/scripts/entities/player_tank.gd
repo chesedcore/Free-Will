@@ -177,6 +177,7 @@ func _fire_cannon() -> void:
 
 	CannonParticles.attach_to(bullet_spawn_position_marker)
 	linear_velocity += -camera_gimbal.global_transform.basis.z * GUN_FIRE_FORCE
+	camera_gimbal.start_shoot_tween(1.5, 3.)
 	Bullet.fire_bullet_from_tank(self)
 	active_missiles += 1
 
@@ -297,5 +298,6 @@ func stop_model_update() -> void:
 func start_model_update() -> void:
 	_stop_gimbal_update = false
 
-func shake(for_time: float = 1.5) -> void:
+func shake(for_time: float = 1.5, shake_amp : float = 1.) -> void:
+	shake_component.shake_amp = shake_amp
 	shake_component.shake(for_time)
