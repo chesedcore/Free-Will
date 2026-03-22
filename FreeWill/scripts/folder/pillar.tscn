@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://namjkr07wt6t"]
+
+[ext_resource type="Script" uid="uid://cc3pb1xnnuqfr" path="res://scripts/folder/pillar.gd" id="1_e4alk"]
+[ext_resource type="Texture2D" uid="uid://y0cc76tjy4em" path="res://assets/textures/pillarlong.png" id="2_e4alk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ongam"]
+size = Vector2(28, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4alk"]
+size = Vector2(28, 255.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otwpt"]
+size = Vector2(19, 189)
+
+[node name="Pillar" type="Area2D" unique_id=2003619348 groups=["pillars"]]
+script = ExtResource("1_e4alk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1980129301]
+position = Vector2(0, -353)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_ongam")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=987719478]
+position = Vector2(0, -353)
+scale = Vector2(4, 4)
+texture = ExtResource("2_e4alk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=967741900]
+position = Vector2(0, 352.5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_e4alk")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=670860008]
+position = Vector2(0, 353)
+scale = Vector2(4, 4)
+texture = ExtResource("2_e4alk")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1013223083]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=268582521]
+position = Vector2(55, 2)
+shape = SubResource("RectangleShape2D_otwpt")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
