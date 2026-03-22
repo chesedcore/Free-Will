@@ -28,7 +28,11 @@ const PARRY_WINDUP := 0.1
 const PARRY_WINDOW := 0.75
 const PARRY_CHAIN_EXTENSION := 0.5
 
-const MAX_HEALTH: float = 100.0
+const RAILGUN_COOLDOWN := 5.0
+@export var RAILGUN_RANGE := 750.0
+@export var RAILGUN_RADIUS_WIDTH := 10.0
+
+const MAX_HEALTH: float = 100000000000000
 
 ##shorthand for the feedback enum
 const UI := UIBus.Feedback
@@ -50,6 +54,7 @@ const UI := UIBus.Feedback
 #cooldowns
 @onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
 @onready var parry_cooldown := Cooldown.from_time(PARRY_COOLDOWN, self)
+@onready var railgun_cooldown := Cooldown.from_time(RAILGUN_COOLDOWN, self)
 @onready var parry_window_timer := Cooldown.from_time(PARRY_WINDOW, self)
 @onready var dash_effect_timer := Cooldown.from_time(DASH_EFFECT_DURATION, self)
 
@@ -61,7 +66,6 @@ var _parry_tween: Tween
 var grappled_target: Node3D
 var active_missiles: int = 0
 var grapple_hold_time: float = 0.0
-
 
 
 func _ready() -> void:
@@ -80,7 +84,10 @@ func _input(event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("dash"):
 		_attempt_dash()
-
+	
+	if Input.is_action_just_pressed("railgun"):
+		_attempt_railgun_fire()
+	
 	if Input.is_action_just_pressed("action"):
 		_attempt_parry()
 
@@ -90,6 +97,82 @@ func _input(event: InputEvent) -> void:
 	if (event.is_action_released("grapple")):
 		ungrapple()
 
+func _attempt_railgun_fire() -> void:
+	if not railgun_cooldown.is_ready():
+		UIBus.attempted_railgun.emit(Result.Err(UI.RAILGUN_STILL_UNDER_COOLDOWN))
+		return
+	
+	_execute_railgun()
+	UIBus.attempted_railgun.emit(Result.Ok_as_is())
+
+func _execute_railgun() -> void:
+	print("railgun!")
+	var targets_hit := _query_barrel_shapecast_hits()
+	print_rich("[color=green]Targets hit: "+str(targets_hit))
+	for target in targets_hit:
+		target.kill()
+
+func _query_barrel_shapecast_hits() -> Array[BaseEnemy]:
+	var hits: Array[BaseEnemy] = []
+
+	var camera: Camera3D = camera_gimbal.camera
+	var screen_center := _get_screen_center()
+
+	var origin: Vector3 = camera.project_ray_origin(screen_center)
+	var direction: Vector3 = camera.project_ray_normal(screen_center).normalized()
+
+	var end: Vector3 = origin + direction * RAILGUN_RANGE
+	var center: Vector3 = (origin + end) * 0.5
+	var length: float = origin.distance_to(end)
+
+	var shape := CapsuleShape3D.new()
+	shape.radius = RAILGUN_RADIUS_WIDTH
+	shape.height = max(0.0, length - shape.radius * 2.0)
+
+	var look_basis := Basis.looking_at(direction, Vector3.UP)
+	var capsule_basis := look_basis * Basis(Vector3.RIGHT, deg_to_rad(-90.0))
+
+	var query := PhysicsShapeQueryParameters3D.new()
+	query.shape = shape
+	query.transform = Transform3D(capsule_basis, center)
+	query.exclude = [self]
+	query.collide_with_bodies = true
+	query.collide_with_areas = false
+	query.collision_mask = 1 << 2
+
+	var space_state := get_world_3d().direct_space_state
+	var results := space_state.intersect_shape(query)
+
+	query.transform = Transform3D(capsule_basis, center)
+
+	_debug_draw_capsule(
+		Transform3D(capsule_basis, center),
+		shape.height,
+		shape.radius
+	)
+	#^^^^^^^^^^^^^^^^^^^^^ comment out that function call to disable the debug railgun
+
+	for result in results:
+		var collider: Variant = result["collider"]
+		if collider is BaseEnemy:
+			hits.append(collider)
+	
+	return hits
+
+func _get_screen_center() -> Vector2:
+	return get_viewport().get_visible_rect().size/2
+
+func _get_camera_ray() -> Dictionary[StringName, Vector3]:
+	var camera := camera_gimbal.camera
+	var screen_center := _get_screen_center()
+
+	var origin := camera.project_ray_origin(screen_center)
+	var direction := camera.project_ray_normal(screen_center)
+
+	return {
+		&"origin": origin,
+		&"direction": direction.normalized()
+	}
 
 func _attempt_dash() -> void:
 	if not dash_cooldown.is_ready():
@@ -99,9 +182,31 @@ func _attempt_dash() -> void:
 	_execute_dash()
 	UIBus.attempted_dash.emit(Result.Ok_as_is())
 
+func _debug_draw_capsule(xform: Transform3D, height: float, radius: float, duration: float = 1) -> void:
+	var mesh := CapsuleMesh.new()
+	mesh.radius = radius
+	mesh.height = height
+
+	var instance := MeshInstance3D.new()
+	instance.mesh = mesh
+	instance.transform = xform
+
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(0.0, 1.0, 1.0, 0.25)
+	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.disable_depth_test = true
+
+	instance.material_override = mat
+
+	get_tree().current_scene.add_child(instance)
+
+	await get_tree().create_timer(duration).timeout
+	instance.queue_free()
 
 func _execute_dash() -> void:
 	var input_dir: Vector2 = Input.get_vector("left", "right", "up", "down")
+	if input_dir.is_zero_approx(): input_dir = Vector2.UP
 	var move_dir: Vector3 = Vector3(-input_dir.x, 0.0, -input_dir.y).rotated(Vector3.UP, camera_gimbal.rotation.y)
 	var dash_direction := move_dir
 	linear_velocity += dash_direction * DASH_FORCE
@@ -183,7 +288,7 @@ func _fire_cannon() -> void:
 
 
 func bullet_deleted() -> void:
-	print("DELTED")
+	#print("DELTED")
 	active_missiles -= 1
 
 
