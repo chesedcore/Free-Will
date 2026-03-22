@@ -6,12 +6,18 @@
 [ext_resource type="Texture2D" uid="uid://bkxkuq3262y5f" path="res://shaderslop/particleslop/cannonshoot/resources/fireemissioncurve.tres" id="4_0jhcd"]
 [ext_resource type="Texture2D" uid="uid://b8rp2d5ysekll" path="res://shaderslop/particleslop/cannonshoot/resources/firescalecurve.tres" id="5_u7ox4"]
 
+[sub_resource type="Curve" id="Curve_6q5uk"]
+
+[sub_resource type="Curve" id="Curve_80cjy"]
+
 [sub_resource type="Curve" id="Curve_tl6ld"]
 _limits = [-2.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 0.6422975), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveXYZTexture" id="CurveXYZTexture_6q5uk"]
+curve_x = SubResource("Curve_6q5uk")
+curve_y = SubResource("Curve_80cjy")
 curve_z = SubResource("Curve_tl6ld")
 
 [resource]
