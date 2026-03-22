@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://b1aaow6gsi7yb" path="res://assets/ui/health_bar_front.png" id="18_ekcgd"]
 [ext_resource type="AudioStream" uid="uid://lv5m5ak5a31d" path="res://audio/sfx/bgs/wind.ogg" id="18_tafis"]
 [ext_resource type="Script" uid="uid://cicma3kluvpxo" path="res://scripts/util_scripts/shake.gd" id="19_oqcw2"]
-[ext_resource type="Shader" uid="uid://drd3l3yes5apm" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
+[ext_resource type="Shader" uid="uid://dewwkri53s35" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
 [ext_resource type="Texture2D" uid="uid://vwb6m76hhawe" path="res://assets/textures/chain.png" id="24_4sl2t"]
 
 [sub_resource type="Curve" id="Curve_vvw44"]
@@ -155,7 +155,7 @@ kunai_model = NodePath("Grapple/kunai_model")
 
 [node name="TankModel" parent="." unique_id=650479505 instance=ExtResource("2_fn73n")]
 
-[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(650479505, 160149673) index="0" unique_id=1789710507]
+[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(650479505, 1848047999) index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
 script = ExtResource("10_hsoq5")
 min_vertex_distance = 0.1
@@ -370,6 +370,7 @@ mesh = SubResource("QuadMesh_ywmen")
 [node name="kunai_model" parent="Grapple" unique_id=1146163474 instance=ExtResource("6_rlhxg")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 top_level = true
+visible = false
 
 [node name="ShakeComponent" type="Node3D" parent="." unique_id=564894313]
 script = ExtResource("19_oqcw2")

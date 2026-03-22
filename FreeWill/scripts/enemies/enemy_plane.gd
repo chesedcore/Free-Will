@@ -36,7 +36,7 @@ func on_shield()->void :
 
 func on_deactivate_shield()->void:
 	if is_shield_active:
-		
+
 		shield.queue_free.call_deferred()
 		shield = null
 		print("removed")

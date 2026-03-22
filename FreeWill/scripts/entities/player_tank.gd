@@ -12,8 +12,8 @@ const GRAPPLE_STRENGTH: float = 25.0
 
 const MAX_SPEED: float = 150.0
 
-const DASH_FORCE := 350.0
-const DASH_COOLDOWN := 2.325
+const DASH_FORCE := 1200.0
+const DASH_COOLDOWN := 1.25
 const DASH_MAX_SPEED := MAX_SPEED * 3
 const DASH_FOV_BOOST := 20.0
 const DASH_CAMERA_PULLBACK := 6.0
@@ -23,11 +23,10 @@ const DASH_EFFECT_DURATION := 5.0
 # the missiles is a good idea. Probably needs adjusting tho
 const MAX_MISSILES: int = 3
 
-const ACTION_COOLDOWN := 3.25
-const PARRY_COOLDOWN := 1.25
-const PARRY_WINDUP := 0.2
-const PARRY_WINDOW := 0.625
-const PARRY_CHAIN_EXTENSION := 0.4
+const PARRY_COOLDOWN := 0.75
+const PARRY_WINDUP := 0.1
+const PARRY_WINDOW := 0.75
+const PARRY_CHAIN_EXTENSION := 0.5
 
 const MAX_HEALTH: float = 100.0
 
@@ -107,6 +106,15 @@ func _execute_dash() -> void:
 	linear_velocity += dash_direction * DASH_FORCE
 
 	#camera_gimbal.trigger_dash_effect(DASH_EFFECT_DURATION, DASH_FOV_BOOST, DASH_CAMERA_PULLBACK)
+
+	# Dodge roll
+	await create_tween().tween_property(tank_model,
+		"rotation_degrees",
+		Vector3(0.0, 0.0, 360.0),
+		0.25).set_trans(
+		Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT).finished
+
+	create_tween().tween_property(self, "linear_velocity", linear_velocity * 0.35, 0.5)
 
 	dash_cooldown.start_cooldown()
 	dash_effect_timer.start_cooldown()
