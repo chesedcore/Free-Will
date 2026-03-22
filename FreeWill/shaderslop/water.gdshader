@@ -2,6 +2,8 @@ shader_type spatial;
 
 uniform sampler2D DEPTH_TEXTURE : hint_depth_texture, filter_linear_mipmap;
 
+uniform sampler2D juice;
+
 // Water color
 uniform vec4 out_color: source_color = vec4(0.0, 0.2, 1.0, 1.0);
 // Amount of height for each triangle
@@ -21,6 +23,9 @@ uniform float noise_1_strength = 50.0;
 uniform float noise_2_strength = 100.0;
 
 uniform float amplitude = 15.0;
+
+uniform vec2 uv_scale = vec2(1.0, 1.0);
+
 
 float generateOffset(float x, float z, float val1, float val2, float time) {
 	float radiansX = ((mod(x + z * x * val1, amount) / amount) + (time * speed) * mod(x * 0.8 + z, 1.5)) * 2.0 * 3.14;
@@ -49,5 +54,5 @@ void fragment() {
 	METALLIC = metallic;
 	SPECULAR = specular;
 	ROUGHNESS = roughness;
-	ALBEDO = out_color.rgb;
+	ALBEDO = texture(juice, UV * uv_scale + (TIME * speed * 0.15)).rgb;
 }
