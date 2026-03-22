@@ -199,7 +199,6 @@ func _debug_draw_capsule(xform: Transform3D, height: float, radius: float, durat
 	mat.albedo_color = Color(0.0, 1.0, 1.0, 0.25)
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	mat.disable_depth_test = true
 
 	instance.material_override = mat
 
