@@ -16,6 +16,7 @@ const DASH_FORCE := 1200.0
 const DASH_COOLDOWN := 1.25
 const DASH_MAX_SPEED := MAX_SPEED * 3
 const DASH_FOV_BOOST := 20.0
+const DASH_ROLL_SPEED := 30.0
 const DASH_CAMERA_PULLBACK := 6.0
 const DASH_EFFECT_DURATION := 5.0
 
@@ -110,8 +111,9 @@ func _execute_dash() -> void:
 	#camera_gimbal.trigger_dash_effect(DASH_EFFECT_DURATION, DASH_FOV_BOOST, DASH_CAMERA_PULLBACK)
 
 	# Dodge roll
-	angular_velocity = camera_gimbal.global_transform.basis.z * 50.0
-	await get_tree().create_timer(0.5).timeout
+	if (absf(input_dir.x) > 0.0):
+		angular_velocity = camera_gimbal.global_transform.basis.z * DASH_ROLL_SPEED
+		await get_tree().create_timer(0.5).timeout
 
 	create_tween().tween_property(self, "linear_velocity", linear_velocity * 0.35, 0.5)
 
