@@ -10,7 +10,7 @@ const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.
 @export var impact_sound: AudioStream = preload("res://audio/sfx/explosion.ogg")
 @export var spawn_sound: AudioStream = preload("res://audio/sfx/rocket_launch_2.ogg")
 
-@onready var trail_renderer: TrailRenderer = $TrailRenderer
+@export var trail_renderer: TrailRenderer
 
 var locked_on : bool = true
 @export var lock_off_dist : float = 25
@@ -19,7 +19,7 @@ var threat_indicator : ThreatIndicator
 
 func _process(_delta: float) -> void:
 	if global_position.y <= -10:
-		var trail := $TrailRenderer
+		var trail := trail_renderer
 		if is_instance_valid(trail):
 			trail.is_emitting = false
 			remove_child(trail)
@@ -37,8 +37,9 @@ func  _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	trail_renderer.position.x = randf_range(-0.5,.5)
-	trail_renderer.position.y = 0.524 + randf_range(-0.5,0.5)
+	if trail_renderer:
+		trail_renderer.position.x = randf_range(-0.5,.5)
+		trail_renderer.position.y = 0.524 + randf_range(-0.5,0.5)
 	if not target_node:
 		return
 
@@ -110,11 +111,10 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 		body.add_child(particles)
 
 		AudioManager.play_sound_at(global_position, impact_sound, 15.0)
-		var trail := $TrailRenderer
-		if is_instance_valid(trail):
-			trail.is_emitting = false
-			remove_child(trail)
-			get_tree().root.add_child(trail)
+		if trail_renderer:
+			trail_renderer.is_emitting = false
+			remove_child(trail_renderer)
+			get_tree().root.add_child(trail_renderer)
 		queue_free.call_deferred()
 
 

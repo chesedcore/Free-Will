@@ -73,9 +73,10 @@ func on_locked_on()->void:
 	if is_locked_on:
 
 		fireMissle.emit(player)
-		print("fire")
+		#print("fire")
 	else:
-		print("lost lock")
+		#print("lost lock")
+		pass
 
 	Transitioned.emit(self,EnemyPlane.STATES.EVADE)
 

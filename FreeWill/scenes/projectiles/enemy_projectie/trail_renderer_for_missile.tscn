@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bqksxynf558n0"]
+
+[ext_resource type="Script" uid="uid://brqh6t5d1dyrl" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="1_65unp"]
+[ext_resource type="Shader" uid="uid://cwxrvexdarj2x" path="res://shaderslop/wind_trail.gdshader" id="2_ubnmj"]
+
+[sub_resource type="Curve" id="Curve_rdogb"]
+resource_local_to_scene = true
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), -0.9893111, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_buov0"]
+offsets = PackedFloat32Array(0.044067796, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5ybko"]
+seed = 1
+frequency = 0.002
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_buov0"]
+noise = SubResource("FastNoiseLite_5ybko")
+color_ramp = SubResource("Gradient_buov0")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jpf17"]
+render_priority = 0
+shader = ExtResource("2_ubnmj")
+shader_parameter/edgefade = 0.0
+shader_parameter/globalfade = 0.400000019
+shader_parameter/max_alpha = 0.50000002375
+shader_parameter/color_tint = Color(0.41981313, 0.41981313, 0.4198131, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_buov0")
+
+[node name="TrailRenderer" type="Node3D" unique_id=534976593]
+script = ExtResource("1_65unp")
+lifetime = 10.0
+min_vertex_distance = 5.0
+curve = SubResource("Curve_rdogb")
+alignment = 0
+material = SubResource("ShaderMaterial_jpf17")
+texture_mode = 2
+metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
