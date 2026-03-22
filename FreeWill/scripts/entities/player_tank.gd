@@ -46,6 +46,7 @@ const UI := UIBus.Feedback
 @export var grapple_rope_mesh_2: MeshInstance3D
 @export var kunai_model: Node3D
 @export var idle_kunai_model: Node3D
+@export var rotation_animation_player: AnimationPlayer
 
 #cooldowns
 @onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
@@ -109,11 +110,8 @@ func _execute_dash() -> void:
 	#camera_gimbal.trigger_dash_effect(DASH_EFFECT_DURATION, DASH_FOV_BOOST, DASH_CAMERA_PULLBACK)
 
 	# Dodge roll
-	await create_tween().tween_property(tank_model,
-		"rotation_degrees",
-		Vector3(0.0, 0.0, 360.0),
-		0.25).set_trans(
-		Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT).finished
+	angular_velocity = camera_gimbal.global_transform.basis.z * 50.0
+	await get_tree().create_timer(0.5).timeout
 
 	create_tween().tween_property(self, "linear_velocity", linear_velocity * 0.35, 0.5)
 

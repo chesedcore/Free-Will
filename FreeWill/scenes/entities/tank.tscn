@@ -133,7 +133,7 @@ shader_parameter/max_alpha = 0.1370000065075
 shader_parameter/color_tint = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_ig2cu")
 
-[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component", "grapple_rope_mesh_1", "grapple_rope_mesh_2", "kunai_model", "idle_kunai_model")]
+[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component", "grapple_rope_mesh_1", "grapple_rope_mesh_2", "kunai_model", "idle_kunai_model", "rotation_animation_player")]
 collision_layer = 2
 collision_mask = 5
 mass = 200.0
@@ -153,10 +153,11 @@ grapple_rope_mesh_1 = NodePath("TankModel/GrappleRopeMesh")
 grapple_rope_mesh_2 = NodePath("TankModel/GrappleRopeMesh2")
 kunai_model = NodePath("Grapple/kunai_model")
 idle_kunai_model = NodePath("TankModel/IdleKunaiModel")
+rotation_animation_player = NodePath("")
 
 [node name="TankModel" parent="." unique_id=1331045763 instance=ExtResource("2_fn73n")]
 
-[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(650479505, 1643959153) index="0" unique_id=1789710507]
+[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(1331045763, 1225671377) index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
 script = ExtResource("10_hsoq5")
 min_vertex_distance = 0.1
