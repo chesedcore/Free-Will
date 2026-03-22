@@ -7,6 +7,7 @@ signal fucking_exploded
 const BARREL_ROTATION_SPEED: float = 7.5
 const GUN_GIMBAL_ROTATION_SPEED: float = 6.0
 const BODY_ROTATION_SPEED: float = 1.0
+const RAILGUN_FIRE_FORCE: float = 80.0
 const GUN_FIRE_FORCE: float = 50.0
 const GRAPPLE_STRENGTH: float = 25.0
 
@@ -21,14 +22,14 @@ const DASH_EFFECT_DURATION := 5.0
 
 # TODO: Bubba: this may be too few missles. I do think preventing the player from spamming
 # the missiles is a good idea. Probably needs adjusting tho
-const MAX_MISSILES: int = 3
+const MAX_MISSILES: int = 4
 
 const PARRY_COOLDOWN := 0.75
 const PARRY_WINDUP := 0.1
 const PARRY_WINDOW := 0.75
 const PARRY_CHAIN_EXTENSION := 0.5
 
-const RAILGUN_COOLDOWN := 5.0
+const RAILGUN_COOLDOWN := 0.85
 @export var RAILGUN_RANGE := 750.0
 @export var RAILGUN_RADIUS_WIDTH := 10.0
 
@@ -107,8 +108,11 @@ func _attempt_railgun_fire() -> void:
 
 func _execute_railgun() -> void:
 	print("railgun!")
+	railgun_cooldown.start_cooldown()
 	var targets_hit := _query_barrel_shapecast_hits()
 	print_rich("[color=green]Targets hit: "+str(targets_hit))
+	linear_velocity += -camera_gimbal.global_transform.basis.z * RAILGUN_FIRE_FORCE
+	shake()
 	for target in targets_hit:
 		target.kill()
 
