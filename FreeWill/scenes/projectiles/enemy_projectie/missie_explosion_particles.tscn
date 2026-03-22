@@ -198,6 +198,7 @@ amount = 50
 one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
+visibility_aabb = AABB(-4, -4, -4, 8, 8.01, 8)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_es01c")
 draw_pass_1 = SubResource("SphereMesh_cto6v")

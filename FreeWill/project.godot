@@ -193,4 +193,5 @@ jolt_physics_3d/simulation/position_steps=8
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

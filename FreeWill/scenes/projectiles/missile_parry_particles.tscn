@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dptc6fd5o3wy7"]
+
+[ext_resource type="Script" uid="uid://cxohsffep4fi6" path="res://scenes/projectiles/missile_parry_particles.gd" id="1_0n5t0"]
+
+[sub_resource type="Curve" id="Curve_0n5t0"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 16.654438, 0, 0, Vector2(1, 71.14883), 283.46628, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_slgfx"]
+curve = SubResource("Curve_0n5t0")
+
+[sub_resource type="Curve" id="Curve_yknf0"]
+_data = [Vector2(0, 0.7539164), 0.0, 0.0, 0, 0, Vector2(0.35922328, 0.7369451), 0.0, 0.0, 0, 0, Vector2(1, 0.31266314), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_vycjm"]
+curve = SubResource("Curve_yknf0")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c42kt"]
+direction = Vector3(0, 0, 1)
+spread = 90.0
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+damping_min = 20.0
+damping_max = 20.0
+damping_curve = SubResource("CurveTexture_slgfx")
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_vycjm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ute5l"]
+transparency = 1
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0.6431373, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.6431373, 1, 1)
+emission_energy_multiplier = 50.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_g82at"]
+material = SubResource("StandardMaterial3D_ute5l")
+
+[node name="Node3D" type="Node3D" unique_id=1182078075]
+script = ExtResource("1_0n5t0")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=158701251]
+emitting = false
+amount = 30
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_c42kt")
+draw_pass_1 = SubResource("SphereMesh_g82at")

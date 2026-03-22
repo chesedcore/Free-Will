@@ -98,7 +98,13 @@ func deflect_this_missile() -> void:
 func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body is PlayerTank:
 		var res := try_damage_tank(body, damage_value)
-		if res.is_err(): return
+		if res.is_err():
+			var particles : Node3D = \
+				preload("res://scenes/projectiles/missile_parry_particles.tscn").instantiate()
+			get_tree().root.add_child(particles)
+			particles.basis = global_basis
+			particles.position = global_position
+			return
 		var particles: Node3D = \
 			preload("res://scenes/projectiles/enemy_projectie/missie_explosion_particles.tscn").instantiate()
 		body.add_child(particles)
