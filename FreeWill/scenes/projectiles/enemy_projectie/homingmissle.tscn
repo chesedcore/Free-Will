@@ -7,7 +7,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_buov0"]
 radius = 0.36035156
-height = 8.253241
+height = 7.971835
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_04gat"]
 radius = 0.32470703
@@ -19,7 +19,7 @@ collision_mask = 2
 script = ExtResource("1_2glct")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1514301715]
-transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -1.5690606e-08, 0.4863505, -0.3665347)
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -9.540295e-09, 0.4863505, -0.22583199)
 shape = SubResource("CapsuleShape3D_buov0")
 
 [node name="missile" parent="." unique_id=1561043600 instance=ExtResource("2_6ku3j")]
