@@ -42,6 +42,8 @@ func enter() -> void:
 	#threat_indicator = THREAT_INDICATOR.instantiate()
 	#threat_indicator.target_node = enemy
 	#player.add_child(threat_indicator)
+const MIN_ALTITUDE := 250.0
+const ALTITUDE_FORCE := 100
 
 
 func  physics_update(_delta :float) -> void:
@@ -51,12 +53,13 @@ func  physics_update(_delta :float) -> void:
 		Transitioned.emit(self,EnemyPlane.STATES.EVADE)
 		return
 	var target_velocity : Vector3 = heading * speed
-
+	
 	enemy.velocity = enemy.velocity.move_toward(
 		target_velocity,
 		acceleration * _delta
 	)
-
+	if enemy.global_position.y < MIN_ALTITUDE:
+		enemy.velocity.y += ALTITUDE_FORCE * _delta
 
 func exit() -> void:
 	lock_on_timer.stop()

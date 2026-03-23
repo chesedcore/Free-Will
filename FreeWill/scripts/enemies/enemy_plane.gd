@@ -110,6 +110,10 @@ func on_state_transition(from_state: State, to_state: STATES)->void:
 	new_state.enter()
 	current_state = new_state
 
+func kill() -> void:
+	if !is_shield_active:
+		super.kill()
+
 #func kill() -> void:
 	#var trail := trail_renderer
 	#if is_instance_valid(trail):

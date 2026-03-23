@@ -17,6 +17,7 @@ var _is_under_hitstop := false
 func _wire_up_signals() -> void:
 	UIBus.missile_parried.connect(_on_missile_parried)
 	tank.fucking_exploded.connect(_on_tank_fucking_exploded)
+	EnemySignalBus.spawn_entity.connect(on_spawn_entity)
 
 func _setup_name_tracking() -> void:
 	ui.set_tank(tank)
@@ -57,3 +58,9 @@ func mission_complete_screen()->void:
 
 func _on_missile_parried() -> void:
 	_hitstop()
+
+
+#gael: the entity is spawning
+func on_spawn_entity(entity :Node3D)->void :
+	add_child(entity)
+	ui.track_these_entities([entity])

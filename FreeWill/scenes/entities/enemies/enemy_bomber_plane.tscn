@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bbwem661dtlb7"]
+
+[ext_resource type="Script" uid="uid://b0omvp3rk33pd" path="res://scripts/enemies/enemy_bomber_plane.gd" id="1_lr0x8"]
+[ext_resource type="PackedScene" uid="uid://7dcvpkvo12g4" path="res://assets/models/stealth_bomber.blend" id="2_7qcy3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a37s1"]
+size = Vector3(396.15234, 44.98047, 186.25653)
+
+[node name="enemy_bomber_plane" type="CharacterBody3D" unique_id=891586829 node_paths=PackedStringArray("droppers")]
+collision_layer = 4
+script = ExtResource("1_lr0x8")
+droppers = [NodePath("bomb_droppers/drop1"), NodePath("bomb_droppers/drop2"), NodePath("bomb_droppers/drop3"), NodePath("bomb_droppers/drop4"), NodePath("bomb_droppers/drop5")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=682847182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.296051, 12.241699, 8.593292)
+shape = SubResource("BoxShape3D_a37s1")
+
+[node name="stealth_bomber" parent="." unique_id=69598517 instance=ExtResource("2_7qcy3")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="drop_timer" type="Timer" parent="." unique_id=140236986]
+wait_time = 2.5
+autostart = true
+
+[node name="bomb_droppers" type="Node3D" parent="." unique_id=1744319720]
+
+[node name="drop1" type="Node3D" parent="bomb_droppers" unique_id=1535373492]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -9.954277, -39.24563)
+
+[node name="drop2" type="Node3D" parent="bomb_droppers" unique_id=1101515376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.663177, -9.954277, 1.7396774)
+
+[node name="drop3" type="Node3D" parent="bomb_droppers" unique_id=1200068494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.315857, -9.954277, 1.7396774)
+
+[node name="drop4" type="Node3D" parent="bomb_droppers" unique_id=1404199278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -96.18327, -9.954277, 33.470234)
+
+[node name="drop7" type="Node3D" parent="bomb_droppers" unique_id=378748445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -270.1833, -9.954277, 33.470234)
+
+[node name="drop5" type="Node3D" parent="bomb_droppers" unique_id=2096579751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 112.709564, -9.954277, 45.36919)
+
+[node name="drop6" type="Node3D" parent="bomb_droppers" unique_id=1333518225]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 285.70386, -9.954277, 45.36919)
+
+[connection signal="timeout" from="drop_timer" to="." method="_on_drop_timer_timeout"]
