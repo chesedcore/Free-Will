@@ -8,13 +8,15 @@ radius = 0.36035156
 height = 7.971835
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_04gat"]
-radius = 9.9609375
-height = 86.00026
+radius = 5.8344727
+height = 62.738834
 
 [node name="shark" type="CharacterBody3D" unique_id=1409877024]
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_f2uss")
+Max_speed = 200.0
+turn_speed = 4.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1514301715]
 transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -9.540295e-09, 0.4863505, -0.22583199)
@@ -25,16 +27,16 @@ collision_layer = 8
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox" unique_id=1814009424]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.032479525, 0.54225266, -4.6865406)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.032479525, 0.5422527, -3.989975)
 shape = SubResource("CapsuleShape3D_04gat")
 
 [node name="shark" parent="." unique_id=768403268 instance=ExtResource("2_gy8dw")]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 0, 0)
 
-[node name="Skeleton3D" parent="shark/Armature" parent_id_path=PackedInt32Array(768403268, 132219870) index="0" unique_id=1588467609]
+[node name="Skeleton3D" parent="shark/Armature" parent_id_path=PackedInt32Array(768403268, 1224074392) index="0" unique_id=11434943]
 bones/5/rotation = Quaternion(-0.38189957, 4.674978e-25, 8.479875e-17, 0.9242038)
 
-[node name="AnimationPlayer" parent="shark" index="1" unique_id=762972972]
+[node name="AnimationPlayer" parent="shark" index="1" unique_id=661804947]
 autoplay = &"ArmatureAction"
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
