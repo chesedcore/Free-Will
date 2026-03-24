@@ -47,8 +47,15 @@ func death_animation()->void:
 	for i in count:
 		death_tween.tween_callback(explode)
 		death_tween.tween_interval(interval)
+	death_tween.tween_callback(big_explode)
 	await death_tween.finished
 
+
+func big_explode()->void:
+	var explosion :ExplosionParticles = MISSIE_EXPLOSION_PARTICLES.instantiate()
+	explosion.scale = scale * 10
+	explosion.position = global_position 
+	get_tree().current_scene.add_child(explosion)
 
 func explode()->void:
 	var explosion :ExplosionParticles = MISSIE_EXPLOSION_PARTICLES.instantiate()

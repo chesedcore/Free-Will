@@ -13,7 +13,8 @@
 script = ExtResource("2_v5q0b")
 spawn_dialog = "test"
 waveinfo = Dictionary[int, int]({
-4: 2
+4: 2,
+5: 2
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 

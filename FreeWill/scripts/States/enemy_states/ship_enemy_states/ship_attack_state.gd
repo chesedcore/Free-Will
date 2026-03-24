@@ -5,7 +5,9 @@ var cannon_barrels : Array[Node3D]
 var rotation_speed: float = 5.0
 var cannon_aims : Array[RayCast3D]
 var fire_time :float = 1
+var cooldown : float = 1
 var remaining_fire_time: Array[float] =[]
+var cooldowns : Array[float] = []
 var los : Area3D
 const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.tscn")
 var threat_indicators :Array[ThreatIndicator]
@@ -18,6 +20,7 @@ func enter() -> void:
 	for aim in cannon_aims:
 		aim.enabled = true
 		remaining_fire_time.append(fire_time)
+		cooldowns.append(cooldown)
 		threat_indicators.append(null)
 @warning_ignore("shadowed_variable")
 static  func  ship_attackstate_from(owner : BaseEnemy,bases: Array[Node3D],barrels : Array[Node3D],aims : Array[RayCast3D],los: Area3D)->State:
@@ -39,14 +42,20 @@ func update(_delta : float) -> void:
 					indicator.target_node = cannon_bases[i]
 					player.add_child(indicator)
 					threat_indicators[i] = indicator
-			remaining_fire_time[i] -= _delta
-			if remaining_fire_time[i] <= 0:
+			if remaining_fire_time[i] >= 0:
+				remaining_fire_time[i] -= _delta
+				if remaining_fire_time[i] <= 0:
+					
+					shoot.emit(i)
+					if threat_indicators[i]:
+						threat_indicators[i].target_node = null
+						threat_indicators[i] = null
+			else:
+				cooldowns[i]-= _delta
+				if cooldowns[i]<=0:
+					remaining_fire_time[i] = fire_time
+					cooldowns[i] = cooldown
 				
-				shoot.emit(i)
-				if threat_indicators[i]:
-					threat_indicators[i].target_node = null
-					threat_indicators[i] = null
-				remaining_fire_time[i] = fire_time
 		else:
 			if threat_indicators[i]:
 				threat_indicators[i].target_node = null

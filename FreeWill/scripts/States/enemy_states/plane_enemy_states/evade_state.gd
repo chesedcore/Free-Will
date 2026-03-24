@@ -19,6 +19,9 @@ var max_bank_angle : float = 35.0
 var bank_speed : float = 4.0
 var current_bank : float = 0.0
 
+const MIN_ALTITUDE := 250.0
+const ALTITUDE_FORCE := 100
+
 
 var model : Node3D
 var obstacle_detectors: Array[RayCast3D]
@@ -86,6 +89,8 @@ func physics_update(_delta: float) -> void:
 		var old_heading :Vector3 = heading
 		heading = heading.slerp(new_dir, turn_speed * _delta).normalized()
 		velocity_vec = velocity_vec.move_toward(heading * speed, aceleration * _delta)
+		if enemy.global_position.y < MIN_ALTITUDE:
+			velocity_vec.y += ALTITUDE_FORCE * _delta
 		enemy.velocity = velocity_vec
 		enemy.look_at(enemy.global_position + heading, Vector3.UP)
 		var right :Vector3= enemy.global_transform.basis.x
