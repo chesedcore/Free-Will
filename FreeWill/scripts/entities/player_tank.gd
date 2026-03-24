@@ -7,7 +7,7 @@ signal fucking_exploded
 const BARREL_ROTATION_SPEED: float = 7.5
 const GUN_GIMBAL_ROTATION_SPEED: float = 6.0
 const BODY_ROTATION_SPEED: float = 1.0
-const RAILGUN_FIRE_FORCE: float = 80.0
+const RAILGUN_FIRE_FORCE: float = 300.0
 const GUN_FIRE_FORCE: float = 50.0
 const GRAPPLE_STRENGTH: float = 25.0
 
@@ -112,7 +112,18 @@ func _execute_railgun() -> void:
 	var targets_hit := _query_barrel_shapecast_hits()
 	print_rich("[color=green]Targets hit: "+str(targets_hit))
 	linear_velocity += -camera_gimbal.global_transform.basis.z * RAILGUN_FIRE_FORCE
-	shake()
+	var camera: Camera3D = camera_gimbal.camera
+	var screen_center := _get_screen_center()
+	var origin: Vector3 = camera.project_ray_origin(screen_center)
+	var direction: Vector3 = camera.project_ray_normal(screen_center).normalized()
+	var particles : Node3D = preload("res://scenes/projectiles/railgun_particles.tscn").instantiate()
+	particles.length = RAILGUN_RANGE
+	particles.destroy_self = true
+	var look_basis := Basis.looking_at(direction, Vector3.UP)
+	var capsule_basis := look_basis * Basis(Vector3.RIGHT, deg_to_rad(-90.0))
+	get_tree().current_scene.add_child(particles)
+	particles.basis = capsule_basis
+	shake(0.5, 20.)
 	for target in targets_hit:
 		target.kill()
 
@@ -149,11 +160,11 @@ func _query_barrel_shapecast_hits() -> Array[BaseEnemy]:
 
 	query.transform = Transform3D(capsule_basis, center)
 
-	_debug_draw_capsule(
-		Transform3D(capsule_basis, center),
-		shape.height,
-		shape.radius
-	)
+	#_debug_draw_capsule(
+		#Transform3D(capsule_basis, center),
+		#shape.height,
+		#shape.radius
+	#)
 	#^^^^^^^^^^^^^^^^^^^^^ comment out that function call to disable the debug railgun
 
 	for result in results:

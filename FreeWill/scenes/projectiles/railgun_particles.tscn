@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://bewffn74mrceh"]
+
+[ext_resource type="Script" uid="uid://c205rqapyqqvi" path="res://scripts/effects/railgun.gd" id="1_ani64"]
+[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="2_ani64"]
+
+[sub_resource type="Curve" id="Curve_lubw5"]
+_data = [Vector2(0, 0), 0.0, 1.104292, 0, 0, Vector2(0.8608414, 1), 1.7877697, 0.0, 0, 0, Vector2(1, 0.8727153), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_iwvu5"]
+bake_resolution = 512
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_moh2q"]
+curve_x = SubResource("Curve_lubw5")
+curve_y = SubResource("Curve_iwvu5")
+curve_z = SubResource("Curve_lubw5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oww5q"]
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 124.67
+initial_velocity_max = 124.67
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveXYZTexture_moh2q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kg684"]
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 1, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.76862746, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7wyjk"]
+material = SubResource("StandardMaterial3D_kg684")
+radius = 3.0
+height = 750.0
+
+[sub_resource type="Curve" id="Curve_ani64"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 1, Vector2(1, 0), 0.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_pwgt8"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.23498702), 0.0, 1.2468559, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_moh2q"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 1, Vector2(1, 0), 0.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_oww5q"]
+curve_x = SubResource("Curve_ani64")
+curve_y = SubResource("Curve_pwgt8")
+curve_z = SubResource("Curve_moh2q")
+
+[sub_resource type="Curve" id="Curve_kg684"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.3017185, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7wyjk"]
+curve = SubResource("Curve_kg684")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pwgt8"]
+emission_shape_offset = Vector3(0, 380.88687, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 761.77374
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+orbit_velocity_min = 1.0000001
+orbit_velocity_max = 2.0000002
+orbit_velocity_curve = SubResource("CurveXYZTexture_oww5q")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_7wyjk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lubw5"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_iwvu5"]
+material = SubResource("StandardMaterial3D_lubw5")
+radius = 1.0
+height = 2.0
+
+[node name="RailgunParticles" type="Node3D" unique_id=1472362922 node_paths=PackedStringArray("beam", "swirly")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_ani64")
+beam = NodePath("GPUParticles3D")
+swirly = NodePath("GPUParticles3D2")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=2041816603]
+emitting = false
+amount = 1
+lifetime = 3.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 1.0
+visibility_aabb = AABB(-4, -4, -4, 8, 800, 8)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_oww5q")
+draw_pass_1 = SubResource("CapsuleMesh_7wyjk")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=777372580]
+emitting = false
+amount = 100
+lifetime = 3.0
+speed_scale = 5.0
+visibility_aabb = AABB(-4, -4, -4, 8, 1000, 8)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_pwgt8")
+draw_pass_1 = SubResource("SphereMesh_iwvu5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=936361091]
+environment = ExtResource("2_ani64")
