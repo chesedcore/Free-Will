@@ -8,3 +8,6 @@ static func create_cannonfire() -> CannonParticles:
 
 static func create_bullet() -> Bullet:
 	return preload("res://scenes/projectiles/tank_bullet.scn").instantiate()
+
+static func create_railgun() -> RailgunParticles:
+	return preload("res://scenes/projectiles/railgun_particles.tscn").instantiate()

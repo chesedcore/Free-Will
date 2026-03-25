@@ -111,19 +111,12 @@ func _execute_railgun() -> void:
 	railgun_cooldown.start_cooldown()
 	var targets_hit := _query_barrel_shapecast_hits()
 	print_rich("[color=green]Targets hit: "+str(targets_hit))
+	#TODO implement this without setting linear velocity
+	#linear_velocity = Vector3.ZERO
 	linear_velocity += -camera_gimbal.global_transform.basis.z * RAILGUN_FIRE_FORCE
-	var camera: Camera3D = camera_gimbal.camera
-	var screen_center := _get_screen_center()
-	var origin: Vector3 = camera.project_ray_origin(screen_center)
-	var direction: Vector3 = camera.project_ray_normal(screen_center).normalized()
-	var particles : Node3D = preload("res://scenes/projectiles/railgun_particles.tscn").instantiate()
-	particles.length = RAILGUN_RANGE
-	particles.destroy_self = true
-	var look_basis := Basis.looking_at(direction, Vector3.UP)
-	var capsule_basis := look_basis * Basis(Vector3.RIGHT, deg_to_rad(-90.0))
-	get_tree().current_scene.add_child(particles)
-	particles.basis = capsule_basis
-	shake(0.5, 20.)
+	RailgunParticles.spawn_particles(RAILGUN_RANGE, global_position, camera_gimbal, get_viewport(), get_tree())
+	CannonParticles.attach_to(bullet_spawn_position_marker)
+	shake(0.5, 3.)
 	for target in targets_hit:
 		target.kill()
 
@@ -297,7 +290,7 @@ func _fire_cannon() -> void:
 
 	CannonParticles.attach_to(bullet_spawn_position_marker)
 	linear_velocity += -camera_gimbal.global_transform.basis.z * GUN_FIRE_FORCE
-	camera_gimbal.start_shoot_tween(1.5, 3.)
+	camera_gimbal.start_shoot_tween(0.5, 3.)
 	Bullet.fire_bullet_from_tank(self)
 	active_missiles += 1
 
