@@ -47,7 +47,7 @@ func start_game() ->void:
 	tank.explode()
 	$PillarTimer.start()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if game_running:
 		scroll += SCROLL_SPEED
 		if scroll >= screen_size.x:
@@ -93,7 +93,7 @@ func tank_hit() -> void:
 	stop_game()
 
 
-func _on_area_2d_hit() -> void:
+func _on_area_2d_hit(_body : Node2D) -> void:
 	tank.falling = false
 	stop_game()
 
