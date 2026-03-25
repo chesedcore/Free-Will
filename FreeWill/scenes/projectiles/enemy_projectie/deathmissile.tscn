@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://cxya88roshk3u"]
+
+[ext_resource type="Script" uid="uid://w1w7mvkqos6t" path="res://scripts/entities/combat/homingmissle.gd" id="1_6v3ii"]
+[ext_resource type="PackedScene" uid="uid://b2k0tvxc2ybxm" path="res://assets/models/missile.blend" id="2_o3kth"]
+[ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="3_kkaqu"]
+[ext_resource type="AudioStream" uid="uid://dnpftk548fu71" path="res://audio/sfx/rocket_flight.ogg" id="4_x1vvv"]
+[ext_resource type="Script" uid="uid://brqh6t5d1dyrl" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="5_m4rw2"]
+[ext_resource type="Shader" uid="uid://cwxrvexdarj2x" path="res://shaderslop/wind_trail.gdshader" id="6_vvwqs"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vt8wv"]
+radius = 1.2529297
+height = 23.958103
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_08sl5"]
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aa1g3"]
+radius = 1.5712891
+height = 26.243176
+
+[sub_resource type="Curve" id="Curve_rdogb"]
+resource_local_to_scene = true
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.20224726), -0.9893111, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_buov0"]
+offsets = PackedFloat32Array(0.044067796, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5ybko"]
+seed = 1
+frequency = 0.002
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_buov0"]
+noise = SubResource("FastNoiseLite_5ybko")
+color_ramp = SubResource("Gradient_buov0")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jpf17"]
+render_priority = 0
+shader = ExtResource("6_vvwqs")
+shader_parameter/edgefade = 0.0
+shader_parameter/globalfade = 0.400000019
+shader_parameter/max_alpha = 0.50000002375
+shader_parameter/color_tint = Color(0.41981313, 0.41981313, 0.4198131, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_buov0")
+
+[node name="deathmissile" type="CharacterBody3D" unique_id=1409877024]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_6v3ii")
+Max_speed = 350.0
+turn_speed = 30.0
+damage_value = 50.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1514301715]
+transform = Transform3D(1.9106855e-15, -4.371139e-08, 1, -1, -4.371139e-08, 0, 4.371139e-08, -1, -4.371139e-08, -1.8995426e-08, 1.415013, -0.4421401)
+shape = SubResource("CapsuleShape3D_vt8wv")
+
+[node name="missile" parent="." unique_id=1561043600 instance=ExtResource("2_o3kth")]
+transform = Transform3D(-2.5033512e-07, 0, 16.554, 0, 10, 0, -5.727, 0, -7.2359836e-07, 0, 0, 0)
+
+[node name="Cube" parent="missile" index="0" unique_id=1259565158]
+surface_material_override/0 = SubResource("StandardMaterial3D_08sl5")
+
+[node name="thruster_particles" parent="." unique_id=1747782805 instance=ExtResource("3_kkaqu")]
+transform = Transform3D(2, 0, 0, 0, -8.742278e-08, -2, 0, 2, -8.742278e-08, 0, 1.3505911, 10.889551)
+
+[node name="hitbox" type="Area3D" parent="." unique_id=1085087111]
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox" unique_id=1814009424]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.032479525, 1.2938913, -0.18543816)
+shape = SubResource("CapsuleShape3D_aa1g3")
+
+[node name="ThrusterSoundPlayer" type="AudioStreamPlayer3D" parent="." unique_id=524493614]
+stream = ExtResource("4_x1vvv")
+volume_db = 10.0
+pitch_scale = 0.7
+autoplay = true
+attenuation_filter_cutoff_hz = 20500.0
+doppler_tracking = 2
+parameters/looping = true
+
+[node name="TrailRenderer" type="Node3D" parent="." unique_id=1044265490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.52449524, 3.973237)
+script = ExtResource("5_m4rw2")
+lifetime = 10.0
+min_vertex_distance = 5.0
+curve = SubResource("Curve_rdogb")
+alignment = 0
+material = SubResource("ShaderMaterial_jpf17")
+texture_mode = 2
+metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+
+[editable path="missile"]

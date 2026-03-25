@@ -4,3 +4,4 @@ extends Node
 
 signal cargo_ship_shield
 signal cargo_ship_deactivate_shield
+signal spawn_entity

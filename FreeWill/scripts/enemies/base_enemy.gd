@@ -15,4 +15,4 @@ func damage(amount: float) -> void:
 func kill() -> void:
 	IFFTracker.stop_tracking_entity(self)
 	died.emit()
-	queue_free()
+	queue_free.call_deferred()

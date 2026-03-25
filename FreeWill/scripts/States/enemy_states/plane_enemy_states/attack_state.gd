@@ -10,8 +10,7 @@ const  MAX_ATTACKING_PLANES = 4
 var lock_on_timer : Timer
 #const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.tscn")
 
-var max_speed : float = 200
-var attack_speed : float = 100
+var speed : float = 100
 var acceleration : float = 75
 #var attack_range : float = 250.0
 #var attack_angle : float = 0.5
@@ -43,6 +42,8 @@ func enter() -> void:
 	#threat_indicator = THREAT_INDICATOR.instantiate()
 	#threat_indicator.target_node = enemy
 	#player.add_child(threat_indicator)
+const MIN_ALTITUDE := 250.0
+const ALTITUDE_FORCE := 100
 
 
 func  physics_update(_delta :float) -> void:
@@ -51,13 +52,14 @@ func  physics_update(_delta :float) -> void:
 		lock_on_timer.stop()
 		Transitioned.emit(self,EnemyPlane.STATES.EVADE)
 		return
-	var target_velocity : Vector3 = heading * attack_speed
-
+	var target_velocity : Vector3 = heading * speed
+	
 	enemy.velocity = enemy.velocity.move_toward(
 		target_velocity,
 		acceleration * _delta
 	)
-
+	if enemy.global_position.y < MIN_ALTITUDE:
+		enemy.velocity.y += ALTITUDE_FORCE * _delta
 
 func exit() -> void:
 	lock_on_timer.stop()
@@ -74,9 +76,10 @@ func on_locked_on()->void:
 	if is_locked_on:
 
 		fireMissle.emit(player)
-		print("fire")
+		#print("fire")
 	else:
-		print("lost lock")
+		#print("lost lock")
+		pass
 
 	Transitioned.emit(self,EnemyPlane.STATES.EVADE)
 

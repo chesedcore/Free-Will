@@ -1,0 +1,198 @@
+[gd_scene format=3 uid="uid://bewffn74mrceh"]
+
+[ext_resource type="Script" uid="uid://c205rqapyqqvi" path="res://scripts/effects/railgun.gd" id="1_ani64"]
+[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="2_ani64"]
+[ext_resource type="Shader" uid="uid://bihimqq7vee8d" path="res://shaderslop/shockwave.gdshader" id="3_pwgt8"]
+
+[sub_resource type="Curve" id="Curve_7wyjk"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.49190935, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 100), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7swb2"]
+curve = SubResource("Curve_7wyjk")
+
+[sub_resource type="Curve" id="Curve_lubw5"]
+_data = [Vector2(0, 0), 0.0, 0.1051098, 0, 0, Vector2(0.5, 1), -7.152559e-07, -7.152559e-07, 0, 0, Vector2(0.815534, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -6.9009113, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_iwvu5"]
+bake_resolution = 512
+_data = [Vector2(0, 0), 0.0, 2.0, 0, 1, Vector2(0.5, 1), 2.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_moh2q"]
+curve_x = SubResource("Curve_lubw5")
+curve_y = SubResource("Curve_iwvu5")
+curve_z = SubResource("Curve_lubw5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oww5q"]
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 308.33334
+initial_velocity_max = 308.33334
+gravity = Vector3(0, 0, 0)
+damping_min = 100.00001
+damping_max = 100.00001
+damping_curve = SubResource("CurveTexture_7swb2")
+scale_curve = SubResource("CurveXYZTexture_moh2q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kg684"]
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 1, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.76862746, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7wyjk"]
+material = SubResource("StandardMaterial3D_kg684")
+radius = 3.0
+height = 750.0
+
+[sub_resource type="Curve" id="Curve_oww5q"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, -0.14758347, 0, 0, Vector2(0.5, 1), 2.0339427, 2.0339427, 0, 0, Vector2(1, 0), -9.893763, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_kg684"]
+curve = SubResource("Curve_oww5q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7wyjk"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_kg684")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lubw5"]
+render_priority = 0
+shader = ExtResource("3_pwgt8")
+shader_parameter/color = Color(0.49411765, 0, 1, 1)
+shader_parameter/outer_radius = 0.33
+shader_parameter/inner_radius = 0.215
+shader_parameter/uv_adjustment = Vector2(0.25, -0.25)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_iwvu5"]
+material = SubResource("ShaderMaterial_lubw5")
+top_radius = 15.0
+bottom_radius = 15.0
+height = 0.001
+radial_segments = 16
+rings = 0
+cap_bottom = false
+
+[sub_resource type="Curve" id="Curve_7swb2"]
+
+[sub_resource type="Curve" id="Curve_0d6x7"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.15533979, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_ub0f7"]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_snasg"]
+curve_x = SubResource("Curve_7swb2")
+curve_y = SubResource("Curve_0d6x7")
+curve_z = SubResource("Curve_ub0f7")
+
+[sub_resource type="Curve" id="Curve_ani64"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 1, Vector2(1, 0), 0.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_pwgt8"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.122977346, 0.23498702), 0.0, 0.0, 0, 0, Vector2(0.9, 0.235), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_moh2q"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 1, Vector2(1, 0), 0.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_oww5q"]
+curve_x = SubResource("Curve_ani64")
+curve_y = SubResource("Curve_pwgt8")
+curve_z = SubResource("Curve_moh2q")
+
+[sub_resource type="Curve" id="Curve_kg684"]
+_data = [Vector2(0, 1), 0.0, -0.5555555, 0, 1, Vector2(0.90000004, 0.5), -0.5555555, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7wyjk"]
+curve = SubResource("Curve_kg684")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pwgt8"]
+emission_shape_offset = Vector3(0, 381.98874, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 763.9775
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+directional_velocity_min = 19.999983
+directional_velocity_max = 99.999985
+directional_velocity_curve = SubResource("CurveXYZTexture_snasg")
+orbit_velocity_min = 2.0000002
+orbit_velocity_max = 2.0000002
+orbit_velocity_curve = SubResource("CurveXYZTexture_oww5q")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_7wyjk")
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lubw5"]
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 10.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_iwvu5"]
+material = SubResource("StandardMaterial3D_lubw5")
+radius = 1.0
+height = 2.0
+
+[node name="RailgunParticles" type="Node3D" unique_id=1472362922 node_paths=PackedStringArray("beam", "swirly", "shockwaves")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_ani64")
+beam = NodePath("GPUParticles3D")
+swirly = NodePath("GPUParticles3D2")
+shockwaves = NodePath("GPUParticles3D3")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=2041816603]
+emitting = false
+amount = 1
+lifetime = 3.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 1.0
+visibility_aabb = AABB(-4, -4, -4, 8, 800, 8)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_oww5q")
+draw_pass_1 = SubResource("CapsuleMesh_7wyjk")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=936361091]
+environment = ExtResource("2_ani64")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="." unique_id=1980418967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 663.245, 0)
+emitting = false
+amount = 6
+lifetime = 3.0
+speed_scale = 5.0
+explosiveness = 0.5
+visibility_aabb = AABB(-4, -1000, -4, 8, 2000, 8)
+process_material = SubResource("ParticleProcessMaterial_7wyjk")
+draw_pass_1 = SubResource("CylinderMesh_iwvu5")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=777372580]
+emitting = false
+amount = 100
+lifetime = 3.0
+speed_scale = 5.0
+visibility_aabb = AABB(-4, -4, -4, 8, 1000, 8)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_pwgt8")
+draw_pass_1 = SubResource("SphereMesh_iwvu5")

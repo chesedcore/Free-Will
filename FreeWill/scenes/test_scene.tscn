@@ -24,6 +24,10 @@ shader_parameter/beer_factor = 0.2
 shader_parameter/metallic = -0.15
 shader_parameter/specular = 0.85
 shader_parameter/roughness = 0.105
+shader_parameter/noise_1_strength = 50.0
+shader_parameter/noise_2_strength = 100.0
+shader_parameter/amplitude = 15.0
+shader_parameter/uv_scale = Vector2(1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g7g4h"]
 material = SubResource("ShaderMaterial_6qxox")

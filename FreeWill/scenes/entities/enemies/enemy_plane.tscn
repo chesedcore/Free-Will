@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://7yq66c566yvi"]
 
 [ext_resource type="Script" uid="uid://jp6qfe0e22kw" path="res://scripts/enemies/enemy_plane.gd" id="1_17xuh"]
+[ext_resource type="PackedScene" uid="uid://bcdibooj3vqkf" path="res://assets/models/su57.glb" id="2_rakmp"]
 [ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="4_iyje6"]
-[ext_resource type="PackedScene" uid="uid://b2k0tvxc2ybxm" path="res://assets/models/missile.blend" id="4_rakmp"]
 [ext_resource type="PackedScene" uid="uid://dnghcfqawmidu" path="res://assets/models/prototype_plane.blend" id="4_rhn42"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_12l03"]
-radius = 3.5682678
-height = 7.1365356
+radius = 30.731934
+height = 61.463867
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0s5y7"]
 size = Vector3(710.5298, 265.8328, 966.73)
@@ -18,28 +18,30 @@ collision_mask = 5
 script = ExtResource("1_17xuh")
 obstacle_detectors = [NodePath("obstacle_detector/front"), NodePath("obstacle_detector/downleft"), NodePath("obstacle_detector/upleft"), NodePath("obstacle_detector/downright"), NodePath("obstacle_detector/upright")]
 lock_on_timer = NodePath("lock_on_timer")
-missle_spawner = NodePath("prototype_plane/missle_spawner")
+missle_spawner = NodePath("su57/missle_spawner")
 line_of_sight = NodePath("line_of_sight")
-model = NodePath("prototype_plane")
+shield_scale = 25.0
+model = NodePath("su57")
 health = 0.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2012983732]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -3.081464e-10, 0.0070495605)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -3.7465853e-08, 0.8571186)
 shape = SubResource("CapsuleShape3D_12l03")
 
+[node name="su57" parent="." unique_id=518090294 instance=ExtResource("2_rakmp")]
+transform = Transform3D(-8, 0, -1.2079664e-06, 0, 8, 0, 1.2079664e-06, 0, -8, 0, 0, 0)
+
+[node name="missle_spawner" type="Node3D" parent="su57" unique_id=405366906]
+transform = Transform3D(-0.25, 0, 2.1855694e-08, 0, 0.25, 0, -2.1855694e-08, 0, -0.25, -8.285745e-08, -0.34190178, 0.9477787)
+
+[node name="thruster_particles" parent="su57" unique_id=1747782805 instance=ExtResource("4_iyje6")]
+transform = Transform3D(-0.175, 2.2196383e-08, -1.1550413e-15, 0, -6.4255743e-09, -0.175, -2.6424265e-08, -0.147, 7.649493e-09, -0.21393065, -0.03126824, -1.146539)
+
+[node name="thruster_particles2" parent="su57" unique_id=1196310971 instance=ExtResource("4_iyje6")]
+transform = Transform3D(-0.175, 2.2196383e-08, -1.1550413e-15, 0, -6.4255743e-09, -0.175, -2.6424265e-08, -0.147, 7.649493e-09, 0.21184112, -0.03126824, -1.146539)
+
 [node name="prototype_plane" parent="." unique_id=392001002 instance=ExtResource("4_rhn42")]
-
-[node name="missle_spawner" type="Node3D" parent="prototype_plane" unique_id=405366906]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.3676071, -3.7911148)
-
-[node name="missile" parent="prototype_plane" unique_id=1561043600 instance=ExtResource("4_rakmp")]
-transform = Transform3D(0.037673336, 0, 0.9992901, 0, 1, 0, -0.9992901, 0, 0.037673336, 1.2833618, -0.7955308, -1.4830804)
-
-[node name="missile2" parent="prototype_plane" unique_id=1092546641 instance=ExtResource("4_rakmp")]
-transform = Transform3D(0.037673336, 0, 0.9992901, 0, 1, 0, -0.9992901, 0, 0.037673336, -2.0393302, -0.7955308, -1.4830804)
-
-[node name="thruster_particles" parent="prototype_plane" unique_id=1747782805 instance=ExtResource("4_iyje6")]
-transform = Transform3D(1.2, 0, 0, 0, -4.371139e-08, -1.2, 0, 1, -5.2453668e-08, 0, 0, 3.9268136)
+visible = false
 
 [node name="line_of_sight" type="Area3D" parent="." unique_id=772401812]
 collision_layer = 4
@@ -54,7 +56,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="obstacle_detector" type="Node3D" parent="." unique_id=1598205390]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.454365)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.292897)
 
 [node name="front" type="RayCast3D" parent="obstacle_detector" unique_id=1852777415]
 enabled = false

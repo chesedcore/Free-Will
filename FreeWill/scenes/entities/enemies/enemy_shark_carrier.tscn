@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://drr3tjdofrdgt"]
+
+[ext_resource type="Script" uid="uid://bpwaeuqs7p6we" path="res://scripts/enemies/enemy_shark_carrier.gd" id="1_6omri"]
+[ext_resource type="PackedScene" uid="uid://b3r2ypq4mfiha" path="res://assets/models/aircraftcarrier.blend" id="2_6omri"]
+[ext_resource type="PackedScene" uid="uid://csmnk5oqb6mp" path="res://assets/models/bigfuckcannon.blend" id="3_sun43"]
+[ext_resource type="Material" uid="uid://b2623gy7ys17k" path="res://assets/models/battleship_cannon_color.tres" id="4_6omri"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w3oou"]
+size = Vector3(403.53958, 38.08751, 69.34691)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dh4vq"]
+size = Vector3(5211.9297, 3353.3738, 5775.527)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q4vk6"]
+cull_mode = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a3sht"]
+cull_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 0, 1, 1)
+
+[node name="enemy_shark_carrier" type="CharacterBody3D" unique_id=657349981 node_paths=PackedStringArray("base", "shark_spawn_location", "attack_timer")]
+collision_layer = 4
+collision_mask = 15
+motion_mode = 1
+script = ExtResource("1_6omri")
+base = NodePath("bigfuckcannon/Cube")
+shark_spawn_location = NodePath("bigfuckcannon/Cube/shark_spawn_location")
+attack_timer = NodePath("attack_timer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=339972857]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 35.528366, 33.77743, 68.911865)
+shape = SubResource("BoxShape3D_w3oou")
+
+[node name="line_of_sight" type="Area3D" parent="." unique_id=276965312]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="line_of_sight" unique_id=1696368433]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 179.81384, 902.88043, 298.7542)
+shape = SubResource("BoxShape3D_dh4vq")
+
+[node name="aircraftcarrier" parent="." unique_id=1015556383 instance=ExtResource("2_6omri")]
+transform = Transform3D(250, 0, 0, 0, 250, 0, 0, 0, 250, 0, 0, 1.0715485)
+
+[node name="Cube_001" parent="aircraftcarrier" index="0" unique_id=1326361354]
+surface_material_override/0 = SubResource("StandardMaterial3D_q4vk6")
+surface_material_override/1 = SubResource("StandardMaterial3D_a3sht")
+
+[node name="bigfuckcannon" parent="." unique_id=1162952731 instance=ExtResource("3_sun43")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.6850383, 110.70752, 1.7649922)
+
+[node name="Cube" parent="bigfuckcannon" index="0" unique_id=1226723040]
+transform = Transform3D(0.42202696, 0, -0.90658325, 0, 1, 0, 0.90658325, 0, 0.42202696, 0, 0, 0)
+surface_material_override/0 = ExtResource("4_6omri")
+
+[node name="Cylinder" parent="bigfuckcannon/Cube" index="0" unique_id=1812484801]
+transform = Transform3D(3.234433, 0, 0, 0, 8.392017, 2.6028981, 0, -11.376736, 1.9200205, 0, 5.6715136, 0)
+surface_material_override/0 = ExtResource("4_6omri")
+
+[node name="shark_spawn_location" type="Node3D" parent="bigfuckcannon/Cube" index="1" unique_id=1761556580]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.068503834, 17.211988, -15.506936)
+
+[node name="attack_timer" type="Timer" parent="." unique_id=20365492]
+wait_time = 5.0
+
+[connection signal="body_entered" from="line_of_sight" to="." method="_on_line_of_sight_body_entered"]
+[connection signal="body_exited" from="line_of_sight" to="." method="_on_line_of_sight_body_exited"]
+[connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
+
+[editable path="aircraftcarrier"]
+[editable path="bigfuckcannon"]

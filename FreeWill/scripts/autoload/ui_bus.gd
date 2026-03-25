@@ -3,8 +3,10 @@ extends Node
 enum Feedback {
 	DASH_STILL_UNDER_COOLDOWN,
 	ACTION_STILL_UNDER_COOLDOWN,
+	RAILGUN_STILL_UNDER_COOLDOWN,
 }
 
 signal attempted_dash(res: Result)
 signal attempted_action(res: Result)
 signal missile_parried
+signal attempted_railgun(res: Result)

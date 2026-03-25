@@ -12,10 +12,13 @@ var standard_plane : Resource
 var standard_boat : Resource
 var cargo_boat : Resource
 var elite_plane : Resource
+var super_elite_plane: Resource
+var bomber_plane : Resource
 @export var stagehandler: StageHandler
 
-const PLANESPAWNHEIGHT : float = 335
+const PLANESPAWNHEIGHT : float = 670
 const BOATSPAWNHEIGHT : float = 3
+const BOMBERSPAWNHEIGHT : float = 1340
 @export var mission_end_dialog : String
 @export var waves : Array[WaveResource]
 @export var spawnpoints: Node3D
@@ -52,7 +55,7 @@ func spawn_wave()->void:
 			await Dialogic.timeline_ended
 		else:
 			#artifical wait for wave
-			await  get_tree().create_timer(1).timeout
+			await  get_tree().create_timer(.5).timeout
 		for enemytype : WaveResource.EnemyTypes in wave.waveinfo.keys():
 			match enemytype:
 				WaveResource.EnemyTypes.StandardPlane:
@@ -64,7 +67,7 @@ func spawn_wave()->void:
 						var new_enemy : EnemyPlane = standard_plane.instantiate()
 						
 						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
-						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,100,50)
+						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,50,50)
 						new_enemy.position = pos
 						new_enemy.position.y = PLANESPAWNHEIGHT
 						new_enemy.died.connect(on_enemy_death)
@@ -109,6 +112,36 @@ func spawn_wave()->void:
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Enemy Elite Plane " +str(i+1)
 						enemies_list.airborne_enemies.add_child(new_enemy)
+				WaveResource.EnemyTypes.SuperElitePlane:
+					#number of enemiies of the specificed tyoeeeee
+					if !super_elite_plane:
+							print("loading plane")
+							super_elite_plane = load("res://scenes/entities/enemies/enemy_super_elite_plane.tscn")
+					for i in range(wave.waveinfo[enemytype]):
+						var new_enemy : SuperEnemyPlane= super_elite_plane.instantiate()
+						
+						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
+						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,100,50)
+						new_enemy.position = pos
+						new_enemy.position.y = PLANESPAWNHEIGHT
+						new_enemy.died.connect(on_enemy_death)
+						new_enemy.name = "Super Elite Enemy Plane " +str(i+1)
+						new_enemy.decoys_spawned.connect(stagehandler.ui.track_these_entities)
+						enemies_list.airborne_enemies.add_child(new_enemy)
+				WaveResource.EnemyTypes.BomberPlane:
+					#number of enemiies of the specificed tyoeeeee
+					if !bomber_plane:
+							bomber_plane = load("res://scenes/entities/enemies/enemy_bomber_plane.tscn")
+					for i in range(wave.waveinfo[enemytype]):
+						var new_enemy :EnemyBomberPlane= bomber_plane.instantiate()
+						
+						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
+						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,1000,500)
+						new_enemy.position = pos
+						new_enemy.position.y = BOMBERSPAWNHEIGHT
+						new_enemy.died.connect(on_enemy_death)
+						new_enemy.name = "Bomber Plane " +str(i+1)
+						enemies_list.airborne_enemies.add_child(new_enemy)
 			enemy_count += wave.waveinfo[enemytype]
 		current_wave +=1
 		stagehandler.ui.track_these_entities(enemies_list.get_enemies())
@@ -131,10 +164,13 @@ func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: fl
 				break
 		
 		if is_valid:
+			print(candidate)
 			return candidate
 	
 
 	return base_pos
+
+
 
 #maybe we can death noises here
 func on_enemy_death()->void:

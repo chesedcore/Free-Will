@@ -1,7 +1,7 @@
 class_name InterceptState extends EnemyState
 
 
-@export var Max_speed : float = 200.0
+@export var speed : float = 200.0
 @export var aceleration : float = 50
 @export var turn_speed : float = 1.25
 
@@ -31,6 +31,8 @@ static func intercept_state_from(owner : BaseEnemy,model: Node3D,los:Area3D,dete
 	
 	return intercept_state
 
+const MIN_ALTITUDE := 250.0
+const ALTITUDE_FORCE := 100
 
 func enter() -> void:
 	los.body_entered.connect(on_los_body_entered)
@@ -51,21 +53,25 @@ func enter() -> void:
 	player_offset = offset_dirs.pick_random() * offset_distance
 const AVOID_FORCE : float =20
 const RAY_CAST_FRAME :int  = 15
+
 var cached_avoid : Vector3 = Vector3.ZERO
 func physics_update(delta: float) -> void:
 	
 	var player_forward :Vector3= -player.global_transform.basis.z
 	
 	var target :Vector3= player.global_position + player_offset + player_forward * 50
-	target.y = clamp(target.y,150,100000)
+	target.y = clamp(target.y,250,100000)
 	var desired_direction : Vector3= (target - enemy.global_position).normalized()
 
 	if Engine.get_physics_frames() % RAY_CAST_FRAME ==0:
 		cached_avoid = get_avoidance().normalized()
 	var new_dir :Vector3= (desired_direction + (cached_avoid * AVOID_FORCE)).normalized()
+	
 	var old_heading :Vector3 = heading
 	heading = heading.slerp(new_dir, turn_speed * delta).normalized()
-	velocity_vec = velocity_vec.move_toward(heading * Max_speed, aceleration * delta)
+	velocity_vec = velocity_vec.move_toward(heading * speed, aceleration * delta)
+	if enemy.global_position.y < MIN_ALTITUDE:
+			velocity_vec.y += ALTITUDE_FORCE * delta
 	enemy.velocity = velocity_vec
 	enemy.look_at(enemy.global_position + heading, Vector3.UP)
 	var right :Vector3= enemy.global_transform.basis.x
