@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dlykjel358ggj"
+path="res://.godot/imported/mission2_general_05_that-was-yi.ogg-bfa52ba509b197cc76e0d4b2a15ef8d0.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/General/mission2_general_05_that-was-yi.ogg"
+dest_files=["res://.godot/imported/mission2_general_05_that-was-yi.ogg-bfa52ba509b197cc76e0d4b2a15ef8d0.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

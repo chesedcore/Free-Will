@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://q3g6s8y4cmg"
+path="res://.godot/imported/mission2_general_04_there-you-are.ogg-3d436813a4393875e59ad51ff0224aa7.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/General/mission2_general_04_there-you-are.ogg"
+dest_files=["res://.godot/imported/mission2_general_04_there-you-are.ogg-3d436813a4393875e59ad51ff0224aa7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

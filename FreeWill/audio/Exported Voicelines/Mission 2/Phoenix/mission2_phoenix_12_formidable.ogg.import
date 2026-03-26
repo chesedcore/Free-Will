@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://rr5smdnvcb3m"
+path="res://.godot/imported/mission2_phoenix_12_formidable.ogg-7146a89cf50eed8b176c6ec178d72021.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_12_formidable.ogg"
+dest_files=["res://.godot/imported/mission2_phoenix_12_formidable.ogg-7146a89cf50eed8b176c6ec178d72021.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

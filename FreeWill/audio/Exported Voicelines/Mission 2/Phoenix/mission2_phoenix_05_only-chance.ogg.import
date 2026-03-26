@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://blw1ggoj5le4p"
+path="res://.godot/imported/mission2_phoenix_05_only-chance.ogg-26e7a89028a5dc17800fe062e6eef13e.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_05_only-chance.ogg"
+dest_files=["res://.godot/imported/mission2_phoenix_05_only-chance.ogg-26e7a89028a5dc17800fe062e6eef13e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

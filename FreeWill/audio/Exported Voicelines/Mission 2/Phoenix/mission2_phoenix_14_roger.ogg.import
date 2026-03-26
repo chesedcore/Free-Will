@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cdiwwbxhtpoej"
+path="res://.godot/imported/mission2_phoenix_14_roger.ogg-14903f8976f77eda7b28adb5c702189d.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_14_roger.ogg"
+dest_files=["res://.godot/imported/mission2_phoenix_14_roger.ogg-14903f8976f77eda7b28adb5c702189d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dtqpl2i7557hx"
+path="res://.godot/imported/mission2_general_03_splendid.ogg-9623223587bc8ccaafa5870fb44ad419.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/General/mission2_general_03_splendid.ogg"
+dest_files=["res://.godot/imported/mission2_general_03_splendid.ogg-9623223587bc8ccaafa5870fb44ad419.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

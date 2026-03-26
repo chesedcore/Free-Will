@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b00qt7e3nuyj2"
+path="res://.godot/imported/mission1_phoenix_30_yeah-interview.ogg-c7d12c93f0f23633727e45cd7188bf15.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_30_yeah-interview.ogg"
+dest_files=["res://.godot/imported/mission1_phoenix_30_yeah-interview.ogg-c7d12c93f0f23633727e45cd7188bf15.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

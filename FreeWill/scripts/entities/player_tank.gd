@@ -7,7 +7,7 @@ signal fucking_exploded
 const BARREL_ROTATION_SPEED: float = 7.5
 const GUN_GIMBAL_ROTATION_SPEED: float = 6.0
 const BODY_ROTATION_SPEED: float = 1.0
-const RAILGUN_FIRE_FORCE: float = 80.0
+const RAILGUN_FIRE_FORCE: float = 300.0
 const GUN_FIRE_FORCE: float = 50.0
 const GRAPPLE_STRENGTH: float = 25.0
 
@@ -17,6 +17,7 @@ const DASH_FORCE := 1200.0
 const DASH_COOLDOWN := 1.25
 const DASH_MAX_SPEED := MAX_SPEED * 3
 const DASH_FOV_BOOST := 20.0
+const DASH_ROLL_SPEED := 30.0
 const DASH_CAMERA_PULLBACK := 6.0
 const DASH_EFFECT_DURATION := 5.0
 
@@ -51,6 +52,10 @@ const UI := UIBus.Feedback
 @export var grapple_rope_mesh_2: MeshInstance3D
 @export var kunai_model: Node3D
 @export var idle_kunai_model: Node3D
+@export var rotation_animation_player: AnimationPlayer
+@export var wind_player : WindPlayer
+@export var beeper : AudioStreamPlayer
+@export var beeptimer : Timer
 
 #cooldowns
 @onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
@@ -68,6 +73,7 @@ var grappled_target: Node3D
 var active_missiles: int = 0
 var grapple_hold_time: float = 0.0
 
+var threat_indicators : Array = []
 
 func _ready() -> void:
 	_wire_up_signals()
@@ -111,8 +117,12 @@ func _execute_railgun() -> void:
 	railgun_cooldown.start_cooldown()
 	var targets_hit := _query_barrel_shapecast_hits()
 	print_rich("[color=green]Targets hit: "+str(targets_hit))
+	#TODO implement this without setting linear velocity
+	#linear_velocity = Vector3.ZERO
 	linear_velocity += -camera_gimbal.global_transform.basis.z * RAILGUN_FIRE_FORCE
-	shake()
+	RailgunParticles.spawn_particles(RAILGUN_RANGE, global_position, camera_gimbal, get_viewport(), get_tree())
+	CannonParticles.attach_to(bullet_spawn_position_marker)
+	shake(0.5, 3.)
 	for target in targets_hit:
 		target.kill()
 
@@ -149,11 +159,11 @@ func _query_barrel_shapecast_hits() -> Array[BaseEnemy]:
 
 	query.transform = Transform3D(capsule_basis, center)
 
-	_debug_draw_capsule(
-		Transform3D(capsule_basis, center),
-		shape.height,
-		shape.radius
-	)
+	#_debug_draw_capsule(
+		#Transform3D(capsule_basis, center),
+		#shape.height,
+		#shape.radius
+	#)
 	#^^^^^^^^^^^^^^^^^^^^^ comment out that function call to disable the debug railgun
 
 	for result in results:
@@ -217,11 +227,9 @@ func _execute_dash() -> void:
 	#camera_gimbal.trigger_dash_effect(DASH_EFFECT_DURATION, DASH_FOV_BOOST, DASH_CAMERA_PULLBACK)
 
 	# Dodge roll
-	await create_tween().tween_property(tank_model,
-		"rotation_degrees",
-		Vector3(0.0, 0.0, 360.0),
-		0.25).set_trans(
-		Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT).finished
+	if (absf(input_dir.x) > 0.0):
+		angular_velocity = camera_gimbal.global_transform.basis.z * DASH_ROLL_SPEED
+		await get_tree().create_timer(0.5).timeout
 
 	create_tween().tween_property(self, "linear_velocity", linear_velocity * 0.35, 0.5)
 
@@ -285,7 +293,7 @@ func _fire_cannon() -> void:
 
 	CannonParticles.attach_to(bullet_spawn_position_marker)
 	linear_velocity += -camera_gimbal.global_transform.basis.z * GUN_FIRE_FORCE
-	camera_gimbal.start_shoot_tween(1.5, 3.)
+	camera_gimbal.start_shoot_tween(0.5, 3.)
 	Bullet.fire_bullet_from_tank(self)
 	active_missiles += 1
 
@@ -327,6 +335,31 @@ func _physics_process(delta: float) -> void:
 	#spin turret during parry!!
 	if parry_window_timer.is_active():
 		turret.rotate_y(70 * delta)
+	
+	wind_player.update_wind_mixing(linear_velocity.length())
+	var shortest_distance_to_threat := 5000.
+	for indicator : ThreatIndicator in threat_indicators:
+		if indicator.distance < shortest_distance_to_threat:
+			shortest_distance_to_threat = indicator.distance
+	print(shortest_distance_to_threat)
+	if shortest_distance_to_threat < 4000.:
+		var beep_time :float = clamp((shortest_distance_to_threat - 15.) / 285., 0.0, 1.0)
+		var volume : float = lerp (-15,0, -beep_time + 1.)
+		var wait_time := lerpf(0.05, 1, beep_time)
+		beeptimer.wait_time = wait_time
+		beeper.volume_db = volume
+		if beeptimer.is_stopped():
+			beeper.play()
+			beeptimer.start()
+			print("testing")
+		if beeptimer.time_left > wait_time:
+			print("Timeout")
+			beeptimer.stop()
+			beeper.play()
+			beeptimer.start()
+	else:
+		beeptimer.stop()
+		#beeper.stop()
 
 func _poll_tank_death() -> void:
 	if global_position.y < -5.0: _kill()

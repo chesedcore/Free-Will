@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b0bioyf6nbkqw"
+path="res://.godot/imported/mission1_phoenix_02_hey-hey.ogg-d52ae7b93ee511f856e32e72ab8f55c6.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_02_hey-hey.ogg"
+dest_files=["res://.godot/imported/mission1_phoenix_02_hey-hey.ogg-d52ae7b93ee511f856e32e72ab8f55c6.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

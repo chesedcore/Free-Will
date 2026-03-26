@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ty04ejmu2eco"
+path="res://.godot/imported/mission2_phoenix_11_concerned.ogg-4c1dff92bde822ce8ab8a8dc52f7d08c.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_11_concerned.ogg"
+dest_files=["res://.godot/imported/mission2_phoenix_11_concerned.ogg-4c1dff92bde822ce8ab8a8dc52f7d08c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

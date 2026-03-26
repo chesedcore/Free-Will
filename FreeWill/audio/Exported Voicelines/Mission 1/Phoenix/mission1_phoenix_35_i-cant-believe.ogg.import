@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b7q8nmk7jl7ra"
+path="res://.godot/imported/mission1_phoenix_35_i-cant-believe.ogg-460336a01e8b8296b382e3644f3ec001.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_35_i-cant-believe.ogg"
+dest_files=["res://.godot/imported/mission1_phoenix_35_i-cant-believe.ogg-460336a01e8b8296b382e3644f3ec001.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

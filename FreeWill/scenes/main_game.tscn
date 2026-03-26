@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="4_3qnke"]
 [ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scenes/master/enemies_list.gd" id="7_h3xc6"]
 [ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="7_wtsjf"]
+[ext_resource type="PackedScene" uid="uid://drr3tjdofrdgt" path="res://scenes/entities/enemies/enemy_shark_carrier.tscn" id="9_2l77h"]
 [ext_resource type="PackedScene" uid="uid://u7wkfykuxl3h" path="res://scenes/entities/enemies/enemy_battle_ship.tscn" id="10_s36qc"]
 
 [sub_resource type="Gradient" id="Gradient_2l77h"]
@@ -150,3 +151,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1076.1832, 6.1035156e-05, 738
 
 [node name="enemy_battle_ship9" parent="EnemiesList/SeaboundEnemies" unique_id=171824424 instance=ExtResource("10_s36qc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1076.1832, 6.1035156e-05, -533.81616)
+
+[node name="enemy_shark_carrier" parent="." unique_id=188785478 instance=ExtResource("9_2l77h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 548.5491, -31.027588, 487.67877)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://xn0olgg845oi"
+path="res://.godot/imported/mission2_general_01_amazing.ogg-d3208e4979b8c37d33ea0ea3e43e138b.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/General/mission2_general_01_amazing.ogg"
+dest_files=["res://.godot/imported/mission2_general_01_amazing.ogg-d3208e4979b8c37d33ea0ea3e43e138b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

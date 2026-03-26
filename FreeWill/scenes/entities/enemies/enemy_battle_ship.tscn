@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://b2623gy7ys17k" path="res://assets/models/battleship_cannon_color.tres" id="2_w3oou"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w3oou"]
-size = Vector3(127.01614, 12.090054, 33.88913)
+size = Vector3(403.53958, 38.08751, 69.34691)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dh4vq"]
 vertex_color_use_as_albedo = true
@@ -16,7 +16,7 @@ vertex_color_use_as_albedo = true
 albedo_color = Color(0, 0.5176471, 0.61960787, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dh4vq"]
-size = Vector3(1203.4314, 918.1282, 1846.4026)
+size = Vector3(5211.9297, 3353.3738, 5775.527)
 
 [node name="enemy_battle_ship" type="CharacterBody3D" unique_id=657349981 node_paths=PackedStringArray("line_of_sight", "cannon_bases", "cannon_barrels", "battle_ship_model", "canon_aims")]
 collision_layer = 4

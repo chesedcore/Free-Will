@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://crh4tf1wo5ul6"
+path="res://.godot/imported/mission2_general_11_big-f-bomb.ogg-48299b06e96f0d9b134cea1e6b4c51dc.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/General/mission2_general_11_big-f-bomb.ogg"
+dest_files=["res://.godot/imported/mission2_general_11_big-f-bomb.ogg-48299b06e96f0d9b134cea1e6b4c51dc.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

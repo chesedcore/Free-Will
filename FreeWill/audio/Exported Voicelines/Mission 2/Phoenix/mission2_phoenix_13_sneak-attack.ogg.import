@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cx1htjve6geg6"
+path="res://.godot/imported/mission2_phoenix_13_sneak-attack.ogg-91174f5fb4cd39c324fa00d8749b6404.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_13_sneak-attack.ogg"
+dest_files=["res://.godot/imported/mission2_phoenix_13_sneak-attack.ogg-91174f5fb4cd39c324fa00d8749b6404.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

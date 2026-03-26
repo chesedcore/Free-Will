@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dxvvn0rl8iofg"
+path="res://.godot/imported/mission1_phoenix_25_your-spy.ogg-ec2d913bf7fee4b9e623ea8b4994a71b.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_25_your-spy.ogg"
+dest_files=["res://.godot/imported/mission1_phoenix_25_your-spy.ogg-ec2d913bf7fee4b9e623ea8b4994a71b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

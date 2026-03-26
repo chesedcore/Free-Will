@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://nxhpji3ioj7s"
+path="res://.godot/imported/mission1_general_09_amazing-success.ogg-3e0d25b34974af3fbaacc1e0d90529b7.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/General/mission1_general_09_amazing-success.ogg"
+dest_files=["res://.godot/imported/mission1_general_09_amazing-success.ogg-3e0d25b34974af3fbaacc1e0d90529b7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

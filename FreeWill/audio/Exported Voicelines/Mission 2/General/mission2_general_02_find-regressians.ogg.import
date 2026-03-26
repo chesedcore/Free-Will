@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bjie32mhfwglx"
+path="res://.godot/imported/mission2_general_02_find-regressians.ogg-7d72e35c5a5cf775f9f780ad09fb69b6.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/General/mission2_general_02_find-regressians.ogg"
+dest_files=["res://.godot/imported/mission2_general_02_find-regressians.ogg-7d72e35c5a5cf775f9f780ad09fb69b6.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
