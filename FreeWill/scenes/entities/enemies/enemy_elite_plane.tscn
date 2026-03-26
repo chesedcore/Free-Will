@@ -12,16 +12,16 @@ height = 83.055664
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc4f"]
 size = Vector3(710.5298, 265.8328, 751.81256)
 
-[node name="Enemy_elite_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("obstacle_detectors", "lock_on_timer", "missle_spawner", "line_of_sight", "model")]
+[node name="Enemy_elite_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("lock_on_timer", "missle_spawner", "line_of_sight", "model")]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_4dp5g")
-obstacle_detectors = [NodePath("obstacle_detector/front"), NodePath("obstacle_detector/downleft"), NodePath("obstacle_detector/upleft"), NodePath("obstacle_detector/downright"), NodePath("obstacle_detector/upright")]
 lock_on_timer = NodePath("lock_on_timer")
 missle_spawner = NodePath("su57/missle_spawner")
 line_of_sight = NodePath("line_of_sight")
 shield_scale = 20.0
 model = NodePath("su57")
+health = 101.0
 
 [node name="su57" parent="." unique_id=165544230 instance=ExtResource("2_4dp5g")]
 transform = Transform3D(-14, 0, -2.1139413e-06, 0, 14, 0, 2.1139413e-06, 0, -14, 0, 0, 0)

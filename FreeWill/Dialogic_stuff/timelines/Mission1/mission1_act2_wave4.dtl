@@ -1,0 +1,8 @@
+[voice volume="0.0" bus="Voice"]
+Destro: Humans are WEAK! WORTHLESS! SEND IN THE SHARKS!
+[voice volume="0.0" bus="Voice"]
+Vegas: What? What does he mean, send in the sharks?
+[voice volume="0.0" bus="Voice"]
+Vegas: Oh my god, is that a SHARK driving that carrier?!
+[voice path="res://audio/Exported Voicelines/Mission 1/Shark/mission1_shark.ogg" volume="0.0" bus="Voice"]
+Shark: Groar grar!

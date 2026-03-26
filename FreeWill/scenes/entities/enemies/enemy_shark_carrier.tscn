@@ -27,6 +27,7 @@ script = ExtResource("1_6omri")
 base = NodePath("bigfuckcannon/Cube")
 shark_spawn_location = NodePath("bigfuckcannon/Cube/shark_spawn_location")
 attack_timer = NodePath("attack_timer")
+health = 150.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=339972857]
 transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 35.528366, 33.77743, 68.911865)
@@ -48,7 +49,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_q4vk6")
 surface_material_override/1 = SubResource("StandardMaterial3D_a3sht")
 
 [node name="bigfuckcannon" parent="." unique_id=1162952731 instance=ExtResource("3_sun43")]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.6850383, 110.70752, 1.7649922)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, -0.6850383, 85.95831, 1.7649922)
 
 [node name="Cube" parent="bigfuckcannon" index="0" unique_id=1226723040]
 transform = Transform3D(0.42202696, 0, -0.90658325, 0, 1, 0, 0.90658325, 0, 0.42202696, 0, 0, 0)

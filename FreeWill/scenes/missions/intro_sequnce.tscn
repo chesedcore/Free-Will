@@ -1,0 +1,408 @@
+[gd_scene format=3 uid="uid://v0l62knoh10b"]
+
+[ext_resource type="Script" uid="uid://dmwd6hits6odr" path="res://scenes/missions/intro_sequnce.gd" id="1_xf6d3"]
+[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="2_lwwbd"]
+[ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="3_171so"]
+[ext_resource type="PackedScene" uid="uid://b3r2ypq4mfiha" path="res://assets/models/aircraftcarrier.blend" id="4_pfwwd"]
+[ext_resource type="PackedScene" uid="uid://ciqvl3ekbok17" path="res://models/player_tank.blend" id="5_nffqa"]
+[ext_resource type="AudioStream" uid="uid://bqb6yrda65xnx" path="res://audio/sfx/explosion.ogg" id="7_8hyqp"]
+[ext_resource type="PackedScene" uid="uid://cxffdn6nvltft" path="res://scenes/entities/tank_cannon_particles.tscn" id="8_iivvl"]
+[ext_resource type="PackedScene" uid="uid://bigipu066vsh1" path="res://models/kunai.blend" id="10_x73kj"]
+
+[sub_resource type="Gradient" id="Gradient_2l77h"]
+offsets = PackedFloat32Array(0.33802816, 0.7640845)
+colors = PackedColorArray(0.03599999, 0.07740005, 0.45, 1, 0.13, 0.27499986, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nqdth"]
+noise_type = 2
+frequency = 0.006
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ag02o"]
+noise = SubResource("FastNoiseLite_nqdth")
+color_ramp = SubResource("Gradient_2l77h")
+seamless = true
+in_3d_space = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_70vka"]
+noise_type = 5
+frequency = 0.15
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jjafq"]
+noise = SubResource("FastNoiseLite_70vka")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_70vka"]
+offsets = PackedFloat32Array(0, 0.57042253, 0.8309859)
+colors = PackedColorArray(0, 0, 0, 1, 0.5931336, 0.59313357, 0.59313357, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2l77h"]
+noise_type = 2
+frequency = 0.005
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_miggc"]
+noise = SubResource("FastNoiseLite_2l77h")
+color_ramp = SubResource("Gradient_70vka")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjeyg"]
+render_priority = 0
+shader = ExtResource("3_171so")
+shader_parameter/juice = SubResource("NoiseTexture2D_ag02o")
+shader_parameter/out_color = Color(0, 0, 0, 1)
+shader_parameter/amount = 0.20000000298023
+shader_parameter/speed = 0.10000000149012
+shader_parameter/beer_factor = 690000.0
+shader_parameter/metallic = -0.15
+shader_parameter/specular = 0.85
+shader_parameter/roughness = 0.105
+shader_parameter/noise_texture_1 = SubResource("NoiseTexture2D_jjafq")
+shader_parameter/noise_texture_2 = SubResource("NoiseTexture2D_miggc")
+shader_parameter/noise_1_strength = 50.0
+shader_parameter/noise_2_strength = 10.15
+shader_parameter/amplitude = 22.62
+shader_parameter/uv_scale = Vector2(5, 5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hva8b"]
+material = SubResource("ShaderMaterial_qjeyg")
+size = Vector2(10000, 10000)
+subdivide_width = 300
+subdivide_depth = 300
+
+[sub_resource type="Animation" id="Animation_8knhd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(488.26587, 169.99397, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TankModel/Barrel/CannonParticles/CannonParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TankModel/Barrel/CannonParticles/SmokeParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TankModel:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 27.231735, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TankModel:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera3D:current")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("aircraftcarrier:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -11.416229, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("aircraftcarrier:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("TankModel/Barrel/AudioStreamPlayer3D:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_opehg"]
+resource_name = "intro_sequence"
+length = 11.11
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 3.25, 3.5, 5),
+"transitions": PackedFloat32Array(1, 0.0018101903, 0.0018101903, 1, 1),
+"update": 0,
+"values": [Vector3(488.26587, 169.99397, 0), Vector3(389.7392, 169.99397, 0), Vector3(389.7392, 169.99397, 0), Vector3(9.570145, 45.595055, 9.7868595), Vector3(9.570129, 31.353954, 9.7868595)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 3.25, 3.5, 5),
+"transitions": PackedFloat32Array(1, 0.0018101903, 0.0018101903, 1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0), Vector3(0, 1.5707964, 0), Vector3(0, 1.5707964, 0), Vector3(0, 0.5420352, 0), Vector3(0, 0.54203516, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TankModel/Barrel/CannonParticles/CannonParticles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 5.5, 5.6, 7, 7.0666666, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TankModel/Barrel/CannonParticles/SmokeParticles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 5.5, 5.6, 7, 7.0666666, 9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("TankModel:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(5.5, 7, 9, 10, 11),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 27.231735, 0), Vector3(0, 27.231735, -73.434456), Vector3(0, 27.231735, -182.96887), Vector3(0, 74.18151, -306.68964), Vector3(0, 126.77788, -448.39468)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TankModel:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(8.934644, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.5765351, 0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera3D:current")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("aircraftcarrier:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(8.933333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -11.416229, 0)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("aircraftcarrier:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(8.957691),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(10.5, 11),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("TankModel/Barrel/AudioStreamPlayer3D:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(5.4847846, 7.0333333, 8.99402),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m8bh8"]
+_data = {
+&"RESET": SubResource("Animation_8knhd"),
+&"intro_sequence": SubResource("Animation_opehg")
+}
+
+[node name="intro_sequnce" type="Node3D" unique_id=805400210]
+script = ExtResource("1_xf6d3")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=213695963]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 488.26587, 169.99397, 0)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1241217698]
+transform = Transform3D(0.99998426, -0.003607813, 0.0042996043, 0.00017664497, 0.7858931, 0.6183625, -0.0056099645, -0.618352, 0.78588134, 0, 33.85881, 0)
+light_color = Color(1, 0.95000005, 0.75, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1331472439]
+environment = ExtResource("2_lwwbd")
+
+[node name="Ocean" type="MeshInstance3D" parent="." unique_id=761434375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20776202, -63.03885, -2.3511915)
+mesh = SubResource("PlaneMesh_hva8b")
+
+[node name="aircraftcarrier" parent="." unique_id=1015556383 instance=ExtResource("4_pfwwd")]
+transform = Transform3D(125, 0, 0, 0, 125, 0, 0, 0, 125, 0, -11.416229, 0)
+
+[node name="TankModel" parent="." unique_id=2082927638 instance=ExtResource("5_nffqa")]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0, 27.231735, 0)
+
+[node name="CannonParticles" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(2082927638, 820774641) index="0" unique_id=1355930968 instance=ExtResource("8_iivvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15903485, -0.078063965, 8.559504)
+script = null
+
+[node name="CannonParticles" parent="TankModel/Barrel/CannonParticles" index="2" unique_id=2046860790]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(2082927638, 820774641) index="1" unique_id=56172071]
+stream = ExtResource("7_8hyqp")
+
+[node name="BarrelMuzzle" type="Marker3D" parent="TankModel" unique_id=1864224985]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.0878064, 2.6, 8)
+
+[node name="IdleKunaiModel" parent="TankModel" unique_id=1115183570 instance=ExtResource("10_x73kj")]
+transform = Transform3D(0.37188384, 0, 0, 0, 0.30845535, 0.20773269, 0, -0.20773269, 0.30845535, -0.7223202, 3.6428447, -0.23234469)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1174666914]
+libraries/ = SubResource("AnimationLibrary_m8bh8")
+autoplay = &"intro_sequence"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=13736387]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1279336217]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+
+[editable path="TankModel"]
+[editable path="TankModel/Barrel/CannonParticles"]

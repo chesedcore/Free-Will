@@ -14,6 +14,7 @@ var cargo_boat : Resource
 var elite_plane : Resource
 var super_elite_plane: Resource
 var bomber_plane : Resource
+var shark_carrier : Resource
 @export var stagehandler: StageHandler
 
 const PLANESPAWNHEIGHT : float = 670
@@ -50,7 +51,7 @@ func spawn_wave()->void:
 		var wave : WaveResource = waves[current_wave]
 		#play some dialog
 		if not wave.spawn_dialog.is_empty():
-			Dialogic.Inputs.block_input(100000)
+			#Dialogic.Inputs.block_input(100000)
 			Dialogic.start(wave.spawn_dialog)
 			await Dialogic.timeline_ended
 		else:
@@ -142,6 +143,20 @@ func spawn_wave()->void:
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Bomber Plane " +str(i+1)
 						enemies_list.airborne_enemies.add_child(new_enemy)
+				WaveResource.EnemyTypes.SharkCarrier:
+					#number of enemiies of the specificed tyoeeeee
+					if !shark_carrier:
+							shark_carrier = load("res://scenes/entities/enemies/enemy_shark_carrier.tscn")
+					for i in range(wave.waveinfo[enemytype]):
+						var new_enemy :EnemySharkCarrier= shark_carrier.instantiate()
+						
+						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
+						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,1000,500)
+						new_enemy.position = pos
+						new_enemy.position.y = BOATSPAWNHEIGHT
+						new_enemy.died.connect(on_enemy_death)
+						new_enemy.name = "Bomber Plane " +str(i+1)
+						enemies_list.seaborne_enemies.add_child(new_enemy)
 			enemy_count += wave.waveinfo[enemytype]
 		current_wave +=1
 		stagehandler.ui.track_these_entities(enemies_list.get_enemies())
@@ -179,7 +194,7 @@ func on_enemy_death()->void:
 		
 		spawn_wave()
 func end_mission()->void:
-	Dialogic.Inputs.block_input(100000)
+	#Dialogic.Inputs.block_input(100000)
 	Dialogic.start(mission_end_dialog)
 	await Dialogic.timeline_ended
 	if stagehandler.tank.is_dead == false:
