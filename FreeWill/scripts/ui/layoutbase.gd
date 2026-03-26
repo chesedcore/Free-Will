@@ -1,3 +1,4 @@
+
 extends DialogicLayoutLayer
 
 @export var dialogcontainer: MarginContainer
@@ -6,11 +7,12 @@ extends DialogicLayoutLayer
 
 @export var text_margin: MarginContainer
 @export var dialog_text: DialogicNode_DialogText
-
+@export var color : Color = Color.GREEN
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 	
 	text_margin.scale.x = 0

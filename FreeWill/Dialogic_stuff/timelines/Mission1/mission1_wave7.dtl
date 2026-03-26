@@ -1,0 +1,49 @@
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_10_hello.ogg" volume="0.0" bus="Voice"]
+Phoenix: H_#lo?
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_11_can-you-hear-me.ogg" volume="0.0" bus="Voice"]
+Phoenix: Hello?! Can you hear me?
+[voice volume="0.0" bus="Voice"]
+Vegas: The spy lady from earlier!
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_12_retreat-now.ogg" volume="0.0" bus="Voice"]
+Phoenix: Retreat! Now!
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_13_general-almost-here.ogg" volume="0.0" bus="Voice"]
+Phoenix: The General is almost here! He’s about to give the ord-#%&
+[voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_01_what-are-you-doing.ogg" volume="0.0" bus="Voice"]
+General: HEY! WHAT ARE YOU DOING OUT THERE? RETURN TO BASE NOW!
+[voice volume="0.0" bus="Voice"]
+Vegas: General! Be careful, there’s a Regressian spy on the line right now!
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_14_its-me.ogg" volume="0.0" bus="Voice"]
+Phoenix: No, uh-…\
+It’s me, Phoenix
+[voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_02_but-youre-dead.ogg" volume="0.0" bus="Voice"]
+General: WHAT? PHOENIX? BUT YOU’RE DEAD!
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_15_irellevant.ogg" volume="0.0" bus="Voice"]
+Phoenix: N-no, I was just prisoned and-\
+Irrelevant! Send these two buffoons back!
+[voice volume="0.0" bus="Voice"]
+Vegas: Oh, you know her! She should’ve just said so! Well, we were just about to win\
+this battle, so you don’t need to give that retreat order or whatever.
+[voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_03_win-the-battle.ogg" volume="0.0" bus="Voice"]
+General: About to win the battle you say… But you’re in a-… a tank!!
+[voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_04_numbers.ogg" volume="0.0" bus="Voice"]
+General: Yes, the  numbers don’t lie… Hmm..
+[voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_05_out-of-commission.ogg" volume="0.0" bus="Voice"]
+General: You know, that tank was quite old and out of commission in any way...
+[voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_06_decided.ogg" volume="0.0" bus="Voice"]
+General: Hm! I’ve decided! Carry on and give Destro hell! No retreat!
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_16_what.ogg" volume="0.0" bus="Voice"]
+Phoenix: What? No-, what?!
+[voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_07_assist.ogg" volume="0.0" bus="Voice"]
+General: And PHOENIX! You are to assist this tank from now on! Let’s show these guys\
+what we’ve got!
+[voice volume="0.0" bus="Voice"]
+Vegas: Hey, we’re friends now!
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_17_huh.ogg" volume="0.0" bus="Voice"]
+Phoenix: I-.. I-…!?
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_18_fine.ogg" volume="0.0" bus="Voice"]
+Phoenix: Fine, fine. There should be two more divisions approaching you,\
+but I’m not seeing any other signatures from Destro’s fleet.
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_19_after_that.ogg" volume="0.0" bus="Voice"]
+Phoenix: After that, return to the Carrier to resupply! And I mean it!!
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_20_gotta-go.ogg" volume="0.0" bus="Voice"]
+Phoenix: Ugh, gotta go. They’re- *%&#...

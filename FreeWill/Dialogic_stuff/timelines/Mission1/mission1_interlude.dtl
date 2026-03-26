@@ -1,0 +1,27 @@
+[voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_08_welcome-home.ogg" volume="0.0" bus="Voice"]
+General: WELCOME HOME SOLDIERS!
+[voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_09_amazing-success.ogg" volume="0.0" bus="Voice"]
+General: Given your, quite frankly, AMAZING success out there, I’ve decided to assign\
+you to a NEW mission!
+[voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_10_armed-to-the-teeth.ogg" volume="0.0" bus="Voice"]
+General: Don’t forget that this GLORIOUS tank has top-notch equipment and is armed to the teeth, so you can head out and give those Regressian admirals hell before they ruin our housing!!
+[voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_11_fight-left-in-him.ogg" volume="0.0" bus="Voice"]
+General: Turns out, that guy from earlier still has some fight left in him. Your first mission is to finish off what remains of Destro’s fleet! Make your name known!
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_21_horrible-idea.ogg" volume="0.0" bus="Voice"]
+Phoenix: General, this is a HORRIBLE idea!
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_22_just-fine.ogg" volume="0.0" bus="Voice"]
+Phoenix: Sure, send in a single tank to destroy their navy! Of course, that’ll work just fine!
+[voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_12_just-fine.ogg" volume="0.0" bus="Voice"]
+General: Exactly! Just fine! Now, fight on, team Diablo!! And that is an order!
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_24_diablo.ogg" volume="0.0" bus="Voice"]
+Phoenix: D-Diablo?!
+[voice volume="0.0" bus="Voice"]
+Vegas: Hey, General, why isn’t that Phoenix person here with us?”
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_23_stationed.ogg" volume="0.0" bus="Voice"]
+Phoenix: I’m stationed in Regressia right now, because-
+[voice volume="0.0" bus="Voice"]
+Vegas: You’re in Regressia?! I knew it, you were a spy after all!”
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_25_your-spy.ogg" volume="0.0" bus="Voice"]
+Phoenix: I AM a spy. YOUR spy.
+[voice volume="0.0" bus="Voice"]
+Vegas: General…! I think she might be a spy!!

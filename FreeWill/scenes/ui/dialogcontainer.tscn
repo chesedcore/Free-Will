@@ -33,6 +33,9 @@ size_flags_vertical = 4
 [node name="Name_text" type="Label" parent="dialogcontainer/VBoxContainer" unique_id=1339666564]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
 theme_override_fonts/font = ExtResource("1_76c33")
 text = "Sargent Balls"
 horizontal_alignment = 1
@@ -61,7 +64,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="leftbrace" type="Control" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container" unique_id=486051108]
-modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container/leftbrace" unique_id=665489979]
@@ -74,7 +76,6 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="leftbrace2" type="Control" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container" unique_id=956626549]
-modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container/leftbrace2" unique_id=799623120]
@@ -89,13 +90,15 @@ stretch_mode = 4
 [node name="MarginContainer" type="MarginContainer" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container" unique_id=951136426]
 layout_mode = 2
 theme_override_constants/margin_left = 21
-theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = -9
 
 [node name="dialog_text" type="RichTextLabel" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container/MarginContainer" unique_id=1687118704]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("1_76c33")
-text = "Strike me down zeus!"
+text = "Strike me down zeus!
+"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -105,7 +108,6 @@ hide_when_empty = true
 metadata/_custom_type_script = "uid://drhfq6rmdeuri"
 
 [node name="leftbrace3" type="Control" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container" unique_id=881984283]
-modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container/leftbrace3" unique_id=206348322]
@@ -119,7 +121,6 @@ stretch_mode = 4
 flip_h = true
 
 [node name="leftbrace4" type="Control" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container" unique_id=140997949]
-modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 
 [node name="TextureRect2" type="TextureRect" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container/leftbrace4" unique_id=1699758631]

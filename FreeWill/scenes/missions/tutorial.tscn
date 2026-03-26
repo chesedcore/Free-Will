@@ -1,127 +1,61 @@
-[gd_scene format=3 uid="uid://bf5dp3eepr5ih"]
+[gd_scene format=3 uid="uid://hyeofurt5u7b"]
 
-[ext_resource type="Script" uid="uid://hkuju2my0qay" path="res://scripts/master/missionhandler.gd" id="1_dtlup"]
-[ext_resource type="Script" uid="uid://capww07pslxpm" path="res://scripts/master/waveresource.gd" id="2_v5q0b"]
-[ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scenes/master/stage_handler.gd" id="3_jh3e7"]
-[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="4_optku"]
-[ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="5_tjyd3"]
-[ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="6_4pfqv"]
-[ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="7_m61cu"]
-[ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scenes/master/enemies_list.gd" id="8_daa1p"]
+[ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="1_0mkfm"]
+[ext_resource type="Script" uid="uid://hkuju2my0qay" path="res://scripts/master/missionhandler.gd" id="1_35bi2"]
+[ext_resource type="Script" uid="uid://capww07pslxpm" path="res://scripts/master/waveresource.gd" id="2_3chvk"]
+[ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scenes/master/stage_handler.gd" id="2_mqqdj"]
+[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="3_35bi2"]
+[ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="4_3chvk"]
+[ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="5_5q1ji"]
+[ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scenes/master/enemies_list.gd" id="6_7asdt"]
 
-[sub_resource type="Resource" id="Resource_niyrk"]
-script = ExtResource("2_v5q0b")
-spawn_dialog = "test"
+[sub_resource type="Resource" id="Resource_5q1ji"]
+script = ExtResource("2_3chvk")
+spawn_dialog = "Intro"
 waveinfo = Dictionary[int, int]({
-4: 2,
-5: 2
+0: 2
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
-[sub_resource type="Resource" id="Resource_0yhn2"]
-script = ExtResource("2_v5q0b")
-spawn_dialog = "test"
-waveinfo = Dictionary[int, int]({
-0: 3
-})
-metadata/_custom_type_script = "uid://capww07pslxpm"
-
-[sub_resource type="Resource" id="Resource_myx56"]
-script = ExtResource("2_v5q0b")
-spawn_dialog = "test"
-waveinfo = Dictionary[int, int]({
-0: 4
-})
-metadata/_custom_type_script = "uid://capww07pslxpm"
-
-[sub_resource type="Resource" id="Resource_1lad2"]
-script = ExtResource("2_v5q0b")
-spawn_dialog = "test"
-waveinfo = Dictionary[int, int]({
-0: 3,
-2: 2
-})
-metadata/_custom_type_script = "uid://capww07pslxpm"
-
-[sub_resource type="Resource" id="Resource_mctdd"]
-script = ExtResource("2_v5q0b")
-spawn_dialog = "test"
-waveinfo = Dictionary[int, int]({
-0: 2,
-2: 2,
-3: 1
-})
-metadata/_custom_type_script = "uid://capww07pslxpm"
-
-[sub_resource type="Resource" id="Resource_feyy3"]
-script = ExtResource("2_v5q0b")
-spawn_dialog = "test"
-waveinfo = Dictionary[int, int]({
-0: 2,
-2: 2,
-3: 2
-})
-metadata/_custom_type_script = "uid://capww07pslxpm"
-
-[sub_resource type="Resource" id="Resource_dtlup"]
-script = ExtResource("2_v5q0b")
-spawn_dialog = "test"
-waveinfo = Dictionary[int, int]({
-0: 4,
-1: 2
-})
-metadata/_custom_type_script = "uid://capww07pslxpm"
-
-[sub_resource type="Resource" id="Resource_v5q0b"]
-script = ExtResource("2_v5q0b")
-spawn_dialog = "test"
-waveinfo = Dictionary[int, int]({
-0: 4,
-1: 2,
-2: 2,
-3: 2
-})
-metadata/_custom_type_script = "uid://capww07pslxpm"
-
-[sub_resource type="Gradient" id="Gradient_2l77h"]
+[sub_resource type="Gradient" id="Gradient_7asdt"]
 offsets = PackedFloat32Array(0.33802816, 0.7640845)
 colors = PackedColorArray(0.03599999, 0.07740005, 0.45, 1, 0.13, 0.27499986, 1, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_nqdth"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cti86"]
 noise_type = 2
 frequency = 0.006
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dtlup"]
-noise = SubResource("FastNoiseLite_nqdth")
-color_ramp = SubResource("Gradient_2l77h")
+noise = SubResource("FastNoiseLite_cti86")
+color_ramp = SubResource("Gradient_7asdt")
 seamless = true
 in_3d_space = true
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_70vka"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n6jmo"]
 noise_type = 5
 frequency = 0.15
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v5q0b"]
-noise = SubResource("FastNoiseLite_70vka")
+noise = SubResource("FastNoiseLite_n6jmo")
 seamless = true
 
-[sub_resource type="Gradient" id="Gradient_70vka"]
+[sub_resource type="Gradient" id="Gradient_a8oum"]
 offsets = PackedFloat32Array(0, 0.57042253, 0.8309859)
 colors = PackedColorArray(0, 0, 0, 1, 0.5931336, 0.59313357, 0.59313357, 1, 1, 1, 1, 1)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_2l77h"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_w5y5j"]
 noise_type = 2
 frequency = 0.005
 fractal_octaves = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jh3e7"]
-noise = SubResource("FastNoiseLite_2l77h")
-color_ramp = SubResource("Gradient_70vka")
+noise = SubResource("FastNoiseLite_w5y5j")
+color_ramp = SubResource("Gradient_a8oum")
 seamless = true
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjeyg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gvkn4"]
 render_priority = 0
-shader = ExtResource("5_tjyd3")
+shader = ExtResource("1_0mkfm")
 shader_parameter/juice = SubResource("NoiseTexture2D_dtlup")
 shader_parameter/out_color = Color(0, 0, 0, 1)
 shader_parameter/amount = 0.20000000298023
@@ -138,17 +72,17 @@ shader_parameter/amplitude = 22.62
 shader_parameter/uv_scale = Vector2(5, 5)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_optku"]
-material = SubResource("ShaderMaterial_qjeyg")
+material = SubResource("ShaderMaterial_gvkn4")
 size = Vector2(10000, 10000)
 subdivide_width = 300
 subdivide_depth = 300
 
-[node name="Act1Mission1" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("stagehandler", "spawnpoints", "enemies_list")]
-script = ExtResource("1_dtlup")
+[node name="tutorial" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("stagehandler", "spawnpoints", "enemies_list")]
+script = ExtResource("1_35bi2")
 mission_title = 2
 stagehandler = NodePath("stagehandler")
 mission_end_dialog = "test"
-waves = Array[ExtResource("2_v5q0b")]([SubResource("Resource_niyrk"), SubResource("Resource_0yhn2"), SubResource("Resource_myx56"), SubResource("Resource_1lad2"), SubResource("Resource_mctdd"), SubResource("Resource_feyy3"), SubResource("Resource_dtlup"), SubResource("Resource_v5q0b")])
+waves = Array[ExtResource("2_3chvk")]([SubResource("Resource_5q1ji")])
 spawnpoints = NodePath("stagehandler/Tank/spawnpoints")
 enemies_list = NodePath("EnemiesList")
 
@@ -157,7 +91,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.093763605, -63.03884, -0.8
 mesh = SubResource("PlaneMesh_optku")
 
 [node name="stagehandler" type="Node3D" parent="." unique_id=810361068 node_paths=PackedStringArray("ui", "enemies_list", "tank")]
-script = ExtResource("3_jh3e7")
+script = ExtResource("2_mqqdj")
 ui = NodePath("UI")
 enemies_list = NodePath("../EnemiesList")
 tank = NodePath("Tank")
@@ -168,9 +102,9 @@ light_color = Color(1, 0.6125, 0.25, 1)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="stagehandler" unique_id=1398625798]
-environment = ExtResource("4_optku")
+environment = ExtResource("3_35bi2")
 
-[node name="Tank" parent="stagehandler" unique_id=290108966 instance=ExtResource("6_4pfqv")]
+[node name="Tank" parent="stagehandler" unique_id=290108966 instance=ExtResource("4_3chvk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 335.62222, 0)
 
 [node name="spawnpoints" type="Node3D" parent="stagehandler/Tank" unique_id=578110763]
@@ -194,10 +128,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 911.78076, 0, -577.7593)
 [node name="spawnpoint6" type="Node3D" parent="stagehandler/Tank/spawnpoints" unique_id=381901489]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 949.9374, 0, 686.8104)
 
-[node name="UI" parent="stagehandler" unique_id=121542168 instance=ExtResource("7_m61cu")]
+[node name="UI" parent="stagehandler" unique_id=121542168 instance=ExtResource("5_5q1ji")]
 
 [node name="EnemiesList" type="Node3D" parent="." unique_id=1848485939 node_paths=PackedStringArray("airborne_enemies", "seaborne_enemies")]
-script = ExtResource("8_daa1p")
+script = ExtResource("6_7asdt")
 airborne_enemies = NodePath("AirborneEnemies")
 seaborne_enemies = NodePath("Seaborne enemies")
 

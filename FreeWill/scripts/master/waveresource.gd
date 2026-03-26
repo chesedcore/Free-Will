@@ -1,7 +1,7 @@
 class_name WaveResource extends Resource
 
 
-enum  EnemyTypes {StandardPlane,StandardGunboat,Cargoboat,ElitePlane,SuperElitePlane,BomberPlane}
+enum  EnemyTypes {StandardPlane,StandardGunboat,Cargoboat,ElitePlane,SuperElitePlane,BomberPlane,SharkCarrier}
 
 @export var spawn_dialog : String
 @export var waveinfo : Dictionary[EnemyTypes,int]

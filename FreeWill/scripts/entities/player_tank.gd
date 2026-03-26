@@ -111,7 +111,7 @@ func _attempt_railgun_fire() -> void:
 	
 	_execute_railgun()
 	UIBus.attempted_railgun.emit(Result.Ok_as_is())
-
+var rail_gun_damage : float =100
 func _execute_railgun() -> void:
 	print("railgun!")
 	railgun_cooldown.start_cooldown()
@@ -124,7 +124,7 @@ func _execute_railgun() -> void:
 	CannonParticles.attach_to(bullet_spawn_position_marker)
 	shake(0.5, 3.)
 	for target in targets_hit:
-		target.kill()
+		target.damage(rail_gun_damage)
 
 func _query_barrel_shapecast_hits() -> Array[BaseEnemy]:
 	var hits: Array[BaseEnemy] = []

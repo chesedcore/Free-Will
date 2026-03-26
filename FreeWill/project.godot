@@ -38,12 +38,30 @@ gdscript/warnings/untyped_declaration=2
 [dialogic]
 
 directories/dch_directory={
+"Destro": "res://Dialogic_stuff/characters/Destro.dch",
+"General": "res://Dialogic_stuff/characters/General.dch",
+"Mooks": "res://Dialogic_stuff/characters/Mooks.dch",
+"Phoenix": "res://Dialogic_stuff/characters/Phoenix.dch",
+"Shark": "res://Dialogic_stuff/characters/Shark.dch",
+"Vegas": "res://Dialogic_stuff/characters/Vegas.dch",
 "Warning": "res://Dialogic_stuff/characters/Warning.dch",
+"Yi": "res://Dialogic_stuff/characters/Yi.dch",
 "dudebro": "res://Dialogic_stuff/characters/dudebro.dch",
 "sargentballs": "res://Dialogic_stuff/characters/sargentballs.dch"
 }
 directories/dtl_directory={
+"Intro": "res://Dialogic_stuff/timelines/Mission1/Intro.dtl",
 "death_missile_warning": "res://Dialogic_stuff/timelines/death_missile_warning.dtl",
+"mission1_act2_end": "res://Dialogic_stuff/timelines/Mission1/mission1_act2_end.dtl",
+"mission1_act2_intro": "res://Dialogic_stuff/timelines/Mission1/mission1_act2_intro.dtl",
+"mission1_act2_wave4": "res://Dialogic_stuff/timelines/Mission1/mission1_act2_wave4.dtl",
+"mission1_act2_wave8": "res://Dialogic_stuff/timelines/Mission1/mission1_act2_wave8.dtl",
+"mission1_end": "res://Dialogic_stuff/timelines/Mission1/mission1_end.dtl",
+"mission1_interlude": "res://Dialogic_stuff/timelines/Mission1/mission1_interlude.dtl",
+"mission1_wave2": "res://Dialogic_stuff/timelines/Mission1/mission1_wave2.dtl",
+"mission1_wave4": "res://Dialogic_stuff/timelines/Mission1/mission1_wave4.dtl",
+"mission1_wave7": "res://Dialogic_stuff/timelines/Mission1/mission1_wave7.dtl",
+"mission1_wave9": "res://Dialogic_stuff/timelines/Mission1/mission1_wave9.dtl",
 "test": "res://Dialogic_stuff/timelines/test.dtl",
 "test_mission_end": "res://Dialogic_stuff/timelines/testmission/test_mission_end.dtl",
 "test_mission_wave1": "res://Dialogic_stuff/timelines/testmission/test_mission_wave1.dtl",

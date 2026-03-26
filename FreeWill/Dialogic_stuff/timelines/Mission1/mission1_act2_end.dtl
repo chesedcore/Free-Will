@@ -1,0 +1,9 @@
+[voice volume="0.0" bus="Voice"]
+Destro: No.. No! NO!! THIS CAN’T B-#%&/€$”
+[voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_35_i-cant-believe.ogg" volume="0.0" bus="Voice"]
+Phoenix: You… I can’t believe you’ve-…
+[voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_13_good-work.ogg" volume="0.0" bus="Voice"]
+General: HO HO HO! GOOD WORK, EVERYBODY!
+[voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_14_totally-annihilated.ogg" volume="0.0" bus="Voice"]
+General: Destro’s fleet has been totally annihilated!\
+We’ve won this battle! Return to the carrier!

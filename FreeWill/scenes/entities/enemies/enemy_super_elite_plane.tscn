@@ -25,6 +25,7 @@ lock_on_timer = NodePath("lock_on_timer")
 missle_spawner = NodePath("su57/missle_spawner")
 line_of_sight = NodePath("line_of_sight")
 model = NodePath("su57")
+health = 150.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2012983732]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -4.694158e-08, 1.0738983)
@@ -122,15 +123,15 @@ collision_mask = 7
 [node name="decoy_holder" type="Node3D" parent="." unique_id=1906563259]
 
 [node name="decoy_pos1" type="Node3D" parent="decoy_holder" unique_id=170941766]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -46.18901, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -61.18901, 0)
 
 [node name="decoy_pos2" type="Node3D" parent="decoy_holder" unique_id=1293792413]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 44.723198, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 59.723198, 0)
 
 [node name="decoy_pos3" type="Node3D" parent="decoy_holder" unique_id=89453283]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.654533, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.654533, 0, 0)
 
 [node name="decoy_pos4" type="Node3D" parent="decoy_holder" unique_id=262683156]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.12079, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.12079, 0, 0)
 
 [editable path="su57"]
