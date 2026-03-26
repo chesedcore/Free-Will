@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dsd4wgx0f8idd"
+path="res://.godot/imported/mission2_phoenix_15_hubris.ogg-ebf4c419e334a15935c53757ddd70bcb.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_15_hubris.ogg"
+dest_files=["res://.godot/imported/mission2_phoenix_15_hubris.ogg-ebf4c419e334a15935c53757ddd70bcb.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ikq446qd7ox8"
+path="res://.godot/imported/mission1_phoenix_34_juice-him.ogg-8e5a7adb43cd4ed175fabc0079f4ec4f.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_34_juice-him.ogg"
+dest_files=["res://.godot/imported/mission1_phoenix_34_juice-him.ogg-8e5a7adb43cd4ed175fabc0079f4ec4f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

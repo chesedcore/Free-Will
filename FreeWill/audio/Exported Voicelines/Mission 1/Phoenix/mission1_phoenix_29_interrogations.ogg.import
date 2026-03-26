@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cr3ipudey7eaa"
+path="res://.godot/imported/mission1_phoenix_29_interrogations.ogg-94357a486a0cfb4f668be68cccec9bd3.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_29_interrogations.ogg"
+dest_files=["res://.godot/imported/mission1_phoenix_29_interrogations.ogg-94357a486a0cfb4f668be68cccec9bd3.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

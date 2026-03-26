@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cgqhx3v2onqqk"
+path="res://.godot/imported/mission2_phoenix_08_thinning-out.ogg-a0b1905ab575f2bb8f0c2163e553143f.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_08_thinning-out.ogg"
+dest_files=["res://.godot/imported/mission2_phoenix_08_thinning-out.ogg-a0b1905ab575f2bb8f0c2163e553143f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

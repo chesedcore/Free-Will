@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b7hjjg5ombmc2"
+path="res://.godot/imported/mission1_general_01_what-are-you-doing.ogg-f72e6e9d7955703ea4a032b5935c636d.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/General/mission1_general_01_what-are-you-doing.ogg"
+dest_files=["res://.godot/imported/mission1_general_01_what-are-you-doing.ogg-f72e6e9d7955703ea4a032b5935c636d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
