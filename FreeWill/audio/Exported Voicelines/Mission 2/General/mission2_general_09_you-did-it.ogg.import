@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://r7cbtx6biswk"
+path="res://.godot/imported/mission2_general_09_you-did-it.ogg-63b10bf35a46ee59e7102afb979fa77b.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/General/mission2_general_09_you-did-it.ogg"
+dest_files=["res://.godot/imported/mission2_general_09_you-did-it.ogg-63b10bf35a46ee59e7102afb979fa77b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

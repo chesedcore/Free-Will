@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cfo5lxdmyjvlf"
+path="res://.godot/imported/mission1_general_12_just-fine.ogg-c90e4306d4211932bed8d7258c7cd32c.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/General/mission1_general_12_just-fine.ogg"
+dest_files=["res://.godot/imported/mission1_general_12_just-fine.ogg-c90e4306d4211932bed8d7258c7cd32c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

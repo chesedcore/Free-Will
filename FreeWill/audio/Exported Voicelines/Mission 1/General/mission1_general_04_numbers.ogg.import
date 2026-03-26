@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://da55qur42aq17"
+path="res://.godot/imported/mission1_general_04_numbers.ogg-1bd15de54621535ca622e31f440a457f.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/General/mission1_general_04_numbers.ogg"
+dest_files=["res://.godot/imported/mission1_general_04_numbers.ogg-1bd15de54621535ca622e31f440a457f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

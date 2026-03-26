@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://o1i5wkbkyw37"
+path="res://.godot/imported/mission1_phoenix_20_gotta-go.ogg-6f5378343d9cc3ebc32db383f289d043.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_20_gotta-go.ogg"
+dest_files=["res://.godot/imported/mission1_phoenix_20_gotta-go.ogg-6f5378343d9cc3ebc32db383f289d043.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

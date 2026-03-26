@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dcush8f50hjl2"
+path="res://.godot/imported/mission1_phoenix_08_get-out-of-there.ogg-d49bf2a201501f4e56b3392c2dc1b1df.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_08_get-out-of-there.ogg"
+dest_files=["res://.godot/imported/mission1_phoenix_08_get-out-of-there.ogg-d49bf2a201501f4e56b3392c2dc1b1df.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

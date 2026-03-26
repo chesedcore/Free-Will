@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dsf2u61242kum"
+path="res://.godot/imported/mission2_general_10_wouldnt-stand-a-chance.ogg-ecf81c3535582dc4c849e16f974d5cba.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/General/mission2_general_10_wouldnt-stand-a-chance.ogg"
+dest_files=["res://.godot/imported/mission2_general_10_wouldnt-stand-a-chance.ogg-ecf81c3535582dc4c849e16f974d5cba.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bn4cvhi3s33m6"
+path="res://.godot/imported/please hold (the line).ogg-71975fa61ce51ca3c47e94f7f9d0416a.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/mus/Mission 1/please hold (the line).ogg"
+dest_files=["res://.godot/imported/please hold (the line).ogg-71975fa61ce51ca3c47e94f7f9d0416a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
