@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://djjju40wwfv2f"]
+
+[ext_resource type="Script" uid="uid://cuiku0lpqyr5b" path="res://scripts/effects/wind_player.gd" id="1_aso1w"]
+[ext_resource type="AudioStream" uid="uid://csa7wmun12564" path="res://audio/sfx/windlow.ogg" id="1_bka4t"]
+[ext_resource type="AudioStream" uid="uid://dj0xk2qee0vn1" path="res://audio/sfx/windmid.ogg" id="2_8awox"]
+[ext_resource type="AudioStream" uid="uid://c6qvdl5n8pqrf" path="res://audio/sfx/windhigh.ogg" id="3_aso1w"]
+[ext_resource type="AudioStream" uid="uid://b3qxh5xl7pvqj" path="res://audio/sfx/enginev2.ogg" id="4_8awox"]
+
+[node name="WindPlayer" type="Node3D" unique_id=1802921974 node_paths=PackedStringArray("wind_low3d", "wind_mid3d", "wind_high3d", "wind_low", "wind_mid", "engine")]
+script = ExtResource("1_aso1w")
+wind_low3d = NodePath("WindLow3D")
+wind_mid3d = NodePath("WindMid3D")
+wind_high3d = NodePath("WindHigh3D")
+wind_low = NodePath("WindLow")
+wind_mid = NodePath("WindMid")
+engine = NodePath("Engine")
+
+[node name="WindLow3D" type="AudioStreamPlayer3D" parent="." unique_id=1835168671]
+stream = ExtResource("1_bka4t")
+bus = &"SFX"
+
+[node name="WindMid3D" type="AudioStreamPlayer3D" parent="." unique_id=310770943]
+stream = ExtResource("2_8awox")
+bus = &"SFX"
+
+[node name="WindHigh3D" type="AudioStreamPlayer3D" parent="." unique_id=1098072959]
+stream = ExtResource("3_aso1w")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="Engine" type="AudioStreamPlayer3D" parent="." unique_id=1039169877]
+stream = ExtResource("4_8awox")
+pitch_scale = 1.7
+bus = &"SFX"
+
+[node name="WindLow" type="AudioStreamPlayer" parent="." unique_id=2033562968]
+stream = ExtResource("1_bka4t")
+volume_db = 14.0
+bus = &"Wind"
+
+[node name="WindMid" type="AudioStreamPlayer" parent="." unique_id=784054294]
+stream = ExtResource("2_8awox")
+volume_db = -10.0
+pitch_scale = 0.84
+bus = &"Wind"
+
+[node name="WindHigh" type="AudioStreamPlayer" parent="." unique_id=335007243]
+stream = ExtResource("3_aso1w")

@@ -41,6 +41,7 @@ stream = ExtResource("4_rlfjo")
 volume_db = 10.0
 pitch_scale = 0.7
 autoplay = true
+bus = &"SFX"
 attenuation_filter_cutoff_hz = 20500.0
 doppler_tracking = 2
 parameters/looping = true

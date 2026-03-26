@@ -20,11 +20,12 @@
 [ext_resource type="Texture2D" uid="uid://k60ak1h147t0" path="res://assets/ui/health_bar_back.png" id="17_7kk30"]
 [ext_resource type="Script" uid="uid://8ckcjgc3u1r0" path="res://scripts/entities/player/game_ui.gd" id="17_uedwi"]
 [ext_resource type="Texture2D" uid="uid://b1aaow6gsi7yb" path="res://assets/ui/health_bar_front.png" id="18_ekcgd"]
-[ext_resource type="AudioStream" uid="uid://lv5m5ak5a31d" path="res://audio/sfx/bgs/wind.ogg" id="18_tafis"]
 [ext_resource type="Script" uid="uid://cicma3kluvpxo" path="res://scripts/util_scripts/shake.gd" id="19_oqcw2"]
 [ext_resource type="Shader" uid="uid://drd3l3yes5apm" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
 [ext_resource type="Texture2D" uid="uid://b1aarwwoofr3x" path="res://assets/textures/Reticle-29.png" id="22_hsoq5"]
 [ext_resource type="Texture2D" uid="uid://vwb6m76hhawe" path="res://assets/textures/chain.png" id="24_4sl2t"]
+[ext_resource type="PackedScene" uid="uid://djjju40wwfv2f" path="res://scenes/entities/wind_player.tscn" id="26_if5yn"]
+[ext_resource type="AudioStream" uid="uid://clcxonh7xwwit" path="res://audio/sfx/beepv2.ogg" id="26_xioay"]
 
 [sub_resource type="Curve" id="Curve_vvw44"]
 _limits = [0.084254146, 0.17659867, 0.0, 1.0]
@@ -130,7 +131,7 @@ shader_parameter/max_alpha = 0.1370000065075
 shader_parameter/color_tint = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_ig2cu")
 
-[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component", "grapple_rope_mesh_1", "grapple_rope_mesh_2", "kunai_model", "idle_kunai_model", "rotation_animation_player")]
+[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component", "grapple_rope_mesh_1", "grapple_rope_mesh_2", "kunai_model", "idle_kunai_model", "wind_player", "beeper", "beeptimer")]
 collision_layer = 2
 collision_mask = 5
 mass = 200.0
@@ -150,7 +151,9 @@ grapple_rope_mesh_1 = NodePath("TankModel/GrappleRopeMesh")
 grapple_rope_mesh_2 = NodePath("TankModel/GrappleRopeMesh2")
 kunai_model = NodePath("Grapple/kunai_model")
 idle_kunai_model = NodePath("TankModel/IdleKunaiModel")
-rotation_animation_player = NodePath("")
+wind_player = NodePath("WindPlayer")
+beeper = NodePath("Beep")
+beeptimer = NodePath("BeepTimer")
 
 [node name="TankModel" parent="." unique_id=1331045763 instance=ExtResource("2_fn73n")]
 
@@ -226,6 +229,11 @@ mesh = SubResource("QuadMesh_ywmen")
 transform = Transform3D(0.45631856, 0, 0, 0, -1.9946318e-08, -0.45631856, 0, 0.45631856, -1.9946318e-08, -0.72016346, 3.6447363, -0.19689202)
 material_override = SubResource("ShaderMaterial_hsoq5")
 mesh = SubResource("QuadMesh_ywmen")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="TankModel" unique_id=849452183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6975927, 0)
+doppler_tracking = 2
+current = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1289681647]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23927891, 0)
@@ -340,13 +348,6 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("22_hsoq5")
 
-[node name="BGWind" type="AudioStreamPlayer" parent="." unique_id=1474296681]
-stream = ExtResource("18_tafis")
-volume_db = -15.0
-pitch_scale = 0.5
-autoplay = true
-parameters/looping = true
-
 [node name="WindTrails" type="Node3D" parent="." unique_id=274969305 node_paths=PackedStringArray("tank")]
 transform = Transform3D(0.9999985, -0.0014398276, -0.0009505979, 0.0014394387, 0.999999, -0.0004093051, 0.0009511863, 0.000407964, 0.9999995, -0.00226493, -0.013616562, 0.0041503906)
 script = ExtResource("5_hjnge")
@@ -376,5 +377,15 @@ visible = false
 script = ExtResource("19_oqcw2")
 decay_rate = 0.5
 return_speed = 9.0
+
+[node name="WindPlayer" parent="." unique_id=1802921974 instance=ExtResource("26_if5yn")]
+
+[node name="Beep" type="AudioStreamPlayer" parent="." unique_id=1362121266]
+stream = ExtResource("26_xioay")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="BeepTimer" type="Timer" parent="." unique_id=1711295440]
+one_shot = true
 
 [editable path="TankModel"]

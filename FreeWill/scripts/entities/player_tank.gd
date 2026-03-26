@@ -53,6 +53,9 @@ const UI := UIBus.Feedback
 @export var kunai_model: Node3D
 @export var idle_kunai_model: Node3D
 @export var rotation_animation_player: AnimationPlayer
+@export var wind_player : WindPlayer
+@export var beeper : AudioStreamPlayer
+@export var beeptimer : Timer
 
 #cooldowns
 @onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
@@ -70,6 +73,7 @@ var grappled_target: Node3D
 var active_missiles: int = 0
 var grapple_hold_time: float = 0.0
 
+var threat_indicators : Array = []
 
 func _ready() -> void:
 	_wire_up_signals()
@@ -332,6 +336,31 @@ func _physics_process(delta: float) -> void:
 	#spin turret during parry!!
 	if parry_window_timer.is_active():
 		turret.rotate_y(70 * delta)
+	
+	wind_player.update_wind_mixing(linear_velocity.length())
+	var shortest_distance_to_threat := 5000.
+	for indicator : ThreatIndicator in threat_indicators:
+		if indicator.distance < shortest_distance_to_threat:
+			shortest_distance_to_threat = indicator.distance
+	print(shortest_distance_to_threat)
+	if shortest_distance_to_threat < 4000.:
+		var beep_time :float = clamp((shortest_distance_to_threat - 15.) / 285., 0.0, 1.0)
+		var volume : float = lerp (-15,0, -beep_time + 1.)
+		var wait_time := lerpf(0.05, 1, beep_time)
+		beeptimer.wait_time = wait_time
+		beeper.volume_db = volume
+		if beeptimer.is_stopped():
+			beeper.play()
+			beeptimer.start()
+			print("testing")
+		if beeptimer.time_left > wait_time:
+			print("Timeout")
+			beeptimer.stop()
+			beeper.play()
+			beeptimer.start()
+	else:
+		beeptimer.stop()
+		#beeper.stop()
 
 func _poll_tank_death() -> void:
 	if global_position.y < -5.0: _kill()

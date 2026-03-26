@@ -1,7 +1,13 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://b34uucxfwkl62"]
 
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_j3pel"]
+resource_name = "LowPassFilter"
+cutoff_hz = 1000.0
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
+resource_name = "Distortion"
+
 [resource]
-bus/0/volume_db = -1.519247
 bus/1/name = &"SFX"
 bus/1/solo = false
 bus/1/mute = false
@@ -20,3 +26,13 @@ bus/3/mute = false
 bus/3/bypass_fx = false
 bus/3/volume_db = 0.0
 bus/3/send = &"Master"
+bus/4/name = &"Wind"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = &"SFX"
+bus/4/effect/0/effect = SubResource("AudioEffectLowPassFilter_j3pel")
+bus/4/effect/0/enabled = true
+bus/4/effect/1/effect = SubResource("AudioEffectDistortion_j3pel")
+bus/4/effect/1/enabled = true
