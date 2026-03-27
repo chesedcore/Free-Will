@@ -342,7 +342,6 @@ func _physics_process(delta: float) -> void:
 	for indicator : ThreatIndicator in threat_indicators:
 		if indicator.distance < shortest_distance_to_threat:
 			shortest_distance_to_threat = indicator.distance
-	print(shortest_distance_to_threat)
 	if shortest_distance_to_threat < 4000.:
 		var beep_time :float = clamp((shortest_distance_to_threat - 15.) / 285., 0.0, 1.0)
 		var volume : float = lerp (-15,0, -beep_time + 1.)
@@ -352,9 +351,7 @@ func _physics_process(delta: float) -> void:
 		if beeptimer.is_stopped():
 			beeper.play()
 			beeptimer.start()
-			print("testing")
 		if beeptimer.time_left > wait_time:
-			print("Timeout")
 			beeptimer.stop()
 			beeper.play()
 			beeptimer.start()
