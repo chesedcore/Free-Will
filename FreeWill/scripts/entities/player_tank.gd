@@ -34,7 +34,7 @@ const RAILGUN_COOLDOWN := 0.85
 @export var RAILGUN_RANGE := 750.0
 @export var RAILGUN_RADIUS_WIDTH := 10.0
 
-const MAX_HEALTH: float = 100000000000000
+const MAX_HEALTH: float = 250.0
 
 ##shorthand for the feedback enum
 const UI := UIBus.Feedback
@@ -52,10 +52,11 @@ const UI := UIBus.Feedback
 @export var grapple_rope_mesh_2: MeshInstance3D
 @export var kunai_model: Node3D
 @export var idle_kunai_model: Node3D
-@export var rotation_animation_player: AnimationPlayer
 @export var wind_player : WindPlayer
 @export var beeper : AudioStreamPlayer
 @export var beeptimer : Timer
+@export var charge_particles: GPUParticles3D
+@export var charge_spark_particles: GPUParticles3D
 
 #cooldowns
 @onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
@@ -91,10 +92,10 @@ func _input(event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("dash"):
 		_attempt_dash()
-	
+
 	if Input.is_action_just_pressed("railgun"):
 		_attempt_railgun_fire()
-	
+
 	if Input.is_action_just_pressed("action"):
 		_attempt_parry()
 
@@ -108,12 +109,17 @@ func _attempt_railgun_fire() -> void:
 	if not railgun_cooldown.is_ready():
 		UIBus.attempted_railgun.emit(Result.Err(UI.RAILGUN_STILL_UNDER_COOLDOWN))
 		return
-	
+
 	_execute_railgun()
 	UIBus.attempted_railgun.emit(Result.Ok_as_is())
-var rail_gun_damage : float =100
+var rail_gun_damage : float = 100
 func _execute_railgun() -> void:
-	print("railgun!")
+	# Charge Delay
+	charge_particles.restart()
+	charge_spark_particles.restart()
+	AudioManager.play_sound(preload("res://audio/sfx/railgun.ogg"))
+	await charge_spark_particles.finished
+
 	railgun_cooldown.start_cooldown()
 	var targets_hit := _query_barrel_shapecast_hits()
 	print_rich("[color=green]Targets hit: "+str(targets_hit))
@@ -170,7 +176,7 @@ func _query_barrel_shapecast_hits() -> Array[BaseEnemy]:
 		var collider: Variant = result["collider"]
 		if collider is BaseEnemy:
 			hits.append(collider)
-	
+
 	return hits
 
 func _get_screen_center() -> Vector2:
@@ -300,7 +306,6 @@ func _fire_cannon() -> void:
 
 
 func bullet_deleted() -> void:
-	#print("DELTED")
 	active_missiles -= 1
 
 
@@ -336,7 +341,7 @@ func _physics_process(delta: float) -> void:
 	#spin turret during parry!!
 	if parry_window_timer.is_active():
 		turret.rotate_y(70 * delta)
-	
+
 	wind_player.update_wind_mixing(linear_velocity.length())
 	var shortest_distance_to_threat := 5000.
 	for indicator : ThreatIndicator in threat_indicators:

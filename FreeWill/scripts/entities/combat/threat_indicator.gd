@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 		var scale_factor := remap(distance, 0, max_dist, 1.25, 0.25)
 		scale_factor = clamp(scale_factor, 0.25, 1.25)
 
-		arrow.scale = lerp(arrow.scale, Vector3.ONE * scale_factor,scale_speed* delta)	
+		arrow.scale = lerp(arrow.scale, Vector3.ONE * scale_factor,scale_speed* delta)
 		look_at(target_node.global_position)
 		#var beep_time :float = clamp((distance - min_dist) / (max_dist - min_dist), 0.0, 1.0)
 		#var volume : float = lerp (-50,0,beep_time)

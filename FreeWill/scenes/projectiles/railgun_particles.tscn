@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bewffn74mrceh"]
 
 [ext_resource type="Script" uid="uid://c205rqapyqqvi" path="res://scripts/effects/railgun.gd" id="1_ani64"]
-[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="2_ani64"]
 [ext_resource type="Shader" uid="uid://bihimqq7vee8d" path="res://shaderslop/shockwave.gdshader" id="3_pwgt8"]
 
 [sub_resource type="Curve" id="Curve_7wyjk"]
@@ -121,10 +120,10 @@ point_count = 2
 curve = SubResource("Curve_kg684")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pwgt8"]
-emission_shape_offset = Vector3(0, 381.4825, 0)
+emission_shape_offset = Vector3(0, 377.575, 0)
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
-emission_ring_height = 762.965
+emission_ring_height = 755.15
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 0.0
 emission_ring_cone_angle = 90.0
@@ -158,11 +157,11 @@ height = 2.0
 [node name="RailgunParticles" type="Node3D" unique_id=1472362922 node_paths=PackedStringArray("beam", "swirly", "shockwaves")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
 script = ExtResource("1_ani64")
-beam = NodePath("GPUParticles3D")
-swirly = NodePath("GPUParticles3D2")
-shockwaves = NodePath("GPUParticles3D3")
+beam = NodePath("BeamParticles")
+swirly = NodePath("SwirlyParticles")
+shockwaves = NodePath("ShockwaveParticles")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=2041816603]
+[node name="BeamParticles" type="GPUParticles3D" parent="." unique_id=2041816603]
 emitting = false
 amount = 1
 lifetime = 3.0
@@ -174,11 +173,8 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_oww5q")
 draw_pass_1 = SubResource("CapsuleMesh_7wyjk")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=936361091]
-environment = ExtResource("2_ani64")
-
-[node name="GPUParticles3D3" type="GPUParticles3D" parent="." unique_id=1980418967]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 662.0975, 0)
+[node name="ShockwaveParticles" type="GPUParticles3D" parent="." unique_id=1980418967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 652.3275, 0)
 emitting = false
 amount = 6
 lifetime = 3.0
@@ -188,7 +184,7 @@ visibility_aabb = AABB(-4, -1000, -4, 8, 2000, 8)
 process_material = SubResource("ParticleProcessMaterial_7wyjk")
 draw_pass_1 = SubResource("CylinderMesh_iwvu5")
 
-[node name="GPUParticles3D2" type="GPUParticles3D" parent="." unique_id=777372580]
+[node name="SwirlyParticles" type="GPUParticles3D" parent="." unique_id=777372580]
 emitting = false
 amount = 100
 lifetime = 3.0

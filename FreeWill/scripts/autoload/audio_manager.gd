@@ -27,7 +27,6 @@ func play_sound(sound: AudioStream, volume_db: float = 0.0, randomize_pitch: boo
 	var new_sound_player := AudioStreamPlayer.new()
 
 	new_sound_player.bus = "SFX"
-	new_sound_player.attenuation_filter_cutoff_hz = 20000
 
 	if (randomize_pitch):
 		new_sound_player.pitch_scale = randf_range(0.92, 1.13)
