@@ -7,6 +7,7 @@
 [ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="5_3q5qg"]
 [ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="6_76l0t"]
 [ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="7_877yy"]
+[ext_resource type="AudioStream" uid="uid://l52ex3drqvuq" path="res://audio/sfx/rocket_launch.ogg" id="7_q70iu"]
 [ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scenes/master/enemies_list.gd" id="8_tn3th"]
 
 [sub_resource type="Resource" id="Resource_x2y18"]
@@ -139,7 +140,7 @@ size = Vector2(10000, 10000)
 subdivide_width = 300
 subdivide_depth = 300
 
-[node name="Mission1_act2" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("stagehandler", "spawnpoints", "enemies_list", "transition")]
+[node name="Mission1_act2" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("stagehandler", "spawnpoints", "enemies_list")]
 script = ExtResource("1_e1x6y")
 mission_title = 2
 scene_to_transition_to = "res://scenes/credits/credits.tscn"
@@ -148,10 +149,9 @@ act_end_dialog = "mission1_act2_end"
 waves = Array[ExtResource("2_q70iu")]([SubResource("Resource_x2y18"), SubResource("Resource_08rrl"), SubResource("Resource_cetxk"), SubResource("Resource_xmt5l"), SubResource("Resource_e1x6y"), SubResource("Resource_q70iu"), SubResource("Resource_7ieol"), SubResource("Resource_ut7qk")])
 spawnpoints = NodePath("stagehandler/Tank/spawnpoints")
 enemies_list = NodePath("EnemiesList")
-transition = NodePath("CanvasLayer/transition")
 
 [node name="Ocean" type="MeshInstance3D" parent="." unique_id=713502013]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.093763605, -63.03884, -0.8690749)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -0.093763605, -63.03884, -0.8690749)
 mesh = SubResource("PlaneMesh_optku")
 
 [node name="stagehandler" type="Node3D" parent="." unique_id=810361068 node_paths=PackedStringArray("ui", "enemies_list", "tank")]
@@ -170,6 +170,7 @@ environment = ExtResource("5_3q5qg")
 
 [node name="Tank" parent="stagehandler" unique_id=290108966 instance=ExtResource("6_76l0t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 335.62222, 0)
+cannon_fire_sound = ExtResource("7_q70iu")
 
 [node name="spawnpoints" type="Node3D" parent="stagehandler/Tank" unique_id=578110763]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -335.62222, 0)

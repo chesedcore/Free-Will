@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://ccoy0lyh3mq63"]
+
+[ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="1_rekdk"]
+[ext_resource type="Script" uid="uid://ch1fytqa2mxui" path="res://scripts/enviorments/ocean.gd" id="2_7u6pt"]
+
+[sub_resource type="Gradient" id="Gradient_2l77h"]
+offsets = PackedFloat32Array(0.33802816, 0.7640845)
+colors = PackedColorArray(0.03599999, 0.07740005, 0.45, 1, 0.13, 0.27499986, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nqdth"]
+noise_type = 2
+frequency = 0.006
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dtlup"]
+noise = SubResource("FastNoiseLite_nqdth")
+color_ramp = SubResource("Gradient_2l77h")
+seamless = true
+in_3d_space = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_70vka"]
+noise_type = 5
+frequency = 0.15
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v5q0b"]
+noise = SubResource("FastNoiseLite_70vka")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_70vka"]
+offsets = PackedFloat32Array(0, 0.57042253, 0.8309859)
+colors = PackedColorArray(0, 0, 0, 1, 0.5931336, 0.59313357, 0.59313357, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2l77h"]
+noise_type = 2
+frequency = 0.005
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jh3e7"]
+noise = SubResource("FastNoiseLite_2l77h")
+color_ramp = SubResource("Gradient_70vka")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjeyg"]
+render_priority = 0
+shader = ExtResource("1_rekdk")
+shader_parameter/juice = SubResource("NoiseTexture2D_dtlup")
+shader_parameter/out_color = Color(0, 0, 0, 1)
+shader_parameter/amount = 0.20000000298023
+shader_parameter/speed = 0.10000000149012
+shader_parameter/beer_factor = 690000.0
+shader_parameter/metallic = -0.15
+shader_parameter/specular = 0.85
+shader_parameter/roughness = 0.105
+shader_parameter/noise_texture_1 = SubResource("NoiseTexture2D_v5q0b")
+shader_parameter/noise_texture_2 = SubResource("NoiseTexture2D_jh3e7")
+shader_parameter/noise_1_strength = 50.0
+shader_parameter/noise_2_strength = 10.15
+shader_parameter/amplitude = 22.62
+shader_parameter/uv_scale = Vector2(5, 5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_optku"]
+material = SubResource("ShaderMaterial_qjeyg")
+size = Vector2(10000, 10000)
+subdivide_width = 300
+subdivide_depth = 300
+
+[node name="Ocean" type="MeshInstance3D" unique_id=1773392108]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+mesh = SubResource("PlaneMesh_optku")
+script = ExtResource("2_7u6pt")
