@@ -17,3 +17,6 @@ static func create_missile_explosion() -> ExplosionParticles:
 
 static func create_explosion() -> DeathExplosionParticles:
 	return preload("res://scenes/entities/explosion_particles.tscn").instantiate()
+
+static func create_railcannonfire() -> RailCannonParticles:
+	return preload("res://scenes/entities/railgun_cannon_particles.tscn").instantiate()

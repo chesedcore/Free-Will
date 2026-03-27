@@ -121,7 +121,7 @@ func _execute_railgun() -> void:
 	#linear_velocity = Vector3.ZERO
 	linear_velocity += -camera_gimbal.global_transform.basis.z * RAILGUN_FIRE_FORCE
 	RailgunParticles.spawn_particles(RAILGUN_RANGE, global_position, camera_gimbal, get_viewport(), get_tree())
-	CannonParticles.attach_to(bullet_spawn_position_marker)
+	RailCannonParticles.attach_to(bullet_spawn_position_marker)
 	shake(0.5, 3.)
 	for target in targets_hit:
 		target.damage(rail_gun_damage)
