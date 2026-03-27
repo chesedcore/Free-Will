@@ -4,9 +4,11 @@ General: WELCOME HOME SOLDIERS!
 General: Given your, quite frankly, AMAZING success out there, I’ve decided to assign\
 you to a NEW mission!
 [voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_10_armed-to-the-teeth.ogg" volume="0.0" bus="Voice"]
-General: Don’t forget that this GLORIOUS tank has top-notch equipment and is armed to the teeth, so you can head out and give those Regressian admirals hell before they ruin our housing!!
+General: Don’t forget that this GLORIOUS tank has top-notch equipment and is armed to the teeth, \
+so you can head out and give those Regressian admirals hell before they ruin our housing!!
 [voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_11_fight-left-in-him.ogg" volume="0.0" bus="Voice"]
-General: Turns out, that guy from earlier still has some fight left in him. Your first mission is to finish off what remains of Destro’s fleet! Make your name known!
+General: Turns out, that guy from earlier still has some fight left in him. \
+Your first mission is to finish off what remains of Destro’s fleet! Make your name known!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_21_horrible-idea.ogg" volume="0.0" bus="Voice"]
 Phoenix: General, this is a HORRIBLE idea!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_22_just-fine.ogg" volume="0.0" bus="Voice"]

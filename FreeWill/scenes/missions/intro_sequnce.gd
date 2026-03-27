@@ -1,6 +1,6 @@
 extends Node3D
-const TUTORIAL = preload("res://scenes/missions/tutorial.tscn")
 
+const MISSION_1_ACT_1 = preload("res://scenes/missions/mission_1_act1.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,4 +14,4 @@ func _process(delta: float) -> void:
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	get_tree().change_scene_to_packed(TUTORIAL)
+	get_tree().change_scene_to_packed(MISSION_1_ACT_1)

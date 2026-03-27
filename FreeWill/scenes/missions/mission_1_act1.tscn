@@ -13,8 +13,7 @@
 script = ExtResource("2_67xhj")
 spawn_dialog = "Intro"
 waveinfo = Dictionary[int, int]({
-0: 2,
-4: 1
+0: 2
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
@@ -147,14 +146,16 @@ size = Vector2(10000, 10000)
 subdivide_width = 300
 subdivide_depth = 300
 
-[node name="Mission1_act1" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("stagehandler", "spawnpoints", "enemies_list")]
+[node name="Mission1_act1" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("stagehandler", "spawnpoints", "enemies_list", "transition")]
 script = ExtResource("1_pwc3s")
 mission_title = 2
+scene_to_transition_to = "res://scenes/missions/interlude.tscn"
 stagehandler = NodePath("stagehandler")
-mission_end_dialog = "mission1_end"
+act_end_dialog = "mission1_end"
 waves = Array[ExtResource("2_67xhj")]([SubResource("Resource_niyrk"), SubResource("Resource_0yhn2"), SubResource("Resource_myx56"), SubResource("Resource_1lad2"), SubResource("Resource_mctdd"), SubResource("Resource_feyy3"), SubResource("Resource_dtlup"), SubResource("Resource_v5q0b"), SubResource("Resource_jh3e7")])
 spawnpoints = NodePath("stagehandler/Tank/spawnpoints")
 enemies_list = NodePath("EnemiesList")
+transition = NodePath("CanvasLayer/transition")
 
 [node name="Ocean" type="MeshInstance3D" parent="." unique_id=713502013]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.093763605, -63.03884, -0.8690749)
@@ -208,3 +209,15 @@ seaborne_enemies = NodePath("Seaborne enemies")
 [node name="AirborneEnemies" type="Node3D" parent="EnemiesList" unique_id=676954822]
 
 [node name="Seaborne enemies" type="Node3D" parent="EnemiesList" unique_id=386092668]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=956286427]
+layer = 2
+
+[node name="transition" type="ColorRect" parent="CanvasLayer" unique_id=159990764]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

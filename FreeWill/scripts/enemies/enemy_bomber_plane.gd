@@ -25,6 +25,8 @@ func _physics_process(delta: float) -> void:
 func _on_drop_timer_timeout() -> void:
 	var new_bomb : Bomb= BOMB.instantiate()
 	new_bomb.position = droppers.pick_random().global_position
+	new_bomb.name = "Bomb"
 	#GAEL : I KNOW THIS IS FUCKED ILL REPLACE IT WITH SOME SIGNAL TO STAGE HANDLER LATEEERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR
-	#get_parent().get_parent().add_child.call_deferred(new_bomb)
+	#get_parent().get_parent().add_child.call_deferred(new_bomb
+	
 	EnemySignalBus.spawn_entity.emit(new_bomb)

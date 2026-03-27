@@ -15,5 +15,5 @@ after this.
 Vegas: Oh, like an interview?
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_30_yeah-interview.ogg" volume="0.0" bus="Voice"]
 Phoenix: Uh.. yeah, interview.
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_12_you.ogg" volume="0.0" bus="Voice"]
 Destro: YOU! I won’t let you go this time!! I’ve still got a chance!!!”

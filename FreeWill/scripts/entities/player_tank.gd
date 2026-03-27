@@ -34,7 +34,7 @@ const RAILGUN_COOLDOWN := 0.85
 @export var RAILGUN_RANGE := 750.0
 @export var RAILGUN_RADIUS_WIDTH := 10.0
 
-const MAX_HEALTH: float = 100000000000000
+const MAX_HEALTH: float = 100
 
 ##shorthand for the feedback enum
 const UI := UIBus.Feedback

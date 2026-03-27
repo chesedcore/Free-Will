@@ -61,6 +61,10 @@ func _on_missile_parried() -> void:
 
 
 #gael: the entity is spawning
+var bomb_count :int= 0
 func on_spawn_entity(entity :Node3D)->void :
+	if entity is Bomb:
+		bomb_count+= 1
+		entity.name = "Bomb" + str(bomb_count)
 	add_child(entity)
 	ui.track_these_entities([entity])

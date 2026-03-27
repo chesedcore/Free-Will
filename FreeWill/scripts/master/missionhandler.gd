@@ -5,7 +5,7 @@ class_name MissonHandler extends Node3D
 #const ENEMY_BATTLE_SHIP = preload("res://scenes/entities/enemies/enemy_battle_ship.tscn")
 
 @export var mission_title :MissionStatus.MISSION_TITLES
-
+@export var scene_to_transition_to : String
 
 # enemies
 var standard_plane : Resource
@@ -20,11 +20,13 @@ var shark_carrier : Resource
 const PLANESPAWNHEIGHT : float = 670
 const BOATSPAWNHEIGHT : float = 3
 const BOMBERSPAWNHEIGHT : float = 1340
-@export var mission_end_dialog : String
+@export var act_end_dialog : String
+
 @export var waves : Array[WaveResource]
 @export var spawnpoints: Node3D
 
 @export var enemies_list: EnemiesList
+@export var transition: ColorRect
 
 #wave count starts from 0 remember to increment in display 
 var current_wave :int= 0
@@ -32,7 +34,9 @@ var enemy_count : int = 0
 
 #temporary mission start logic
 func _ready() -> void:
-	await get_tree().create_timer(2).timeout
+	fade_in()
+
+	
 	spawn_wave()
 
 var enemy_scenes :Dictionary[WaveResource.EnemyTypes,Resource] = {}
@@ -195,8 +199,21 @@ func on_enemy_death()->void:
 		spawn_wave()
 func end_mission()->void:
 	#Dialogic.Inputs.block_input(100000)
-	Dialogic.start(mission_end_dialog)
+	Dialogic.start(act_end_dialog)
 	await Dialogic.timeline_ended
 	if stagehandler.tank.is_dead == false:
-		stagehandler.mission_complete_screen()
-		MissionStatus.complete_mission(mission_title)
+		#Gael: gonna remove mission selection status for now and just transition to next scene manually
+		#stagehandler.mission_complete_screen()
+		#MissionStatus.complete_mission(mission_title)
+		await fade_out()
+		get_tree().change_scene_to_file(scene_to_transition_to)
+
+
+func fade_in()->void:
+	var fade_in_tween : Tween = get_tree().create_tween().set_ease(Tween.EASE_OUT)
+	fade_in_tween.tween_property(transition,"modulate",Color("ffffff00"),2)
+	
+func fade_out()->void:
+	var fade_out_tween : Tween = get_tree().create_tween().set_ease(Tween.EASE_OUT)
+	fade_out_tween.tween_property(transition,"modulate",Color("ffffff"),1)
+	await fade_out_tween.finished
