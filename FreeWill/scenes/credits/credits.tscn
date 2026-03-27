@@ -56,7 +56,7 @@ tracks/1/path = NodePath("Node2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.033333335, 2.0333333, 24.133333),
+"times": PackedFloat32Array(0.033333335, 2.0333333, 23.966667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -5587)]
