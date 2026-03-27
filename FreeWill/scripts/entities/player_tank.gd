@@ -393,7 +393,9 @@ func grapple() -> void:
 	grappled_target = IFFTracker.get_lock_this_frame().unwrap_unchecked()
 	if (!grappled_target):
 		return
+
 	print("GRAPPLED")
+	AudioManager.play_sound(preload("res://audio/sfx/grapple_fire.ogg"))
 
 func ungrapple() -> void:
 	if (grappled_target):
@@ -421,6 +423,12 @@ func grapple_update(delta: float) -> void:
 		if (kunai_model.global_position.distance_squared_to(grappled_target.global_position) > 100.0):
 			kunai_model.rotation.x += 25.0 * delta
 	else:
+		# Bubba: Hacky ass way of playing impact sound from grappling hook.
+		# Since there are 4 days left and performance is acceptable, speed is my main priority.
+		if (grapple_hold_time < 0.5):
+			AudioManager.play_sound(preload("res://audio/sfx/grapple_impact.ogg"))
+			grapple_hold_time += 0.5
+
 		kunai_model.global_position = grappled_target.global_position
 
 	grapple_hold_time += delta
