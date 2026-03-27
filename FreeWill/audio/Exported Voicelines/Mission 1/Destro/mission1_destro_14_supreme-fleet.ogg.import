@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dikpwth1dojwl"
+path="res://.godot/imported/mission1_destro_14_supreme-fleet.ogg-4db1156edd389e49937b14fce40d9929.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_14_supreme-fleet.ogg"
+dest_files=["res://.godot/imported/mission1_destro_14_supreme-fleet.ogg-4db1156edd389e49937b14fce40d9929.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

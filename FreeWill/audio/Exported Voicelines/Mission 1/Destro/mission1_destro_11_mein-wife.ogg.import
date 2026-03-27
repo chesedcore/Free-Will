@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cfac4s25kl56s"
+path="res://.godot/imported/mission1_destro_11_mein-wife.ogg-f1e177d805ec76073e897641b65f5f20.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_11_mein-wife.ogg"
+dest_files=["res://.godot/imported/mission1_destro_11_mein-wife.ogg-f1e177d805ec76073e897641b65f5f20.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
