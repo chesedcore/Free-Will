@@ -14,5 +14,6 @@ func damage(amount: float) -> void:
 
 func kill() -> void:
 	IFFTracker.stop_tracking_entity(self)
+	DeathExplosionParticles.spawn_at(get_tree(), self)
 	died.emit()
 	queue_free.call_deferred()

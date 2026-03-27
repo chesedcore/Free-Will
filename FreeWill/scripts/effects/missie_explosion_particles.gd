@@ -11,5 +11,5 @@ func _ready() -> void:
 	smoke_particles.finished.connect(queue_free)
 
 static func attach_to(node: Node) -> void:
-	var particles := Registry.create_cannonfire()
+	var particles := Registry.create_missile_explosion()
 	node.add_child(particles)

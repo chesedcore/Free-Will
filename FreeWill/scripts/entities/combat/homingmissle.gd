@@ -106,9 +106,7 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 			particles.basis = global_basis
 			particles.position = global_position
 			return
-		var particles: Node3D = \
-			preload("res://scenes/projectiles/enemy_projectie/missie_explosion_particles.tscn").instantiate()
-		body.add_child(particles)
+		ExplosionParticles.attach_to(body)
 
 		AudioManager.play_sound_at(global_position, impact_sound, 15.0)
 		if trail_renderer:
