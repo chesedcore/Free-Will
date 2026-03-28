@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://v0l62knoh10b"]
+[gd_scene format=3 uid="uid://bx7xr8lswbt1b"]
 
 [ext_resource type="Script" uid="uid://dmwd6hits6odr" path="res://scenes/missions/intro_sequence.gd" id="1_okkw0"]
 [ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="2_rcv1k"]
@@ -348,8 +348,9 @@ _data = {
 &"intro_sequence": SubResource("Animation_opehg")
 }
 
-[node name="intro_sequence" type="Node3D" unique_id=805400210]
+[node name="intro_sequence" type="Node3D" unique_id=805400210 node_paths=PackedStringArray("animation_player")]
 script = ExtResource("1_okkw0")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=213695963]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 488.26587, 169.99397, 0)
@@ -374,14 +375,14 @@ visible = false
 [node name="TankModel" parent="." unique_id=2082927638 instance=ExtResource("5_6wlo1")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0, 27.231735, 0)
 
-[node name="CannonParticles" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(2082927638, 1092575496) index="0" unique_id=1355930968 instance=ExtResource("6_m4c3g")]
+[node name="CannonParticles" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(2082927638, 820774641) index="0" unique_id=1355930968 instance=ExtResource("6_m4c3g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15903485, -0.078063965, 8.559504)
 script = null
 
 [node name="CannonParticles" parent="TankModel/Barrel/CannonParticles" index="2" unique_id=2046860790]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(2082927638, 1092575496) index="1" unique_id=56172071]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(2082927638, 820774641) index="1" unique_id=56172071]
 stream = ExtResource("7_cn1u2")
 
 [node name="BarrelMuzzle" type="Marker3D" parent="TankModel" unique_id=1864224985]
