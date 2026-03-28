@@ -108,7 +108,7 @@ albedo_color = Color(0.4556854, 0.4556854, 0.4556854, 1)
 metallic = 0.5
 roughness = 0.3
 
-[node name="enemy_shark_carrier" type="CharacterBody3D" unique_id=657349981 node_paths=PackedStringArray("base", "shark_spawn_location", "attack_timer", "canon_aims", "cannon_bases", "cannon_barrels")]
+[node name="enemy_shark_carrier" type="CharacterBody3D" unique_id=657349981 node_paths=PackedStringArray("base", "shark_spawn_location", "attack_timer", "smoke_spawners")]
 collision_layer = 4
 collision_mask = 15
 motion_mode = 1
@@ -116,10 +116,8 @@ script = ExtResource("1_6omri")
 base = NodePath("bigfuckcannon/Cube")
 shark_spawn_location = NodePath("bigfuckcannon/Cube/shark_spawn_location")
 attack_timer = NodePath("attack_timer")
-canon_aims = [NodePath("Cannon/Cube_002/shell_spawner"), NodePath("Cannon2/Cube_002/shell_spawner")]
-cannon_bases = [NodePath("Cannon"), NodePath("Cannon2")]
-cannon_barrels = [NodePath("Cannon/Cube_002"), NodePath("Cannon2/Cube_002")]
-health = 150.0
+smoke_spawners = [NodePath("Front"), NodePath("PlaneLeft"), NodePath("PlaneRight"), NodePath("FrontCannon"), NodePath("BackRight"), NodePath("Marker3D2"), NodePath("Marker3D3"), NodePath("Marker3D5"), NodePath("Marker3D7"), NodePath("Marker3D8"), NodePath("Marker3D9")]
+health = 250.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=339972857]
 transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 2.6445599, 65.382935, -62.005737)
@@ -140,10 +138,10 @@ transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.6850383, 85.95831, 1.76499
 transform = Transform3D(0.42202696, 0, -0.90658325, 0, 1, 0, 0.90658325, 0, 0.42202696, 0, 0, 0)
 
 [node name="Cylinder" parent="bigfuckcannon/Cube" index="0" unique_id=1953835809]
-transform = Transform3D(3.234432, 0, 0, 0, 11.219523, 1.9678484, 0, -8.601064, 2.5669289, 0, 5.6715136, 0)
+transform = Transform3D(3.234432, 0, 0, 0, 8.222984, 2.6309855, 0, -11.499502, 1.8813467, 0, 5.6715136, 0)
 
 [node name="shark_spawn_location" type="Node3D" parent="bigfuckcannon/Cube" index="1" unique_id=1761556580]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.068503834, 17.211988, -15.506936)
+transform = Transform3D(0.9976286, 0, -0.06882639, -0.041197818, 0.80106616, -0.59715647, 0.05513449, 0.5985759, 0.7991665, 0.068503834, 17.211988, -15.506936)
 
 [node name="attack_timer" type="Timer" parent="." unique_id=20365492]
 wait_time = 5.0
@@ -152,7 +150,7 @@ wait_time = 5.0
 transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 0, 0, 0)
 visible = false
 
-[node name="navy" parent="." unique_id=650229698 instance=ExtResource("5_sun43")]
+[node name="navy" parent="." unique_id=1976560151 instance=ExtResource("5_sun43")]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 49.90677, -74.71877)
 
 [node name="Cannon" type="MeshInstance3D" parent="." unique_id=587835005]
@@ -237,6 +235,50 @@ transform = Transform3D(2.5531425, 0, 14.781117, 0, 15, 0, -14.781117, 0, 2.5531
 
 [node name="su72" parent="Planes" unique_id=1282193603 instance=ExtResource("6_q4vk6")]
 transform = Transform3D(2.5531425, 0, 14.781117, 0, 15, 0, -14.781117, 0, 2.5531425, 82.30618, 84.19626, -178.53581)
+
+[node name="Front" type="Marker3D" parent="." unique_id=1756438059]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95.9984, -195.40636)
+gizmo_extents = 10.0
+
+[node name="PlaneRight" type="Marker3D" parent="." unique_id=22959404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.8774, 86.09364, -250.65881)
+gizmo_extents = 10.0
+
+[node name="PlaneLeft" type="Marker3D" parent="." unique_id=1394385043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124.3105, 86.09364, -364.25043)
+gizmo_extents = 10.0
+
+[node name="FrontCannon" type="Marker3D" parent="." unique_id=1600933814]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3573074, 94.398544, 233.35736)
+gizmo_extents = 10.0
+
+[node name="BackRight" type="Marker3D" parent="." unique_id=648592482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.626377, 126.23772, -359.2743)
+gizmo_extents = 10.0
+
+[node name="Marker3D2" type="Marker3D" parent="." unique_id=1754112203]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.426998, 119.86545, -310.38132)
+gizmo_extents = 10.0
+
+[node name="Marker3D3" type="Marker3D" parent="." unique_id=28041251]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1177635, 119.86545, -362.77475)
+gizmo_extents = 10.0
+
+[node name="Marker3D5" type="Marker3D" parent="." unique_id=1775789189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120.83093, 86.09364, -364.25043)
+gizmo_extents = 10.0
+
+[node name="Marker3D7" type="Marker3D" parent="." unique_id=2030773443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.77537, 86.09364, -212.35359)
+gizmo_extents = 10.0
+
+[node name="Marker3D8" type="Marker3D" parent="." unique_id=300861214]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.22305, 86.09364, -289.20465)
+gizmo_extents = 10.0
+
+[node name="Marker3D9" type="Marker3D" parent="." unique_id=287769666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3573074, 94.398544, 146.3198)
+gizmo_extents = 10.0
 
 [connection signal="body_entered" from="line_of_sight" to="." method="_on_line_of_sight_body_entered"]
 [connection signal="body_exited" from="line_of_sight" to="." method="_on_line_of_sight_body_exited"]
