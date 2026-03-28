@@ -40,6 +40,8 @@ emission_energy_multiplier = 50.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_g82at"]
 material = SubResource("StandardMaterial3D_ute5l")
+radial_segments = 8
+rings = 4
 
 [node name="Node3D" type="Node3D" unique_id=1182078075]
 script = ExtResource("1_0n5t0")

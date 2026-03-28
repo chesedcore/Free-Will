@@ -165,10 +165,11 @@ material = SubResource("StandardMaterial3D_vg2hm")
 radial_segments = 8
 rings = 4
 
-[node name="DeathExplosionParticles" type="Node3D" unique_id=726894497 node_paths=PackedStringArray("fire_particles", "smoke_particles")]
+[node name="DeathExplosionParticles" type="Node3D" unique_id=726894497 node_paths=PackedStringArray("fire_particles", "smoke_particles", "explosion_sfx")]
 script = ExtResource("1_7uyfo")
 fire_particles = NodePath("CannonParticles")
 smoke_particles = NodePath("SmokeParticles")
+explosion_sfx = NodePath("AudioStreamPlayer3D")
 
 [node name="SmokeParticles" type="GPUParticles3D" parent="." unique_id=591907457]
 emitting = false

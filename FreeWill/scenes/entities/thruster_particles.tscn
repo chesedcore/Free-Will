@@ -68,6 +68,8 @@ emission_enabled = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_dwwqi"]
 material = SubResource("StandardMaterial3D_5ybko")
+radial_segments = 6
+rings = 4
 is_hemisphere = true
 
 [node name="thruster_particles" type="Node3D" unique_id=1747782805]

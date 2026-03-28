@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://t1tikd570yld"]
+
+[ext_resource type="Script" uid="uid://bt71a106smnyb" path="res://scripts/effects/smoke_particles.gd" id="1_rtfj6"]
+
+[sub_resource type="Curve" id="Curve_xk7vy"]
+_data = [Vector2(0, 0), 0.0, 4.7658725, 0, 0, Vector2(0.13454545, 1), 0.6428817, 0.6428817, 0, 0, Vector2(0.4290909, 1), 0.0, 0.0, 0, 0, Vector2(0.4291009, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_rtfj6"]
+curve = SubResource("Curve_xk7vy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_goaf2"]
+lifetime_randomness = 0.2
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = 70.0
+initial_velocity_max = 70.0
+gravity = Vector3(0, 0, 0)
+scale_min = 8.0
+scale_max = 12.0
+scale_curve = SubResource("CurveTexture_rtfj6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ugfpy"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.556953, 0.556953, 0.556953, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_0u3vg"]
+material = SubResource("StandardMaterial3D_ugfpy")
+radial_segments = 8
+rings = 4
+
+[node name="SmokeParticles" type="Node3D" unique_id=832241486]
+script = ExtResource("1_rtfj6")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1153152055]
+amount = 50
+lifetime = 2.5
+process_material = SubResource("ParticleProcessMaterial_goaf2")
+draw_pass_1 = SubResource("SphereMesh_0u3vg")
