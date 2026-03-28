@@ -3,6 +3,9 @@ class_name PlayerTank extends RigidBody3D
 ## Sick ass fuckin flying player tank class
 
 signal fucking_exploded
+signal damaged
+signal cool_shit_happened(shit: CoolShit.Shit, points: int)
+signal lame_shit_happened(points_to_remove: int)
 
 const BARREL_ROTATION_SPEED: float = 7.5
 const GUN_GIMBAL_ROTATION_SPEED: float = 6.0
@@ -34,7 +37,7 @@ const RAILGUN_COOLDOWN := 0.85
 @export var RAILGUN_RANGE := 750.0
 @export var RAILGUN_RADIUS_WIDTH := 10.0
 
-const MAX_HEALTH: float = 100
+const MAX_HEALTH: float = 250.0
 
 ##shorthand for the feedback enum
 const UI := UIBus.Feedback
@@ -52,10 +55,12 @@ const UI := UIBus.Feedback
 @export var grapple_rope_mesh_2: MeshInstance3D
 @export var kunai_model: Node3D
 @export var idle_kunai_model: Node3D
-@export var rotation_animation_player: AnimationPlayer
 @export var wind_player : WindPlayer
 @export var beeper : AudioStreamPlayer
 @export var beeptimer : Timer
+@export var charge_particles: GPUParticles3D
+@export var charge_spark_particles: GPUParticles3D
+@export var style_display: StyleDisplay
 
 #cooldowns
 @onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
@@ -72,6 +77,7 @@ var _parry_tween: Tween
 var grappled_target: Node3D
 var active_missiles: int = 0
 var grapple_hold_time: float = 0.0
+var is_firing_railgun: bool = false
 
 var threat_indicators : Array = []
 
@@ -84,6 +90,8 @@ func _ready() -> void:
 func _wire_up_signals() -> void:
 	UIBus.missile_parried.connect(_extend_parry_window)
 	parry_window_timer.timeout.connect(_end_parry)
+	cool_shit_happened.connect(style_display.cool_shit)
+	lame_shit_happened.connect(style_display.lame_shit)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("fire"):
@@ -91,10 +99,10 @@ func _input(event: InputEvent) -> void:
 
 	if Input.is_action_just_pressed("dash"):
 		_attempt_dash()
-	
+
 	if Input.is_action_just_pressed("railgun"):
 		_attempt_railgun_fire()
-	
+
 	if Input.is_action_just_pressed("action"):
 		_attempt_parry()
 
@@ -108,12 +116,25 @@ func _attempt_railgun_fire() -> void:
 	if not railgun_cooldown.is_ready():
 		UIBus.attempted_railgun.emit(Result.Err(UI.RAILGUN_STILL_UNDER_COOLDOWN))
 		return
-	
+
 	_execute_railgun()
 	UIBus.attempted_railgun.emit(Result.Ok_as_is())
-var rail_gun_damage : float =100
+var rail_gun_damage : float = 100
 func _execute_railgun() -> void:
-	print("railgun!")
+	if (is_firing_railgun):
+		return
+
+	if (is_dead):
+		return
+
+	is_firing_railgun = true
+
+	# Charge Delay
+	charge_particles.restart()
+	charge_spark_particles.restart()
+	AudioManager.play_sound(preload("res://audio/sfx/railgun.ogg"))
+	await charge_spark_particles.finished
+
 	railgun_cooldown.start_cooldown()
 	var targets_hit := _query_barrel_shapecast_hits()
 	print_rich("[color=green]Targets hit: "+str(targets_hit))
@@ -125,6 +146,8 @@ func _execute_railgun() -> void:
 	shake(0.5, 3.)
 	for target in targets_hit:
 		target.damage(rail_gun_damage)
+
+	is_firing_railgun = false
 
 func _query_barrel_shapecast_hits() -> Array[BaseEnemy]:
 	var hits: Array[BaseEnemy] = []
@@ -170,7 +193,7 @@ func _query_barrel_shapecast_hits() -> Array[BaseEnemy]:
 		var collider: Variant = result["collider"]
 		if collider is BaseEnemy:
 			hits.append(collider)
-	
+
 	return hits
 
 func _get_screen_center() -> Vector2:
@@ -218,6 +241,8 @@ func _debug_draw_capsule(xform: Transform3D, height: float, radius: float, durat
 	instance.queue_free()
 
 func _execute_dash() -> void:
+	cool_shit_happened.emit(CoolShit.Shit.DODGE, 10)
+
 	var input_dir: Vector2 = Input.get_vector("left", "right", "up", "down")
 	if input_dir.is_zero_approx(): input_dir = Vector2.UP
 	var move_dir: Vector3 = Vector3(-input_dir.x, 0.0, -input_dir.y).rotated(Vector3.UP, camera_gimbal.rotation.y)
@@ -247,6 +272,9 @@ func _attempt_parry() -> void:
 
 
 func _execute_parry() -> void:
+	reset_rotation()
+	create_tween().tween_property(self, "linear_velocity:y", 0.0, PARRY_WINDUP).set_ease(Tween.EASE_OUT_IN).set_trans(Tween.TRANS_CUBIC)
+
 	if _parry_tween:
 		_parry_tween.kill()
 
@@ -282,12 +310,17 @@ func _end_parry() -> void:
 
 
 func _extend_parry_window() -> void:
+	cool_shit_happened.emit(CoolShit.Shit.PARRY, 100)
+	reset_rotation()
 	if parry_window_timer.is_active():
 		parry_window_timer.start(PARRY_CHAIN_EXTENSION)
 		print_rich("[color=blue]Parry window extended!")
 
 
 func _fire_cannon() -> void:
+	if (is_dead):
+		return
+
 	if (active_missiles >= MAX_MISSILES):
 		return
 
@@ -299,8 +332,13 @@ func _fire_cannon() -> void:
 
 
 func bullet_deleted() -> void:
-	#print("DELTED")
 	active_missiles -= 1
+
+
+func reset_rotation() -> void:
+	rotation = Vector3.ZERO
+	tank_model.rotation = camera_gimbal.rotation
+	angular_velocity *= 0.01
 
 
 func try_damage(amount: float) -> Result:
@@ -312,8 +350,24 @@ func try_damage(amount: float) -> Result:
 
 
 func damage(amount: float) -> void:
+	if (is_dead):
+		return
+
+	lame_shit_happened.emit(250)
+
+	damaged.emit()
+
+	# TODO This is hacky as fuck. make it better.
+	get_tree().root.add_child(preload("res://scenes/ui/damage_flash.tscn").instantiate())
+
 	health -= amount
 	if health <= 0.0: _kill()
+	shake(2.0, 2.0)
+
+	# Little flair to make getting hit feel more painful
+	var angular_tilt: float = 20.0
+	angular_velocity.x += randf_range(angular_tilt, angular_tilt)
+	angular_velocity.y += randf_range(angular_tilt, angular_tilt)
 
 
 func _kill() -> void:
@@ -335,7 +389,7 @@ func _physics_process(delta: float) -> void:
 	#spin turret during parry!!
 	if parry_window_timer.is_active():
 		turret.rotate_y(70 * delta)
-	
+
 	wind_player.update_wind_mixing(linear_velocity.length())
 	var shortest_distance_to_threat := 5000.
 	for indicator : ThreatIndicator in threat_indicators:
@@ -394,7 +448,9 @@ func grapple() -> void:
 	grappled_target = IFFTracker.get_lock_this_frame().unwrap_unchecked()
 	if (!grappled_target):
 		return
+
 	print("GRAPPLED")
+	AudioManager.play_sound(preload("res://audio/sfx/grapple_fire.ogg"))
 
 func ungrapple() -> void:
 	if (grappled_target):
@@ -422,6 +478,12 @@ func grapple_update(delta: float) -> void:
 		if (kunai_model.global_position.distance_squared_to(grappled_target.global_position) > 100.0):
 			kunai_model.rotation.x += 25.0 * delta
 	else:
+		# Bubba: Hacky ass way of playing impact sound from grappling hook.
+		# Since there are 4 days left and performance is acceptable, speed is my main priority.
+		if (grapple_hold_time < 0.5):
+			AudioManager.play_sound(preload("res://audio/sfx/grapple_impact.ogg"))
+			grapple_hold_time += 0.5
+
 		kunai_model.global_position = grappled_target.global_position
 
 	grapple_hold_time += delta

@@ -19,6 +19,7 @@ var _is_under_hitstop := false
 
 func _wire_up_signals() -> void:
 	UIBus.missile_parried.connect(_on_missile_parried)
+	tank.damaged.connect(_on_tank_damaged)
 	tank.fucking_exploded.connect(_on_tank_fucking_exploded)
 	EnemySignalBus.spawn_entity.connect(on_spawn_entity)
 	EventBus.spawn_weaponry.connect(_on_spawn_weaponry)
@@ -37,10 +38,10 @@ func _on_hitstop_timer_expired() -> void:
 	Engine.time_scale = 1
 	_is_under_hitstop = false
 
-func _hitstop() -> void:
+func _hitstop(factor_scale: float = 1.0) -> void:
 	if _is_under_hitstop: return
 	_is_under_hitstop = true
-	Engine.time_scale = HITSTOP_SLOW_DOWN_FACTOR
+	Engine.time_scale = HITSTOP_SLOW_DOWN_FACTOR * factor_scale
 
 	var hitstop_timer := get_tree().create_timer(HITSTOP_TIME, true, false, true)
 	hitstop_timer.timeout.connect(_on_hitstop_timer_expired, CONNECT_ONE_SHOT)
@@ -58,6 +59,9 @@ func _on_tank_fucking_exploded() -> void:
 	#Gael : for some reason the game over screen causes the  camera crash if its not a child of stage handler
 	#get_tree().root.add_child.call_deferred(game_over_scene)
 	add_child.call_deferred(game_over_scene)
+
+func _on_tank_damaged() -> void:
+	_hitstop(2.0)
 
 func mission_complete_screen()->void:
 	var game_over_scene: GameOverScene = \

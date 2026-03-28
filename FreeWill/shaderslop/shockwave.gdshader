@@ -6,6 +6,7 @@ uniform vec4 color: source_color = vec4(1.0);
 uniform float outer_radius = 0.35;
 uniform float inner_radius = 0.275;
 uniform vec2 uv_adjustment = vec2(0.,0.);
+uniform float emission_strength = 50.;
 
 
 float circle(vec2 position, float radius, float feather)
@@ -23,7 +24,7 @@ void fragment(){
 	float inner = 1.0 - circle(UV + uv_adjustment, inner_radius, 0.1 - fade_effect );
 	
 	ALBEDO = color.rgb;
-	EMISSION = color.rgb * (50. - (outer + inner));
+	EMISSION = color.rgb * (emission_strength - (outer + inner));
 	ALPHA = 1. - (outer + inner);
 	
 }

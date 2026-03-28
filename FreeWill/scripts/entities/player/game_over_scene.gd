@@ -15,6 +15,7 @@ var player: PlayerTank
 func _ready() -> void:
 	if completed:
 		label.text = "Mission Complete"
+
 	camera.make_current()
 	camera_rot_point.global_position = player.global_position
 

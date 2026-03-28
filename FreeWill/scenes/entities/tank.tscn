@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://c7xy4j8d6608x" path="res://scripts/entities/player_tank.gd" id="1_xcn37"]
 [ext_resource type="PackedScene" uid="uid://ciqvl3ekbok17" path="res://models/player_tank.blend" id="2_fn73n"]
+[ext_resource type="AudioStream" uid="uid://l52ex3drqvuq" path="res://audio/sfx/rocket_launch.ogg" id="2_xioay"]
 [ext_resource type="Script" uid="uid://ygulxcf75ylm" path="res://scripts/effects/wind_lines.gd" id="5_hjnge"]
 [ext_resource type="PackedScene" uid="uid://bigipu066vsh1" path="res://models/kunai.blend" id="6_rlhxg"]
+[ext_resource type="Shader" uid="uid://bihimqq7vee8d" path="res://shaderslop/shockwave.gdshader" id="7_l4ev5"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_uedwi"]
 [ext_resource type="Script" uid="uid://wel3y4ne2cus" path="res://scripts/effects/tank_wind_trail.gd" id="7_ywmen"]
 [ext_resource type="Material" uid="uid://cumspkgnerlec" path="res://shaderslop/speed_lines.material" id="8_rlhxg"]
@@ -21,11 +23,14 @@
 [ext_resource type="Script" uid="uid://8ckcjgc3u1r0" path="res://scripts/entities/player/game_ui.gd" id="17_uedwi"]
 [ext_resource type="Texture2D" uid="uid://b1aaow6gsi7yb" path="res://assets/ui/health_bar_front.png" id="18_ekcgd"]
 [ext_resource type="Script" uid="uid://cicma3kluvpxo" path="res://scripts/util_scripts/shake.gd" id="19_oqcw2"]
-[ext_resource type="Shader" uid="uid://drd3l3yes5apm" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
+[ext_resource type="Shader" uid="uid://dewwkri53s35" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
 [ext_resource type="Texture2D" uid="uid://b1aarwwoofr3x" path="res://assets/textures/Reticle-29.png" id="22_hsoq5"]
 [ext_resource type="Texture2D" uid="uid://vwb6m76hhawe" path="res://assets/textures/chain.png" id="24_4sl2t"]
+[ext_resource type="Script" uid="uid://ckjjx6lxlertl" path="res://scripts/ui/style_display.gd" id="25_616kc"]
+[ext_resource type="Texture2D" uid="uid://b4r5o3ykf0dyy" path="res://assets/textures/test_style_meter_back.png" id="26_h5iat"]
 [ext_resource type="PackedScene" uid="uid://djjju40wwfv2f" path="res://scenes/entities/wind_player.tscn" id="26_if5yn"]
 [ext_resource type="AudioStream" uid="uid://clcxonh7xwwit" path="res://audio/sfx/beepv2.ogg" id="26_xioay"]
+[ext_resource type="Texture2D" uid="uid://c1ojtmgswt45q" path="res://assets/textures/test_style_meter_front.png" id="27_wro4j"]
 
 [sub_resource type="Curve" id="Curve_vvw44"]
 _limits = [0.084254146, 0.17659867, 0.0, 1.0]
@@ -58,6 +63,64 @@ shader_parameter/globalfade = 0.5
 shader_parameter/max_alpha = 0.1450000068875
 shader_parameter/color_tint = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_oqcw2")
+
+[sub_resource type="Curve" id="Curve_616kc"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_l4ev5"]
+curve = SubResource("Curve_616kc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h5iat"]
+gravity = Vector3(0, 0, 0)
+scale_min = 0.29999998
+scale_max = 0.29999998
+scale_curve = SubResource("CurveTexture_l4ev5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wro4j"]
+render_priority = 0
+shader = ExtResource("7_l4ev5")
+shader_parameter/color = Color(0.5, 0, 1, 1)
+shader_parameter/outer_radius = 0.35
+shader_parameter/inner_radius = 0.19
+shader_parameter/uv_adjustment = Vector2(0.25, -0.25)
+shader_parameter/emission_strength = 20.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kstey"]
+material = SubResource("ShaderMaterial_wro4j")
+top_radius = 15.0
+bottom_radius = 15.0
+height = 0.001
+radial_segments = 16
+rings = 0
+cap_bottom = false
+
+[sub_resource type="CurveTexture" id="CurveTexture_elt2t"]
+curve = SubResource("Curve_616kc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n6nx7"]
+emission_shape = 2
+emission_sphere_radius = 7.0
+spread = 180.0
+initial_velocity_min = 6.2999997
+initial_velocity_max = 6.2999997
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -300.0
+radial_accel_max = -300.0
+scale_min = 0.5
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_elt2t")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4ev5"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 100.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_616kc"]
+material = SubResource("StandardMaterial3D_l4ev5")
+radial_segments = 8
+rings = 4
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hsoq5"]
 render_priority = 0
@@ -131,7 +194,7 @@ shader_parameter/max_alpha = 0.1370000065075
 shader_parameter/color_tint = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_ig2cu")
 
-[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component", "grapple_rope_mesh_1", "grapple_rope_mesh_2", "kunai_model", "idle_kunai_model", "wind_player", "beeper", "beeptimer")]
+[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component", "grapple_rope_mesh_1", "grapple_rope_mesh_2", "kunai_model", "idle_kunai_model", "wind_player", "beeper", "beeptimer", "charge_particles", "charge_spark_particles", "style_display")]
 collision_layer = 2
 collision_mask = 5
 mass = 200.0
@@ -146,6 +209,7 @@ barrel_position_marker = NodePath("BarrelPositionMarker")
 bullet_spawn_position_marker = NodePath("TankModel/BarrelMuzzle")
 turret = NodePath("TankModel/Barrel")
 hull = NodePath("TankModel/Base")
+cannon_fire_sound = ExtResource("2_xioay")
 shake_component = NodePath("ShakeComponent")
 grapple_rope_mesh_1 = NodePath("TankModel/GrappleRopeMesh")
 grapple_rope_mesh_2 = NodePath("TankModel/GrappleRopeMesh2")
@@ -154,10 +218,13 @@ idle_kunai_model = NodePath("TankModel/IdleKunaiModel")
 wind_player = NodePath("WindPlayer")
 beeper = NodePath("Beep")
 beeptimer = NodePath("BeepTimer")
+charge_particles = NodePath("TankModel/BarrelMuzzle/ChargeParticles")
+charge_spark_particles = NodePath("TankModel/BarrelMuzzle/ChargeSparkParticles")
+style_display = NodePath("GameUI/StyleDisplay")
 
 [node name="TankModel" parent="." unique_id=1331045763 instance=ExtResource("2_fn73n")]
 
-[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(1331045763, 1092575496) index="0" unique_id=1789710507]
+[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(1331045763, 1225671377) index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
 script = ExtResource("10_hsoq5")
 min_vertex_distance = 0.1
@@ -216,6 +283,30 @@ metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 
 [node name="BarrelMuzzle" type="Marker3D" parent="TankModel" unique_id=110604597]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.0878064, 2.6, 8)
+
+[node name="ChargeParticles" type="GPUParticles3D" parent="TankModel/BarrelMuzzle" unique_id=1508369299]
+transform = Transform3D(-1, -8.742278e-08, -3.821371e-15, 0, -4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, -0.08780639, -0.23830223, -0.17059898)
+emitting = false
+amount = 2
+lifetime = 0.2
+one_shot = true
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_h5iat")
+draw_pass_1 = SubResource("CylinderMesh_kstey")
+
+[node name="ChargeSparkParticles" type="GPUParticles3D" parent="TankModel/BarrelMuzzle" unique_id=75512929]
+transform = Transform3D(-1, -8.742278e-08, -3.821371e-15, 0, -4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, -0.08780639, -0.23830223, -0.17059898)
+cast_shadow = 0
+emitting = false
+amount = 16
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_n6nx7")
+draw_pass_1 = SubResource("SphereMesh_616kc")
 
 [node name="IdleKunaiModel" parent="TankModel" unique_id=1936580332 instance=ExtResource("6_rlhxg")]
 transform = Transform3D(0.37188384, 0, 0, 0, 0.30845535, 0.20773269, 0, -0.20773269, 0.30845535, -0.7223202, 3.6428447, -0.23234469)
@@ -353,6 +444,51 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("22_hsoq5")
+
+[node name="StyleDisplay" type="Control" parent="GameUI" unique_id=182994859 node_paths=PackedStringArray("test_rank_label", "test_points_label", "style_loss_time_bar")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 192.0
+offset_bottom = 192.0
+script = ExtResource("25_616kc")
+test_rank_label = NodePath("TestRankLabel")
+test_points_label = NodePath("TestPointsLabel")
+style_loss_time_bar = NodePath("StyleLossTimeBar")
+
+[node name="TestRankLabel" type="Label" parent="GameUI/StyleDisplay" unique_id=475648773]
+layout_mode = 0
+offset_top = 23.0
+offset_right = 192.0
+offset_bottom = 169.0
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 106
+text = "F-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StyleLossTimeBar" type="TextureProgressBar" parent="GameUI/StyleDisplay" unique_id=1462047247]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.05
+value = 10.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_under = ExtResource("26_h5iat")
+texture_progress = ExtResource("27_wro4j")
+
+[node name="TestPointsLabel" type="Label" parent="GameUI/StyleDisplay" unique_id=109372114]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 152.0
+offset_right = 207.0
+offset_bottom = 175.0
+text = "999999"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WindTrails" type="Node3D" parent="." unique_id=274969305 node_paths=PackedStringArray("tank")]
 transform = Transform3D(0.9999985, -0.0014398276, -0.0009505979, 0.0014394387, 0.999999, -0.0004093051, 0.0009511863, 0.000407964, 0.9999995, -0.00226493, -0.013616562, 0.0041503906)
