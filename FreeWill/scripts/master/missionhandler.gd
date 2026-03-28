@@ -89,6 +89,7 @@ func spawn_wave()->void:
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Enemy Plane " +str(i+1)
 						enemies_list.airborne_enemies.add_child(new_enemy)
+						
 				WaveResource.EnemyTypes.StandardGunboat:
 					if ! standard_boat:
 						standard_boat = load("res://scenes/entities/enemies/enemy_battle_ship.tscn")
@@ -177,7 +178,7 @@ func spawn_wave()->void:
 		stagehandler.ui.track_these_entities(enemies_list.get_enemies())
 	
 	
-func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: float, max_attempts := 10) -> Vector3:
+func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: float, max_attempts := 20) -> Vector3:
 	for i in range(max_attempts):
 		var offset : Vector3= Vector3(
 			randf_range(-radius, radius),
@@ -188,6 +189,7 @@ func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: fl
 		
 		var is_valid := true
 		var entites : Array[Node] = enemies_list.get_enemies() + enviorment.get_children()
+		print(entites)
 		for entity in entites:
 			if entity.global_position.distance_to(candidate) < min_distance:
 				is_valid = false
@@ -217,6 +219,10 @@ func end_mission()->void:
 		#stagehandler.mission_complete_screen()
 		#MissionStatus.complete_mission(mission_title)
 		await fade_out()
+		if enviorment:
+			var grapple_points : Array[Node] = get_tree().get_nodes_in_group("Grapple Points")
+			for point in grapple_points:
+				IFFTracker.stop_tracking_entity(point)
 		get_tree().change_scene_to_file(scene_to_transition_to)
 
 

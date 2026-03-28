@@ -6,7 +6,8 @@ class_name SharkLatchedOn extends Node3D
 var latched_on_tank : PlayerTank
 
 func _ready() -> void:
-	pass
+	if  Dialogic.current_timeline == null:
+			Dialogic.start("shark_warning")
 
 const PULLFORCE = 5
 

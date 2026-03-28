@@ -205,18 +205,8 @@ transform = Transform3D(1.0000007, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 10.860665,
 [node name="Grapple Point" parent="enviorment/pillar_enviorment_prop5" index="5" unique_id=865896495]
 transform = Transform3D(1, 5.9604645e-08, 8.940697e-08, 0, 1, -2.9802322e-08, 0, 0, 1, 0.14593196, 3.5714614, 0.41495752)
 
-[node name="pillar_enviorment_prop6" parent="enviorment" unique_id=781469476 instance=ExtResource("10_n6kqd")]
-transform = Transform3D(299.99997, 0, 0, 0, 147.24706, -261.3777, 0, 261.3777, 147.24706, 1926.0017, -619.6615, -2516.1753)
-
-[node name="top" parent="enviorment/pillar_enviorment_prop6" index="0" unique_id=1253579231]
-transform = Transform3D(1.0000008, 0, 0, 0, 1.0000011, 0, 0, 0, 1.0000001, 0, 10.860665, 0)
-
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop6" index="5" unique_id=865896495]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 5.9604645e-08, 1, 0.06994152, 5.6006603, -0.554439)
-
 [editable path="enviorment/pillar_enviorment_prop"]
 [editable path="enviorment/pillar_enviorment_prop4"]
 [editable path="enviorment/pillar_enviorment_prop2"]
 [editable path="enviorment/pillar_enviorment_prop3"]
 [editable path="enviorment/pillar_enviorment_prop5"]
-[editable path="enviorment/pillar_enviorment_prop6"]

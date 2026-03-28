@@ -103,6 +103,7 @@ autoplay = &"ROLL CREDITS"
 [node name="Node2D" type="Node2D" parent="." unique_id=415846472]
 
 [node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=2093087784]
+visible = false
 position = Vector2(563, 295)
 scale = Vector2(5.12, 1.745)
 skew = -0.15184365

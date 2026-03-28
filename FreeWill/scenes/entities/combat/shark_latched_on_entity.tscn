@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b27wi14xrx1nw"]
 
-[ext_resource type="Script" path="res://scripts/entities/combat/shark_latched_on_entity.gd" id="1_tewug"]
+[ext_resource type="Script" uid="uid://c26jmcj2u5qya" path="res://scripts/entities/combat/shark_latched_on_entity.gd" id="1_tewug"]
 [ext_resource type="PackedScene" uid="uid://comalupd3cy86" path="res://assets/models/shark.blend" id="2_gew2b"]
 
 [node name="shark_latched_on_entity" type="Node3D" unique_id=1782445779]
