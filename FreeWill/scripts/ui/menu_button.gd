@@ -1,5 +1,7 @@
 class_name PauseMenuButton extends RichTextLabel
 
+signal clicked
+
 const ZERO_POINT_THREE = 0.45
 
 @export var undershadow_text: RichTextLabel
@@ -31,3 +33,9 @@ func highlight_out() -> void:
 	t.tween_property(undershadow_text.get_theme_font("normal_font"), "spacing_glyph", 0, ZERO_POINT_THREE)
 	corresponding_marquee.disappear()
 	self.text = original_text
+
+func _gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			clicked.emit()
+			print("triggered!")

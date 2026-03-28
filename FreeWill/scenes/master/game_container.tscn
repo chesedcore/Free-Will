@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ctk3wvrboaipf" path="res://scripts/master/game_container.gd" id="1_s5use"]
 [ext_resource type="PackedScene" uid="uid://vojed4xqg63o" path="res://scenes/main_game.tscn" id="2_6dj5d"]
+[ext_resource type="Script" uid="uid://bq5q3ek827hqh" path="res://scripts/ui/lateral_bars.gd" id="3_0gb65"]
 [ext_resource type="Script" uid="uid://boq2iw1k61chi" path="res://scripts/ui/pause_menu_buttons.gd" id="3_ftak0"]
 [ext_resource type="FontFile" uid="uid://38d0ljavacn8" path="res://assets/fonts/ZenDots-Regular.ttf" id="3_m8eaw"]
 [ext_resource type="Shader" uid="uid://cweftxowlkp8n" path="res://shaderslop/gaussian_blur.gdshader" id="3_ou4dh"]
@@ -10,12 +11,23 @@
 [ext_resource type="Script" uid="uid://bu4hq8w0u7f1t" path="res://scripts/ui/menu_button.gd" id="6_ftak0"]
 [ext_resource type="Script" uid="uid://c1jqeh1jayhha" path="res://scripts/ui/marquee_container.gd" id="7_srbcc"]
 [ext_resource type="Script" uid="uid://bq3wxnm2alcqb" path="res://scripts/ui/marquee.gd" id="8_6dj5d"]
+[ext_resource type="Shader" uid="uid://doveve2ovrg0t" path="res://shaderslop/stripes.gdshader" id="10_ba28l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ou4dh"]
 shader = ExtResource("3_ou4dh")
 shader_parameter/samples = 1
 shader_parameter/lod = 0
 shader_parameter/tint_color = Color(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yuuuf"]
+shader = ExtResource("10_ba28l")
+shader_parameter/color_gap = Color(1, 1, 0, 1)
+shader_parameter/color_stripe = Color(0, 0, 0, 1)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.1
+shader_parameter/angle = 1.7850000000000001
+shader_parameter/skew = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ftak0"]
 shader = ExtResource("4_ftak0")
@@ -81,7 +93,7 @@ shader_parameter/speed = 0.1
 shader_parameter/angle = 2.985
 shader_parameter/skew = 0.0
 
-[node name="GameContainer" type="Control" unique_id=1778160351 node_paths=PackedStringArray("control", "main_game", "blur_drive")]
+[node name="GameContainer" type="Control" unique_id=1778160351 node_paths=PackedStringArray("control", "main_game", "blur_drive", "pause_menu", "lateral_bars")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -92,6 +104,8 @@ script = ExtResource("1_s5use")
 control = NodePath("PauseMenu/Cascade")
 main_game = NodePath("TestScene")
 blur_drive = NodePath("PauseMenu/BlurDrive")
+pause_menu = NodePath("PauseMenu")
+lateral_bars = NodePath("PauseMenu/LateralBars")
 metadata/_edit_lock_ = true
 
 [node name="TestScene" parent="." unique_id=1841801107 instance=ExtResource("2_6dj5d")]
@@ -107,8 +121,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_0lrld")
+metadata/_edit_lock_ = true
 
-[node name="Cascade" type="Control" parent="PauseMenu" unique_id=2113227010]
+[node name="LateralBars" type="Control" parent="PauseMenu" unique_id=1029320789 node_paths=PackedStringArray("bar_left", "bar_right")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_0gb65")
+bar_left = NodePath("ColorRect")
+bar_right = NodePath("ColorRect2")
+metadata/_custom_type_script = "uid://bq5q3ek827hqh"
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu/LateralBars" unique_id=1463037303]
+material = SubResource("ShaderMaterial_yuuuf")
+layout_mode = 0
+offset_left = -77.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="PauseMenu/LateralBars" unique_id=628157677]
+material = SubResource("ShaderMaterial_yuuuf")
+layout_mode = 0
+offset_left = 1152.0
+offset_right = 1229.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Cascade" type="Control" parent="PauseMenu" unique_id=2113227010 node_paths=PackedStringArray("resume_button", "options_button", "menu_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -116,8 +160,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_ftak0")
+resume_button = NodePath("RESUME2")
+options_button = NodePath("OPTIONS2")
+menu_button = NodePath("TO MENU2")
 start_on_ready = false
-tween_in_time = 1.0
 stagger = 0.05
 metadata/_edit_lock_ = true
 
@@ -296,6 +342,7 @@ undershadow_text = NodePath("../TO MENU")
 corresponding_marquee = NodePath("../../MarqueeContainer/ToMenu")
 
 [node name="MarqueeContainer" type="Control" parent="PauseMenu" unique_id=924971221 node_paths=PackedStringArray("marquees")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

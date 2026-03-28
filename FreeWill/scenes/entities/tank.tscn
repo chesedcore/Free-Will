@@ -157,7 +157,7 @@ beeptimer = NodePath("BeepTimer")
 
 [node name="TankModel" parent="." unique_id=1331045763 instance=ExtResource("2_fn73n")]
 
-[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(1331045763, 1313246652) index="0" unique_id=1789710507]
+[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(1331045763, 1092575496) index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
 script = ExtResource("10_hsoq5")
 min_vertex_distance = 0.1
@@ -270,12 +270,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13)
 [node name="BarrelPositionMarker" type="Marker3D" parent="." unique_id=1035784397]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 
-[node name="VFX" type="Node3D" parent="." unique_id=938818672 node_paths=PackedStringArray("trail_renderer_l", "trail_renderer_r")]
+[node name="VFX" type="Node3D" parent="." unique_id=938818672 node_paths=PackedStringArray("trail_renderer_l", "trail_renderer_r", "trail_renderer_l2", "trail_renderer_r2")]
 script = ExtResource("7_ywmen")
 trail_renderer_l = NodePath("../TankModel/Node3D/TrailRendererL")
 trail_renderer_r = NodePath("../TankModel/Node3D/TrailRendererR")
+trail_renderer_l2 = NodePath("../TankModel/Node3D/TrailRendererL2")
+trail_renderer_r2 = NodePath("../TankModel/Node3D/TrailRendererR2")
 
 [node name="ScreenVFX" type="CanvasLayer" parent="VFX" unique_id=455388338]
+layer = 3
 
 [node name="SpeedLines" type="ColorRect" parent="VFX/ScreenVFX" unique_id=111747411]
 material = ExtResource("8_rlhxg")
@@ -284,16 +287,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("9_4sl2t")
 
 [node name="FilmGrain" type="ColorRect" parent="VFX/ScreenVFX" unique_id=1374272164]
-visible = false
 material = SubResource("ShaderMaterial_oqcw2")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="EdgeBlur" type="ColorRect" parent="VFX/ScreenVFX" unique_id=1949541961]
 material = SubResource("ShaderMaterial_tafis")
@@ -302,6 +306,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Vignette" type="ColorRect" parent="VFX/ScreenVFX" unique_id=382384255]
 material = SubResource("ShaderMaterial_uedwi")
@@ -310,6 +315,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="GameUI" type="CanvasLayer" parent="." unique_id=839091213 node_paths=PackedStringArray("health_bar")]
 script = ExtResource("17_uedwi")

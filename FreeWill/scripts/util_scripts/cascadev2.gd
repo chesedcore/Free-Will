@@ -61,8 +61,8 @@ func _subtween_hitzone_out(node: Node) -> Tween:
 	var target_pos := pos + Vector2(sin(pos.x) * 100, randf_range(-30, 30))
 	var t := _create_subtween_step()
 	t.tween_callback(cascade_out_started_for_node.emit.bind(node))
-	t.tween_property(node, "position", target_pos, maxf(tween_in_time * 0.5, 0.5))
-	t.tween_property(node, "scale", Vector2(-2, 0), maxf(tween_in_time * 0.75, 0.5))
+	t.tween_property(node, "position", target_pos, tween_in_time * 0.3)
+	t.tween_property(node, "scale", Vector2(-2, 0), tween_in_time * 0.3)
 	t.chain().tween_callback(cascade_out_finished_for_node.emit.bind(node))
 	t.chain().tween_callback(node.hide)
 	return t
