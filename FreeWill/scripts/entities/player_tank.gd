@@ -76,6 +76,7 @@ var _parry_tween: Tween
 var grappled_target: Node3D
 var active_missiles: int = 0
 var grapple_hold_time: float = 0.0
+var is_firing_railgun: bool = false
 
 var threat_indicators : Array = []
 
@@ -118,6 +119,11 @@ func _attempt_railgun_fire() -> void:
 	UIBus.attempted_railgun.emit(Result.Ok_as_is())
 var rail_gun_damage : float = 100
 func _execute_railgun() -> void:
+	if (is_firing_railgun):
+		return
+
+	is_firing_railgun = true
+
 	# Charge Delay
 	charge_particles.restart()
 	charge_spark_particles.restart()
@@ -135,6 +141,8 @@ func _execute_railgun() -> void:
 	shake(0.5, 3.)
 	for target in targets_hit:
 		target.damage(rail_gun_damage)
+
+	is_firing_railgun = false
 
 func _query_barrel_shapecast_hits() -> Array[BaseEnemy]:
 	var hits: Array[BaseEnemy] = []
