@@ -3,14 +3,12 @@
 [ext_resource type="Script" uid="uid://hkuju2my0qay" path="res://scripts/master/missionhandler.gd" id="1_pwc3s"]
 [ext_resource type="Script" uid="uid://capww07pslxpm" path="res://scripts/master/waveresource.gd" id="2_67xhj"]
 [ext_resource type="PackedScene" uid="uid://ccoy0lyh3mq63" path="res://scenes/enviorment/ocean.tscn" id="3_pwc3s"]
-[ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scenes/master/stage_handler.gd" id="4_n6kqd"]
+[ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scripts/master/stage_handler.gd" id="4_n6kqd"]
 [ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="5_bxqsf"]
 [ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="6_k1o3l"]
-[ext_resource type="AudioStream" uid="uid://l52ex3drqvuq" path="res://audio/sfx/rocket_launch.ogg" id="7_67xhj"]
 [ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="7_xyyhm"]
-[ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scenes/master/enemies_list.gd" id="8_qhl1s"]
+[ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scripts/master/enemies_list.gd" id="8_qhl1s"]
 [ext_resource type="PackedScene" uid="uid://b5oi77k2llexl" path="res://scenes/enviorment/pillar_enviorment_prop.tscn" id="10_n6kqd"]
-[ext_resource type="ArrayMesh" uid="uid://cwk8o07kwhwne" path="res://assets/models/pillar_broken.res" id="11_bxqsf"]
 
 [sub_resource type="Resource" id="Resource_niyrk"]
 script = ExtResource("2_67xhj")
@@ -104,12 +102,13 @@ transition = NodePath("CanvasLayer/transition")
 [node name="Ocean" parent="." unique_id=1773392108 instance=ExtResource("3_pwc3s")]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -0.093763605, -63.03884, -0.8690749)
 
-[node name="stagehandler" type="Node3D" parent="." unique_id=810361068 node_paths=PackedStringArray("ui", "enemies_list", "tank", "enviorment")]
+[node name="stagehandler" type="Node3D" parent="." unique_id=810361068 node_paths=PackedStringArray("ui", "enemies_list", "tank", "environment", "weapons")]
 script = ExtResource("4_n6kqd")
 ui = NodePath("UI")
 enemies_list = NodePath("../EnemiesList")
 tank = NodePath("Tank")
-enviorment = NodePath("../enviorment")
+environment = NodePath("../enviorment")
+weapons = NodePath("Weapons")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="stagehandler" unique_id=234805234]
 transform = Transform3D(0.99998426, -0.0036078133, 0.0042996025, 0.0022680946, 0.9604571, 0.27841896, -0.005134067, -0.2784048, 0.9604502, 0, 0, 0)
@@ -121,7 +120,6 @@ environment = ExtResource("5_bxqsf")
 
 [node name="Tank" parent="stagehandler" unique_id=290108966 instance=ExtResource("6_k1o3l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 770.8387, 0)
-cannon_fire_sound = ExtResource("7_67xhj")
 
 [node name="spawnpoints" type="Node3D" parent="stagehandler/Tank" unique_id=578110763]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -335.62222, 0)
@@ -145,6 +143,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 911.78076, 0, -577.7593)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 949.9374, 0, 686.8104)
 
 [node name="UI" parent="stagehandler" unique_id=121542168 instance=ExtResource("7_xyyhm")]
+
+[node name="Weapons" type="Node3D" parent="stagehandler" unique_id=1747668875]
 
 [node name="EnemiesList" type="Node3D" parent="." unique_id=1848485939 node_paths=PackedStringArray("airborne_enemies", "seaborne_enemies")]
 script = ExtResource("8_qhl1s")
@@ -170,51 +170,48 @@ color = Color(0, 0, 0, 1)
 [node name="enviorment" type="Node3D" parent="." unique_id=802011508]
 
 [node name="pillar_enviorment_prop" parent="enviorment" unique_id=1395337680 instance=ExtResource("10_n6kqd")]
-transform = Transform3D(300, 0, 0, 0, 600, 0, 0, 0, 300, 1433.1635, 2.2414856, 545.34607)
+transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 1433.1635, 2.2414856, 545.34607)
 
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop" index="4" unique_id=865896495]
+[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop" index="5" unique_id=865896495]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
 
 [node name="pillar_enviorment_prop4" parent="enviorment" unique_id=2004984867 instance=ExtResource("10_n6kqd")]
-transform = Transform3D(212.13203, -299.99997, 150, 0, 424.2641, 212.13202, -212.13203, -299.99997, 150, 1739.3833, -194.28061, 2415.9868)
+transform = Transform3D(212.13203, -149.99998, 150, 0, 212.13205, 212.13203, -212.13203, -149.99998, 150, 1739.3833, -194.28061, 2415.9868)
 
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop4" index="4" unique_id=865896495]
+[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop4" index="5" unique_id=865896495]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47145295, 4.4854894, -0.45429754)
 
 [node name="pillar_enviorment_prop2" parent="enviorment" unique_id=25018902 instance=ExtResource("10_n6kqd")]
-transform = Transform3D(300, 0, 0, 0, 600, 0, 0, 0, 300, -1490.3333, 2.2414856, 543.649)
+transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, -1490.3333, 2.2414856, 543.649)
 
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop2" index="4" unique_id=865896495]
+[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop2" index="5" unique_id=865896495]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.0402534, -0.6599872)
 
 [node name="pillar_enviorment_prop3" parent="enviorment" unique_id=1394351015 instance=ExtResource("10_n6kqd")]
-transform = Transform3D(88.8172, 341.91095, 229.96889, -2.24e-05, 481.5246, -178.97916, -286.55103, 105.976166, 71.27946, -1674.8796, -195.88904, 1197.836)
+transform = Transform3D(88.81719, 170.95547, 229.96896, -2.2400001e-05, 240.7623, -178.97908, -286.55106, 52.98805, 71.27946, -1674.8796, -195.88904, 1197.836)
 
 [node name="top" parent="enviorment/pillar_enviorment_prop3" index="0" unique_id=1253579231]
-transform = Transform3D(1.0000007, 0, 0, 0, -1, 8.7422784e-08, 0, -8.7422784e-08, -1.0000002, 0, 5.1594615, 0)
-mesh = ExtResource("11_bxqsf")
+transform = Transform3D(1.0000007, 0, 0, 0, 1, 0, 0, 0, 1.0000002, 0, 10.860665, 0)
 
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop3" index="4" unique_id=865896495]
+[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop3" index="5" unique_id=865896495]
 transform = Transform3D(1, 0, -2.9802322e-08, -2.9802322e-08, 1, 9.313226e-09, -8.940697e-08, -1.4901161e-08, 1, -0.034509182, 3.3235202, 0.534611)
 
 [node name="pillar_enviorment_prop5" parent="enviorment" unique_id=1709534713 instance=ExtResource("10_n6kqd")]
-transform = Transform3D(204.7549, 369.26758, 151.75632, 0, 484.48822, -216.533, -219.2611, 344.83707, 141.71619, -1674.8796, -110.83008, -2419.752)
+transform = Transform3D(204.7549, 158.25752, 151.75633, 0, 207.63783, -216.53297, -219.2611, 147.7873, 141.71622, -1674.8796, -110.83008, -2419.752)
 
 [node name="top" parent="enviorment/pillar_enviorment_prop5" index="0" unique_id=1253579231]
-transform = Transform3D(1.0000007, 0, 0, 0, -1, 8.7422784e-08, 0, -8.742278e-08, -1.0000001, -0.0044641495, 5.0801525, 0)
-mesh = ExtResource("11_bxqsf")
+transform = Transform3D(1.0000007, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 10.860665, 0)
 
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop5" index="4" unique_id=865896495]
+[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop5" index="5" unique_id=865896495]
 transform = Transform3D(1, 5.9604645e-08, 8.940697e-08, 0, 1, -2.9802322e-08, 0, 0, 1, 0.14593196, 3.5714614, 0.41495752)
 
 [node name="pillar_enviorment_prop6" parent="enviorment" unique_id=781469476 instance=ExtResource("10_n6kqd")]
-transform = Transform3D(286.4744, 167.52567, 30.268946, 0, 203.91335, -282.14328, -89.06415, 538.8455, 97.35992, 1926.0017, -619.6615, -2516.1753)
+transform = Transform3D(299.99997, 0, 0, 0, 147.24706, -261.3777, 0, 261.3777, 147.24706, 1926.0017, -619.6615, -2516.1753)
 
 [node name="top" parent="enviorment/pillar_enviorment_prop6" index="0" unique_id=1253579231]
-transform = Transform3D(0.99691415, 6.86353e-09, 0.07850965, 0, -1.0000002, 8.7422805e-08, 0.07850969, -8.7152955e-08, -0.9969137, 0, 5.1496077, 0)
-mesh = ExtResource("11_bxqsf")
+transform = Transform3D(1.0000008, 0, 0, 0, 1.0000011, 0, 0, 0, 1.0000001, 0, 10.860665, 0)
 
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop6" index="4" unique_id=865896495]
+[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop6" index="5" unique_id=865896495]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 5.9604645e-08, 1, 0.06994152, 5.6006603, -0.554439)
 
 [editable path="enviorment/pillar_enviorment_prop"]
