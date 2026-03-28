@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://b2623gy7ys17k" path="res://assets/models/battleship_cannon_color.tres" id="2_w3oou"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w3oou"]
-size = Vector3(403.53958, 38.08751, 69.34691)
+size = Vector3(154.21301, 38.08751, 69.34691)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dh4vq"]
 vertex_color_use_as_albedo = true
@@ -18,7 +18,7 @@ albedo_color = Color(0, 0.5176471, 0.61960787, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_dh4vq"]
 size = Vector3(5211.9297, 3353.3738, 5775.527)
 
-[node name="enemy_battle_ship" type="CharacterBody3D" unique_id=657349981 node_paths=PackedStringArray("line_of_sight", "cannon_bases", "cannon_barrels", "battle_ship_model", "canon_aims")]
+[node name="enemy_battle_ship" type="CharacterBody3D" unique_id=657349981 node_paths=PackedStringArray("line_of_sight", "cannon_bases", "cannon_barrels", "battle_ship_model", "canon_aims", "smoke_spawner1", "smoke_spawner2", "smoke_spawner3")]
 collision_layer = 4
 collision_mask = 15
 motion_mode = 1
@@ -28,24 +28,27 @@ cannon_bases = [NodePath("battle_ship_model/Cannon"), NodePath("battle_ship_mode
 cannon_barrels = [NodePath("battle_ship_model/Cannon/Cube_002"), NodePath("battle_ship_model/Cannon_001/Cube_003"), NodePath("battle_ship_model/Cannon_002/Cube_004"), NodePath("battle_ship_model/Cannon_003/Cube_005")]
 battle_ship_model = NodePath("battle_ship_model")
 canon_aims = [NodePath("battle_ship_model/Cannon/Cube_002/shell_spawner"), NodePath("battle_ship_model/Cannon_001/Cube_003/shell_spawner2"), NodePath("battle_ship_model/Cannon_002/Cube_004/shell_spawner3"), NodePath("battle_ship_model/Cannon_003/Cube_005/shell_spawner4")]
+smoke_spawner1 = NodePath("battle_ship_model/SmokeSpawnpoint")
+smoke_spawner2 = NodePath("battle_ship_model/SmokeSpawnpoint2")
+smoke_spawner3 = NodePath("battle_ship_model/SmokeSpawnpoint3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=339972857]
-transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 0.07058334, 4.099909, 0.15133667)
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 0.07058347, 4.099909, 2.992981)
 shape = SubResource("BoxShape3D_w3oou")
 
 [node name="battle_ship_model" parent="." unique_id=165609570 instance=ExtResource("2_v25cr")]
 transform = Transform3D(-1.3113416e-06, 0, 30, 0, 30, 0, -30, 0, -1.3113416e-06, 0, 0, 0)
 
-[node name="Cube" parent="battle_ship_model" index="0" unique_id=126324606]
+[node name="Cube" parent="battle_ship_model" index="0" unique_id=688779422]
 surface_material_override/0 = SubResource("StandardMaterial3D_dh4vq")
 
-[node name="Cube_001" parent="battle_ship_model" index="1" unique_id=829342408]
+[node name="Cube_001" parent="battle_ship_model" index="1" unique_id=1431604029]
 surface_material_override/0 = SubResource("StandardMaterial3D_5w4r6")
 
-[node name="Cannon" parent="battle_ship_model" index="2" unique_id=506630755]
+[node name="Cannon" parent="battle_ship_model" index="2" unique_id=1587556071]
 material_override = ExtResource("2_w3oou")
 
-[node name="Cube_002" parent="battle_ship_model/Cannon" index="0" unique_id=1766836491]
+[node name="Cube_002" parent="battle_ship_model/Cannon" index="0" unique_id=801233336]
 transform = Transform3D(-9.0597496e-08, 0, 0.40000013, 0, 0.40000013, 0, -0.40000013, 0, -9.0597496e-08, 0, 1, 0)
 material_override = ExtResource("2_w3oou")
 
@@ -55,10 +58,10 @@ enabled = false
 target_position = Vector3(350, 0, 0)
 collision_mask = 2
 
-[node name="Cannon_001" parent="battle_ship_model" index="3" unique_id=1195193004]
+[node name="Cannon_001" parent="battle_ship_model" index="3" unique_id=2000051240]
 material_override = ExtResource("2_w3oou")
 
-[node name="Cube_003" parent="battle_ship_model/Cannon_001" index="0" unique_id=1535890629]
+[node name="Cube_003" parent="battle_ship_model/Cannon_001" index="0" unique_id=677751684]
 transform = Transform3D(5.245368e-08, 0, 0.4000001, 0, 0.4000001, 0, -0.4000001, 0, 5.245368e-08, 0, 1, 0)
 material_override = ExtResource("2_w3oou")
 
@@ -68,10 +71,10 @@ enabled = false
 target_position = Vector3(350, -1, 0)
 collision_mask = 2
 
-[node name="Cannon_002" parent="battle_ship_model" index="4" unique_id=1303953083]
+[node name="Cannon_002" parent="battle_ship_model" index="4" unique_id=48457926]
 material_override = ExtResource("2_w3oou")
 
-[node name="Cube_004" parent="battle_ship_model/Cannon_002" index="0" unique_id=1952120088]
+[node name="Cube_004" parent="battle_ship_model/Cannon_002" index="0" unique_id=1263209888]
 transform = Transform3D(5.245368e-08, 0, 0.4000001, 0, 0.4000001, 0, -0.4000001, 0, 5.245368e-08, 0, 1, 0)
 material_override = ExtResource("2_w3oou")
 
@@ -81,11 +84,11 @@ enabled = false
 target_position = Vector3(350, 0, 0)
 collision_mask = 2
 
-[node name="Cannon_003" parent="battle_ship_model" index="5" unique_id=1541013553]
+[node name="Cannon_003" parent="battle_ship_model" index="5" unique_id=965830772]
 transform = Transform3D(-0.35999998, 0, -1.1730288e-07, 0, 0.35999998, 0, 1.1730288e-07, 0, -0.35999998, -3.7000003, 0.70000005, 0)
 material_override = ExtResource("2_w3oou")
 
-[node name="Cube_005" parent="battle_ship_model/Cannon_003" index="0" unique_id=1810901312]
+[node name="Cube_005" parent="battle_ship_model/Cannon_003" index="0" unique_id=385858167]
 transform = Transform3D(-1.7484552e-08, 0, 0.4000001, 0, 0.4000001, 0, -0.4000001, 0, -1.7484552e-08, 0, 1, 0)
 material_override = ExtResource("2_w3oou")
 
@@ -94,6 +97,18 @@ transform = Transform3D(-0.9999999, 0, 3.258414e-07, 0, 0.9999999, 0, -3.258414e
 enabled = false
 target_position = Vector3(-350, 0, 0)
 collision_mask = 2
+
+[node name="SmokeSpawnpoint" type="Marker3D" parent="battle_ship_model" unique_id=599473477]
+transform = Transform3D(-1.457046e-09, 0, -0.033333328, 0, 0.033333328, 0, 0.033333328, 0, -1.457046e-09, -0.5005695, 1.4825878, -2.1880586e-08)
+gizmo_extents = 1.0
+
+[node name="SmokeSpawnpoint2" type="Marker3D" parent="battle_ship_model" unique_id=978443300]
+transform = Transform3D(-1.457046e-09, 0, -0.033333328, 0, 0.033333328, 0, 0.033333328, 0, -1.457046e-09, -1.9374895, 1.5402714, -8.469034e-08)
+gizmo_extents = 1.0
+
+[node name="SmokeSpawnpoint3" type="Marker3D" parent="battle_ship_model" unique_id=2022924891]
+transform = Transform3D(-1.457046e-09, 0, -0.033333328, 0, 0.033333328, 0, 0.033333328, 0, -1.457046e-09, 2.7059124, 1.1892635, 1.1827918e-07)
+gizmo_extents = 1.0
 
 [node name="line_of_sight" type="Area3D" parent="." unique_id=276965312]
 collision_layer = 4

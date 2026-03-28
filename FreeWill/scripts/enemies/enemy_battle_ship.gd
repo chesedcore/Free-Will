@@ -10,6 +10,9 @@ const ENEMY_SHIP_BULLET = preload("res://scenes/entities/combat/enemy_ship_bulle
 var current_state : EnemyState
 @export var battle_ship_model: Node3D
 @export var canon_aims : Array[RayCast3D]
+@export var smoke_spawner1 : Marker3D
+@export var smoke_spawner2 : Marker3D
+@export var smoke_spawner3 : Marker3D
 enum STATES {IDLE,ATTACK}
 
 @export var initial_state : STATES
@@ -101,6 +104,11 @@ func floating_animation()->void:
 	floating_tween.tween_subtween(deg_tween)
 	
 	
-
+func damage(amount: float) -> void:
+	super(amount)
+	DeathExplosionParticles.spawn_at(get_tree(), smoke_spawner1, 10.)
+	StationarySmokeParticles.attach_to(smoke_spawner1)
+	StationarySmokeParticles.attach_to(smoke_spawner2)
+	StationarySmokeParticles.attach_to(smoke_spawner3)
 
 	
