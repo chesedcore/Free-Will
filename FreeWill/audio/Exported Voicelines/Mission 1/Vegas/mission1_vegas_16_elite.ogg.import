@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://rwoae6kilgvv"
+path="res://.godot/imported/mission1_vegas_16_elite.ogg-4183b6bec84ed251d0d8d05efce058c7.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_16_elite.ogg"
+dest_files=["res://.godot/imported/mission1_vegas_16_elite.ogg-4183b6bec84ed251d0d8d05efce058c7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

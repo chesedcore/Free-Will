@@ -1,14 +1,14 @@
 Warning: Keep firing to maintain altitude.
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_01_whoa.ogg" volume="0.0" bus="Voice"]
 Vegas: Woah! I can’t believe we just did that!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_02_im_glad.ogg" volume="0.0" bus="Voice"]
 Vegas: I’m glad they ended up having this spare tank on board. You sure the higher\
 ups are gonna be fine with this?
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_01_hey.ogg" volume="0.0" bus="Voice"]
 Phoenix: H#$..e&!...
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_02_hey-hey.ogg" volume="0.0" bus="Voice"]
 Phoenix: Hey! Hey!!!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_03_yo-whats-up.ogg" volume="0.0" bus="Voice"]
 Vegas: Yo! What’s up?
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_03_what-do-you-think.ogg" volume="0.0" bus="Voice"]
 Phoenix: What do you think you’re doing?!
@@ -18,30 +18,30 @@ Phoenix: No, how are you doing that? How are you… flying a tank?
 Phoenix: Sure! Screw the laws of physics! Who needs those anyways?!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_06_surrounded.ogg" volume="0.0" bus="Voice"]
 Phoenix: Besides that, your carrier is surrounded! You’re flying right into their army!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_04_relax.ogg" volume="0.0" bus="Voice"]
 Vegas: Hey man, relax. Our pilot’s a professional. And I’m doing the loading, so we’ll\
 take care of those Regressian pricks lickety-split!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_07_professional.ogg" volume="0.0" bus="Voice"]
 Phoenix: Oh! A professional! At tank flying! That went to tank flying school! To learn how\
 to fly tanks! Professionally!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_05_tank-flying-school.ogg" volume="0.0" bus="Voice"]
 Vegas: Wait, how'd you know we went to tank flying school? Did you attend too? Heck\
 yeah!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_08_get-out-of-there.ogg" volume="0.0" bus="Voice"]
 Phoenix: Get out of there, now. You’ll have hell to pay if the General finds out about\
 this incursion of yours.
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_06_wo-are-you.ogg" volume="0.0" bus="Voice"]
 Vegas: Don’t worry, I told you to relax!Actually, who are you..? This ain’t our usual navigator…\
 Are you a Regressian?! Out with it!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_09_not-a-regressian.ogg" volume="0.0" bus="Voice"]
 Phoenix: No, I’m not a Regressian you fool, I’m- §$*#€…
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_07_mole.ogg" volume="0.0" bus="Voice"]
 Vegas: Whew, I’m glad I turned off that mole’s comms before she could corrupt our minds. \
 Crazy tactics they’re using these days!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_08_started.ogg" volume="0.0" bus="Voice"]
 Vegas: Now let’s get started! You still know the basics? There’s some enemies on the way! \
 Just try shootin’ ‘em, I’ll load up the cannon for ya!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_09_manuals.ogg" volume="0.0" bus="Voice"]
 Vegas: Handy that those tank controls are via mouse and keyboard now! Here, take a\
 look at the old manuals in case you feel rusty!
 [voice path="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_01_is-that-a.ogg" volume="0.0" bus="Voice"]

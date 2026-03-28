@@ -3,14 +3,14 @@ Destro: GO, MY SUPREME FLEET! DESTROY ALL OF THEM! RIGHT NOW, CAST\
 THEM INTO THE OCEAN FOR ALL OF TIME!!!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_31_huge-fleet.ogg" volume="0.0" bus="Voice"]
 Phoenix: Oh my- There’s a huge fleet coming, you need to leave!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_26_supreme-fleet.ogg" volume="0.0" bus="Voice"]
 Vegas: They got a supreme fleet, but we’ve got a supreme tank!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_32_stubbornness.ogg" volume="0.0" bus="Voice"]
 Phoenix: Your stubbornness is… OK, fine.
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_33_six-elite-units.ogg" volume="0.0" bus="Voice"]
 Phoenix: Six elite units approaching. Stay on your toes, or, uhm, in the air… And win this\
 fight. After this, Destro is all out of juice.
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_27_juice.ogg" volume="0.0" bus="Voice"]
 Vegas: Yeah! Let’s juice this guy!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_34_juice-him.ogg" volume="0.0" bus="Voice"]
 Phoenix: ... Sure, juice him.

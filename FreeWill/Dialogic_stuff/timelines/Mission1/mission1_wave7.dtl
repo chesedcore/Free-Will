@@ -2,7 +2,7 @@
 Phoenix: H_#lo?
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_11_can-you-hear-me.ogg" volume="0.0" bus="Voice"]
 Phoenix: Hello?! Can you hear me?
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_12_spy-lady.ogg" volume="0.0" bus="Voice"]
 Vegas: The spy lady from earlier!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_12_retreat-now.ogg" volume="0.0" bus="Voice"]
 Phoenix: Retreat! Now!
@@ -10,7 +10,7 @@ Phoenix: Retreat! Now!
 Phoenix: The General is almost here! He’s about to give the ord-#%&
 [voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_01_what-are-you-doing.ogg" volume="0.0" bus="Voice"]
 General: HEY! WHAT ARE YOU DOING OUT THERE? RETURN TO BASE NOW!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_13_be-careful.ogg" volume="0.0" bus="Voice"]
 Vegas: General! Be careful, there’s a Regressian spy on the line right now!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_14_its-me.ogg" volume="0.0" bus="Voice"]
 Phoenix: No, uh-…\
@@ -20,7 +20,7 @@ General: WHAT? PHOENIX? BUT YOU’RE DEAD!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_15_irellevant.ogg" volume="0.0" bus="Voice"]
 Phoenix: N-no, I was just prisoned and-\
 Irrelevant! Send these two buffoons back!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_14_you-know-her.ogg" volume="0.0" bus="Voice"]
 Vegas: Oh, you know her! She should’ve just said so! Well, we were just about to win\
 this battle, so you don’t need to give that retreat order or whatever.
 [voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_03_win-the-battle.ogg" volume="0.0" bus="Voice"]
@@ -36,7 +36,7 @@ Phoenix: What? No-, what?!
 [voice path="res://audio/Exported Voicelines/Mission 1/General/mission1_general_07_assist.ogg" volume="0.0" bus="Voice"]
 General: And PHOENIX! You are to assist this tank from now on! Let’s show these guys\
 what we’ve got!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_15_friends.ogg" volume="0.0" bus="Voice"]
 Vegas: Hey, we’re friends now!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_17_huh.ogg" volume="0.0" bus="Voice"]
 Phoenix: I-.. I-…!?

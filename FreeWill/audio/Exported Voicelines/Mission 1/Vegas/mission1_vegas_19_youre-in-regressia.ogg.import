@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bcc0fadloly7x"
+path="res://.godot/imported/mission1_vegas_19_youre-in-regressia.ogg-5c89158ee2bafbd2c8aeae7b8a0884d8.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_19_youre-in-regressia.ogg"
+dest_files=["res://.godot/imported/mission1_vegas_19_youre-in-regressia.ogg-5c89158ee2bafbd2c8aeae7b8a0884d8.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

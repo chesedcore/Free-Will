@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bvvsbdjfcv0xk"
+path="res://.godot/imported/mission1_vegas_01_whoa.ogg-db2b585542fdd658a7eef64919e7b8f8.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_01_whoa.ogg"
+dest_files=["res://.godot/imported/mission1_vegas_01_whoa.ogg-db2b585542fdd658a7eef64919e7b8f8.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

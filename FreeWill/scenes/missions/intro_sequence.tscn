@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://bx7xr8lswbt1b"]
+[gd_scene format=3 uid="uid://ctyibpk8u187h"]
 
-[ext_resource type="Script" uid="uid://dmwd6hits6odr" path="res://scenes/missions/intro_sequence.gd" id="1_okkw0"]
+[ext_resource type="Script" uid="uid://bfamxotw0npc3" path="res://scenes/missions/intro_sequnce.gd" id="1_okkw0"]
 [ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="2_rcv1k"]
 [ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="3_dv6j0"]
 [ext_resource type="PackedScene" uid="uid://b3r2ypq4mfiha" path="res://assets/models/aircraftcarrier.blend" id="4_dxj1o"]

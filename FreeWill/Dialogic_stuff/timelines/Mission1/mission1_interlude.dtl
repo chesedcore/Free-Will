@@ -17,13 +17,13 @@ Phoenix: Sure, send in a single tank to destroy their navy! Of course, that’ll
 General: Exactly! Just fine! Now, fight on, team Diablo!! And that is an order!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_24_diablo.ogg" volume="0.0" bus="Voice"]
 Phoenix: D-Diablo?!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_18_hey-general.ogg" volume="0.0" bus="Voice"]
 Vegas: Hey, General, why isn’t that Phoenix person here with us?”
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_23_stationed.ogg" volume="0.0" bus="Voice"]
 Phoenix: I’m stationed in Regressia right now, because-
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_19_youre-in-regressia.ogg" volume="0.0" bus="Voice"]
 Vegas: You’re in Regressia?! I knew it, you were a spy after all!”
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_25_your-spy.ogg" volume="0.0" bus="Voice"]
 Phoenix: I AM a spy. YOUR spy.
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_20_might-be-a-spy.ogg" volume="0.0" bus="Voice"]
 Vegas: General…! I think she might be a spy!!

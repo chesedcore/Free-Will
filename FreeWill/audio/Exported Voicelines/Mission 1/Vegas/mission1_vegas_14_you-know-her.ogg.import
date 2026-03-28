@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dq6djda6l0lg6"
+path="res://.godot/imported/mission1_vegas_14_you-know-her.ogg-f9fad88791101acc884091b173ae7469.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_14_you-know-her.ogg"
+dest_files=["res://.godot/imported/mission1_vegas_14_you-know-her.ogg-f9fad88791101acc884091b173ae7469.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

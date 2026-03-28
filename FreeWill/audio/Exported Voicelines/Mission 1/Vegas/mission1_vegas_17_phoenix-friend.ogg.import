@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cgd5o43gh1u8v"
+path="res://.godot/imported/mission1_vegas_17_phoenix-friend.ogg-9cd57cce53a62bfdde68c95b5ee4707a.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_17_phoenix-friend.ogg"
+dest_files=["res://.godot/imported/mission1_vegas_17_phoenix-friend.ogg-9cd57cce53a62bfdde68c95b5ee4707a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

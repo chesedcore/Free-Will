@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cquhhdvi52eb8"
+path="res://.godot/imported/mission1_vegas_20_might-be-a-spy.ogg-c510bc1d48a4c1e3b8ca5248a0ebd12f.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_20_might-be-a-spy.ogg"
+dest_files=["res://.godot/imported/mission1_vegas_20_might-be-a-spy.ogg-c510bc1d48a4c1e3b8ca5248a0ebd12f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

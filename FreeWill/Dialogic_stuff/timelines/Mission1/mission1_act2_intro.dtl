@@ -2,16 +2,16 @@
 Phoenix: Okay, I’m getting a read on Destro’s movements. It appears that he’s coming to attack us directly from the east.
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_27_get-to-him.ogg" volume="0.0" bus="Voice"]
 Phoenix: Let’s get to him first so he won’t be in range to threaten the carrier.
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_21_hes-coming-to-attack.ogg" volume="0.0" bus="Voice"]
 Vegas: He’s coming to attack us? Sounds like he’s eager to get his fleet blown up again!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_22_ice-cream.ogg" volume="0.0" bus="Voice"]
 Vegas: Dude, ya think they’ll let us have ice cream again if we do well?
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_28_again.ogg" volume="0.0" bus="Voice"]
 Phoenix: Again...?
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_29_interrogations.ogg" volume="0.0" bus="Voice"]
 Phoenix: Whatever, let’s just complete the mission. I have interrogations to get back to\
 after this.
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_23_interview.ogg" volume="0.0" bus="Voice"]
 Vegas: Oh, like an interview?
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_30_yeah-interview.ogg" volume="0.0" bus="Voice"]
 Phoenix: Uh.. yeah, interview.

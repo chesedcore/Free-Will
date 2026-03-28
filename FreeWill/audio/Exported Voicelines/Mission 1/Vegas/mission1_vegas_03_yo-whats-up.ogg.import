@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cg6pkckxdfi34"
+path="res://.godot/imported/mission1_vegas_03_yo-whats-up.ogg-3cbefd75c0f6e8f34996ccba34708326.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_03_yo-whats-up.ogg"
+dest_files=["res://.godot/imported/mission1_vegas_03_yo-whats-up.ogg-3cbefd75c0f6e8f34996ccba34708326.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
