@@ -122,6 +122,9 @@ func _execute_railgun() -> void:
 	if (is_firing_railgun):
 		return
 
+	if (is_dead):
+		return
+
 	is_firing_railgun = true
 
 	# Charge Delay
@@ -309,6 +312,9 @@ func _extend_parry_window() -> void:
 
 
 func _fire_cannon() -> void:
+	if (is_dead):
+		return
+
 	if (active_missiles >= MAX_MISSILES):
 		return
 
@@ -332,6 +338,9 @@ func try_damage(amount: float) -> Result:
 
 
 func damage(amount: float) -> void:
+	if (is_dead):
+		return
+
 	damaged.emit()
 	get_tree().root.add_child(preload("res://scenes/ui/damage_flash.tscn").instantiate())
 
