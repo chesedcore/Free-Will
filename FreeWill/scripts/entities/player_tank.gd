@@ -117,6 +117,9 @@ func _input(event: InputEvent) -> void:
 		ungrapple()
 
 func _attempt_railgun_fire() -> void:
+	if grappled_target:
+		return
+
 	if not railgun_cooldown.is_ready():
 		UIBus.attempted_railgun.emit(Result.Err(UI.RAILGUN_STILL_UNDER_COOLDOWN))
 		return
@@ -268,6 +271,9 @@ func _execute_dash() -> void:
 	has_a_big_ass_shark_chewing_on_its_ass = false
 
 func _attempt_parry() -> void:
+	if grappled_target:
+		return
+
 	if not parry_cooldown.is_ready():
 		UIBus.attempted_action.emit(Result.Err(UI.ACTION_STILL_UNDER_COOLDOWN))
 		return
@@ -323,6 +329,9 @@ func _extend_parry_window() -> void:
 
 
 func _fire_cannon() -> void:
+	if (grappled_target):
+		return
+
 	if (is_dead):
 		return
 
