@@ -26,8 +26,6 @@ rotation = 0.7853982
 scale = Vector2(1.2057036, 1.2057036)
 texture = ExtResource("2_j724r")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1164007298]
-
 [node name="IFFName" type="Label" parent="." unique_id=1836482453]
 modulate = Color(0, 1, 0, 1)
 offset_left = 57.0

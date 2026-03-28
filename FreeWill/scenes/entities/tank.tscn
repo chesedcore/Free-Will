@@ -489,11 +489,12 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("22_hsoq5")
 
 [node name="StyleDisplay" type="Control" parent="GameUI" unique_id=182994859 node_paths=PackedStringArray("test_rank_label", "test_points_label", "style_loss_time_bar")]
-visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_right = 192.0
-offset_bottom = 192.0
+offset_left = 955.0
+offset_top = 175.0
+offset_right = 1147.0
+offset_bottom = 367.0
 script = ExtResource("25_616kc")
 test_rank_label = NodePath("TestRankLabel")
 test_points_label = NodePath("TestPointsLabel")
@@ -509,6 +510,7 @@ theme_override_font_sizes/font_size = 106
 text = "F-"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="StyleLossTimeBar" type="TextureProgressBar" parent="GameUI/StyleDisplay" unique_id=1462047247]
 layout_mode = 1
@@ -523,8 +525,10 @@ fill_mode = 4
 nine_patch_stretch = true
 texture_under = ExtResource("26_h5iat")
 texture_progress = ExtResource("27_wro4j")
+metadata/_edit_lock_ = true
 
 [node name="TestPointsLabel" type="Label" parent="GameUI/StyleDisplay" unique_id=109372114]
+visible = false
 layout_mode = 0
 offset_left = 152.0
 offset_top = 152.0
@@ -533,6 +537,7 @@ offset_bottom = 175.0
 text = "999999"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="WindTrails" type="Node3D" parent="." unique_id=274969305 node_paths=PackedStringArray("tank")]
 transform = Transform3D(0.9999985, -0.0014398276, -0.0009505979, 0.0014394387, 0.999999, -0.0004093051, 0.0009511863, 0.000407964, 0.9999995, -0.00226493, -0.013616562, 0.0041503906)

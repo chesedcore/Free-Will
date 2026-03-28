@@ -61,9 +61,10 @@ func track_entity(entity: PhysicsBody3D, with_name: String) -> void:
 	_tracked_entities[entity] = iff
 
 func tick(origin_body: PhysicsBody3D) -> void:
+	
+	camera = attached_control.get_viewport().get_camera_3d()
 	if not camera: return
-
-
+	
 	for entity: PhysicsBody3D in _tracked_entities.keys():
 		if not is_instance_valid(entity):
 			push_warning("The entity %s with name %s isn't valid anymore, you forgot to clean it off" % [str(entity), _tracked_entities[entity]])

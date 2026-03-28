@@ -178,7 +178,8 @@ func spawn_wave()->void:
 						enemies_list.seaborne_enemies.add_child(new_enemy)
 			enemy_count += wave.waveinfo[enemytype]
 		current_wave +=1
-		stagehandler.ui.track_these_entities(enemies_list.get_enemies())
+		var enemies := enemies_list.get_enemies()
+		stagehandler.ui.track_these_entities(enemies)
 	
 
 const BORDER : float = 5000

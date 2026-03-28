@@ -17,12 +17,6 @@ var t: Tween
 
 func _ready() -> void:
 	setup()
-	#await get_tree().create_timer(2).timeout
-	#to_focused()
-	#await get_tree().create_timer(2).timeout
-	#to_locked()
-	#await get_tree().create_timer(2).timeout
-	#to_onscreen()
 
 func reset_tween() -> void:
 	if t: t.kill()
