@@ -32,7 +32,7 @@ static func attack_state_from(owner : BaseEnemy, lock_on_timer : Timer,los : Are
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_PREDELETE:
 		num_of_attacking_planes -=1
-		print(num_of_attacking_planes)
+		#print(num_of_attacking_planes)
 func enter() -> void:
 	num_of_attacking_planes +=1
 

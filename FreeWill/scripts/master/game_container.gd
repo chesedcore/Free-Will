@@ -5,7 +5,7 @@ var _paused: bool = false
 var promise: Promise
 
 @export var control: PauseMenuButtonsHandler
-@export var main_game: StageHandler
+@export var game: Node3D
 @export var blur_drive: BlurDrive
 @export var pause_menu: CanvasLayer
 @export var lateral_bars: LateralBars
@@ -15,8 +15,18 @@ func _ready() -> void:
 	_wire_up_signals()
 
 func _wire_up_signals() -> void:
+	EventBus.change_game_container_to.connect(_on_game_container_change_request)
 	control.resume.connect(_on_resume_clicked)
 	control.options.connect(_on_options_clicked)
+
+func _on_game_container_change_request(packed_scene: PackedScene) -> void:
+	var node_to_change_to := packed_scene.instantiate()
+	
+	game.queue_free()
+	add_child(node_to_change_to)
+	
+	game = node_to_change_to
+	move_child(game, 0)
 
 func reset_promise(signals: Array[Signal] = []) -> void:
 	if promise: promise.deny()
@@ -31,7 +41,7 @@ func _on_options_clicked() -> void:
 func pause_game() -> void:
 	reset_promise()
 	pause_menu.show()
-	main_game.process_mode = Node.PROCESS_MODE_DISABLED
+	game.process_mode = Node.PROCESS_MODE_DISABLED
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	control.cascade_in()
 	lateral_bars.scroll_in()
@@ -48,7 +58,7 @@ func unpause_game() -> void:
 func _on_game_unpaused(_res: Variant) -> void:
 	_paused = false
 	pause_menu.hide()
-	main_game.process_mode = Node.PROCESS_MODE_INHERIT
+	game.process_mode = Node.PROCESS_MODE_INHERIT
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _process(_delta: float) -> void:

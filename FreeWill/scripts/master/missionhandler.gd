@@ -202,7 +202,7 @@ func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: fl
 				break
 		
 		if is_valid:
-			print(candidate)
+			#print(candidate)
 			return candidate
 	
 	return base_pos
@@ -228,7 +228,7 @@ func end_mission()->void:
 			var grapple_points : Array[Node] = get_tree().get_nodes_in_group("Grapple Points")
 			for point in grapple_points:
 				IFFTracker.stop_tracking_entity(point)
-		get_tree().change_scene_to_file(scene_to_transition_to)
+		EventBus.change_game_container_to.emit(load(scene_to_transition_to))
 
 
 func fade_in()->void:

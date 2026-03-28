@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://v0l62knoh10b"]
 
-[ext_resource type="Script" uid="uid://dmwd6hits6odr" path="res://scenes/missions/intro_sequnce.gd" id="1_xf6d3"]
-[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="2_lwwbd"]
-[ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="3_171so"]
-[ext_resource type="PackedScene" uid="uid://b3r2ypq4mfiha" path="res://assets/models/aircraftcarrier.blend" id="4_pfwwd"]
-[ext_resource type="PackedScene" uid="uid://ciqvl3ekbok17" path="res://models/player_tank.blend" id="5_nffqa"]
-[ext_resource type="AudioStream" uid="uid://bqb6yrda65xnx" path="res://audio/sfx/explosion.ogg" id="7_8hyqp"]
-[ext_resource type="PackedScene" uid="uid://cxffdn6nvltft" path="res://scenes/entities/tank_cannon_particles.tscn" id="8_iivvl"]
-[ext_resource type="PackedScene" uid="uid://c7v0tbwd4c8yv" path="res://assets/models/aircraftcarrier.tscn" id="9_8hyqp"]
-[ext_resource type="PackedScene" uid="uid://bwlxuj0dr1vtr" path="res://assets/models/planepuremesh.glb" id="10_pfwwd"]
-[ext_resource type="PackedScene" uid="uid://bigipu066vsh1" path="res://models/kunai.blend" id="10_x73kj"]
+[ext_resource type="Script" uid="uid://dmwd6hits6odr" path="res://scenes/missions/intro_sequence.gd" id="1_okkw0"]
+[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="2_rcv1k"]
+[ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="3_dv6j0"]
+[ext_resource type="PackedScene" uid="uid://b3r2ypq4mfiha" path="res://assets/models/aircraftcarrier.blend" id="4_dxj1o"]
+[ext_resource type="PackedScene" uid="uid://ciqvl3ekbok17" path="res://models/player_tank.blend" id="5_6wlo1"]
+[ext_resource type="PackedScene" uid="uid://cxffdn6nvltft" path="res://scenes/entities/tank_cannon_particles.tscn" id="6_m4c3g"]
+[ext_resource type="AudioStream" uid="uid://bqb6yrda65xnx" path="res://audio/sfx/explosion.ogg" id="7_cn1u2"]
+[ext_resource type="PackedScene" uid="uid://bigipu066vsh1" path="res://models/kunai.blend" id="8_flfkx"]
+[ext_resource type="PackedScene" uid="uid://c7v0tbwd4c8yv" path="res://assets/models/aircraftcarrier.tscn" id="9_8rbhh"]
+[ext_resource type="PackedScene" uid="uid://bwlxuj0dr1vtr" path="res://assets/models/planepuremesh.glb" id="10_bv3e1"]
 
 [sub_resource type="Gradient" id="Gradient_2l77h"]
 offsets = PackedFloat32Array(0.33802816, 0.7640845)
@@ -49,7 +49,7 @@ seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qjeyg"]
 render_priority = 0
-shader = ExtResource("3_171so")
+shader = ExtResource("3_dv6j0")
 shader_parameter/juice = SubResource("NoiseTexture2D_ag02o")
 shader_parameter/out_color = Color(0, 0, 0, 1)
 shader_parameter/amount = 0.20000000298023
@@ -348,8 +348,8 @@ _data = {
 &"intro_sequence": SubResource("Animation_opehg")
 }
 
-[node name="intro_sequnce" type="Node3D" unique_id=805400210]
-script = ExtResource("1_xf6d3")
+[node name="intro_sequence" type="Node3D" unique_id=805400210]
+script = ExtResource("1_okkw0")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=213695963]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 488.26587, 169.99397, 0)
@@ -361,33 +361,33 @@ light_color = Color(1, 0.95000005, 0.75, 1)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1331472439]
-environment = ExtResource("2_lwwbd")
+environment = ExtResource("2_rcv1k")
 
 [node name="Ocean" type="MeshInstance3D" parent="." unique_id=761434375]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20776202, -63.03885, -2.3511915)
 mesh = SubResource("PlaneMesh_hva8b")
 
-[node name="aircraftcarrier" parent="." unique_id=250404352 instance=ExtResource("4_pfwwd")]
+[node name="aircraftcarrier" parent="." unique_id=250404352 instance=ExtResource("4_dxj1o")]
 transform = Transform3D(125, 0, 0, 0, 125, 0, 0, 0, 125, 0, -11.416229, 0)
 visible = false
 
-[node name="TankModel" parent="." unique_id=2082927638 instance=ExtResource("5_nffqa")]
+[node name="TankModel" parent="." unique_id=2082927638 instance=ExtResource("5_6wlo1")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000002, 0, 0, 0, 1, 0, 27.231735, 0)
 
-[node name="CannonParticles" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(2082927638, 1313246652) index="0" unique_id=1355930968 instance=ExtResource("8_iivvl")]
+[node name="CannonParticles" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(2082927638, 1092575496) index="0" unique_id=1355930968 instance=ExtResource("6_m4c3g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15903485, -0.078063965, 8.559504)
 script = null
 
 [node name="CannonParticles" parent="TankModel/Barrel/CannonParticles" index="2" unique_id=2046860790]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(2082927638, 1313246652) index="1" unique_id=56172071]
-stream = ExtResource("7_8hyqp")
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(2082927638, 1092575496) index="1" unique_id=56172071]
+stream = ExtResource("7_cn1u2")
 
 [node name="BarrelMuzzle" type="Marker3D" parent="TankModel" unique_id=1864224985]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.0878064, 2.6, 8)
 
-[node name="IdleKunaiModel" parent="TankModel" unique_id=1115183570 instance=ExtResource("10_x73kj")]
+[node name="IdleKunaiModel" parent="TankModel" unique_id=1115183570 instance=ExtResource("8_flfkx")]
 transform = Transform3D(0.37188384, 0, 0, 0, 0.30845535, 0.20773269, 0, -0.20773269, 0.30845535, -0.7223202, 3.6428447, -0.23234469)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1174666914]
@@ -406,19 +406,19 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="aircraftcarrier2" parent="." unique_id=1703768891 instance=ExtResource("9_8hyqp")]
+[node name="aircraftcarrier2" parent="." unique_id=1703768891 instance=ExtResource("9_8rbhh")]
 transform = Transform3D(125, 0, 0, 0, 125, 0, 0, 0, 125, 0, -11.416, 0)
 
-[node name="planepuremesh" parent="." unique_id=672122674 instance=ExtResource("10_pfwwd")]
+[node name="planepuremesh" parent="." unique_id=672122674 instance=ExtResource("10_bv3e1")]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 50.861298, 30.10757, -6.8819275)
 
-[node name="planepuremesh2" parent="." unique_id=869448765 instance=ExtResource("10_pfwwd")]
+[node name="planepuremesh2" parent="." unique_id=869448765 instance=ExtResource("10_bv3e1")]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 50.861298, 30.10757, -24.230324)
 
-[node name="planepuremesh3" parent="." unique_id=1857744287 instance=ExtResource("10_pfwwd")]
+[node name="planepuremesh3" parent="." unique_id=1857744287 instance=ExtResource("10_bv3e1")]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 50.861298, 30.10757, -42.026775)
 
-[node name="planepuremesh4" parent="." unique_id=922226759 instance=ExtResource("10_pfwwd")]
+[node name="planepuremesh4" parent="." unique_id=922226759 instance=ExtResource("10_bv3e1")]
 transform = Transform3D(-3.496911e-07, 0, -8, 0, 8, 0, 8, 0, -3.496911e-07, 50.861298, 30.10757, 10.793251)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
