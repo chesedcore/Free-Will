@@ -414,15 +414,15 @@ func _physics_process(delta: float) -> void:
 
 func _poll_tank_death() -> void:
 	if global_position.y < -5.0: _kill()
-#world boundries suck so ill just uh check how far the tank is from origin  hi this is gael btw 
+#world boundries suck so ill just uh check how far the tank is from origin  hi this is gael btw
 const  BOUNDARY : float = 5000
-func _poll_tank_distance()->void : 
+func _poll_tank_distance()->void :
 	if abs( global_position.x) >= BOUNDARY or abs(global_position.z)>= BOUNDARY:
 		#play warning dialog if no dialog current exists
 		if  Dialogic.current_timeline == null:
 			Dialogic.start("distance_warning")
 		linear_velocity += - linear_velocity * 2
-	
+
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
