@@ -271,6 +271,8 @@ func _attempt_parry() -> void:
 
 
 func _execute_parry() -> void:
+	reset_rotation()
+
 	if _parry_tween:
 		_parry_tween.kill()
 
@@ -306,6 +308,7 @@ func _end_parry() -> void:
 
 
 func _extend_parry_window() -> void:
+	reset_rotation()
 	if parry_window_timer.is_active():
 		parry_window_timer.start(PARRY_CHAIN_EXTENSION)
 		print_rich("[color=blue]Parry window extended!")
@@ -327,6 +330,12 @@ func _fire_cannon() -> void:
 
 func bullet_deleted() -> void:
 	active_missiles -= 1
+
+
+func reset_rotation() -> void:
+	rotation = Vector3.ZERO
+	tank_model.rotation = camera_gimbal.rotation
+	angular_velocity *= 0.01
 
 
 func try_damage(amount: float) -> Result:

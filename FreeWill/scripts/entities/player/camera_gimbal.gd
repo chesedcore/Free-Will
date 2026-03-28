@@ -3,10 +3,10 @@ class_name CameraGimbal extends Node3D
 ## Camera gimbal class. Handles camera rotation and shake.
 
 const MOUSE_SENS: float = 1.0
-const MIN_ROT: float = -90.0
-const MAX_ROT: float = 90.0
+const MIN_ROT: float = -75.0
+const MAX_ROT: float = 75.0
 
-const BASE_FOV := 75.0
+const BASE_FOV := 90.0
 const DASH_FOV_TWEEN_TIME := 0.7
 const DASH_CAMERA_TWEEN_TIME := 0.7
 
