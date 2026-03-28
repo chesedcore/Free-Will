@@ -8,6 +8,7 @@ size = Vector3(396.15234, 44.98047, 186.25653)
 
 [node name="enemy_bomber_plane" type="CharacterBody3D" unique_id=891586829 node_paths=PackedStringArray("droppers")]
 collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_lr0x8")
 droppers = [NodePath("bomb_droppers/drop1"), NodePath("bomb_droppers/drop2"), NodePath("bomb_droppers/drop3"), NodePath("bomb_droppers/drop4"), NodePath("bomb_droppers/drop5")]
 

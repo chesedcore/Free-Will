@@ -26,6 +26,8 @@ const BOMBERSPAWNHEIGHT : float = 1340
 @export var spawnpoints: Node3D
 
 @export var enemies_list: EnemiesList
+@export var enviorment: Node3D
+
 @export var transition: ColorRect
 
 var tank : PlayerTank 
@@ -185,9 +187,9 @@ func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: fl
 		var candidate : Vector3 = base_pos + offset
 		
 		var is_valid := true
-		
-		for enemy in enemies_list.get_enemies():
-			if enemy.global_position.distance_to(candidate) < min_distance:
+		var entites : Array[Node] = enemies_list.get_enemies() + enviorment.get_children()
+		for entity in entites:
+			if entity.global_position.distance_to(candidate) < min_distance:
 				is_valid = false
 				break
 		
