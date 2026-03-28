@@ -45,6 +45,7 @@ func _on_attack_timer_timeout() -> void:
 
 func damage(amount: float) -> void:
 	super(amount)
+	if smoke_spawners.is_empty(): return
 	if health <= 150. and not initial_smoke:
 		var i : int = 0
 		while i < 5:
