@@ -1,23 +1,308 @@
 [gd_scene format=3 uid="uid://btoexwag8mhr3"]
 
-[node name="OptionsMenu" type="Control" unique_id=299335495]
+[ext_resource type="Script" uid="uid://dt6wy1ihp8lpv" path="res://scripts/ui/options_menu.gd" id="1_0ejsc"]
+[ext_resource type="Shader" uid="uid://doveve2ovrg0t" path="res://shaderslop/stripes.gdshader" id="1_ta2k2"]
+[ext_resource type="FontFile" uid="uid://38d0ljavacn8" path="res://assets/fonts/ZenDots-Regular.ttf" id="2_imaij"]
+[ext_resource type="Script" uid="uid://bu4hq8w0u7f1t" path="res://scripts/ui/menu_button.gd" id="2_wj2x4"]
+[ext_resource type="Script" uid="uid://biym5kgfo7ohl" path="res://scripts/util_scripts/cascadev2.gd" id="4_c4822"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ejsc"]
+shader = ExtResource("1_ta2k2")
+shader_parameter/color_gap = Color(0, 0, 0, 0.56700003)
+shader_parameter/color_stripe = Color(0, 0, 0, 0.56700003)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.1
+shader_parameter/angle = 0.7854
+shader_parameter/skew = 0.4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wj2x4"]
+shader = ExtResource("1_ta2k2")
+shader_parameter/color_gap = Color(1, 1, 0.3491902, 1)
+shader_parameter/color_stripe = Color(0.51845855, 0.8384008, 0.7605749, 1)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.1
+shader_parameter/angle = 0.7854
+shader_parameter/skew = 0.4
+
+[sub_resource type="Shader" id="Shader_imaij"]
+code = "shader_type canvas_item;
+
+uniform vec4 color_gap: source_color = vec4(0.25);
+uniform vec4 color_stripe: source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float divisions = 8.0; // increase for more stripe density
+uniform float stripe_bias = 2.5; // 1.0 means no stripes; 2.0 means stripes and gaps are equal size
+uniform float speed = 0.1;
+uniform float angle = 0.7854; // in radians
+
+
+uniform float skew = 0;
+
+void vertex() {
+	VERTEX.x += VERTEX.y * skew;
+}
+
+
+void fragment() {
+
+
+	float w = cos(angle) * UV.x + sin(angle) * UV.y - speed * TIME;
+	if (floor(mod(w * divisions, stripe_bias)) < 0.0001) {
+		COLOR = color_gap;
+	} else {
+		COLOR = color_stripe;
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_imaij"]
+shader = SubResource("Shader_imaij")
+shader_parameter/color_gap = Color(0, 0, 0, 0.49500003)
+shader_parameter/color_stripe = Color(0, 0, 0, 0.49500003)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.1
+shader_parameter/angle = 0.7854
+shader_parameter/skew = 0.4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4822"]
+shader = ExtResource("1_ta2k2")
+shader_parameter/color_gap = Color(0, 0, 0, 1)
+shader_parameter/color_stripe = Color(0, 0, 0, 1)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.1
+shader_parameter/angle = 0.7854
+shader_parameter/skew = 0.4
+
+[sub_resource type="FontVariation" id="FontVariation_imaij"]
+
+[sub_resource type="FontVariation" id="FontVariation_0ejsc"]
+resource_local_to_scene = true
+base_font = ExtResource("2_imaij")
+
+[sub_resource type="FontVariation" id="FontVariation_c4822"]
+base_font = SubResource("FontVariation_0ejsc")
+
+[sub_resource type="FontVariation" id="FontVariation_snsgv"]
+
+[sub_resource type="FontVariation" id="FontVariation_hb1yv"]
+base_font = SubResource("FontVariation_0ejsc")
+
+[sub_resource type="FontVariation" id="FontVariation_ovlcw"]
+
+[sub_resource type="FontVariation" id="FontVariation_gff41"]
+base_font = SubResource("FontVariation_0ejsc")
+
+[node name="OptionsMenu" type="Control" unique_id=299335495 node_paths=PackedStringArray("trash", "sounds", "keybinds", "leave", "cascade_v_2")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_0ejsc")
+trash = NodePath("trash")
+sounds = NodePath("CascadeV2/OnlyForTheSkew2/Sounds")
+keybinds = NodePath("CascadeV2/OnlyForTheSkew4/Keybinds")
+leave = NodePath("CascadeV2/OnlyForTheSkew6/Leave")
+cascade_v_2 = NodePath("CascadeV2")
 metadata/_edit_lock_ = true
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1731141083]
+[node name="trash" type="Control" parent="." unique_id=1604255328]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = 20.0
-offset_right = -731.0
-offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="CascadeV2" type="Control" parent="." unique_id=1834695921]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_c4822")
+tween_in_time = 0.6
+metadata/_custom_type_script = "uid://biym5kgfo7ohl"
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="CascadeV2" unique_id=1731141083]
+material = SubResource("ShaderMaterial_0ejsc")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 60.0
+offset_right = -711.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13464907, 0.1346491, 0.1346491, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="CascadeV2" unique_id=433989148]
+material = SubResource("ShaderMaterial_wj2x4")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 28.0
+offset_right = -707.0
+offset_bottom = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13464907, 0.1346491, 0.1346491, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CascadeV2" unique_id=241660977]
+z_index = 1
+material = SubResource("ShaderMaterial_imaij")
+layout_mode = 0
+offset_left = 50.0
+offset_top = 51.0
+offset_right = 424.0
+offset_bottom = 586.0
 color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="CascadeV2" unique_id=31128358]
+z_index = 1
+material = SubResource("ShaderMaterial_c4822")
+layout_mode = 0
+offset_left = 57.0
+offset_top = 37.0
+offset_right = 431.0
+offset_bottom = 576.0
+color = Color(0, 0, 0, 1)
+
+[node name="OnlyForTheSkew" type="Node2D" parent="CascadeV2" unique_id=197768160]
+z_index = 1
+skew = -0.34208453
+
+[node name="PauseMenuButton" type="RichTextLabel" parent="CascadeV2/OnlyForTheSkew" unique_id=898059492]
+modulate = Color(0.99999946, 0.58439577, 0.5592213, 1)
+offset_left = 80.59635
+offset_top = 96.59709
+offset_right = 355.59634
+offset_bottom = 163.59709
+theme_override_fonts/normal_font = SubResource("FontVariation_imaij")
+theme_override_font_sizes/normal_font_size = 55
+bbcode_enabled = true
+text = "sounds"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OnlyForTheSkew2" type="Node2D" parent="CascadeV2" unique_id=1366571696]
+z_index = 1
+skew = -0.34208453
+
+[node name="Sounds" type="RichTextLabel" parent="CascadeV2/OnlyForTheSkew2" unique_id=1408773184 node_paths=PackedStringArray("undershadow_text")]
+offset_left = 87.02069
+offset_top = 92.35106
+offset_right = 362.0207
+offset_bottom = 159.35106
+theme_override_fonts/normal_font = SubResource("FontVariation_c4822")
+theme_override_font_sizes/normal_font_size = 55
+bbcode_enabled = true
+text = "sounds"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_wj2x4")
+intensifier = 0.4
+undershadow_text = NodePath("../../OnlyForTheSkew/PauseMenuButton")
+metadata/_custom_type_script = "uid://bu4hq8w0u7f1t"
+
+[node name="OnlyForTheSkew3" type="Node2D" parent="CascadeV2" unique_id=681476789]
+z_index = 1
+skew = -0.34208453
+
+[node name="PauseMenuButton" type="RichTextLabel" parent="CascadeV2/OnlyForTheSkew3" unique_id=2058569637]
+modulate = Color(0.59695137, 0.31521547, 0.8896056, 1)
+offset_left = 82.4123
+offset_top = 198.5017
+offset_right = 384.4123
+offset_bottom = 265.5017
+theme_override_fonts/normal_font = SubResource("FontVariation_snsgv")
+theme_override_font_sizes/normal_font_size = 55
+bbcode_enabled = true
+text = "keybinds"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="OnlyForTheSkew4" type="Node2D" parent="CascadeV2" unique_id=579957352]
+z_index = 1
+position = Vector2(36, 88)
+skew = -0.34208453
+
+[node name="Keybinds" type="RichTextLabel" parent="CascadeV2/OnlyForTheSkew4" unique_id=449587264 node_paths=PackedStringArray("undershadow_text")]
+offset_left = 84.172035
+offset_top = 100.84311
+offset_right = 386.17203
+offset_bottom = 167.84311
+theme_override_fonts/normal_font = SubResource("FontVariation_hb1yv")
+theme_override_font_sizes/normal_font_size = 55
+bbcode_enabled = true
+text = "keybinds"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_wj2x4")
+intensifier = 0.4
+undershadow_text = NodePath("../../OnlyForTheSkew3/PauseMenuButton")
+metadata/_custom_type_script = "uid://bu4hq8w0u7f1t"
+
+[node name="OnlyForTheSkew5" type="Node2D" parent="CascadeV2" unique_id=785611325]
+z_index = 1
+skew = -0.34208453
+
+[node name="PauseMenuButton" type="RichTextLabel" parent="CascadeV2/OnlyForTheSkew5" unique_id=651725799]
+modulate = Color(0.94575036, 0.42091367, 0.31521547, 1)
+offset_left = 94.2548
+offset_top = 470.2473
+offset_right = 396.2548
+offset_bottom = 537.2473
+theme_override_fonts/normal_font = SubResource("FontVariation_ovlcw")
+theme_override_font_sizes/normal_font_size = 55
+bbcode_enabled = true
+text = "leave"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OnlyForTheSkew6" type="Node2D" parent="CascadeV2" unique_id=11956568]
+z_index = 1
+position = Vector2(36, 88)
+skew = -0.34208453
+
+[node name="Leave" type="RichTextLabel" parent="CascadeV2/OnlyForTheSkew6" unique_id=851645902 node_paths=PackedStringArray("undershadow_text")]
+offset_left = 96.014534
+offset_top = 372.58875
+offset_right = 398.01453
+offset_bottom = 439.58875
+theme_override_fonts/normal_font = SubResource("FontVariation_gff41")
+theme_override_font_sizes/normal_font_size = 55
+bbcode_enabled = true
+text = "leave"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_wj2x4")
+intensifier = 0.4
+undershadow_text = NodePath("../../OnlyForTheSkew5/PauseMenuButton")
+metadata/_custom_type_script = "uid://bu4hq8w0u7f1t"

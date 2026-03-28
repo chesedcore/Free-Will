@@ -93,7 +93,7 @@ shader_parameter/speed = 0.1
 shader_parameter/angle = 2.985
 shader_parameter/skew = 0.0
 
-[node name="GameContainer" type="Control" unique_id=1778160351 node_paths=PackedStringArray("control", "main_game", "blur_drive", "pause_menu", "lateral_bars")]
+[node name="GameContainer" type="Control" unique_id=1778160351 node_paths=PackedStringArray("control", "main_game", "blur_drive", "pause_menu", "lateral_bars", "options_dock")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,6 +106,7 @@ main_game = NodePath("TestScene")
 blur_drive = NodePath("PauseMenu/BlurDrive")
 pause_menu = NodePath("PauseMenu")
 lateral_bars = NodePath("PauseMenu/LateralBars")
+options_dock = NodePath("PauseMenu/OptionsDock")
 metadata/_edit_lock_ = true
 
 [node name="TestScene" parent="." unique_id=1841801107 instance=ExtResource("2_6dj5d")]

@@ -9,12 +9,14 @@ var promise: Promise
 @export var blur_drive: BlurDrive
 @export var pause_menu: CanvasLayer
 @export var lateral_bars: LateralBars
+@export var options_dock: Control
 
 func _ready() -> void:
 	_wire_up_signals()
 
 func _wire_up_signals() -> void:
 	control.resume.connect(_on_resume_clicked)
+	control.options.connect(_on_options_clicked)
 
 func reset_promise(signals: Array[Signal] = []) -> void:
 	if promise: promise.deny()
@@ -22,6 +24,9 @@ func reset_promise(signals: Array[Signal] = []) -> void:
 
 func _on_resume_clicked() -> void:
 	unpause_game()
+
+func _on_options_clicked() -> void:
+	options_dock.add_child(Registry.create_options_menu())
 
 func pause_game() -> void:
 	reset_promise()

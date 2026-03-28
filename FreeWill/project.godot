@@ -64,6 +64,7 @@ directories/dtl_directory={
 "mission1_wave4": "res://Dialogic_stuff/timelines/Mission1/mission1_wave4.dtl",
 "mission1_wave7": "res://Dialogic_stuff/timelines/Mission1/mission1_wave7.dtl",
 "mission1_wave9": "res://Dialogic_stuff/timelines/Mission1/mission1_wave9.dtl",
+"shark_warning": "res://Dialogic_stuff/timelines/shark_warning.dtl",
 "test": "res://Dialogic_stuff/timelines/test.dtl",
 "test_mission_end": "res://Dialogic_stuff/timelines/testmission/test_mission_end.dtl",
 "test_mission_wave1": "res://Dialogic_stuff/timelines/testmission/test_mission_wave1.dtl",

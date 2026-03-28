@@ -26,3 +26,12 @@ static func create_stationary_smoke() -> StationarySmokeParticles:
 
 static func create_aerial_smoke() -> AerialSmokeParticles:
 	return preload("res://scenes/entities/aerial_smoke_particles.tscn").instantiate()
+
+static func create_sound_settings() -> SoundSettings:
+	return preload("res://scenes/ui/sound_settings.tscn").instantiate()
+
+static func create_keybind_settings() -> KeybindSettings:
+	return preload("res://scenes/ui/keybind_settings.tscn").instantiate()
+
+static func create_options_menu() -> OptionsMenu:
+	return preload("res://scenes/ui/options_menu.tscn").instantiate()

@@ -4,6 +4,7 @@ signal clicked
 
 const ZERO_POINT_THREE = 0.45
 
+@export var intensifier := 1.0
 @export var undershadow_text: RichTextLabel
 @export var corresponding_marquee: Marquee
 @onready var original_text := self.text
@@ -22,8 +23,8 @@ func reset_tween() -> void:
 
 func highlight_in() -> void:
 	reset_tween()
-	t.tween_property(get_theme_font("normal_font"), "spacing_glyph", 10, ZERO_POINT_THREE)
-	t.tween_property(undershadow_text.get_theme_font("normal_font"), "spacing_glyph", 11, ZERO_POINT_THREE)
+	t.tween_property(get_theme_font("normal_font"), "spacing_glyph", 10 * intensifier, ZERO_POINT_THREE)
+	t.tween_property(undershadow_text.get_theme_font("normal_font"), "spacing_glyph", 11 * intensifier, ZERO_POINT_THREE)
 	if corresponding_marquee: corresponding_marquee.appear()
 	self.text = "[shake]"+original_text
 
@@ -38,4 +39,3 @@ func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			clicked.emit()
-			print("triggered!")
