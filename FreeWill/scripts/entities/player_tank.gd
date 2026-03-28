@@ -5,6 +5,7 @@ class_name PlayerTank extends RigidBody3D
 signal fucking_exploded
 signal damaged
 signal cool_shit_happened(shit: CoolShit.Shit, points: int)
+signal lame_shit_happened(points_to_remove: int)
 
 const BARREL_ROTATION_SPEED: float = 7.5
 const GUN_GIMBAL_ROTATION_SPEED: float = 6.0
@@ -90,6 +91,7 @@ func _wire_up_signals() -> void:
 	UIBus.missile_parried.connect(_extend_parry_window)
 	parry_window_timer.timeout.connect(_end_parry)
 	cool_shit_happened.connect(style_display.cool_shit)
+	lame_shit_happened.connect(style_display.lame_shit)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("fire"):
@@ -308,6 +310,7 @@ func _end_parry() -> void:
 
 
 func _extend_parry_window() -> void:
+	cool_shit_happened.emit(CoolShit.Shit.PARRY, 100)
 	reset_rotation()
 	if parry_window_timer.is_active():
 		parry_window_timer.start(PARRY_CHAIN_EXTENSION)
@@ -350,7 +353,11 @@ func damage(amount: float) -> void:
 	if (is_dead):
 		return
 
+	lame_shit_happened.emit(250)
+
 	damaged.emit()
+
+	# TODO This is hacky as fuck. make it better.
 	get_tree().root.add_child(preload("res://scenes/ui/damage_flash.tscn").instantiate())
 
 	health -= amount

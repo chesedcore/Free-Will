@@ -27,8 +27,10 @@
 [ext_resource type="Texture2D" uid="uid://b1aarwwoofr3x" path="res://assets/textures/Reticle-29.png" id="22_hsoq5"]
 [ext_resource type="Texture2D" uid="uid://vwb6m76hhawe" path="res://assets/textures/chain.png" id="24_4sl2t"]
 [ext_resource type="Script" uid="uid://ckjjx6lxlertl" path="res://scripts/ui/style_display.gd" id="25_616kc"]
+[ext_resource type="Texture2D" uid="uid://b4r5o3ykf0dyy" path="res://assets/textures/test_style_meter_back.png" id="26_h5iat"]
 [ext_resource type="PackedScene" uid="uid://djjju40wwfv2f" path="res://scenes/entities/wind_player.tscn" id="26_if5yn"]
 [ext_resource type="AudioStream" uid="uid://clcxonh7xwwit" path="res://audio/sfx/beepv2.ogg" id="26_xioay"]
+[ext_resource type="Texture2D" uid="uid://c1ojtmgswt45q" path="res://assets/textures/test_style_meter_front.png" id="27_wro4j"]
 
 [sub_resource type="Curve" id="Curve_vvw44"]
 _limits = [0.084254146, 0.17659867, 0.0, 1.0]
@@ -437,32 +439,47 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("22_hsoq5")
 
-[node name="StyleDisplay" type="Control" parent="GameUI" unique_id=182994859 node_paths=PackedStringArray("test_rank_label", "test_points_label")]
+[node name="StyleDisplay" type="Control" parent="GameUI" unique_id=182994859 node_paths=PackedStringArray("test_rank_label", "test_points_label", "style_loss_time_bar")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 192.0
 offset_bottom = 192.0
 script = ExtResource("25_616kc")
-test_rank_label = NodePath("VBoxContainer/TestRankLabel")
-test_points_label = NodePath("VBoxContainer/TestPointsLabel")
+test_rank_label = NodePath("TestRankLabel")
+test_points_label = NodePath("TestPointsLabel")
+style_loss_time_bar = NodePath("StyleLossTimeBar")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="GameUI/StyleDisplay" unique_id=384713439]
+[node name="TestRankLabel" type="Label" parent="GameUI/StyleDisplay" unique_id=475648773]
+layout_mode = 0
+offset_top = 23.0
+offset_right = 192.0
+offset_bottom = 169.0
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 106
+text = "F-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StyleLossTimeBar" type="TextureProgressBar" parent="GameUI/StyleDisplay" unique_id=1462047247]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+step = 0.05
+value = 10.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_under = ExtResource("26_h5iat")
+texture_progress = ExtResource("27_wro4j")
 
-[node name="TestRankLabel" type="Label" parent="GameUI/StyleDisplay/VBoxContainer" unique_id=475648773]
-layout_mode = 2
-theme_override_font_sizes/font_size = 106
-text = "F-"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TestPointsLabel" type="Label" parent="GameUI/StyleDisplay/VBoxContainer" unique_id=1749190784]
-layout_mode = 2
+[node name="TestPointsLabel" type="Label" parent="GameUI/StyleDisplay" unique_id=109372114]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 152.0
+offset_right = 207.0
+offset_bottom = 175.0
 text = "999999"
 horizontal_alignment = 1
 vertical_alignment = 1
