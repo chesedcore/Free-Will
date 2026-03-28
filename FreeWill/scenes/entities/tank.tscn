@@ -23,7 +23,7 @@
 [ext_resource type="Script" uid="uid://8ckcjgc3u1r0" path="res://scripts/entities/player/game_ui.gd" id="17_uedwi"]
 [ext_resource type="Texture2D" uid="uid://b1aaow6gsi7yb" path="res://assets/ui/health_bar_front.png" id="18_ekcgd"]
 [ext_resource type="Script" uid="uid://cicma3kluvpxo" path="res://scripts/util_scripts/shake.gd" id="19_oqcw2"]
-[ext_resource type="Shader" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
+[ext_resource type="Shader" uid="uid://dewwkri53s35" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
 [ext_resource type="Texture2D" uid="uid://b1aarwwoofr3x" path="res://assets/textures/Reticle-29.png" id="22_hsoq5"]
 [ext_resource type="Texture2D" uid="uid://vwb6m76hhawe" path="res://assets/textures/chain.png" id="24_4sl2t"]
 [ext_resource type="Script" uid="uid://ckjjx6lxlertl" path="res://scripts/ui/style_display.gd" id="25_616kc"]
@@ -155,6 +155,42 @@ frequency = 0.05
 positional_noise = true
 metadata/_custom_type_script = "uid://cuffvge5ad4aa"
 
+[sub_resource type="Animation" id="Animation_h5iat"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraGimbal/PhantomCamera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 10, -20)]
+}
+
+[sub_resource type="Animation" id="Animation_wro4j"]
+resource_name = "shake"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraGimbal/PhantomCamera:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5, 0.6666667, 0.8333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 10, -20), Vector3(0, 10.675, -19.595), Vector3(-0.745, 9.94, -19.89), Vector3(0, 10, -20), Vector3(-0.635, 9.79, -19.965), Vector3(-0.745, 9.94, -19.89)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kstey"]
+_data = {
+&"RESET": SubResource("Animation_h5iat"),
+&"grapple_shake": SubResource("Animation_wro4j")
+}
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oqcw2"]
 shader = ExtResource("15_tafis")
 shader_parameter/grain_amount = 0.05
@@ -194,7 +230,7 @@ shader_parameter/max_alpha = 0.1370000065075
 shader_parameter/color_tint = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_ig2cu")
 
-[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component", "grapple_rope_mesh_1", "grapple_rope_mesh_2", "kunai_model", "idle_kunai_model", "wind_player", "beeper", "beeptimer", "charge_particles", "charge_spark_particles", "style_display")]
+[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component", "grapple_rope_mesh_1", "grapple_rope_mesh_2", "kunai_model", "idle_kunai_model", "wind_player", "beeper", "beeptimer", "charge_particles", "charge_spark_particles", "style_display", "camera_shake_animation_player")]
 collision_layer = 2
 collision_mask = 5
 mass = 200.0
@@ -221,10 +257,11 @@ beeptimer = NodePath("BeepTimer")
 charge_particles = NodePath("TankModel/BarrelMuzzle/ChargeParticles")
 charge_spark_particles = NodePath("TankModel/BarrelMuzzle/ChargeSparkParticles")
 style_display = NodePath("GameUI/StyleDisplay")
+camera_shake_animation_player = NodePath("CameraGimbal/CameraShakeAnimationPlayer")
 
 [node name="TankModel" parent="." unique_id=1331045763 instance=ExtResource("2_fn73n")]
 
-[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(1331045763, 820774641) index="0" unique_id=1789710507]
+[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(1331045763, 1225671377) index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
 script = ExtResource("10_hsoq5")
 min_vertex_distance = 0.1
@@ -333,7 +370,7 @@ debug_color = Color(0, 0.5950001, 0.7, 1)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-1, 1.7763568e-15, -8.742278e-08, -2.262668e-08, 0.9659259, 0.25881907, 8.444392e-08, 0.25881907, -0.9659258, 0, 10, -20)
+transform = Transform3D(-1, 0, -8.742278e-08, -2.262668e-08, 0.9659259, 0.25881907, 8.444392e-08, 0.25881907, -0.9659258, 0, 10, -20)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
@@ -357,6 +394,11 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="BarrelLookAtMarker" type="Marker3D" parent="CameraGimbal" unique_id=259733600]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13)
+
+[node name="CameraShakeAnimationPlayer" type="AnimationPlayer" parent="CameraGimbal" unique_id=492741587]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_kstey")
+speed_scale = 1.5
 
 [node name="BarrelPositionMarker" type="Marker3D" parent="." unique_id=1035784397]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)

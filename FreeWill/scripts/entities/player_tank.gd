@@ -61,6 +61,7 @@ const UI := UIBus.Feedback
 @export var charge_particles: GPUParticles3D
 @export var charge_spark_particles: GPUParticles3D
 @export var style_display: StyleDisplay
+@export var camera_shake_animation_player: AnimationPlayer
 
 #cooldowns
 @onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
@@ -485,6 +486,7 @@ func grapple_update(delta: float) -> void:
 		# Bubba: Hacky ass way of playing impact sound from grappling hook.
 		# Since there are 4 days left and performance is acceptable, speed is my main priority.
 		if (grapple_hold_time < 0.5):
+			camera_shake_animation_player.play("grapple_shake")
 			AudioManager.play_sound(preload("res://audio/sfx/grapple_impact.ogg"))
 			grapple_hold_time += 0.5
 
