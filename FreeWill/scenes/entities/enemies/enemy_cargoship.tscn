@@ -12,11 +12,12 @@ albedo_color = Color(0.30842465, 0.9142758, 0.9999998, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_86esa"]
 size = Vector3(55.606415, 33.050293, 179.12967)
 
-[node name="enemy_cargoship" type="CharacterBody3D" unique_id=586216509 node_paths=PackedStringArray("cargo_ship_model")]
+[node name="enemy_cargoship" type="CharacterBody3D" unique_id=586216509 node_paths=PackedStringArray("cargo_ship_model", "smoke_spawners")]
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_766on")
 cargo_ship_model = NodePath("cargo_ship")
+smoke_spawners = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3D3"), NodePath("Marker3D4")]
 
 [node name="cargo_ship" parent="." unique_id=967678059 instance=ExtResource("1_86esa")]
 transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
@@ -98,6 +99,18 @@ shape = SubResource("BoxShape3D_86esa")
 [node name="Shield_refresh_time" type="Timer" parent="." unique_id=282499012]
 wait_time = 3.0
 autostart = true
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=328610341]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.358173, 5.360718, 10.064888)
+
+[node name="Marker3D2" type="Marker3D" parent="." unique_id=690584805]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.724388, 55.14324)
+
+[node name="Marker3D3" type="Marker3D" parent="." unique_id=634749245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.496067, 5.360718, -17.794445)
+
+[node name="Marker3D4" type="Marker3D" parent="." unique_id=30062692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.358173, 5.360718, -67.60175)
 
 [connection signal="timeout" from="Shield_refresh_time" to="." method="_on_shield_refresh_time_timeout"]
 

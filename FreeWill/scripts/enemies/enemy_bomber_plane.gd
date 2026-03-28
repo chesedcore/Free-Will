@@ -1,6 +1,8 @@
 class_name  EnemyBomberPlane extends BaseEnemy
 
 @export var droppers : Array[Node3D]
+@export var smoke_spawners : Array[Marker3D]
+
 const BOMB = preload("res://scenes/entities/combat/bomb.tscn")
 
 const  BORDER = 5000
@@ -30,3 +32,9 @@ func _on_drop_timer_timeout() -> void:
 	#get_parent().get_parent().add_child.call_deferred(new_bomb
 	
 	EnemySignalBus.spawn_entity.emit(new_bomb)
+
+func damage(amount: float) -> void:
+	super(amount)
+	for spawner in smoke_spawners:
+		AerialSmokeParticles.attach_to(spawner)
+	

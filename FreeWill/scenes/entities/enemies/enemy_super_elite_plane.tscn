@@ -35,37 +35,37 @@ shape = SubResource("CapsuleShape3D_awjt7")
 [node name="su57" parent="." unique_id=165544230 instance=ExtResource("2_na4k2")]
 transform = Transform3D(-16, 0, -2.4159328e-06, 0, 16, 0, 2.4159328e-06, 0, -16, 0, 0, 0)
 
-[node name="Body" parent="su57" index="0" unique_id=1818984955]
+[node name="Body" parent="su57" index="0" unique_id=1894194987]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="Stabiliser" parent="su57" index="1" unique_id=1118536717]
+[node name="Stabiliser" parent="su57" index="1" unique_id=294149946]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="Wing" parent="su57" index="2" unique_id=199881314]
+[node name="Wing" parent="su57" index="2" unique_id=265209548]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="StabilatorBase" parent="su57" index="3" unique_id=61140354]
+[node name="StabilatorBase" parent="su57" index="3" unique_id=1344283827]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="AileronL" parent="su57" index="5" unique_id=2104401652]
+[node name="AileronL" parent="su57" index="5" unique_id=499983621]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="FlaperonL" parent="su57" index="6" unique_id=912710888]
+[node name="FlaperonL" parent="su57" index="6" unique_id=2035142736]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="SlatL" parent="su57" index="7" unique_id=862103431]
+[node name="SlatL" parent="su57" index="7" unique_id=1160913301]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="SlatR" parent="su57" index="8" unique_id=1673070194]
+[node name="SlatR" parent="su57" index="8" unique_id=288957169]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="AileronR" parent="su57" index="9" unique_id=1522285184]
+[node name="AileronR" parent="su57" index="9" unique_id=1733468399]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="FlaperonR" parent="su57" index="10" unique_id=1686706507]
+[node name="FlaperonR" parent="su57" index="10" unique_id=344375019]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="Thruster" parent="su57" index="11" unique_id=335631471]
+[node name="Thruster" parent="su57" index="11" unique_id=243462932]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
 [node name="missle_spawner" type="Node3D" parent="su57" unique_id=710169650]
