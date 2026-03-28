@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://dite40he6tu1a"]
+
+[ext_resource type="Script" uid="uid://bu4hq8w0u7f1t" path="res://scripts/ui/menu_button.gd" id="1_x83m7"]
+[ext_resource type="FontVariation" uid="uid://d3oa1dm7ioj8j" path="res://res/font/zen_dots_pause_font.tres" id="3_14o44"]
+
+[node name="MenuButton" type="Control" unique_id=822055894 node_paths=PackedStringArray("top_level_label", "highlight_box")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_x83m7")
+top_level_label = NodePath("TopLevelLabel")
+highlight_box = NodePath("HighlightBox")
+start_on_ready = false
+
+[node name="ColorRect6" type="ColorRect" parent="." unique_id=1529224422]
+layout_mode = 0
+offset_left = 367.0
+offset_top = 205.34285
+offset_right = 380.91632
+offset_bottom = 278.34283
+rotation = -0.061086524
+color = Color(0, 1, 1, 1)
+
+[node name="HighlightBox" type="ColorRect" parent="." unique_id=2023934410]
+layout_mode = 0
+offset_left = 372.0
+offset_top = 201.34283
+offset_right = 385.91632
+offset_bottom = 274.34283
+rotation = -0.061086524
+
+[node name="ShadowLabel" type="RichTextLabel" parent="." unique_id=874662927]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 409.0
+offset_top = 190.99997
+offset_right = 750.0001
+offset_bottom = 264.0
+rotation = -0.061099287
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("3_14o44")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "RESUME"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TopLevelLabel" type="RichTextLabel" parent="." unique_id=2111595309]
+layout_mode = 0
+offset_left = 357.09186
+offset_top = 186.0
+offset_right = 811.9082
+offset_bottom = 259.0
+rotation = -0.061099287
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("3_14o44")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "RESUME"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1

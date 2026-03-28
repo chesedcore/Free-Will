@@ -1,0 +1,7 @@
+[gd_resource type="FontVariation" format=3 uid="uid://d3oa1dm7ioj8j"]
+
+[ext_resource type="FontFile" uid="uid://38d0ljavacn8" path="res://assets/fonts/ZenDots-Regular.ttf" id="1_ihqbj"]
+
+[resource]
+resource_local_to_scene = true
+base_font = ExtResource("1_ihqbj")

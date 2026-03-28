@@ -24,7 +24,7 @@ static func fire_bullet_from_tank(tank: PlayerTank) -> void:
 
 	var attack_target := IFFTracker.get_lock_this_frame().unwrap_unchecked() as PhysicsBody3D
 	new_bullet.target = attack_target
-	tank.get_tree().root.add_child.call_deferred(new_bullet)
+	EventBus.spawn_weaponry.emit(new_bullet)
 
 func _ready() -> void:
 	apply_bullet_force()

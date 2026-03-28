@@ -34,15 +34,18 @@ func _process(delta: float) -> void:
 		arrow.scale = lerp(arrow.scale, Vector3.ONE * scale_factor,scale_speed* delta)	
 		look_at(target_node.global_position)
 		#var beep_time :float = clamp((distance - min_dist) / (max_dist - min_dist), 0.0, 1.0)
-		#var volume : float = lerp (-50,0,beep_time)
-		#var wait_time := lerpf(0.25, 1, beep_time)
-		#beeptimer.wait_time = wait_time
-		#beepnoise.volume_db = volume
-		#if beeptimer.time_left > wait_time:
-			#print("Timeout")
-			#beeptimer.stop()
-			#beeptimer.timeout.emit()
-#
-#func _on_beeptimer_timeout() -> void:
-	#beepnoise.play()
-	#beeptimer.start()
+		#beeptimer.wait_time = lerp(0.1, 1.0, beep_time)
+
+func _on_beeptimer_timeout() -> void:
+	beepnoise.play()
+
+func start_beeping() -> void:
+	if not beeptimer or not beepnoise: return
+	while target_node != null:
+		var distance :float = global_position.distance_to(target_node.global_position)
+		var beep_time  :float= clamp((distance - min_dist) / (max_dist - min_dist), 0.0, 1.0)
+		var delay :float= lerp(0.01, 1.0, beep_time)
+		var volume : float = lerp (-10,0,beep_time)
+		beepnoise.volume_db = volume
+		beepnoise.play()
+		await get_tree().create_timer(delay).timeout

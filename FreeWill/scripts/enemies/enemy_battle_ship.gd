@@ -85,7 +85,7 @@ func shoot(cannon_index: float)->void:
 	# Monarch: Usually I'd make a dedicated `Bullets` Node3D that 'holds' this node as an array,
 	# then trigger a signal that makes the World handler add the bullet to the Bullets node.
 	# But for now (in the spirit of this jam), this will do just fine.
-	get_tree().root.add_child.call_deferred(new_bullet)
+	EventBus.spawn_weaponry.emit(new_bullet)
 
 
 

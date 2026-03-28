@@ -40,5 +40,5 @@ func _on_attack_timer_timeout() -> void:
 		var new_missile :HomingMissile = SHARK.instantiate()
 		
 		new_missile.target_node = player
-		get_tree().root.add_child(new_missile)
+		EventBus.spawn_weaponry.emit(new_missile)
 		new_missile.global_position =shark_spawn_location.global_position

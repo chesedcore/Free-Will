@@ -2,10 +2,10 @@
 
 [ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="1_7ddre"]
 [ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="1_qjeyg"]
-[ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scenes/master/stage_handler.gd" id="1_rnaij"]
+[ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scripts/master/stage_handler.gd" id="1_rnaij"]
 [ext_resource type="PackedScene" uid="uid://7yq66c566yvi" path="res://scenes/entities/enemies/enemy_plane.tscn" id="3_7ddre"]
 [ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="4_3qnke"]
-[ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scenes/master/enemies_list.gd" id="7_h3xc6"]
+[ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scripts/master/enemies_list.gd" id="7_h3xc6"]
 [ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="7_wtsjf"]
 [ext_resource type="PackedScene" uid="uid://drr3tjdofrdgt" path="res://scenes/entities/enemies/enemy_shark_carrier.tscn" id="9_2l77h"]
 [ext_resource type="PackedScene" uid="uid://u7wkfykuxl3h" path="res://scenes/entities/enemies/enemy_battle_ship.tscn" id="10_s36qc"]
@@ -70,11 +70,14 @@ size = Vector2(10000, 10000)
 subdivide_width = 300
 subdivide_depth = 300
 
-[node name="TestScene" type="Node3D" unique_id=1841801107 node_paths=PackedStringArray("ui", "enemies_list", "tank")]
+[node name="MainGame" type="Node3D" unique_id=1841801107 node_paths=PackedStringArray("ui", "enemies_list", "tank", "weapons")]
 script = ExtResource("1_rnaij")
 ui = NodePath("UI")
 enemies_list = NodePath("EnemiesList")
 tank = NodePath("Tank")
+weapons = NodePath("Weapons")
+
+[node name="Weapons" type="Node3D" parent="." unique_id=1125570756]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=328075735]
 transform = Transform3D(0.99998426, -0.003607813, 0.0042996043, 0.00017664497, 0.7858931, 0.6183625, -0.0056099645, -0.618352, 0.78588134, 0, 33.85881, 0)

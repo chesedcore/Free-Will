@@ -89,14 +89,3 @@ func exit() -> void:
 		if threat_indicators[i]:
 			threat_indicators[i].target_node = null
 			threat_indicators[i] = null
-
-#func shoot(pos:Transform3D)->void:
-	#var new_bullet: Enemy_bullet = ENEMY_SHIP_BULLET.instantiate()
-	#new_bullet.transform = pos
-#
-	#new_bullet.target = player
-#
-	## Monarch: Usually I'd make a dedicated `Bullets` Node3D that 'holds' this node as an array,
-	## then trigger a signal that makes the World handler add the bullet to the Bullets node.
-	## But for now (in the spirit of this jam), this will do just fine.
-	#UIBus.get_tree().root.add_child.call_deferred(new_bullet)

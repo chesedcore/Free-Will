@@ -81,7 +81,7 @@ func on_fire_missile(target : Node3D)->void:
 	var new_missile :HomingMissile = HOMINGMISSLE.instantiate()
 
 	new_missile.target_node = target
-	get_tree().root.add_child(new_missile)
+	EventBus.spawn_weaponry.emit(new_missile)
 	new_missile.global_position = missle_spawner.global_position
 
 
@@ -120,5 +120,4 @@ func damage(amount: float) -> void:
 	#if is_instance_valid(trail):
 		#trail.is_emitting = false
 		#remove_child(trail)
-		#get_tree().root.add_child(trail)
 	#super()

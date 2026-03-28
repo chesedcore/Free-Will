@@ -3,7 +3,9 @@ class_name StageHandler extends Node3D
 @export var ui: CombatUI
 @export var enemies_list: EnemiesList
 @export var tank: PlayerTank
-@export var enviorment: Node3D
+@export var environment: Node3D
+@export var weapons: Node3D
+
 
 const HITSTOP_TIME := 0.25
 const HITSTOP_SLOW_DOWN_FACTOR := 0.001
@@ -19,13 +21,14 @@ func _wire_up_signals() -> void:
 	UIBus.missile_parried.connect(_on_missile_parried)
 	tank.fucking_exploded.connect(_on_tank_fucking_exploded)
 	EnemySignalBus.spawn_entity.connect(on_spawn_entity)
+	EventBus.spawn_weaponry.connect(_on_spawn_weaponry)
 
 func _setup_name_tracking() -> void:
 	ui.set_tank(tank)
 	var enemies := enemies_list.get_enemies()
 	
 	var entities := enemies 
-	if enviorment:
+	if environment:
 		var grapple_points :=  get_tree().get_nodes_in_group("Grapple Points")
 		entities = entities + grapple_points
 	ui.track_these_entities(entities)
@@ -41,6 +44,9 @@ func _hitstop() -> void:
 
 	var hitstop_timer := get_tree().create_timer(HITSTOP_TIME, true, false, true)
 	hitstop_timer.timeout.connect(_on_hitstop_timer_expired, CONNECT_ONE_SHOT)
+
+func _on_spawn_weaponry(node: Node) -> void:
+	weapons.add_child(node)
 
 func _on_tank_fucking_exploded() -> void:
 	tank.tank_model.hide()

@@ -36,7 +36,7 @@ func kill() -> void:
 func fire_death_missile()->void:
 	var new_missile :HomingMissile = DEATHMISSILE.instantiate()
 	new_missile.target_node = GameState.player
-	get_tree().root.add_child(new_missile)
+	EventBus.spawn_weaponry.emit(new_missile)
 	new_missile.global_position = missle_spawner.global_position
 
 func death_animation()->void:

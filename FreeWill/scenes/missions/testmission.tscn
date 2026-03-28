@@ -1,13 +1,13 @@
 [gd_scene format=3 uid="uid://cai8mvk6qhbkl"]
 
 [ext_resource type="Script" uid="uid://hkuju2my0qay" path="res://scripts/master/missionhandler.gd" id="1_ofajp"]
-[ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scenes/master/stage_handler.gd" id="2_1yy2c"]
+[ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scripts/master/stage_handler.gd" id="2_1yy2c"]
 [ext_resource type="Script" uid="uid://capww07pslxpm" path="res://scripts/master/waveresource.gd" id="2_orw40"]
 [ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="3_orw40"]
 [ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="4_ul4u8"]
 [ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="5_ecl3i"]
 [ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="6_slcjq"]
-[ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scenes/master/enemies_list.gd" id="7_hjrno"]
+[ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scripts/master/enemies_list.gd" id="7_hjrno"]
 
 [sub_resource type="Resource" id="Resource_1yy2c"]
 script = ExtResource("2_orw40")

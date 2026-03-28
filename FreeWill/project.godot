@@ -28,6 +28,7 @@ AudioManager="*uid://ccewu7gffr4af"
 Dialogic="*uid://ds2q0uclmolvu"
 MissionStatus="*uid://65hct6fp2nba"
 EnemySignalBus="*uid://03vt4btrtru2"
+EventBus="*uid://cv17rrbp0rsi3"
 
 [debug]
 
@@ -52,6 +53,7 @@ directories/dch_directory={
 directories/dtl_directory={
 "Intro": "res://Dialogic_stuff/timelines/Mission1/Intro.dtl",
 "death_missile_warning": "res://Dialogic_stuff/timelines/death_missile_warning.dtl",
+"distance_warning": "res://Dialogic_stuff/timelines/distance_warning.dtl",
 "mission1_act2_end": "res://Dialogic_stuff/timelines/Mission1/mission1_act2_end.dtl",
 "mission1_act2_intro": "res://Dialogic_stuff/timelines/Mission1/mission1_act2_intro.dtl",
 "mission1_act2_wave4": "res://Dialogic_stuff/timelines/Mission1/mission1_act2_wave4.dtl",
@@ -223,3 +225,4 @@ jolt_physics_3d/simulation/position_steps=8
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+anti_aliasing/quality/msaa_2d=1

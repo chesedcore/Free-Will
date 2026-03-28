@@ -1,0 +1,377 @@
+[gd_scene format=3 uid="uid://m3uoyp8n084o"]
+
+[ext_resource type="Script" uid="uid://ctk3wvrboaipf" path="res://scripts/master/game_container.gd" id="1_s5use"]
+[ext_resource type="PackedScene" uid="uid://vojed4xqg63o" path="res://scenes/main_game.tscn" id="2_6dj5d"]
+[ext_resource type="Script" uid="uid://boq2iw1k61chi" path="res://scripts/ui/pause_menu_buttons.gd" id="3_ftak0"]
+[ext_resource type="FontFile" uid="uid://38d0ljavacn8" path="res://assets/fonts/ZenDots-Regular.ttf" id="3_m8eaw"]
+[ext_resource type="Shader" uid="uid://cweftxowlkp8n" path="res://shaderslop/gaussian_blur.gdshader" id="3_ou4dh"]
+[ext_resource type="Script" uid="uid://b58071reuctcs" path="res://scripts/ui/blur_drive.gd" id="4_0lrld"]
+[ext_resource type="Shader" uid="uid://bdf0028k2h8wf" path="res://res/shadermat/stripeslop.tres" id="4_ftak0"]
+[ext_resource type="Script" uid="uid://bu4hq8w0u7f1t" path="res://scripts/ui/menu_button.gd" id="6_ftak0"]
+[ext_resource type="Script" uid="uid://c1jqeh1jayhha" path="res://scripts/ui/marquee_container.gd" id="7_srbcc"]
+[ext_resource type="Script" uid="uid://bq3wxnm2alcqb" path="res://scripts/ui/marquee.gd" id="8_6dj5d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ou4dh"]
+shader = ExtResource("3_ou4dh")
+shader_parameter/samples = 1
+shader_parameter/lod = 0
+shader_parameter/tint_color = Color(0, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ftak0"]
+shader = ExtResource("4_ftak0")
+shader_parameter/color_gap = Color(1, 1, 0, 1)
+shader_parameter/color_stripe = Color(0, 0, 0, 1)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.1
+shader_parameter/angle = -0.215
+shader_parameter/skew = 0.0
+
+[sub_resource type="FontVariation" id="FontVariation_ftak0"]
+resource_local_to_scene = true
+base_font = ExtResource("3_m8eaw")
+
+[sub_resource type="FontVariation" id="FontVariation_srbcc"]
+resource_local_to_scene = true
+base_font = ExtResource("3_m8eaw")
+
+[sub_resource type="FontVariation" id="FontVariation_6dj5d"]
+resource_local_to_scene = true
+base_font = ExtResource("3_m8eaw")
+
+[sub_resource type="FontVariation" id="FontVariation_ou4dh"]
+resource_local_to_scene = true
+base_font = ExtResource("3_m8eaw")
+
+[sub_resource type="FontVariation" id="FontVariation_0lrld"]
+resource_local_to_scene = true
+base_font = ExtResource("3_m8eaw")
+
+[sub_resource type="FontVariation" id="FontVariation_4rfht"]
+resource_local_to_scene = true
+base_font = ExtResource("3_m8eaw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0lrld"]
+shader = ExtResource("4_ftak0")
+shader_parameter/color_gap = Color(0, 0, 0, 0)
+shader_parameter/color_stripe = Color(0, 1, 0, 1)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.1
+shader_parameter/angle = 2.985
+shader_parameter/skew = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0gb65"]
+shader = ExtResource("4_ftak0")
+shader_parameter/color_gap = Color(0, 0, 0, 0)
+shader_parameter/color_stripe = Color(0.7629983, 0.4072413, 1, 1)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.1
+shader_parameter/angle = 2.985
+shader_parameter/skew = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_srbcc"]
+shader = ExtResource("4_ftak0")
+shader_parameter/color_gap = Color(0, 0, 0, 0)
+shader_parameter/color_stripe = Color(1, 0, 0.548779, 1)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.1
+shader_parameter/angle = 2.985
+shader_parameter/skew = 0.0
+
+[node name="GameContainer" type="Control" unique_id=1778160351 node_paths=PackedStringArray("control", "main_game", "blur_drive")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s5use")
+control = NodePath("PauseMenu/Cascade")
+main_game = NodePath("TestScene")
+blur_drive = NodePath("PauseMenu/BlurDrive")
+metadata/_edit_lock_ = true
+
+[node name="TestScene" parent="." unique_id=1841801107 instance=ExtResource("2_6dj5d")]
+
+[node name="PauseMenu" type="CanvasLayer" parent="." unique_id=152509453]
+layer = 2
+
+[node name="BlurDrive" type="ColorRect" parent="PauseMenu" unique_id=803415788]
+material = SubResource("ShaderMaterial_ou4dh")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_0lrld")
+
+[node name="Cascade" type="Control" parent="PauseMenu" unique_id=2113227010]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_ftak0")
+start_on_ready = false
+tween_in_time = 1.0
+stagger = 0.05
+metadata/_edit_lock_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="PauseMenu/Cascade" unique_id=462827380]
+material = SubResource("ShaderMaterial_ftak0")
+layout_mode = 0
+offset_left = -150.7154
+offset_top = 115.448814
+offset_right = 1303.303
+offset_bottom = 200.18019
+rotation = -0.061086524
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="PauseMenu/Cascade" unique_id=7715188]
+layout_mode = 0
+offset_left = -148.3244
+offset_top = 122.71781
+offset_right = 1303.751
+offset_bottom = 192.64636
+rotation = -0.061086524
+color = Color(0, 0, 0, 1)
+
+[node name="GAME PAUSED" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=1895692498]
+modulate = Color(0, 0, 0.432765, 1)
+layout_mode = 0
+offset_left = 170.0
+offset_top = 70.99999
+offset_right = 1030.0
+offset_bottom = 163.99998
+rotation = -0.061099287
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("3_m8eaw")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "GAME PAUSED"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GAME PAUSED2" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=600222249]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 66.99999
+offset_right = 995.0
+offset_bottom = 152.0
+rotation = -0.061099287
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = ExtResource("3_m8eaw")
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "GAME [color=red]PAUSED"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RESUME" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=1270140759]
+modulate = Color(0, 0.70906067, 0.70906067, 1)
+z_index = 1
+layout_mode = 0
+offset_left = 339.75992
+offset_top = 196.81773
+offset_right = 754.8763
+offset_bottom = 269.81775
+rotation = -0.061099287
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = SubResource("FontVariation_ftak0")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "RESUME"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RESUME2" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=387351852 node_paths=PackedStringArray("undershadow_text", "corresponding_marquee")]
+z_index = 1
+layout_mode = 0
+offset_left = 326.75995
+offset_top = 190.81773
+offset_right = 781.5763
+offset_bottom = 263.81775
+rotation = -0.061099287
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = SubResource("FontVariation_srbcc")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "RESUME"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_ftak0")
+undershadow_text = NodePath("../RESUME")
+corresponding_marquee = NodePath("../../MarqueeContainer/ResumeMarquee")
+
+[node name="OPTIONS" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=1757123236]
+modulate = Color(0.37187055, 0.3491902, 0.93189055, 1)
+z_index = 1
+layout_mode = 0
+offset_left = 316.75995
+offset_top = 310.81775
+offset_right = 819.24677
+offset_bottom = 383.81778
+rotation = -0.061099287
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = SubResource("FontVariation_6dj5d")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "OPTIONS"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OPTIONS2" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=15396994 node_paths=PackedStringArray("undershadow_text", "corresponding_marquee")]
+z_index = 1
+layout_mode = 0
+offset_left = 349.55078
+offset_top = 305.63547
+offset_right = 804.3671
+offset_bottom = 378.63547
+rotation = -0.061099287
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = SubResource("FontVariation_ou4dh")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "OPTIONS"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_ftak0")
+undershadow_text = NodePath("../OPTIONS")
+corresponding_marquee = NodePath("../../MarqueeContainer/Options")
+
+[node name="TO MENU" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=1138815517]
+modulate = Color(0.8570065, 0, 0, 1)
+z_index = 1
+layout_mode = 0
+offset_left = 330.75992
+offset_top = 427.81772
+offset_right = 850.1644
+offset_bottom = 500.81775
+rotation = -0.061099287
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = SubResource("FontVariation_0lrld")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "TO MENU"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TO MENU2" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=776853827 node_paths=PackedStringArray("undershadow_text", "corresponding_marquee")]
+z_index = 1
+layout_mode = 0
+offset_left = 370.2813
+offset_top = 420.63547
+offset_right = 825.09766
+offset_bottom = 493.63547
+rotation = -0.061099287
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = SubResource("FontVariation_4rfht")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "TO MENU"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_ftak0")
+undershadow_text = NodePath("../TO MENU")
+corresponding_marquee = NodePath("../../MarqueeContainer/ToMenu")
+
+[node name="MarqueeContainer" type="Control" parent="PauseMenu" unique_id=924971221 node_paths=PackedStringArray("marquees")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("7_srbcc")
+marquees = [NodePath("ResumeMarquee")]
+metadata/_edit_lock_ = true
+
+[node name="ResumeMarquee" type="ColorRect" parent="PauseMenu/MarqueeContainer" unique_id=1984913931]
+material = SubResource("ShaderMaterial_0lrld")
+layout_mode = 0
+offset_left = -55.999996
+offset_top = 187.99997
+offset_right = 1220.3027
+offset_bottom = 260.99997
+rotation = -0.061086524
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+script = ExtResource("8_6dj5d")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu/MarqueeContainer/ResumeMarquee" unique_id=1655745313]
+layout_mode = 0
+offset_left = 2.4234133
+offset_top = 10.140594
+offset_right = 1280.9214
+offset_bottom = 67.46196
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Options" type="ColorRect" parent="PauseMenu/MarqueeContainer" unique_id=357183211]
+material = SubResource("ShaderMaterial_0gb65")
+layout_mode = 0
+offset_left = -66.95685
+offset_top = 305.9987
+offset_right = 1209.346
+offset_bottom = 380.4133
+rotation = -0.061086524
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+script = ExtResource("8_6dj5d")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu/MarqueeContainer/Options" unique_id=43946563]
+layout_mode = 0
+offset_left = 2.4234133
+offset_top = 10.140594
+offset_right = 1280.9214
+offset_bottom = 67.46196
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="ToMenu" type="ColorRect" parent="PauseMenu/MarqueeContainer" unique_id=753689334]
+material = SubResource("ShaderMaterial_srbcc")
+layout_mode = 0
+offset_left = -31.956848
+offset_top = 421.9987
+offset_right = 1244.346
+offset_bottom = 496.41324
+rotation = -0.061086524
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+script = ExtResource("8_6dj5d")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu/MarqueeContainer/ToMenu" unique_id=116802829]
+layout_mode = 0
+offset_left = 2.4234133
+offset_top = 10.140594
+offset_right = 1280.9214
+offset_bottom = 67.46196
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
