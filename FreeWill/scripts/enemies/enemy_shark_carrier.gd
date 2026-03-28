@@ -32,6 +32,7 @@ func _on_line_of_sight_body_exited(body: Node3D) -> void:
 			player = null
 			attack_timer.stop()
 
+
 func _on_attack_timer_timeout() -> void:
 	if player:
 		CannonParticles.attach_to(shark_spawn_location)

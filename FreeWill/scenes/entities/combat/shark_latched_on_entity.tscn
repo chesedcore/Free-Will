@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b27wi14xrx1nw"]
+
+[ext_resource type="Script" path="res://scripts/entities/combat/shark_latched_on_entity.gd" id="1_tewug"]
+[ext_resource type="PackedScene" uid="uid://comalupd3cy86" path="res://assets/models/shark.blend" id="2_gew2b"]
+
+[node name="shark_latched_on_entity" type="Node3D" unique_id=1782445779]
+script = ExtResource("1_tewug")
+
+[node name="shark" parent="." unique_id=103575166 instance=ExtResource("2_gew2b")]
+transform = Transform3D(0.3567945, -4.9866853, -8.660581, 0.011681836, 8.6663, -4.9894977, 9.993626, 0.1679054, 0.3150342, -19.187052, -10.0361, -0.062451035)

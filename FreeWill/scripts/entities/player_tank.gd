@@ -81,6 +81,9 @@ var is_firing_railgun: bool = false
 
 var threat_indicators : Array = []
 
+#dont want multiple sharks
+var has_a_big_ass_shark_chewing_on_its_ass:bool = false
+
 func _ready() -> void:
 	_wire_up_signals()
 	assert(tank_model, "Tank model shouldn't be null.")
@@ -260,7 +263,8 @@ func _execute_dash() -> void:
 
 	dash_cooldown.start_cooldown()
 	dash_effect_timer.start_cooldown()
-
+	#remove the shark on dash
+	has_a_big_ass_shark_chewing_on_its_ass = false
 
 func _attempt_parry() -> void:
 	if not parry_cooldown.is_ready():

@@ -29,7 +29,7 @@ offset_right = 87.5
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "You dead as hell lmfao"
+text = "Looks like tanks could'nt fly after all..."
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -48,6 +48,7 @@ grow_vertical = 2
 text = "Replay"
 
 [node name="MenuButton" type="Button" parent="UI" unique_id=2051127403]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
