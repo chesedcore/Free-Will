@@ -140,6 +140,10 @@ folder_colors={
 "res://shaderslop/": "yellow"
 }
 
+[gui]
+
+theme/custom_font="uid://38d0ljavacn8"
+
 [input]
 
 fire={

@@ -24,14 +24,14 @@ func highlight_in() -> void:
 	reset_tween()
 	t.tween_property(get_theme_font("normal_font"), "spacing_glyph", 10, ZERO_POINT_THREE)
 	t.tween_property(undershadow_text.get_theme_font("normal_font"), "spacing_glyph", 11, ZERO_POINT_THREE)
-	corresponding_marquee.appear()
+	if corresponding_marquee: corresponding_marquee.appear()
 	self.text = "[shake]"+original_text
 
 func highlight_out() -> void:
 	reset_tween()
 	t.tween_property(get_theme_font("normal_font"), "spacing_glyph", 0, ZERO_POINT_THREE)
 	t.tween_property(undershadow_text.get_theme_font("normal_font"), "spacing_glyph", 0, ZERO_POINT_THREE)
-	corresponding_marquee.disappear()
+	if corresponding_marquee: corresponding_marquee.disappear()
 	self.text = original_text
 
 func _gui_input(event: InputEvent) -> void:

@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://c1jqeh1jayhha" path="res://scripts/ui/marquee_container.gd" id="7_srbcc"]
 [ext_resource type="Script" uid="uid://bq3wxnm2alcqb" path="res://scripts/ui/marquee.gd" id="8_6dj5d"]
 [ext_resource type="Shader" uid="uid://doveve2ovrg0t" path="res://shaderslop/stripes.gdshader" id="10_ba28l"]
+[ext_resource type="PackedScene" uid="uid://btoexwag8mhr3" path="res://scenes/ui/options_menu.tscn" id="13_yuuuf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ou4dh"]
 shader = ExtResource("3_ou4dh")
@@ -26,7 +27,7 @@ shader_parameter/color_stripe = Color(0, 0, 0, 1)
 shader_parameter/divisions = 8.0
 shader_parameter/stripe_bias = 2.5
 shader_parameter/speed = 0.1
-shader_parameter/angle = 1.7850000000000001
+shader_parameter/angle = 1.785
 shader_parameter/skew = 0.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ftak0"]
@@ -422,3 +423,16 @@ offset_bottom = 67.46196
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
+
+[node name="OptionsDock" type="Control" parent="PauseMenu" unique_id=726134510]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="OptionsMenu" parent="PauseMenu/OptionsDock" unique_id=299335495 instance=ExtResource("13_yuuuf")]
+layout_mode = 1

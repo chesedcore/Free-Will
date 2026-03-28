@@ -1,7 +1,5 @@
 class_name GameContainer extends Control
 
-##you were here, trying to build a pause menu.
-
 var _paused: bool = false
 
 var promise: Promise

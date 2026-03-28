@@ -280,16 +280,6 @@ trail_renderer_r2 = NodePath("../TankModel/Node3D/TrailRendererR2")
 [node name="ScreenVFX" type="CanvasLayer" parent="VFX" unique_id=455388338]
 layer = 3
 
-[node name="SpeedLines" type="ColorRect" parent="VFX/ScreenVFX" unique_id=111747411]
-material = ExtResource("8_rlhxg")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("9_4sl2t")
-
 [node name="FilmGrain" type="ColorRect" parent="VFX/ScreenVFX" unique_id=1374272164]
 material = SubResource("ShaderMaterial_oqcw2")
 anchors_preset = 15
@@ -320,6 +310,16 @@ mouse_filter = 2
 [node name="GameUI" type="CanvasLayer" parent="." unique_id=839091213 node_paths=PackedStringArray("health_bar")]
 script = ExtResource("17_uedwi")
 health_bar = NodePath("HealthBar")
+
+[node name="SpeedLines" type="ColorRect" parent="GameUI" unique_id=111747411]
+material = ExtResource("8_rlhxg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("9_4sl2t")
 
 [node name="HealthBar" type="TextureProgressBar" parent="GameUI" unique_id=1270017156]
 modulate = Color(0.85, 0.98249996, 1, 0.3647059)
