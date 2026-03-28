@@ -1,4 +1,4 @@
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_14_supreme-fleet.ogg" volume="0.0" bus="Voice"]
 Destro: GO, MY SUPREME FLEET! DESTROY ALL OF THEM! RIGHT NOW, CAST\
 THEM INTO THE OCEAN FOR ALL OF TIME!!!
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_31_huge-fleet.ogg" volume="0.0" bus="Voice"]

@@ -11,3 +11,12 @@ static func create_bullet() -> Bullet:
 
 static func create_railgun() -> RailgunParticles:
 	return preload("res://scenes/projectiles/railgun_particles.tscn").instantiate()
+
+static func create_missile_explosion() -> ExplosionParticles:
+	return preload("res://scenes/projectiles/enemy_projectie/missie_explosion_particles.tscn").instantiate()
+
+static func create_explosion() -> DeathExplosionParticles:
+	return preload("res://scenes/entities/explosion_particles.tscn").instantiate()
+
+static func create_railcannonfire() -> RailCannonParticles:
+	return preload("res://scenes/entities/railgun_cannon_particles.tscn").instantiate()

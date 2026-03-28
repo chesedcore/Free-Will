@@ -34,7 +34,7 @@ const RAILGUN_COOLDOWN := 0.85
 @export var RAILGUN_RANGE := 750.0
 @export var RAILGUN_RADIUS_WIDTH := 10.0
 
-const MAX_HEALTH: float = 100000000000000
+const MAX_HEALTH: float = 100
 
 ##shorthand for the feedback enum
 const UI := UIBus.Feedback
@@ -121,7 +121,7 @@ func _execute_railgun() -> void:
 	#linear_velocity = Vector3.ZERO
 	linear_velocity += -camera_gimbal.global_transform.basis.z * RAILGUN_FIRE_FORCE
 	RailgunParticles.spawn_particles(RAILGUN_RANGE, global_position, camera_gimbal, get_viewport(), get_tree())
-	CannonParticles.attach_to(bullet_spawn_position_marker)
+	RailCannonParticles.attach_to(bullet_spawn_position_marker)
 	shake(0.5, 3.)
 	for target in targets_hit:
 		target.damage(rail_gun_damage)
@@ -326,7 +326,7 @@ func _kill() -> void:
 func _physics_process(delta: float) -> void:
 	grapple_update(delta)
 	_poll_tank_death()
-
+	_poll_tank_distance()
 	if not _stop_gimbal_update and not parry_window_timer.is_active():
 		_update_model_transform(delta)
 
@@ -341,7 +341,6 @@ func _physics_process(delta: float) -> void:
 	for indicator : ThreatIndicator in threat_indicators:
 		if indicator.distance < shortest_distance_to_threat:
 			shortest_distance_to_threat = indicator.distance
-	print(shortest_distance_to_threat)
 	if shortest_distance_to_threat < 4000.:
 		var beep_time :float = clamp((shortest_distance_to_threat - 15.) / 285., 0.0, 1.0)
 		var volume : float = lerp (-15,0, -beep_time + 1.)
@@ -351,9 +350,7 @@ func _physics_process(delta: float) -> void:
 		if beeptimer.is_stopped():
 			beeper.play()
 			beeptimer.start()
-			print("testing")
 		if beeptimer.time_left > wait_time:
-			print("Timeout")
 			beeptimer.stop()
 			beeper.play()
 			beeptimer.start()
@@ -363,6 +360,16 @@ func _physics_process(delta: float) -> void:
 
 func _poll_tank_death() -> void:
 	if global_position.y < -5.0: _kill()
+#world boundries suck so ill just uh check how far the tank is from origin  hi this is gael btw 
+const  BOUNDARY : float = 5000
+func _poll_tank_distance()->void : 
+	if abs( global_position.x) >= BOUNDARY or abs(global_position.z)>= BOUNDARY:
+		#play warning dialog if no dialog current exists
+		if  Dialogic.current_timeline == null:
+			Dialogic.start("distance_warning")
+		linear_velocity += - linear_velocity * 2
+	
+
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var max_speed := DASH_MAX_SPEED if dash_effect_timer.is_active() else MAX_SPEED

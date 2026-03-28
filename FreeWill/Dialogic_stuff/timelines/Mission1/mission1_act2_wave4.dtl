@@ -1,4 +1,4 @@
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_13_sharks.ogg" volume="0.0" bus="Voice"]
 Destro: Humans are WEAK! WORTHLESS! SEND IN THE SHARKS!
 [voice volume="0.0" bus="Voice"]
 Vegas: What? What does he mean, send in the sharks?

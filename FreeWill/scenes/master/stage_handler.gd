@@ -3,6 +3,7 @@ class_name StageHandler extends Node3D
 @export var ui: CombatUI
 @export var enemies_list: EnemiesList
 @export var tank: PlayerTank
+@export var enviorment: Node3D
 
 const HITSTOP_TIME := 0.25
 const HITSTOP_SLOW_DOWN_FACTOR := 0.001
@@ -22,7 +23,12 @@ func _wire_up_signals() -> void:
 func _setup_name_tracking() -> void:
 	ui.set_tank(tank)
 	var enemies := enemies_list.get_enemies()
-	ui.track_these_entities(enemies)
+	
+	var entities := enemies 
+	if enviorment:
+		var grapple_points :=  get_tree().get_nodes_in_group("Grapple Points")
+		entities = entities + grapple_points
+	ui.track_these_entities(entities)
 
 func _on_hitstop_timer_expired() -> void:
 	Engine.time_scale = 1
@@ -61,6 +67,10 @@ func _on_missile_parried() -> void:
 
 
 #gael: the entity is spawning
+var bomb_count :int= 0
 func on_spawn_entity(entity :Node3D)->void :
+	if entity is Bomb:
+		bomb_count+= 1
+		entity.name = "Bomb" + str(bomb_count)
 	add_child(entity)
 	ui.track_these_entities([entity])

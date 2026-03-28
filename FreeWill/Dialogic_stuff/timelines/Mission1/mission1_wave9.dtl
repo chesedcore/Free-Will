@@ -1,4 +1,7 @@
+[voice path="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_08_skilled-with-that.ogg" volume="0.0" bus="Voice"]
 Destro: Hmph! You might consider yourself skilled with that… airborne vehicle of yours.
+[voice path="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_09_despair.ogg" volume="0.0" bus="Voice"]
 Destro: But now despair as you face the wrath of my SUPER ELITE AVIATION UNITS!\
 This is the first time these have been deployed against non-civilian targets!
-Destro: DIE!!!
+[voice path="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_10_die.ogg" volume="0.0" bus="Voice"]
+Destro: AHAHAHHAHAHAHA DIE!!!

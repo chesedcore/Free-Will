@@ -46,14 +46,15 @@ func _physics_process(delta: float) -> void:
 
 	if locked_on:
 		var distance : float = global_position.distance_to(target_node.global_position)
-		var predict_time : float = min(distance/ velocity.length(),1)
+		var speed :float= max(velocity.length(), 0.001)
+		var predict_time : float = min(distance/ speed,1)
 		var predict_target : Vector3
 
 		if target_node is CharacterBody3D :
 			predict_target= target_node.global_position + target_node.velocity * predict_time
 		elif target_node is RigidBody3D:
 			predict_target= target_node.global_position + target_node.linear_velocity * predict_time
-
+		
 		var dir_to_predict : Vector3 = (predict_target - global_position).normalized()
 		var forward : Vector3 = -global_transform.basis.z
 		var new_dir :Vector3= forward.slerp(dir_to_predict, turn_speed * delta).normalized()
@@ -106,9 +107,7 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 			particles.basis = global_basis
 			particles.position = global_position
 			return
-		var particles: Node3D = \
-			preload("res://scenes/projectiles/enemy_projectie/missie_explosion_particles.tscn").instantiate()
-		body.add_child(particles)
+		ExplosionParticles.attach_to(body)
 
 		AudioManager.play_sound_at(global_position, impact_sound, 15.0)
 		if trail_renderer:

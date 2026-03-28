@@ -1,4 +1,4 @@
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_15_no-this-cant-be.ogg" volume="0.0" bus="Voice"]
 Destro: No.. No! NO!! THIS CAN’T B-#%&/€$”
 [voice path="res://audio/Exported Voicelines/Mission 1/Phoenix/mission1_phoenix_35_i-cant-believe.ogg" volume="0.0" bus="Voice"]
 Phoenix: You… I can’t believe you’ve-…

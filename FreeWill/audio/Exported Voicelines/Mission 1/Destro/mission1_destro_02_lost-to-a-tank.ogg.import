@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dh272fp15bpcs"
+path="res://.godot/imported/mission1_destro_02_lost-to-a-tank.ogg-580cf36e266052e6731de7049b9011f7.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_02_lost-to-a-tank.ogg"
+dest_files=["res://.godot/imported/mission1_destro_02_lost-to-a-tank.ogg-580cf36e266052e6731de7049b9011f7.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

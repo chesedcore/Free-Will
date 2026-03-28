@@ -1,12 +1,497 @@
 [gd_scene format=3 uid="uid://4sawn7spnp0f"]
 
+[ext_resource type="AudioStream" uid="uid://brfx0g6w0w0li" path="res://audio/mus/Credits/MISSION SUCCESS.ogg" id="1_8ggla"]
+[ext_resource type="Texture2D" uid="uid://bt2jghecfjfkq" path="res://icon.svg" id="2_huu5m"]
+[ext_resource type="FontFile" uid="uid://38d0ljavacn8" path="res://assets/fonts/ZenDots-Regular.ttf" id="3_icb2l"]
+[ext_resource type="Texture2D" uid="uid://both20ypxavv6" path="res://assets/ui/Logo small blue.PNG" id="4_17l06"]
+
+[sub_resource type="Animation" id="Animation_t15ab"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lwbe5"]
+resource_name = "ROLL CREDITS"
+length = 31.033333
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335, 2.0333333, 23.966667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -5587)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 26.433332, 28.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mxqwe"]
+_data = {
+&"RESET": SubResource("Animation_t15ab"),
+&"ROLL CREDITS": SubResource("Animation_lwbe5")
+}
+
 [node name="Credits" type="CanvasLayer" unique_id=1589853051]
+metadata/_edit_vertical_guides_ = [2574.0, 901.0]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1071609130]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 4748.0
+offset_bottom = 5908.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2131815111]
+stream = ExtResource("1_8ggla")
+bus = &"Music"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=250688667]
+libraries/ = SubResource("AnimationLibrary_mxqwe")
+autoplay = &"ROLL CREDITS"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=415846472]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=2093087784]
+position = Vector2(563, 295)
+scale = Vector2(5.12, 1.745)
+skew = -0.15184365
+texture = ExtResource("2_huu5m")
+
+[node name="CreativeDirector" type="Label" parent="Node2D" unique_id=1560003576]
+offset_left = 279.0
+offset_top = 754.0
+offset_right = 901.0
+offset_bottom = 925.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 35
+text = "CREATIVE DIRECTOR"
+horizontal_alignment = 1
+
+[node name="CreativeDirector2" type="Label" parent="Node2D/CreativeDirector" unique_id=643985784]
+layout_mode = 0
+offset_top = 76.0
+offset_right = 622.0
+offset_bottom = 247.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "Monarch"
+horizontal_alignment = 1
+
+[node name="Story & script" type="Label" parent="Node2D" unique_id=348768356]
+offset_left = 279.0
+offset_top = 1098.0
+offset_right = 901.0
+offset_bottom = 1269.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 35
+text = "STORY & SCRIPT"
+horizontal_alignment = 1
+
+[node name="Story & script2" type="Label" parent="Node2D/Story & script" unique_id=1304214303]
+layout_mode = 0
+offset_top = 73.0
+offset_right = 622.0
+offset_bottom = 244.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "sagralibri"
+horizontal_alignment = 1
+
+[node name="Production" type="Label" parent="Node2D" unique_id=1093943717]
+offset_left = 279.0
+offset_top = 1413.0
+offset_right = 901.0
+offset_bottom = 1584.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 35
+text = "PRODUCTION"
+horizontal_alignment = 1
+
+[node name="Production2" type="Label" parent="Node2D/Production" unique_id=1597657792]
+layout_mode = 0
+offset_top = 74.0
+offset_right = 622.0
+offset_bottom = 245.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "Tofu2Go"
+horizontal_alignment = 1
+
+[node name="Story & script2" type="Label" parent="Node2D" unique_id=1058470229]
+offset_left = 279.0
+offset_top = 1702.0
+offset_right = 901.0
+offset_bottom = 1873.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 35
+text = "MISSION DESIGN"
+horizontal_alignment = 1
+
+[node name="Story & script2" type="Label" parent="Node2D/Story & script2" unique_id=221195720]
+layout_mode = 0
+offset_top = 74.0
+offset_right = 622.0
+offset_bottom = 245.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "sagralibri"
+horizontal_alignment = 1
+
+[node name="Programming2" type="Label" parent="Node2D" unique_id=1723327700]
+offset_left = 279.0
+offset_top = 1995.0
+offset_right = 901.0
+offset_bottom = 2282.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 35
+text = "PROGRAMMING"
+horizontal_alignment = 1
+
+[node name="Programming3" type="Label" parent="Node2D/Programming2" unique_id=1546756099]
+layout_mode = 0
+offset_top = 77.0
+offset_right = 622.0
+offset_bottom = 364.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "Monarch
+Bubba
+gael"
+horizontal_alignment = 1
+
+[node name="VFX" type="Label" parent="Node2D" unique_id=1390283192]
+offset_left = 279.0
+offset_top = 2359.0
+offset_right = 901.0
+offset_bottom = 2530.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 35
+text = "VFX"
+horizontal_alignment = 1
+
+[node name="VFX2" type="Label" parent="Node2D/VFX" unique_id=1135992395]
+layout_mode = 0
+offset_top = 64.0
+offset_right = 622.0
+offset_bottom = 235.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "TitaniumLili"
+horizontal_alignment = 1
+
+[node name="modelling" type="Label" parent="Node2D" unique_id=977160839]
+offset_left = 279.0
+offset_top = 2680.0
+offset_right = 901.0
+offset_bottom = 3025.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 35
+text = "3D MODELLING"
+horizontal_alignment = 1
+
+[node name="modelling2" type="Label" parent="Node2D/modelling" unique_id=1565329613]
+layout_mode = 0
+offset_top = 77.0
+offset_right = 622.0
+offset_bottom = 422.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "Masked
+gael
+Bubba
+TitaniumLili"
+horizontal_alignment = 1
+
+[node name="SFX" type="Label" parent="Node2D" unique_id=1806103269]
+offset_left = 279.0
+offset_top = 3096.0
+offset_right = 901.0
+offset_bottom = 3267.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 35
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="SFX2" type="Label" parent="Node2D/SFX" unique_id=775417757]
+layout_mode = 0
+offset_top = 67.0
+offset_right = 622.0
+offset_bottom = 238.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "TitaniumLili"
+horizontal_alignment = 1
+
+[node name="MUSIC" type="Label" parent="Node2D" unique_id=1128886982]
+offset_left = 279.0
+offset_top = 3349.0
+offset_right = 901.0
+offset_bottom = 3520.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 35
+text = "MUSIC"
+horizontal_alignment = 1
+
+[node name="MUSIC2" type="Label" parent="Node2D/MUSIC" unique_id=1217806636]
+layout_mode = 0
+offset_top = 66.0
+offset_right = 622.0
+offset_bottom = 237.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "Tofu2Go"
+horizontal_alignment = 1
+
+[node name="Voice Acting" type="Label" parent="Node2D" unique_id=979494131]
+offset_left = 279.0
+offset_top = 3616.0
+offset_right = 901.0
+offset_bottom = 3787.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 35
+text = "VOICE ACTING"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Node2D/Voice Acting" unique_id=463273595]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -340.0
+offset_top = 127.0
+offset_right = 675.0
+offset_bottom = 662.0
+grow_horizontal = 2
+theme_override_constants/separation = 21
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Node2D/Voice Acting/VBoxContainer" unique_id=1100942679]
+layout_mode = 2
+theme_override_constants/separation = 162
+
+[node name="MUSIC" type="Label" parent="Node2D/Voice Acting/VBoxContainer/HBoxContainer" unique_id=1448436801]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "Vegas"
+horizontal_alignment = 1
+
+[node name="MUSIC2" type="Label" parent="Node2D/Voice Acting/VBoxContainer/HBoxContainer" unique_id=152365144]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 30
+text = "medium enemy spider"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Node2D/Voice Acting/VBoxContainer" unique_id=906249336]
+layout_mode = 2
+theme_override_constants/separation = 374
+
+[node name="MUSIC" type="Label" parent="Node2D/Voice Acting/VBoxContainer/HBoxContainer2" unique_id=594321773]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "Phoenix"
+horizontal_alignment = 1
+
+[node name="MUSIC2" type="Label" parent="Node2D/Voice Acting/VBoxContainer/HBoxContainer2" unique_id=1312169854]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 30
+text = "insandio"
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Node2D/Voice Acting/VBoxContainer" unique_id=1480139610]
+layout_mode = 2
+theme_override_constants/separation = 258
+
+[node name="MUSIC" type="Label" parent="Node2D/Voice Acting/VBoxContainer/HBoxContainer3" unique_id=951558577]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "General"
+horizontal_alignment = 1
+
+[node name="MUSIC2" type="Label" parent="Node2D/Voice Acting/VBoxContainer/HBoxContainer3" unique_id=1266097818]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 30
+text = "InboundShovel"
+horizontal_alignment = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Node2D/Voice Acting/VBoxContainer" unique_id=490410930]
+layout_mode = 2
+theme_override_constants/separation = 462
+
+[node name="MUSIC" type="Label" parent="Node2D/Voice Acting/VBoxContainer/HBoxContainer4" unique_id=201347960]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "Destro"
+horizontal_alignment = 1
+
+[node name="MUSIC2" type="Label" parent="Node2D/Voice Acting/VBoxContainer/HBoxContainer4" unique_id=565229722]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 30
+text = "Bits"
+horizontal_alignment = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Node2D/Voice Acting/VBoxContainer" unique_id=1802675751]
+layout_mode = 2
+theme_override_constants/separation = 443
+
+[node name="MUSIC" type="Label" parent="Node2D/Voice Acting/VBoxContainer/HBoxContainer5" unique_id=110872270]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "Yi"
+horizontal_alignment = 1
+
+[node name="MUSIC2" type="Label" parent="Node2D/Voice Acting/VBoxContainer/HBoxContainer5" unique_id=2008658827]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 30
+text = "EZJCaT2"
+horizontal_alignment = 1
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="Node2D/Voice Acting/VBoxContainer" unique_id=1030037470]
+layout_mode = 2
+theme_override_constants/separation = 176
+
+[node name="MUSIC" type="Label" parent="Node2D/Voice Acting/VBoxContainer/HBoxContainer6" unique_id=1978182734]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "Mooks & Shark"
+horizontal_alignment = 1
+
+[node name="MUSIC2" type="Label" parent="Node2D/Voice Acting/VBoxContainer/HBoxContainer6" unique_id=1048435855]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 30
+text = "TheHamHog"
+horizontal_alignment = 1
+
+[node name="Special" type="Label" parent="Node2D" unique_id=106498275]
+offset_left = 279.0
+offset_top = 4375.0
+offset_right = 901.0
+offset_bottom = 4662.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 45
+text = "SPECIAL THANKS"
+horizontal_alignment = 1
+
+[node name="Special4" type="Label" parent="Node2D/Special" unique_id=1188149863]
+layout_mode = 0
+offset_top = 94.0
+offset_right = 622.0
+offset_bottom = 605.0
+theme_override_constants/line_spacing = 15
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 25
+text = "Nova
+RKI3000
+insandio
+InboundShovel
+Clara Gale
+Yollie
+Sokolovna
+The Sun (Sol)
+LeBron James
+my dog arthur
+Jonny RaZeR
+
+YOU"
+horizontal_alignment = 1
+
+[node name="Special2" type="Label" parent="Node2D" unique_id=1769433732]
+offset_left = 279.0
+offset_top = 5229.0
+offset_right = 901.0
+offset_bottom = 5342.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 45
+text = "Made for
+"
+horizontal_alignment = 1
+
+[node name="Special3" type="Label" parent="Node2D/Special2" unique_id=1238792700]
+layout_mode = 0
+offset_top = 243.0
+offset_right = 622.0
+offset_bottom = 356.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 30
+text = "Bad Ideas Game Jam 2026
+"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Special2/Special3" unique_id=1594658717]
+modulate = Color(1, 1, 1, 0.78431374)
+position = Vector2(305, -69)
+texture = ExtResource("4_17l06")
+
+[node name="Special3" type="Label" parent="Node2D" unique_id=876079608]
+offset_left = 279.0
+offset_top = 5796.0
+offset_right = 901.0
+offset_bottom = 6083.0
+theme_override_fonts/font = ExtResource("3_icb2l")
+theme_override_font_sizes/font_size = 45
+text = "THE END
+
+
+Thanks for playing!"
+horizontal_alignment = 1

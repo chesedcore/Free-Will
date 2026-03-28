@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://nl0rxts5k3cr"
+path="res://.godot/imported/mission1_destro_10_die.ogg-19c01f4c9429b1921573e7e465946421.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_10_die.ogg"
+dest_files=["res://.godot/imported/mission1_destro_10_die.ogg-19c01f4c9429b1921573e7e465946421.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

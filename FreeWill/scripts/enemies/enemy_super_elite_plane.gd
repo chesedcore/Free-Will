@@ -27,7 +27,7 @@ func kill() -> void:
 			if decoy != null:
 				decoy.kill()
 		speed = 0
-		Dialogic.Inputs.block_input(100000)
+		#Dialogic.Inputs.block_input(100000)
 		Dialogic.start("death_missile_warning")
 		await  death_animation()
 		fire_death_missile()

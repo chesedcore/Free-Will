@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dgfqerdiodefm"
+path="res://.godot/imported/mission1_destro_13_sharks.ogg-05ac3b8ee79efe1ac0e47b18912be0f1.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_13_sharks.ogg"
+dest_files=["res://.godot/imported/mission1_destro_13_sharks.ogg-05ac3b8ee79efe1ac0e47b18912be0f1.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

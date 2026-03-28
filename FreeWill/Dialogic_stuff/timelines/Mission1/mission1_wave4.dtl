@@ -1,18 +1,16 @@
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_04_communications-line.ogg" volume="0.0" bus="Voice"]
 Destro: Is this the communications line for that PUNY tank that just won’t give up!?
 [voice volume="0.0" bus="Voice"]
 Vegas: Hello! The name’s Vegas. Is this the guy shooting at us?
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_05_dont-you-dare.ogg" volume="0.0" bus="Voice"]
 Destro: Don’t you dare speak back to me like that, foolish Caelinian!
-[voice volume="0.0" bus="Voice"]
-Destro: Let it be known that all of your victories so far have been PURE LUCK! I’ll\
-destroy you soon enough! The GREAT VICE-VICE-ADMIRAL DESTRO will emerge\
-victorious!
-[voice volume="0.0" bus="Voice"]
-Destro: Prepare to spend eternity six feet under in your new government-issued\
-cardboard caskets!\
+[voice path="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_06_pure-luck.ogg" volume="0.0" bus="Voice"]
+Destro: Let it be known that all of your victories so far have been PURE LUCK!\
+ I’ll destroy you soon enough! The GREAT VICE-VICE-ADMIRAL DESTRO will emerge victorious!
+[voice path="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_07_caskets.ogg" volume="0.0" bus="Voice"]
+Destro: Prepare to spend eternity in your new government-issued\
+cardboard caskets six feet under!\
 Maybe even seven!
 [voice volume="0.0" bus="Voice"]
 Vegas: Jeez, what’s with that guy, anyway?\
 Y’know, I’ve always wondered if their leader is secretly a cat…
-[voice volume="0.0" bus="Voice"]

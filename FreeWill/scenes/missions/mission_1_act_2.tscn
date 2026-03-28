@@ -7,7 +7,10 @@
 [ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="5_3q5qg"]
 [ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="6_76l0t"]
 [ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="7_877yy"]
+[ext_resource type="AudioStream" uid="uid://l52ex3drqvuq" path="res://audio/sfx/rocket_launch.ogg" id="7_q70iu"]
 [ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scenes/master/enemies_list.gd" id="8_tn3th"]
+[ext_resource type="PackedScene" uid="uid://b5oi77k2llexl" path="res://scenes/enviorment/pillar_enviorment_prop.tscn" id="10_ut7qk"]
+[ext_resource type="ArrayMesh" uid="uid://cwk8o07kwhwne" path="res://assets/models/pillar_broken.res" id="11_3q5qg"]
 
 [sub_resource type="Resource" id="Resource_x2y18"]
 script = ExtResource("2_q70iu")
@@ -139,24 +142,28 @@ size = Vector2(10000, 10000)
 subdivide_width = 300
 subdivide_depth = 300
 
-[node name="Mission1_act2" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("stagehandler", "spawnpoints", "enemies_list")]
+[node name="Mission1_act2" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("stagehandler", "spawnpoints", "enemies_list", "enviorment", "transition")]
 script = ExtResource("1_e1x6y")
 mission_title = 2
+scene_to_transition_to = "res://scenes/credits/credits.tscn"
 stagehandler = NodePath("stagehandler")
-mission_end_dialog = "mission1_act2_end"
+act_end_dialog = "mission1_act2_end"
 waves = Array[ExtResource("2_q70iu")]([SubResource("Resource_x2y18"), SubResource("Resource_08rrl"), SubResource("Resource_cetxk"), SubResource("Resource_xmt5l"), SubResource("Resource_e1x6y"), SubResource("Resource_q70iu"), SubResource("Resource_7ieol"), SubResource("Resource_ut7qk")])
 spawnpoints = NodePath("stagehandler/Tank/spawnpoints")
 enemies_list = NodePath("EnemiesList")
+enviorment = NodePath("enviorment")
+transition = NodePath("CanvasLayer/transition")
 
 [node name="Ocean" type="MeshInstance3D" parent="." unique_id=713502013]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.093763605, -63.03884, -0.8690749)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -0.093763605, -63.03884, -0.8690749)
 mesh = SubResource("PlaneMesh_optku")
 
-[node name="stagehandler" type="Node3D" parent="." unique_id=810361068 node_paths=PackedStringArray("ui", "enemies_list", "tank")]
+[node name="stagehandler" type="Node3D" parent="." unique_id=810361068 node_paths=PackedStringArray("ui", "enemies_list", "tank", "enviorment")]
 script = ExtResource("4_ut7qk")
 ui = NodePath("UI")
 enemies_list = NodePath("../EnemiesList")
 tank = NodePath("Tank")
+enviorment = NodePath("../enviorment")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="stagehandler" unique_id=234805234]
 transform = Transform3D(0.99998426, -0.0036078133, 0.0042996025, 0.0022680946, 0.9604571, 0.27841896, -0.005134067, -0.2784048, 0.9604502, 0, 0, 0)
@@ -168,6 +175,7 @@ environment = ExtResource("5_3q5qg")
 
 [node name="Tank" parent="stagehandler" unique_id=290108966 instance=ExtResource("6_76l0t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 335.62222, 0)
+cannon_fire_sound = ExtResource("7_q70iu")
 
 [node name="spawnpoints" type="Node3D" parent="stagehandler/Tank" unique_id=578110763]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -335.62222, 0)
@@ -200,3 +208,52 @@ seaborne_enemies = NodePath("Seaborne enemies")
 [node name="AirborneEnemies" type="Node3D" parent="EnemiesList" unique_id=676954822]
 
 [node name="Seaborne enemies" type="Node3D" parent="EnemiesList" unique_id=386092668]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=709561474]
+layer = 2
+
+[node name="transition" type="ColorRect" parent="CanvasLayer" unique_id=548755290]
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="enviorment" type="Node3D" parent="." unique_id=17959422]
+
+[node name="pillar_enviorment_prop" parent="enviorment" unique_id=1395337680 instance=ExtResource("10_ut7qk")]
+transform = Transform3D(300, 0, 0, 0, 600, 0, 0, 0, 300, 1433.1635, 2.2414856, 545.34607)
+
+[node name="pillar_enviorment_prop4" parent="enviorment" unique_id=735744934 instance=ExtResource("10_ut7qk")]
+transform = Transform3D(212.13203, -299.99997, 150, 0, 424.2641, 212.13202, -212.13203, -299.99997, 150, 1739.3833, -194.28061, 2415.9868)
+
+[node name="pillar_enviorment_prop2" parent="enviorment" unique_id=659981797 instance=ExtResource("10_ut7qk")]
+transform = Transform3D(300, 0, 0, 0, 600, 0, 0, 0, 300, -1490.3333, 2.2414856, 543.649)
+
+[node name="pillar_enviorment_prop3" parent="enviorment" unique_id=254913328 instance=ExtResource("10_ut7qk")]
+transform = Transform3D(88.8172, 341.91095, 229.96889, -2.24e-05, 481.5246, -178.97916, -286.55103, 105.976166, 71.27946, -1674.8796, -195.88904, 1197.836)
+
+[node name="top" parent="enviorment/pillar_enviorment_prop3" index="0" unique_id=1253579231]
+transform = Transform3D(1.0000007, 0, 0, 0, -1, 8.7422784e-08, 0, -8.7422784e-08, -1.0000002, 0, 5.1594615, 0)
+mesh = ExtResource("11_3q5qg")
+
+[node name="pillar_enviorment_prop5" parent="enviorment" unique_id=61987133 instance=ExtResource("10_ut7qk")]
+transform = Transform3D(204.7549, 369.26758, 151.75632, 0, 484.48822, -216.533, -219.2611, 344.83707, 141.71619, -1674.8796, -110.83008, -2419.752)
+
+[node name="top" parent="enviorment/pillar_enviorment_prop5" index="0" unique_id=1253579231]
+transform = Transform3D(1.0000007, 0, 0, 0, -1, 8.7422784e-08, 0, -8.742278e-08, -1.0000001, -0.0044641495, 5.0801525, 0)
+mesh = ExtResource("11_3q5qg")
+
+[node name="pillar_enviorment_prop6" parent="enviorment" unique_id=1682837368 instance=ExtResource("10_ut7qk")]
+transform = Transform3D(286.4744, 167.52567, 30.268946, 0, 203.91335, -282.14328, -89.06415, 538.8455, 97.35992, 1926.0017, -619.6615, -2516.1753)
+
+[node name="top" parent="enviorment/pillar_enviorment_prop6" index="0" unique_id=1253579231]
+transform = Transform3D(0.99691415, 6.86353e-09, 0.07850965, 0, -1.0000002, 8.7422805e-08, 0.07850969, -8.7152955e-08, -0.9969137, 0, 5.1496077, 0)
+mesh = ExtResource("11_3q5qg")
+
+[editable path="enviorment/pillar_enviorment_prop3"]
+[editable path="enviorment/pillar_enviorment_prop5"]
+[editable path="enviorment/pillar_enviorment_prop6"]

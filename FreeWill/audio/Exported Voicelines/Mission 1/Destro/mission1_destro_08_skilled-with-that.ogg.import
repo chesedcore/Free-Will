@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dx3spkofn3o86"
+path="res://.godot/imported/mission1_destro_08_skilled-with-that.ogg-43939ca6228d586ae3840ba4b3c6e749.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_08_skilled-with-that.ogg"
+dest_files=["res://.godot/imported/mission1_destro_08_skilled-with-that.ogg-43939ca6228d586ae3840ba4b3c6e749.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
