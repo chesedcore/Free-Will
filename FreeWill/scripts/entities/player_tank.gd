@@ -3,6 +3,7 @@ class_name PlayerTank extends RigidBody3D
 ## Sick ass fuckin flying player tank class
 
 signal fucking_exploded
+signal damaged
 signal cool_shit_happened(shit: CoolShit.Shit, points: int)
 
 const BARREL_ROTATION_SPEED: float = 7.5
@@ -323,8 +324,17 @@ func try_damage(amount: float) -> Result:
 
 
 func damage(amount: float) -> void:
+	damaged.emit()
+	get_tree().root.add_child(preload("res://scenes/ui/damage_flash.tscn").instantiate())
+
 	health -= amount
 	if health <= 0.0: _kill()
+	shake(2.0, 2.0)
+
+	# Little flair to make getting hit feel more painful
+	var angular_tilt: float = 20.0
+	angular_velocity.x += randf_range(angular_tilt, angular_tilt)
+	angular_velocity.y += randf_range(angular_tilt, angular_tilt)
 
 
 func _kill() -> void:
