@@ -3,6 +3,7 @@ class_name HomingMissile extends CharacterBody3D
 const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.tscn")
 
 @export var target_node : PhysicsBody3D
+@export var sender : PhysicsBody3D
 @export var Max_speed : float = 250
 @export var turn_speed : float =5
 
@@ -10,12 +11,16 @@ const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.
 @export var impact_sound: AudioStream = preload("res://audio/sfx/explosion.ogg")
 @export var spawn_sound: AudioStream = preload("res://audio/sfx/rocket_launch_2.ogg")
 
+@export var hitbox : Area3D
+
 @export var trail_renderer: TrailRenderer
 
 var locked_on : bool = true
 @export var lock_off_dist : float = 25
 @export var lifespan : float = 5
 var threat_indicator : ThreatIndicator
+
+var lifetime := 0.
 
 func _process(_delta: float) -> void:
 	if global_position.y <= -10:
@@ -67,8 +72,8 @@ func _physics_process(delta: float) -> void:
 				threat_indicator.target_node = null
 
 
-	if lifespan > 0:
-		lifespan -= delta
+	if lifespan > lifetime:
+		lifetime += delta
 		velocity = -global_transform.basis.z * Max_speed
 	else:
 		if threat_indicator:
@@ -94,7 +99,15 @@ func try_damage_tank(body: PlayerTank, amount: float) -> Result:
 	return result
 
 func deflect_this_missile() -> void:
-	locked_on = false
+	if sender:
+		if threat_indicator:
+			threat_indicator.target_node = null
+		locked_on = true
+		target_node = sender
+		lifetime = 0.
+		hitbox.set_collision_mask_value(3, true)
+	else:
+		locked_on = false
 	flip_basis.call_deferred()
 
 func _on_hitbox_body_entered(body: Node3D) -> void:
@@ -109,6 +122,15 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 			return
 		ExplosionParticles.attach_to(body)
 
+		AudioManager.play_sound_at(global_position, impact_sound, 15.0)
+		if trail_renderer:
+			trail_renderer.is_emitting = false
+			remove_child(trail_renderer)
+			get_tree().root.add_child(trail_renderer)
+		queue_free.call_deferred()
+	elif body is BaseEnemy:
+		body.damage(25.)
+		ExplosionParticles.attach_to(body)
 		AudioManager.play_sound_at(global_position, impact_sound, 15.0)
 		if trail_renderer:
 			trail_renderer.is_emitting = false

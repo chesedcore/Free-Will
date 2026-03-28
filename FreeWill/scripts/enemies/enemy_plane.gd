@@ -82,6 +82,7 @@ func on_fire_missile(target : Node3D)->void:
 
 	new_missile.target_node = target
 	get_tree().root.add_child(new_missile)
+	new_missile.sender = self
 	new_missile.global_position = missle_spawner.global_position
 
 
@@ -114,6 +115,7 @@ func on_state_transition(from_state: State, to_state: STATES)->void:
 func damage(amount: float) -> void:
 	if !is_shield_active:
 		super.damage(amount)
+		AerialSmokeParticles.attach_to(self)
 
 #func kill() -> void:
 	#var trail := trail_renderer

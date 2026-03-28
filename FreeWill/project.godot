@@ -52,6 +52,7 @@ directories/dch_directory={
 directories/dtl_directory={
 "Intro": "res://Dialogic_stuff/timelines/Mission1/Intro.dtl",
 "death_missile_warning": "res://Dialogic_stuff/timelines/death_missile_warning.dtl",
+"distance_warning": "res://Dialogic_stuff/timelines/distance_warning.dtl",
 "mission1_act2_end": "res://Dialogic_stuff/timelines/Mission1/mission1_act2_end.dtl",
 "mission1_act2_intro": "res://Dialogic_stuff/timelines/Mission1/mission1_act2_intro.dtl",
 "mission1_act2_wave4": "res://Dialogic_stuff/timelines/Mission1/mission1_act2_wave4.dtl",
