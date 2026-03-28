@@ -59,7 +59,7 @@ func damage(amount: float) -> void:
 			initial_smoke = true
 		else:
 			i = 5
-		while i < len(smoke_spawners):
+		while i < len(smoke_spawners) - 1:
 			StationarySmokeParticles.attach_to(smoke_spawners[i])
 			ExplosionParticles.attach_to(smoke_spawners[i])
 			i += 1

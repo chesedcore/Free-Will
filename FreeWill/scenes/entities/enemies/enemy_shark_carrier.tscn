@@ -158,7 +158,7 @@ visible = false
 [node name="navy" parent="." unique_id=1476522542 instance=ExtResource("5_sun43")]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 49.90677, -74.71877)
 
-[node name="Cube" parent="navy" index="1" unique_id=173857458]
+[node name="Cube" parent="navy" index="1" unique_id=766810654]
 surface_material_override/3 = SubResource("StandardMaterial3D_g16pl")
 
 [node name="Cannon" type="MeshInstance3D" parent="." unique_id=587835005]
