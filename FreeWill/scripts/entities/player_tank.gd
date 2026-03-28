@@ -3,6 +3,7 @@ class_name PlayerTank extends RigidBody3D
 ## Sick ass fuckin flying player tank class
 
 signal fucking_exploded
+signal cool_shit_happened(shit: CoolShit.Shit, points: int)
 
 const BARREL_ROTATION_SPEED: float = 7.5
 const GUN_GIMBAL_ROTATION_SPEED: float = 6.0
@@ -57,6 +58,7 @@ const UI := UIBus.Feedback
 @export var beeptimer : Timer
 @export var charge_particles: GPUParticles3D
 @export var charge_spark_particles: GPUParticles3D
+@export var style_display: StyleDisplay
 
 #cooldowns
 @onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
@@ -85,6 +87,7 @@ func _ready() -> void:
 func _wire_up_signals() -> void:
 	UIBus.missile_parried.connect(_extend_parry_window)
 	parry_window_timer.timeout.connect(_end_parry)
+	cool_shit_happened.connect(style_display.cool_shit)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("fire"):
@@ -225,6 +228,8 @@ func _debug_draw_capsule(xform: Transform3D, height: float, radius: float, durat
 	instance.queue_free()
 
 func _execute_dash() -> void:
+	cool_shit_happened.emit(CoolShit.Shit.DODGE, 10)
+
 	var input_dir: Vector2 = Input.get_vector("left", "right", "up", "down")
 	if input_dir.is_zero_approx(): input_dir = Vector2.UP
 	var move_dir: Vector3 = Vector3(-input_dir.x, 0.0, -input_dir.y).rotated(Vector3.UP, camera_gimbal.rotation.y)
