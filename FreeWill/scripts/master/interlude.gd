@@ -6,9 +6,4 @@ extends ColorRect
 func _ready() -> void:
 	Dialogic.start(dialog)
 	await Dialogic.timeline_ended
-	get_tree().change_scene_to_file(scene_to_transition_to)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	EventBus.change_game_container_to.emit(load(scene_to_transition_to))

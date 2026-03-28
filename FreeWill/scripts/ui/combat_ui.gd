@@ -22,3 +22,6 @@ func _process(_delta: float) -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("cycle_targets"):
 		iff_tracker.cycle_lock(tank)
+
+func _exit_tree() -> void:
+	IFFTracker.clear_tracked_entities()

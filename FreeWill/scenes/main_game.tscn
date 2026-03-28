@@ -155,5 +155,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1076.1832, 6.1035156e-05, 738
 [node name="enemy_battle_ship9" parent="EnemiesList/SeaboundEnemies" unique_id=171824424 instance=ExtResource("10_s36qc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1076.1832, 6.1035156e-05, -533.81616)
 
-[node name="enemy_shark_carrier" parent="." unique_id=188785478 instance=ExtResource("9_2l77h")]
+[node name="enemy_shark_carrier" parent="EnemiesList" unique_id=188785478 instance=ExtResource("9_2l77h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 548.5491, -31.027588, 487.67877)

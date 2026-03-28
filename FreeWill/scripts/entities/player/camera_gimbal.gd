@@ -25,9 +25,8 @@ var target_camera_z := -20.0
 var current_fov := BASE_FOV
 
 @onready var tank: PlayerTank = owner
-#Gael : i think this line is capturing the gameover screens camera which causes the game to crash when dashing after retrying a level
-#should be fixed now but if it pops up again grrrrr
-@onready var camera := get_viewport().get_camera_3d()
+@export var camera: Camera3D
+
 
 
 func _input(event: InputEvent) -> void:

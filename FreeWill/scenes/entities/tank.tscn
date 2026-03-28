@@ -23,7 +23,7 @@
 [ext_resource type="Script" uid="uid://8ckcjgc3u1r0" path="res://scripts/entities/player/game_ui.gd" id="17_uedwi"]
 [ext_resource type="Texture2D" uid="uid://b1aaow6gsi7yb" path="res://assets/ui/health_bar_front.png" id="18_ekcgd"]
 [ext_resource type="Script" uid="uid://cicma3kluvpxo" path="res://scripts/util_scripts/shake.gd" id="19_oqcw2"]
-[ext_resource type="Shader" uid="uid://dewwkri53s35" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
+[ext_resource type="Shader" uid="uid://drd3l3yes5apm" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
 [ext_resource type="Texture2D" uid="uid://b1aarwwoofr3x" path="res://assets/textures/Reticle-29.png" id="22_hsoq5"]
 [ext_resource type="Texture2D" uid="uid://vwb6m76hhawe" path="res://assets/textures/chain.png" id="24_4sl2t"]
 [ext_resource type="Script" uid="uid://ckjjx6lxlertl" path="res://scripts/ui/style_display.gd" id="25_616kc"]
@@ -261,7 +261,7 @@ camera_shake_animation_player = NodePath("CameraGimbal/CameraShakeAnimationPlaye
 
 [node name="TankModel" parent="." unique_id=1331045763 instance=ExtResource("2_fn73n")]
 
-[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(1331045763, 1225671377) index="0" unique_id=1789710507]
+[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(1331045763, 1092575496) index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
 script = ExtResource("10_hsoq5")
 min_vertex_distance = 0.1
@@ -378,10 +378,11 @@ process_priority = 300
 process_physics_priority = 300
 script = ExtResource("7_uedwi")
 
-[node name="CameraGimbal" type="Node3D" parent="." unique_id=774062337 node_paths=PackedStringArray("phantom_camera")]
+[node name="CameraGimbal" type="Node3D" parent="." unique_id=774062337 node_paths=PackedStringArray("phantom_camera", "camera")]
 top_level = true
 script = ExtResource("8_tafis")
 phantom_camera = NodePath("PhantomCamera")
+camera = NodePath("../Camera3D")
 
 [node name="PhantomCamera" type="Node3D" parent="CameraGimbal" unique_id=1937678922]
 transform = Transform3D(-1, 0, -8.742278e-08, -2.262668e-08, 0.9659258, 0.25881904, 8.444392e-08, 0.25881904, -0.9659258, 0, 10, -20)
@@ -488,11 +489,12 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("22_hsoq5")
 
 [node name="StyleDisplay" type="Control" parent="GameUI" unique_id=182994859 node_paths=PackedStringArray("test_rank_label", "test_points_label", "style_loss_time_bar")]
-visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_right = 192.0
-offset_bottom = 192.0
+offset_left = 955.0
+offset_top = 175.0
+offset_right = 1147.0
+offset_bottom = 367.0
 script = ExtResource("25_616kc")
 test_rank_label = NodePath("TestRankLabel")
 test_points_label = NodePath("TestPointsLabel")
@@ -508,6 +510,7 @@ theme_override_font_sizes/font_size = 106
 text = "F-"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="StyleLossTimeBar" type="TextureProgressBar" parent="GameUI/StyleDisplay" unique_id=1462047247]
 layout_mode = 1
@@ -522,8 +525,10 @@ fill_mode = 4
 nine_patch_stretch = true
 texture_under = ExtResource("26_h5iat")
 texture_progress = ExtResource("27_wro4j")
+metadata/_edit_lock_ = true
 
 [node name="TestPointsLabel" type="Label" parent="GameUI/StyleDisplay" unique_id=109372114]
+visible = false
 layout_mode = 0
 offset_left = 152.0
 offset_top = 152.0
@@ -532,6 +537,7 @@ offset_bottom = 175.0
 text = "999999"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="WindTrails" type="Node3D" parent="." unique_id=274969305 node_paths=PackedStringArray("tank")]
 transform = Transform3D(0.9999985, -0.0014398276, -0.0009505979, 0.0014394387, 0.999999, -0.0004093051, 0.0009511863, 0.000407964, 0.9999995, -0.00226493, -0.013616562, 0.0041503906)
