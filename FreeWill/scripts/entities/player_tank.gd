@@ -274,6 +274,7 @@ func _attempt_parry() -> void:
 
 func _execute_parry() -> void:
 	reset_rotation()
+	create_tween().tween_property(self, "linear_velocity:y", 0.0, PARRY_WINDUP).set_ease(Tween.EASE_OUT_IN).set_trans(Tween.TRANS_CUBIC)
 
 	if _parry_tween:
 		_parry_tween.kill()
