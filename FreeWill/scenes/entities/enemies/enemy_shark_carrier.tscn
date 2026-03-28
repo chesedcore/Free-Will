@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bpwaeuqs7p6we" path="res://scripts/enemies/enemy_shark_carrier.gd" id="1_6omri"]
 [ext_resource type="PackedScene" uid="uid://csmnk5oqb6mp" path="res://assets/models/bigfuckcannon.blend" id="3_sun43"]
 [ext_resource type="PackedScene" uid="uid://c7v0tbwd4c8yv" path="res://assets/models/aircraftcarrier.tscn" id="4_sun43"]
+[ext_resource type="Texture2D" uid="uid://b2jacs56jf1dw" path="res://assets/models/textures/shark_carrier_top.png" id="5_q4vk6"]
 [ext_resource type="PackedScene" uid="uid://b36k48gp70vi6" path="res://assets/models/navy.blend" id="5_sun43"]
 [ext_resource type="PackedScene" uid="uid://bcdibooj3vqkf" path="res://assets/models/su57.glb" id="6_q4vk6"]
 
@@ -11,6 +12,10 @@ size = Vector3(425.7987, 38.08751, 241.3154)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dh4vq"]
 size = Vector3(5211.9297, 3353.3738, 5775.527)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g16pl"]
+cull_mode = 2
+albedo_texture = ExtResource("5_q4vk6")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sun43"]
 resource_name = "Material"
@@ -150,8 +155,11 @@ wait_time = 5.0
 transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 0, 0, 0)
 visible = false
 
-[node name="navy" parent="." unique_id=1976560151 instance=ExtResource("5_sun43")]
+[node name="navy" parent="." unique_id=1476522542 instance=ExtResource("5_sun43")]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 49.90677, -74.71877)
+
+[node name="Cube" parent="navy" index="1" unique_id=173857458]
+surface_material_override/3 = SubResource("StandardMaterial3D_g16pl")
 
 [node name="Cannon" type="MeshInstance3D" parent="." unique_id=587835005]
 transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, 81.38912, 147.19717)
@@ -189,43 +197,43 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.446991, 0)
 
 [node name="su57" parent="Planes" unique_id=518090294 instance=ExtResource("6_q4vk6")]
-transform = Transform3D(6.0529904, 0, -13.724478, 0, 15, 0, 13.724478, 0, 6.0529904, -152.8772, 84.19626, -432.93158)
+transform = Transform3D(5.482831, 0, -13.96204, 0, 15, 0, 13.96204, 0, 5.482831, -147.00842, 84.19626, -422.69824)
 
 [node name="su59" parent="Planes" unique_id=2088307160 instance=ExtResource("6_q4vk6")]
-transform = Transform3D(6.0529904, 0, -13.724478, 0, 15, 0, 13.724478, 0, 6.0529904, -137.41841, 84.19626, -397.5956)
+transform = Transform3D(5.329641, 0, -14.021231, 0, 15, 0, 14.021231, 0, 5.329641, -133.63475, 84.19626, -389.0166)
 
 [node name="su61" parent="Planes" unique_id=1354706443 instance=ExtResource("6_q4vk6")]
-transform = Transform3D(6.0529904, 0, -13.724478, 0, 15, 0, 13.724478, 0, 6.0529904, -123.198204, 84.19626, -361.1478)
+transform = Transform3D(3.7476037, 0.09551833, -14.523993, -0.3445848, 14.996038, 0.009709984, 14.520218, 0.33122385, 3.7488081, -124.750885, 84.19626, -354.88492)
 
 [node name="su63" parent="Planes" unique_id=1889661245 instance=ExtResource("6_q4vk6")]
-transform = Transform3D(2.5483584, 0, -14.781943, 0, 15, 0, 14.781943, 0, 2.5483584, -115.62236, 84.19626, -325.358)
+transform = Transform3D(3.981278, 0, -14.461999, 0, 15, 0, 14.461999, 0, 3.981278, -118.798134, 84.19626, -320.41962)
 
 [node name="su65" parent="Planes" unique_id=10259567 instance=ExtResource("6_q4vk6")]
-transform = Transform3D(2.5483584, 0, -14.781943, 0, 15, 0, 14.781943, 0, 2.5483584, -107.624016, 84.19626, -288.03766)
+transform = Transform3D(4.0213194, 0, -14.450916, 0, 15, 0, 14.450916, 0, 4.0213194, -113.91129, 84.19626, -282.24496)
 
 [node name="su67" parent="Planes" unique_id=1328675891 instance=ExtResource("6_q4vk6")]
-transform = Transform3D(2.5130289, 0.0023139922, -14.787991, -0.0075438, 14.999998, 0.0010651731, 14.787989, 0.0072587165, 2.5130296, -100.445244, 84.19626, -248.83252)
+transform = Transform3D(2.5130289, 0.0023139922, -14.787991, -0.0075438, 14.999998, 0.0010651731, 14.787989, 0.0072587165, 2.5130296, -99.83828, 84.194435, -245.26083)
 
 [node name="su69" parent="Planes" unique_id=2095235393 instance=ExtResource("6_q4vk6")]
-transform = Transform3D(2.5483584, 0, -14.781943, 0, 15, 0, 14.781943, 0, 2.5483584, -84.11871, 84.19626, -211.31918)
+transform = Transform3D(2.5483584, 0, -14.781943, 0, 15, 0, 14.781943, 0, 2.5483584, -87.24922, 84.19626, -210.7795)
 
 [node name="su70" parent="Planes" unique_id=1833198205 instance=ExtResource("6_q4vk6")]
-transform = Transform3D(2.5483584, 0, -14.781943, 0, 15, 0, 14.781943, 0, 2.5483584, -76.57269, 84.19626, -178.53581)
+transform = Transform3D(2.5483584, 0, -14.781943, 0, 15, 0, 14.781943, 0, 2.5483584, -76.209816, 84.19626, -176.4309)
 
 [node name="su58" parent="Planes" unique_id=777834072 instance=ExtResource("6_q4vk6")]
-transform = Transform3D(6.05318, 0, 13.724395, 0, 15, 0, -13.724395, 0, 6.05318, 157.87257, 84.19626, -432.93158)
+transform = Transform3D(4.288974, 0, 14.373751, 0, 15, 0, -14.373751, 0, 4.288974, 146.3909, 84.19626, -422.68533)
 
 [node name="su60" parent="Planes" unique_id=1147508431 instance=ExtResource("6_q4vk6")]
-transform = Transform3D(6.05318, 0, 13.724395, 0, 15, 0, -13.724395, 0, 6.05318, 142.85213, 84.19626, -397.5956)
+transform = Transform3D(3.799529, 0, 14.51081, 0, 15, 0, -14.51081, 0, 3.799529, 132.24281, 84.19626, -388.92856)
 
 [node name="su62" parent="Planes" unique_id=1063935734 instance=ExtResource("6_q4vk6")]
-transform = Transform3D(6.05318, 0, 13.724395, 0, 15, 0, -13.724395, 0, 6.05318, 129.54834, 84.19626, -361.1478)
+transform = Transform3D(3.2207172, 0, 14.650153, 0, 15, 0, -14.650153, 0, 3.2207172, 125.126236, 84.36706, -354.25653)
 
 [node name="su64" parent="Planes" unique_id=1130764023 instance=ExtResource("6_q4vk6")]
-transform = Transform3D(2.5531425, 0, 14.781117, 0, 15, 0, -14.781117, 0, 2.5531425, 119.87508, 84.19626, -325.358)
+transform = Transform3D(2.5531425, 0, 14.781117, 0, 15, 0, -14.781117, 0, 2.5531425, 119.00566, 84.19626, -320.32462)
 
 [node name="su66" parent="Planes" unique_id=1273657268 instance=ExtResource("6_q4vk6")]
-transform = Transform3D(2.5531425, 0, 14.781117, 0, 15, 0, -14.781117, 0, 2.5531425, 112.96844, 84.19626, -288.03766)
+transform = Transform3D(2.5531425, 0, 14.781117, 0, 15, 0, -14.781117, 0, 2.5531425, 112.17295, 84.19626, -283.4323)
 
 [node name="su68" parent="Planes" unique_id=1073207089 instance=ExtResource("6_q4vk6")]
 transform = Transform3D(2.501531, 0, 14.78994, 0, 14.999999, 0, -14.78994, 0, 2.501531, 99.32532, 84.19626, -248.83252)
@@ -234,18 +242,18 @@ transform = Transform3D(2.501531, 0, 14.78994, 0, 14.999999, 0, -14.78994, 0, 2.
 transform = Transform3D(2.5531425, 0, 14.781117, 0, 15, 0, -14.781117, 0, 2.5531425, 89.017685, 84.19626, -211.31918)
 
 [node name="su72" parent="Planes" unique_id=1282193603 instance=ExtResource("6_q4vk6")]
-transform = Transform3D(2.5531425, 0, 14.781117, 0, 15, 0, -14.781117, 0, 2.5531425, 82.30618, 84.19626, -178.53581)
+transform = Transform3D(2.5531425, 0, 14.781117, 0, 15, 0, -14.781117, 0, 2.5531425, 81.78447, 84.19626, -175.51543)
 
 [node name="Front" type="Marker3D" parent="." unique_id=1756438059]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 95.9984, -195.40636)
 gizmo_extents = 10.0
 
 [node name="PlaneRight" type="Marker3D" parent="." unique_id=22959404]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -86.8774, 86.09364, -250.65881)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -93.82749, 86.09364, -246.19754)
 gizmo_extents = 10.0
 
 [node name="PlaneLeft" type="Marker3D" parent="." unique_id=1394385043]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124.3105, 86.09364, -364.25043)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 117.86517, 86.09364, -355.34763)
 gizmo_extents = 10.0
 
 [node name="FrontCannon" type="Marker3D" parent="." unique_id=1600933814]
@@ -265,7 +273,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.1177635, 119.86545, -362.7
 gizmo_extents = 10.0
 
 [node name="Marker3D5" type="Marker3D" parent="." unique_id=1775789189]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120.83093, 86.09364, -364.25043)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -120.101105, 86.09364, -356.18518)
 gizmo_extents = 10.0
 
 [node name="Marker3D7" type="Marker3D" parent="." unique_id=2030773443]
@@ -273,7 +281,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80.77537, 86.09364, -212.3535
 gizmo_extents = 10.0
 
 [node name="Marker3D8" type="Marker3D" parent="." unique_id=300861214]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 108.22305, 86.09364, -289.20465)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.549164, 86.09364, -284.15576)
 gizmo_extents = 10.0
 
 [node name="Marker3D9" type="Marker3D" parent="." unique_id=287769666]
@@ -285,3 +293,4 @@ gizmo_extents = 10.0
 [connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
 
 [editable path="bigfuckcannon"]
+[editable path="navy"]
