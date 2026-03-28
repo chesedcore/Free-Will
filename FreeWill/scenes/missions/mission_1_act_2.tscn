@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="7_877yy"]
 [ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scripts/master/enemies_list.gd" id="8_tn3th"]
 [ext_resource type="PackedScene" uid="uid://b5oi77k2llexl" path="res://scenes/enviorment/pillar_enviorment_prop.tscn" id="9_q70iu"]
+[ext_resource type="AudioStream" uid="uid://bn4cvhi3s33m6" path="res://audio/mus/Mission 1/please hold (the line).ogg" id="10_7ieol"]
 
 [sub_resource type="Resource" id="Resource_x2y18"]
 script = ExtResource("2_q70iu")
@@ -140,10 +141,11 @@ size = Vector2(10000, 10000)
 subdivide_width = 300
 subdivide_depth = 300
 
-[node name="Mission1_act2" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("stagehandler", "spawnpoints", "enemies_list", "enviorment", "transition")]
+[node name="Mission1_act2" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints", "enemies_list", "enviorment", "transition")]
 script = ExtResource("1_e1x6y")
 mission_title = 2
 scene_to_transition_to = "res://scenes/credits/credits.tscn"
+mission_music = NodePath("mission_music")
 stagehandler = NodePath("stagehandler")
 act_end_dialog = "mission1_act2_end"
 waves = Array[ExtResource("2_q70iu")]([SubResource("Resource_x2y18"), SubResource("Resource_08rrl"), SubResource("Resource_cetxk"), SubResource("Resource_xmt5l"), SubResource("Resource_e1x6y"), SubResource("Resource_q70iu"), SubResource("Resource_7ieol"), SubResource("Resource_ut7qk")])
@@ -259,6 +261,10 @@ transform = Transform3D(-1.3113416e-05, 0, -299.99997, 0, 299.99997, 0, 299.9999
 
 [node name="Grapple Point" parent="enviorment/pillar_enviorment_prop6" index="5" unique_id=865896495]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, -0.6738348)
+
+[node name="mission_music" type="AudioStreamPlayer" parent="." unique_id=1028125758]
+stream = ExtResource("10_7ieol")
+bus = &"Music"
 
 [editable path="enviorment/pillar_enviorment_prop"]
 [editable path="enviorment/pillar_enviorment_prop2"]

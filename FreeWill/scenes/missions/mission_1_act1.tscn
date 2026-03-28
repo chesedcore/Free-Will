@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="6_k1o3l"]
 [ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="7_xyyhm"]
 [ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scripts/master/enemies_list.gd" id="8_qhl1s"]
+[ext_resource type="AudioStream" uid="uid://bn4cvhi3s33m6" path="res://audio/mus/Mission 1/please hold (the line).ogg" id="10_d871a"]
 [ext_resource type="PackedScene" uid="uid://b5oi77k2llexl" path="res://scenes/enviorment/pillar_enviorment_prop.tscn" id="10_n6kqd"]
 
 [sub_resource type="Resource" id="Resource_niyrk"]
@@ -87,10 +88,11 @@ waveinfo = Dictionary[int, int]({
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
-[node name="Mission1_act1" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("stagehandler", "spawnpoints", "enemies_list", "enviorment", "transition")]
+[node name="Mission1_act1" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints", "enemies_list", "enviorment", "transition")]
 script = ExtResource("1_pwc3s")
 mission_title = 2
 scene_to_transition_to = "res://scenes/missions/interlude.tscn"
+mission_music = NodePath("mission_music")
 stagehandler = NodePath("stagehandler")
 act_end_dialog = "mission1_end"
 waves = Array[ExtResource("2_67xhj")]([SubResource("Resource_niyrk"), SubResource("Resource_0yhn2"), SubResource("Resource_myx56"), SubResource("Resource_1lad2"), SubResource("Resource_mctdd"), SubResource("Resource_feyy3"), SubResource("Resource_dtlup"), SubResource("Resource_v5q0b"), SubResource("Resource_jh3e7")])
@@ -204,6 +206,10 @@ transform = Transform3D(1.0000007, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 10.860665,
 
 [node name="Grapple Point" parent="enviorment/pillar_enviorment_prop5" index="5" unique_id=865896495]
 transform = Transform3D(1, 5.9604645e-08, 8.940697e-08, 0, 1, -2.9802322e-08, 0, 0, 1, 0.14593196, 3.5714614, 0.41495752)
+
+[node name="mission_music" type="AudioStreamPlayer" parent="." unique_id=1660453610]
+stream = ExtResource("10_d871a")
+bus = &"Music"
 
 [editable path="enviorment/pillar_enviorment_prop"]
 [editable path="enviorment/pillar_enviorment_prop4"]

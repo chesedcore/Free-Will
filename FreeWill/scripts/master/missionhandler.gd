@@ -6,6 +6,7 @@ class_name MissonHandler extends Node3D
 
 @export var mission_title :MissionStatus.MISSION_TITLES
 @export var scene_to_transition_to : String
+@export var mission_music: AudioStreamPlayer
 
 # enemies
 var standard_plane : Resource
@@ -38,6 +39,8 @@ var enemy_count : int = 0
 
 #temporary mission start logic
 func _ready() -> void:
+	Dialogic.timeline_started.connect(lower_sfx_and_music)
+	Dialogic.timeline_ended.connect(raise_sfx_and_music)
 	#wanted the tank to start with some motion so uhhh yeahhhhh
 	tank = stagehandler.tank
 	tank.linear_velocity += tank.camera_gimbal.global_transform.basis.z * (tank.GUN_FIRE_FORCE *10)
@@ -46,8 +49,8 @@ func _ready() -> void:
 	
 	
 	
-	spawn_wave()
-
+	await spawn_wave()
+	mission_music.play()
 var enemy_scenes :Dictionary[WaveResource.EnemyTypes,Resource] = {}
 
 #SPAWNCONSTS
@@ -177,7 +180,9 @@ func spawn_wave()->void:
 		current_wave +=1
 		stagehandler.ui.track_these_entities(enemies_list.get_enemies())
 	
-	
+
+const BORDER : float = 5000
+
 func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: float, max_attempts := 20) -> Vector3:
 	for i in range(max_attempts):
 		var offset : Vector3= Vector3(
@@ -186,10 +191,11 @@ func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: fl
 			randf_range(-radius, radius)
 		)
 		var candidate : Vector3 = base_pos + offset
-		
+		if  abs(candidate.x)>= BORDER or abs(candidate.z)>= BORDER:
+			continue 
 		var is_valid := true
 		var entites : Array[Node] = enemies_list.get_enemies() + enviorment.get_children()
-		print(entites)
+		
 		for entity in entites:
 			if entity.global_position.distance_to(candidate) < min_distance:
 				is_valid = false
@@ -199,7 +205,6 @@ func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: fl
 			print(candidate)
 			return candidate
 	
-
 	return base_pos
 
 
@@ -234,3 +239,16 @@ func fade_out()->void:
 	var fade_out_tween : Tween = get_tree().create_tween().set_ease(Tween.EASE_OUT)
 	fade_out_tween.tween_property(transition,"modulate",Color("ffffff"),1)
 	await fade_out_tween.finished
+
+
+func lower_sfx_and_music()->void :
+	var bus_index : int= AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_volume_db(bus_index, -10.0)
+	bus_index = AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_volume_db(bus_index, -10.0)
+
+func raise_sfx_and_music()->void :
+	var bus_index : int= AudioServer.get_bus_index("Music")
+	AudioServer.set_bus_volume_db(bus_index, 0.0)
+	bus_index = AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_volume_db(bus_index, 0.0)
