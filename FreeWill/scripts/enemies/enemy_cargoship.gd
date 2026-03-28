@@ -1,7 +1,7 @@
 class_name EnemyCargoShip extends BaseEnemy
 
 @export var cargo_ship_model: Node3D
-
+@export var smoke_spawners : Array[Marker3D]
 
 
 func _ready() -> void:
@@ -24,8 +24,12 @@ func floating_animation()->void:
 	var floating_tween : Tween = create_tween().set_loops().set_parallel(true)
 	floating_tween.tween_subtween(pos_tween)
 	floating_tween.tween_subtween(deg_tween)
-	
-	
+
+func damage(amount: float) -> void:
+	super(amount)
+	for spawner in smoke_spawners:
+		StationarySmokeParticles.attach_to(spawner)
+
 func kill() -> void:
 	EnemySignalBus.cargo_ship_deactivate_shield.emit()
 	super.kill()

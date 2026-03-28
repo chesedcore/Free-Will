@@ -36,7 +36,7 @@ func _on_line_of_sight_body_exited(body: Node3D) -> void:
 func _on_attack_timer_timeout() -> void:
 	if player:
 		CannonParticles.attach_to(shark_spawn_location)
-		shark_spawn_location.get_child(0).scale = Vector3(10.,10.,10.)
+		shark_spawn_location.get_child(0).scale = Vector3(3.,3.,3.)
 		var new_missile :HomingMissile = SHARK.instantiate()
 		
 		new_missile.target_node = player
