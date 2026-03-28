@@ -12,7 +12,6 @@
 [ext_resource type="Script" uid="uid://c1jqeh1jayhha" path="res://scripts/ui/marquee_container.gd" id="7_srbcc"]
 [ext_resource type="Script" uid="uid://bq3wxnm2alcqb" path="res://scripts/ui/marquee.gd" id="8_6dj5d"]
 [ext_resource type="Shader" uid="uid://doveve2ovrg0t" path="res://shaderslop/stripes.gdshader" id="10_ba28l"]
-[ext_resource type="PackedScene" uid="uid://btoexwag8mhr3" path="res://scenes/ui/options_menu.tscn" id="13_yuuuf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ou4dh"]
 shader = ExtResource("3_ou4dh")
@@ -433,6 +432,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="OptionsMenu" parent="PauseMenu/OptionsDock" unique_id=299335495 instance=ExtResource("13_yuuuf")]
-layout_mode = 1
