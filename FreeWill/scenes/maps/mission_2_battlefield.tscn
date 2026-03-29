@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://bfm11gbihbc6c"]
+
+[ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="1_gd4ah"]
+[ext_resource type="Sky" uid="uid://dsl52b32frxlg" path="res://res/world_env/EveningSkyHDRI028B_1K.tres" id="2_2lvk5"]
+[ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="3_eunoo"]
+[ext_resource type="PackedScene" uid="uid://b5oi77k2llexl" path="res://scenes/enviorment/pillar_enviorment_prop.tscn" id="4_li585"]
+
+[sub_resource type="Gradient" id="Gradient_7kl64"]
+offsets = PackedFloat32Array(0.33802816, 0.7640845)
+colors = PackedColorArray(0.091199934, 0.03599999, 0.45, 1, 0.39, 0.41033328, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4m7ug"]
+noise_type = 2
+frequency = 0.006
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7uv6q"]
+noise = SubResource("FastNoiseLite_4m7ug")
+color_ramp = SubResource("Gradient_7kl64")
+seamless = true
+in_3d_space = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_70vka"]
+noise_type = 5
+frequency = 0.15
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_f43ue"]
+noise = SubResource("FastNoiseLite_70vka")
+seamless = true
+
+[sub_resource type="Gradient" id="Gradient_70vka"]
+offsets = PackedFloat32Array(0, 0.57042253, 0.8309859)
+colors = PackedColorArray(0, 0, 0, 1, 0.5931336, 0.59313357, 0.59313357, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2l77h"]
+noise_type = 2
+frequency = 0.005
+fractal_octaves = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ovlf1"]
+noise = SubResource("FastNoiseLite_2l77h")
+color_ramp = SubResource("Gradient_70vka")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_00y2m"]
+render_priority = 0
+shader = ExtResource("1_gd4ah")
+shader_parameter/juice = SubResource("NoiseTexture2D_7uv6q")
+shader_parameter/out_color = Color(0, 0, 0, 1)
+shader_parameter/amount = 0.20000000298023
+shader_parameter/speed = 0.10000000149012
+shader_parameter/beer_factor = 690000.0
+shader_parameter/metallic = -0.15
+shader_parameter/specular = 0.85
+shader_parameter/roughness = 1.565
+shader_parameter/noise_texture_1 = SubResource("NoiseTexture2D_f43ue")
+shader_parameter/noise_texture_2 = SubResource("NoiseTexture2D_ovlf1")
+shader_parameter/noise_1_strength = 58.9
+shader_parameter/noise_2_strength = 9.445
+shader_parameter/amplitude = 50.19
+shader_parameter/uv_scale = Vector2(5, 5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_114n2"]
+material = SubResource("ShaderMaterial_00y2m")
+size = Vector2(10000, 10000)
+subdivide_width = 300
+subdivide_depth = 300
+
+[sub_resource type="Environment" id="Environment_32be6"]
+background_mode = 2
+sky = ExtResource("2_2lvk5")
+tonemap_mode = 3
+tonemap_exposure = 0.6
+glow_enabled = true
+glow_levels/3 = 1.34
+glow_levels/4 = 1.6
+glow_levels/5 = 3.27
+glow_levels/6 = 0.94
+glow_levels/7 = 0.47
+glow_normalized = true
+glow_intensity = 1.0
+glow_bloom = 0.3
+glow_blend_mode = 0
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.3311, 0.38879168, 0.43, 1)
+fog_density = 1.0
+fog_sky_affect = 0.75
+fog_depth_curve = 2.0
+fog_depth_end = 8000.0
+
+[node name="Mission2Battlefield" type="Node3D" unique_id=1690070922]
+
+[node name="Ocean" type="MeshInstance3D" parent="." unique_id=1883953202]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -0.093763605, -142.19995, -0.8690749)
+mesh = SubResource("PlaneMesh_114n2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=674383754]
+transform = Transform3D(0.99998426, -0.003607814, 0.0042996034, -0.0039376323, 0.09495315, 0.9954741, -0.0039997455, -0.9954753, 0.094937414, 0, 33.85881, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1284041793]
+environment = SubResource("Environment_32be6")
+
+[node name="Tank" parent="." unique_id=290108966 instance=ExtResource("3_eunoo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 550.5953, 0)
+
+[node name="pillar_enviorment_prop5" parent="." unique_id=835047533 instance=ExtResource("4_li585")]
+transform = Transform3D(371.17474, 0, 0, 0, 265.0744, 259.81964, 0, -259.81964, 265.0744, -1500, -620.4053, 1500)
+
+[node name="BIGPILLAR" parent="." unique_id=1395337680 instance=ExtResource("4_li585")]
+transform = Transform3D(1476.539, 264.25885, 0, -264.25885, 1476.539, 0, 0, 0, 1500, -5000, 50, 5000)
+
+[node name="BIGPILLAR2" parent="." unique_id=150471973 instance=ExtResource("4_li585")]
+transform = Transform3D(1472.2914, -282.32333, 51.500298, 285.56766, 1414.5581, -409.23843, 28.45826, 411.48322, 1442.1758, 5000, 50, -5000)
+
+[node name="BIGPILLAR3" parent="." unique_id=25239239 instance=ExtResource("4_li585")]
+transform = Transform3D(1434.3674, 74.34288, 432.5086, 0, 1478.3203, -254.10498, -438.8514, 242.98657, 1413.6362, 5000, 50, 5000)
+
+[node name="BIGPILLAR4" parent="." unique_id=802664541 instance=ExtResource("4_li585")]
+transform = Transform3D(1478.2644, 254.42937, 0, -254.42937, 1478.2644, 0, 0, 0, 1500, -5000, 50, -5000)

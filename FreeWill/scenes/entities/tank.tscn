@@ -372,6 +372,7 @@ debug_color = Color(0, 0.5950001, 0.7, 1)
 physics_interpolation_mode = 1
 transform = Transform3D(-1, 0, -8.742278e-08, -2.262668e-08, 0.9659259, 0.25881907, 8.444392e-08, 0.25881907, -0.9659258, 0, 10, -20)
 top_level = true
+far = 20000.0
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1755246455]
 process_priority = 300
