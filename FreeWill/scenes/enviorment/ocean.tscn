@@ -64,6 +64,5 @@ subdivide_width = 300
 subdivide_depth = 300
 
 [node name="Ocean" type="MeshInstance3D" unique_id=1773392108]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 mesh = SubResource("PlaneMesh_optku")
 script = ExtResource("2_7u6pt")

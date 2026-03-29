@@ -56,7 +56,11 @@ func _on_tank_fucking_exploded() -> void:
 	var game_over_scene := Registry.create_game_over()
 	game_over_scene.player = tank
 	game_over_scene.current_scene = get_scene_file_path()
-	game_over_scene.current_wave_idx = current_wave
+	#this actually advances a wave upon death so gotta decrement by 1 BUT DONT INCREMENNT IF THE PLAYER DIES DURING STARTING DIALOG
+	game_over_scene.current_wave_idx = current_wave 
+	if current_wave > 0 :
+		
+		game_over_scene.current_wave_idx -= 1
 	AudioManager.play_sound_at(tank.global_position, preload("res://audio/sfx/large_explosion.ogg"), 15.0)
 	add_child.call_deferred(game_over_scene)
 
@@ -226,14 +230,16 @@ func on_enemy_death()->void:
 		
 		spawn_wave()
 func end_mission() -> void:
+	if Dialogic.current_timeline:
+		await Dialogic.timeline_ended
 	Dialogic.start(act_end_dialog)
 	await Dialogic.timeline_ended
 	if stagehandler.tank.is_dead == false:
 		await fade_out()
-		if enviorment:
-			var grapple_points : Array[Node] = get_tree().get_nodes_in_group("Grapple Points")
-			for point in grapple_points:
-				IFFTracker.stop_tracking_entity(point)
+		#if enviorment:
+			#var grapple_points : Array[Node] = get_tree().get_nodes_in_group("Grapple Points")
+			#for point in grapple_points:
+				#IFFTracker.stop_tracking_entity(point)
 		EventBus.change_game_container_to.emit(load(scene_to_transition_to).instantiate())
 
 
@@ -250,15 +256,15 @@ func fade_out()->void:
 func lower_sfx_and_music()->void :
 	var bus_index : int= AudioServer.get_bus_index("Music")
 	var sfx_volume := AudioServer.get_bus_volume_db(bus_index)
-	AudioServer.set_bus_volume_db(bus_index, sfx_volume -10.0)
+	AudioServer.set_bus_volume_db(bus_index, sfx_volume -15.0)
 	bus_index = AudioServer.get_bus_index("SFX")
 	var music_volume := AudioServer.get_bus_volume_db(bus_index)
-	AudioServer.set_bus_volume_db(bus_index, music_volume -10.0)
+	AudioServer.set_bus_volume_db(bus_index, music_volume -15.0)
 
 func raise_sfx_and_music()->void :
 	var bus_index : int= AudioServer.get_bus_index("Music")
 	var sfx_volume := AudioServer.get_bus_volume_db(bus_index)
-	AudioServer.set_bus_volume_db(bus_index, sfx_volume +10.0)
+	AudioServer.set_bus_volume_db(bus_index, sfx_volume +15.0)
 	bus_index = AudioServer.get_bus_index("SFX")
 	var music_volume := AudioServer.get_bus_volume_db(bus_index)
-	AudioServer.set_bus_volume_db(bus_index, music_volume +10.0)
+	AudioServer.set_bus_volume_db(bus_index, music_volume +15.0)

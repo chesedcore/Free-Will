@@ -96,6 +96,8 @@ theme_override_constants/margin_bottom = -9
 [node name="dialog_text" type="RichTextLabel" parent="dialogcontainer/VBoxContainer/textControl/text_margin/text container/MarginContainer" unique_id=1687118704]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
 theme_override_fonts/normal_font = ExtResource("1_76c33")
 text = "Strike me down zeus!
 "

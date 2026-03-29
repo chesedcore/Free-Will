@@ -102,7 +102,7 @@ enviorment = NodePath("enviorment")
 transition = NodePath("CanvasLayer/transition")
 
 [node name="Ocean" parent="." unique_id=1773392108 instance=ExtResource("3_pwc3s")]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -0.093763605, -63.03884, -0.8690749)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.093763605, -63.03884, -0.8690749)
 
 [node name="stagehandler" type="Node3D" parent="." unique_id=810361068 node_paths=PackedStringArray("ui", "enemies_list", "tank", "environment", "weapons")]
 script = ExtResource("4_n6kqd")
@@ -177,6 +177,30 @@ transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 1433.1635, 2.2414856, 5
 [node name="Grapple Point" parent="enviorment/pillar_enviorment_prop" index="5" unique_id=865896495]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
 
+[node name="borderpillarx" parent="enviorment" unique_id=457154737 instance=ExtResource("10_n6kqd")]
+transform = Transform3D(299.99997, 0, 0, 0, -1.3113416e-05, 299.99997, 0, -299.99997, -1.3113416e-05, 2500, 0, 1345)
+
+[node name="Grapple Point" parent="enviorment/borderpillarx" index="5" unique_id=865896495]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
+
+[node name="borderpillarx2" parent="enviorment" unique_id=1100865456 instance=ExtResource("10_n6kqd")]
+transform = Transform3D(299.99997, 0, 0, 0, -1.3113416e-05, 299.99997, 0, -299.99997, -1.3113416e-05, -2500, 0, 1345)
+
+[node name="Grapple Point" parent="enviorment/borderpillarx2" index="5" unique_id=865896495]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
+
+[node name="borderpillarz" parent="enviorment" unique_id=1942290633 instance=ExtResource("10_n6kqd")]
+transform = Transform3D(-1.3113415e-05, 299.99997, 0, -299.99997, -1.3113415e-05, 0, 0, 0, 299.99997, -1941, 0, 2500)
+
+[node name="Grapple Point" parent="enviorment/borderpillarz" index="5" unique_id=865896495]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
+
+[node name="borderpillarz2" parent="enviorment" unique_id=1332274677 instance=ExtResource("10_n6kqd")]
+transform = Transform3D(-1.3113415e-05, 299.99997, 0, -299.99997, -1.3113415e-05, 0, 0, 0, 299.99997, -1941, 0, -2500)
+
+[node name="Grapple Point" parent="enviorment/borderpillarz2" index="5" unique_id=865896495]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
+
 [node name="pillar_enviorment_prop4" parent="enviorment" unique_id=2004984867 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(212.13203, -149.99998, 150, 0, 212.13205, 212.13203, -212.13203, -149.99998, 150, 1739.3833, -194.28061, 2415.9868)
 
@@ -212,6 +236,10 @@ stream = ExtResource("10_d871a")
 bus = &"Music"
 
 [editable path="enviorment/pillar_enviorment_prop"]
+[editable path="enviorment/borderpillarx"]
+[editable path="enviorment/borderpillarx2"]
+[editable path="enviorment/borderpillarz"]
+[editable path="enviorment/borderpillarz2"]
 [editable path="enviorment/pillar_enviorment_prop4"]
 [editable path="enviorment/pillar_enviorment_prop2"]
 [editable path="enviorment/pillar_enviorment_prop3"]

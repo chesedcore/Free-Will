@@ -125,15 +125,15 @@ collision_mask = 7
 [node name="decoy_holder" type="Node3D" parent="." unique_id=1906563259]
 
 [node name="decoy_pos1" type="Node3D" parent="decoy_holder" unique_id=170941766]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -61.18901, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -122.18901, 0)
 
 [node name="decoy_pos2" type="Node3D" parent="decoy_holder" unique_id=1293792413]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 59.723198, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 215.7232, 0)
 
 [node name="decoy_pos3" type="Node3D" parent="decoy_holder" unique_id=89453283]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.654533, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 206.65454, 0, 0)
 
 [node name="decoy_pos4" type="Node3D" parent="decoy_holder" unique_id=262683156]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -67.12079, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -180.12079, 0, 0)
 
 [editable path="su57"]

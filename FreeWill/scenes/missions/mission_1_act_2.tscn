@@ -239,29 +239,41 @@ transform = Transform3D(-1.3113416e-05, 0, -299.99997, 0, 299.99997, 0, 299.9999
 [node name="Grapple Point" parent="enviorment/pillar_enviorment_prop2" index="5" unique_id=865896495]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
 
-[node name="pillar_enviorment_prop3" parent="enviorment" unique_id=724859250 instance=ExtResource("9_q70iu")]
-transform = Transform3D(-1.3113416e-05, 0, -299.99997, 0, 299.99997, 0, 299.99997, 0, -1.3113416e-05, 1433.1635, 2.2414856, -3581.2888)
-
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop3" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
-
-[node name="pillar_enviorment_prop4" parent="enviorment" unique_id=993151898 instance=ExtResource("9_q70iu")]
-transform = Transform3D(-1.3113416e-05, 0, -299.99997, 0, 299.99997, 0, 299.99997, 0, -1.3113416e-05, -2396.941, 2.2414856, -3581.2888)
-
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop4" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, -0.6738348)
-
 [node name="pillar_enviorment_prop5" parent="enviorment" unique_id=884838753 instance=ExtResource("9_q70iu")]
-transform = Transform3D(-1.3113416e-05, 0, -299.99997, 0, 299.99997, 0, 299.99997, 0, -1.3113416e-05, -2396.941, 2.2414856, -1309.2942)
+transform = Transform3D(-1.3113416e-05, 0, -299.99997, 0, 299.99997, 0, 299.99997, 0, -1.3113416e-05, -1342.5168, 2.2414856, -1309.2942)
 
 [node name="Grapple Point" parent="enviorment/pillar_enviorment_prop5" index="5" unique_id=865896495]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, -0.7638345)
 
 [node name="pillar_enviorment_prop6" parent="enviorment" unique_id=1795904837 instance=ExtResource("9_q70iu")]
-transform = Transform3D(-1.3113416e-05, 0, -299.99997, 0, 299.99997, 0, 299.99997, 0, -1.3113416e-05, -2396.941, 2.2414856, 2080.6606)
+transform = Transform3D(-1.3113416e-05, 0, -299.99997, 0, 299.99997, 0, 299.99997, 0, -1.3113416e-05, -1342.5168, 2.2414856, 506.66064)
 
 [node name="Grapple Point" parent="enviorment/pillar_enviorment_prop6" index="5" unique_id=865896495]
 transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, -0.6738348)
+
+[node name="borderpillarx" parent="enviorment" unique_id=1354109632 instance=ExtResource("9_q70iu")]
+transform = Transform3D(299.99997, 0, 0, 0, -1.3113416e-05, 299.99997, 0, -299.99997, -1.3113416e-05, 2500, 0, 1345)
+
+[node name="Grapple Point" parent="enviorment/borderpillarx" index="5" unique_id=865896495]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
+
+[node name="borderpillarx2" parent="enviorment" unique_id=1656489903 instance=ExtResource("9_q70iu")]
+transform = Transform3D(299.99997, 0, 0, 0, -1.3113416e-05, 299.99997, 0, -299.99997, -1.3113416e-05, -2500, 0, 1345)
+
+[node name="Grapple Point" parent="enviorment/borderpillarx2" index="5" unique_id=865896495]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
+
+[node name="borderpillarz" parent="enviorment" unique_id=1625327278 instance=ExtResource("9_q70iu")]
+transform = Transform3D(-1.3113415e-05, 299.99997, 0, -299.99997, -1.3113415e-05, 0, 0, 0, 299.99997, -1941, 0, 2500)
+
+[node name="Grapple Point" parent="enviorment/borderpillarz" index="5" unique_id=865896495]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
+
+[node name="borderpillarz2" parent="enviorment" unique_id=984720752 instance=ExtResource("9_q70iu")]
+transform = Transform3D(-1.3113415e-05, 299.99997, 0, -299.99997, -1.3113415e-05, 0, 0, 0, 299.99997, -1941, 0, -2500)
+
+[node name="Grapple Point" parent="enviorment/borderpillarz2" index="5" unique_id=865896495]
+transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
 
 [node name="mission_music" type="AudioStreamPlayer" parent="." unique_id=1028125758]
 stream = ExtResource("10_7ieol")
@@ -269,7 +281,9 @@ bus = &"Music"
 
 [editable path="enviorment/pillar_enviorment_prop"]
 [editable path="enviorment/pillar_enviorment_prop2"]
-[editable path="enviorment/pillar_enviorment_prop3"]
-[editable path="enviorment/pillar_enviorment_prop4"]
 [editable path="enviorment/pillar_enviorment_prop5"]
 [editable path="enviorment/pillar_enviorment_prop6"]
+[editable path="enviorment/borderpillarx"]
+[editable path="enviorment/borderpillarx2"]
+[editable path="enviorment/borderpillarz"]
+[editable path="enviorment/borderpillarz2"]
