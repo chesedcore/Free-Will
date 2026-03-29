@@ -114,11 +114,7 @@ func _on_hitbox_body_entered(body: Node3D) -> void:
 	if body is PlayerTank:
 		var res := try_damage_tank(body, damage_value)
 		if res.is_err():
-			var particles : Node3D = \
-				preload("res://scenes/projectiles/missile_parry_particles.tscn").instantiate()
-			get_tree().root.add_child(particles)
-			particles.basis = global_basis
-			particles.position = global_position
+			ParryParticles.attach_to(get_tree(), global_basis, global_position)
 			return
 		ExplosionParticles.attach_to(body)
 

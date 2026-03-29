@@ -13,3 +13,7 @@ func _ready() -> void:
 static func attach_to(node: Node) -> void:
 	var particles := Registry.create_missile_explosion()
 	node.add_child(particles)
+
+static func compile_particles(tree : SceneTree) -> void:
+	var particles := Registry.create_missile_explosion()
+	tree.current_scene.add_child(particles)

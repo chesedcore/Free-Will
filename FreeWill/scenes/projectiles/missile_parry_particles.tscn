@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dptc6fd5o3wy7"]
 
-[ext_resource type="Script" uid="uid://cxohsffep4fi6" path="res://scenes/projectiles/missile_parry_particles.gd" id="1_0n5t0"]
+[ext_resource type="Script" uid="uid://cxohsffep4fi6" path="res://scripts/folder/missile_parry_particles.gd" id="1_0n5t0"]
 
 [sub_resource type="Curve" id="Curve_0n5t0"]
 _limits = [0.0, 100.0, 0.0, 1.0]
@@ -43,8 +43,9 @@ material = SubResource("StandardMaterial3D_ute5l")
 radial_segments = 8
 rings = 4
 
-[node name="Node3D" type="Node3D" unique_id=1182078075]
+[node name="Node3D" type="Node3D" unique_id=1182078075 node_paths=PackedStringArray("sparks")]
 script = ExtResource("1_0n5t0")
+sparks = NodePath("GPUParticles3D")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=158701251]
 emitting = false

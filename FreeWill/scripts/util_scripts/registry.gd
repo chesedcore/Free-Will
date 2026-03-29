@@ -27,6 +27,9 @@ static func create_stationary_smoke() -> StationarySmokeParticles:
 static func create_aerial_smoke() -> AerialSmokeParticles:
 	return preload("res://scenes/entities/aerial_smoke_particles.tscn").instantiate()
 
+static func create_parry_particles() -> ParryParticles:
+	return preload("res://scenes/projectiles/missile_parry_particles.tscn").instantiate()
+
 static func create_sound_settings() -> SoundSettings:
 	return preload("res://scenes/ui/sound_settings.tscn").instantiate()
 
