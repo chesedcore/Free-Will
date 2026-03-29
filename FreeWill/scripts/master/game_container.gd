@@ -37,6 +37,7 @@ func _on_options_clicked() -> void:
 	options_dock.add_child(Registry.create_options_menu())
 
 func pause_game() -> void:
+	if Dialogic.current_timeline: Dialogic.paused = true
 	reset_promise()
 	pause_menu.show()
 	game.process_mode = Node.PROCESS_MODE_DISABLED
@@ -47,6 +48,7 @@ func pause_game() -> void:
 	_paused = true
 
 func unpause_game() -> void:
+	if Dialogic.current_timeline: Dialogic.paused = false
 	control.cascade_out()
 	blur_drive.unblur()
 	lateral_bars.scroll_out()
