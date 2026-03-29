@@ -117,7 +117,7 @@ variables={}
 glossary/default_case_sensitive=true
 text/autocolor_names=false
 layout/end_behaviour=0
-text/autoadvance_per_word_delay=0.1
+text/autoadvance_per_word_delay=0.01
 
 [display]
 
