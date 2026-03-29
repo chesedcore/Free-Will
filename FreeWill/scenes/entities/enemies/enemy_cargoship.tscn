@@ -7,7 +7,10 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8oo4p"]
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.30842465, 0.9142758, 0.9999998, 1)
+albedo_color = Color(0.30980393, 0.9137255, 1, 1)
+emission_enabled = true
+emission = Color(0, 1.693, 2.298, 1)
+emission_energy_multiplier = 1.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_86esa"]
 size = Vector3(146.98663, 114.208405, 370.58087)
@@ -22,74 +25,74 @@ smoke_spawners = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3
 [node name="cargo_ship" parent="." unique_id=967678059 instance=ExtResource("1_86esa")]
 transform = Transform3D(60, 0, 0, 0, 60, 0, 0, 0, 60, 0, 0, 0)
 
-[node name="Cube" parent="cargo_ship" index="0" unique_id=174884091]
+[node name="Cube" parent="cargo_ship" index="0" unique_id=1198825657]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.099999994, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_8oo4p")
 
-[node name="Cube_001" parent="cargo_ship" index="1" unique_id=655426364]
+[node name="Cube_001" parent="cargo_ship" index="1" unique_id=648014983]
 material_override = ExtResource("2_766on")
 
-[node name="Cube_002" parent="cargo_ship" index="2" unique_id=225873024]
+[node name="Cube_002" parent="cargo_ship" index="2" unique_id=604877008]
 material_override = ExtResource("2_766on")
 
-[node name="Cube_003" parent="cargo_ship" index="3" unique_id=1450087114]
+[node name="Cube_003" parent="cargo_ship" index="3" unique_id=1791989237]
 material_override = ExtResource("2_766on")
 
-[node name="Cube_004" parent="cargo_ship" index="4" unique_id=952160168]
+[node name="Cube_004" parent="cargo_ship" index="4" unique_id=2069070005]
 material_override = ExtResource("3_k08wq")
 
-[node name="Cube_005" parent="cargo_ship" index="5" unique_id=1385405339]
+[node name="Cube_005" parent="cargo_ship" index="5" unique_id=767984267]
 material_override = ExtResource("3_k08wq")
 
-[node name="Cube_006" parent="cargo_ship" index="6" unique_id=1331361769]
+[node name="Cube_006" parent="cargo_ship" index="6" unique_id=1330293001]
 material_override = ExtResource("3_k08wq")
 
-[node name="Cube_007" parent="cargo_ship" index="7" unique_id=443456164]
+[node name="Cube_007" parent="cargo_ship" index="7" unique_id=1457773805]
 material_override = ExtResource("2_766on")
 
-[node name="Cube_008" parent="cargo_ship" index="8" unique_id=197296293]
+[node name="Cube_008" parent="cargo_ship" index="8" unique_id=209028311]
 material_override = ExtResource("3_k08wq")
 
-[node name="Cube_009" parent="cargo_ship" index="9" unique_id=799655797]
+[node name="Cube_009" parent="cargo_ship" index="9" unique_id=242598019]
 material_override = ExtResource("3_k08wq")
 
-[node name="Cube_010" parent="cargo_ship" index="10" unique_id=1535968774]
+[node name="Cube_010" parent="cargo_ship" index="10" unique_id=1215791637]
 material_override = ExtResource("2_766on")
 
-[node name="Cube_012" parent="cargo_ship" index="11" unique_id=522418079]
+[node name="Cube_012" parent="cargo_ship" index="11" unique_id=1090881665]
 material_override = ExtResource("2_766on")
 
-[node name="Cube_011" parent="cargo_ship" index="12" unique_id=1920124167]
+[node name="Cube_011" parent="cargo_ship" index="12" unique_id=91624830]
 material_override = ExtResource("2_766on")
 
-[node name="Cube_013" parent="cargo_ship" index="13" unique_id=412850035]
+[node name="Cube_013" parent="cargo_ship" index="13" unique_id=742565078]
 material_override = ExtResource("3_k08wq")
 
-[node name="Cube_014" parent="cargo_ship" index="14" unique_id=1178997622]
+[node name="Cube_014" parent="cargo_ship" index="14" unique_id=698396961]
 material_override = ExtResource("2_766on")
 
-[node name="Cube_015" parent="cargo_ship" index="15" unique_id=1869022117]
+[node name="Cube_015" parent="cargo_ship" index="15" unique_id=1523392264]
 material_override = ExtResource("2_766on")
 
-[node name="Cube_016" parent="cargo_ship" index="16" unique_id=1225218626]
+[node name="Cube_016" parent="cargo_ship" index="16" unique_id=180818707]
 material_override = ExtResource("3_k08wq")
 
-[node name="Cube_017" parent="cargo_ship" index="17" unique_id=1913282800]
+[node name="Cube_017" parent="cargo_ship" index="17" unique_id=556599306]
 material_override = ExtResource("2_766on")
 
-[node name="Cube_018" parent="cargo_ship" index="18" unique_id=317401313]
+[node name="Cube_018" parent="cargo_ship" index="18" unique_id=1510887188]
 material_override = ExtResource("3_k08wq")
 
-[node name="Cube_019" parent="cargo_ship" index="19" unique_id=11941754]
+[node name="Cube_019" parent="cargo_ship" index="19" unique_id=1831497184]
 material_override = ExtResource("3_k08wq")
 
-[node name="Cube_020" parent="cargo_ship" index="20" unique_id=1659131212]
+[node name="Cube_020" parent="cargo_ship" index="20" unique_id=740961014]
 material_override = ExtResource("3_k08wq")
 
-[node name="Cube_021" parent="cargo_ship" index="21" unique_id=741927026]
+[node name="Cube_021" parent="cargo_ship" index="21" unique_id=2040900895]
 material_override = ExtResource("2_766on")
 
-[node name="Cube_022" parent="cargo_ship" index="22" unique_id=1138640254]
+[node name="Cube_022" parent="cargo_ship" index="22" unique_id=1009906685]
 material_override = ExtResource("2_766on")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=327118369]

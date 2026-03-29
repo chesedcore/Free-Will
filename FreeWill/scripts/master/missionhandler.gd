@@ -228,7 +228,7 @@ func on_enemy_death()->void:
 	enemy_count -= 1
 	if ! Dialogic.current_timeline and randi_range(1,100)<= 40 :
 		print("deathnoises")
-		DeathNoises.play_random_noise()
+		#DeathNoises.play_random_noise()
 	if enemy_count ==0:
 
 		spawn_wave()
@@ -257,6 +257,7 @@ func fade_out()->void:
 
 
 func lower_sfx_and_music()->void :
+	
 	var bus_index : int= AudioServer.get_bus_index("Music")
 	var sfx_volume := AudioServer.get_bus_volume_db(bus_index)
 	AudioServer.set_bus_volume_db(bus_index, sfx_volume -15.0)
