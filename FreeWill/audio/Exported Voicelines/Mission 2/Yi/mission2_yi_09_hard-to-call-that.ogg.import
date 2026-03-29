@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d2pgl4n4rgxly"
+path="res://.godot/imported/mission2_yi_09_hard-to-call-that.ogg-896baae8c0cc0724577c96f65ad8ba5f.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_09_hard-to-call-that.ogg"
+dest_files=["res://.godot/imported/mission2_yi_09_hard-to-call-that.ogg-896baae8c0cc0724577c96f65ad8ba5f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cxt1kgo31628b"
+path="res://.godot/imported/mission2_yi_03_farewell.ogg-9d2d4191880709b1cbe940fedd6f2998.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_03_farewell.ogg"
+dest_files=["res://.godot/imported/mission2_yi_03_farewell.ogg-9d2d4191880709b1cbe940fedd6f2998.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

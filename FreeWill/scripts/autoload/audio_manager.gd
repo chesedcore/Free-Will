@@ -23,10 +23,10 @@ func play_sound_at(position: Vector3, sound: AudioStream, volume_db: float = 0.0
 		new_sound_player.play()
 
 
-func play_sound(sound: AudioStream, volume_db: float = 0.0, randomize_pitch: bool = true) -> void:
+func play_sound(sound: AudioStream, volume_db: float = 0.0, bus: String = "SFX",randomize_pitch: bool = true) -> void:
 	var new_sound_player := AudioStreamPlayer.new()
 
-	new_sound_player.bus = "SFX"
+	new_sound_player.bus = bus
 
 	if (randomize_pitch):
 		new_sound_player.pitch_scale = randf_range(0.92, 1.13)

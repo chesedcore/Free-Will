@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://defnaqtm8ii45"
+path="res://.godot/imported/mooks_bear_07.ogg-1d5ebad8dd182c278ef815e0d627e82e.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mooks/mooks_bear_07.ogg"
+dest_files=["res://.godot/imported/mooks_bear_07.ogg-1d5ebad8dd182c278ef815e0d627e82e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

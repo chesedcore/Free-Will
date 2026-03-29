@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cg424fwosdtae"
+path="res://.godot/imported/mission2_yi_07_the-mission.ogg-3ab74933585c4a1666bba696d9dd5aaf.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_07_the-mission.ogg"
+dest_files=["res://.godot/imported/mission2_yi_07_the-mission.ogg-3ab74933585c4a1666bba696d9dd5aaf.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

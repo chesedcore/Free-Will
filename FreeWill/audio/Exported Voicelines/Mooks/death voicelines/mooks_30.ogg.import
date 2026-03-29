@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dulhebodkco1k"
+path="res://.godot/imported/mooks_30.ogg-a715ea9bd71329c9f39de277bbe23cab.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mooks/death voicelines/mooks_30.ogg"
+dest_files=["res://.godot/imported/mooks_30.ogg-a715ea9bd71329c9f39de277bbe23cab.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
