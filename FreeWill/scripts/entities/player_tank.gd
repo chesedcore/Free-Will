@@ -29,7 +29,7 @@ const DASH_EFFECT_DURATION := 5.0
 const MAX_MISSILES: int = 4
 
 const PARRY_COOLDOWN := 0.75
-const PARRY_WINDUP := 0.1
+const PARRY_WINDUP := 0.01
 const PARRY_WINDOW := 0.75
 const PARRY_CHAIN_EXTENSION := 0.5
 
