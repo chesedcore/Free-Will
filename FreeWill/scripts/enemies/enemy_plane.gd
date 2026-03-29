@@ -7,7 +7,7 @@ const SHIELD = preload("res://scenes/entities/combat/shield.tscn")
 @export var trail_renderer: TrailRenderer
 @export var speed : float  = 200.0
 @export var turn_speed : float= 1.25
-
+@export var can_be_shielded: bool = false
 enum STATES {INTERCEPT,EVADE,ATTACK}
 
 @export var lock_on_timer: Timer
@@ -28,7 +28,7 @@ func wire_signals()->void:
 
 
 func on_shield()->void :
-	if !is_shield_active:
+	if !is_shield_active and can_be_shielded:
 		is_shield_active = true
 		shield = SHIELD.instantiate()
 		shield.scale = shield.scale * shield_scale

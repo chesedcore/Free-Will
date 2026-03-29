@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="4_qdwt0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4dp5g"]
-radius = 41.527832
-height = 83.055664
+radius = 87.598145
+height = 175.19629
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc4f"]
 size = Vector3(710.5298, 265.8328, 751.81256)
@@ -16,44 +16,45 @@ size = Vector3(710.5298, 265.8328, 751.81256)
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_4dp5g")
+can_be_shielded = true
 lock_on_timer = NodePath("lock_on_timer")
 missle_spawner = NodePath("su57/missle_spawner")
 line_of_sight = NodePath("line_of_sight")
-shield_scale = 20.0
+shield_scale = 40.0
 model = NodePath("su57")
 health = 101.0
 
 [node name="su57" parent="." unique_id=165544230 instance=ExtResource("2_4dp5g")]
 transform = Transform3D(-28, 0, -4.2278825e-06, 0, 28, 0, 4.2278825e-06, 0, -28, 0, 0, 0)
 
-[node name="Body" parent="su57" index="0" unique_id=1894194987]
+[node name="Body" parent="su57" index="0" unique_id=1818984955]
 surface_material_override/0 = ExtResource("3_rdc4f")
 
-[node name="Stabiliser" parent="su57" index="1" unique_id=294149946]
+[node name="Stabiliser" parent="su57" index="1" unique_id=1118536717]
 surface_material_override/0 = ExtResource("3_rdc4f")
 
-[node name="Wing" parent="su57" index="2" unique_id=265209548]
+[node name="Wing" parent="su57" index="2" unique_id=199881314]
 surface_material_override/0 = ExtResource("3_rdc4f")
 
-[node name="StabilatorBase" parent="su57" index="3" unique_id=1344283827]
+[node name="StabilatorBase" parent="su57" index="3" unique_id=61140354]
 surface_material_override/0 = ExtResource("3_rdc4f")
 
-[node name="AileronL" parent="su57" index="5" unique_id=499983621]
+[node name="AileronL" parent="su57" index="5" unique_id=2104401652]
 surface_material_override/0 = ExtResource("3_rdc4f")
 
-[node name="FlaperonL" parent="su57" index="6" unique_id=2035142736]
+[node name="FlaperonL" parent="su57" index="6" unique_id=912710888]
 surface_material_override/0 = ExtResource("3_rdc4f")
 
-[node name="SlatL" parent="su57" index="7" unique_id=1160913301]
+[node name="SlatL" parent="su57" index="7" unique_id=862103431]
 surface_material_override/0 = ExtResource("3_rdc4f")
 
-[node name="SlatR" parent="su57" index="8" unique_id=288957169]
+[node name="SlatR" parent="su57" index="8" unique_id=1673070194]
 surface_material_override/0 = ExtResource("3_rdc4f")
 
-[node name="AileronR" parent="su57" index="9" unique_id=1733468399]
+[node name="AileronR" parent="su57" index="9" unique_id=1522285184]
 surface_material_override/0 = ExtResource("3_rdc4f")
 
-[node name="FlaperonR" parent="su57" index="10" unique_id=344375019]
+[node name="FlaperonR" parent="su57" index="10" unique_id=1686706507]
 surface_material_override/0 = ExtResource("3_rdc4f")
 
 [node name="missle_spawner" type="Node3D" parent="su57" unique_id=106688113]

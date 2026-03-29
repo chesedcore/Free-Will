@@ -16,7 +16,7 @@ const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.
 @export var trail_renderer: TrailRenderer
 
 var locked_on : bool = true
-@export var lock_off_dist : float = 25
+@export var lock_off_dist : float = 15
 @export var lifespan : float = 5
 var threat_indicator : ThreatIndicator
 
@@ -51,8 +51,8 @@ func _physics_process(delta: float) -> void:
 
 	if locked_on:
 		var distance : float = global_position.distance_to(target_node.global_position)
-		var speed :float= max(velocity.length(), 0.001)
-		var predict_time : float = min(distance/ speed,1)
+		var speed :float= max(velocity.length(), 0.01)
+		var predict_time : float = min(distance/ speed,0.075)
 		var predict_target : Vector3
 
 		if target_node is CharacterBody3D :

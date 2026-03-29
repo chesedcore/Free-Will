@@ -21,6 +21,7 @@ decoy_holder = NodePath("decoy_holder")
 obstacle_detectors = [NodePath("obstacle_detector/front"), NodePath("obstacle_detector/downleft"), NodePath("obstacle_detector/upleft"), NodePath("obstacle_detector/downright"), NodePath("obstacle_detector/upright")]
 speed = 300.0
 turn_speed = 1.5
+can_be_shielded = true
 lock_on_timer = NodePath("lock_on_timer")
 missle_spawner = NodePath("su57/missle_spawner")
 line_of_sight = NodePath("line_of_sight")
@@ -35,37 +36,37 @@ shape = SubResource("CapsuleShape3D_awjt7")
 [node name="su57" parent="." unique_id=165544230 instance=ExtResource("2_na4k2")]
 transform = Transform3D(-32, 0, -4.8318657e-06, 0, 32, 0, 4.8318657e-06, 0, -32, 0, 0, 0)
 
-[node name="Body" parent="su57" index="0" unique_id=1894194987]
+[node name="Body" parent="su57" index="0" unique_id=1818984955]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="Stabiliser" parent="su57" index="1" unique_id=294149946]
+[node name="Stabiliser" parent="su57" index="1" unique_id=1118536717]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="Wing" parent="su57" index="2" unique_id=265209548]
+[node name="Wing" parent="su57" index="2" unique_id=199881314]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="StabilatorBase" parent="su57" index="3" unique_id=1344283827]
+[node name="StabilatorBase" parent="su57" index="3" unique_id=61140354]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="AileronL" parent="su57" index="5" unique_id=499983621]
+[node name="AileronL" parent="su57" index="5" unique_id=2104401652]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="FlaperonL" parent="su57" index="6" unique_id=2035142736]
+[node name="FlaperonL" parent="su57" index="6" unique_id=912710888]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="SlatL" parent="su57" index="7" unique_id=1160913301]
+[node name="SlatL" parent="su57" index="7" unique_id=862103431]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="SlatR" parent="su57" index="8" unique_id=288957169]
+[node name="SlatR" parent="su57" index="8" unique_id=1673070194]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="AileronR" parent="su57" index="9" unique_id=1733468399]
+[node name="AileronR" parent="su57" index="9" unique_id=1522285184]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="FlaperonR" parent="su57" index="10" unique_id=344375019]
+[node name="FlaperonR" parent="su57" index="10" unique_id=1686706507]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
-[node name="Thruster" parent="su57" index="11" unique_id=243462932]
+[node name="Thruster" parent="su57" index="11" unique_id=335631471]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")
 
 [node name="missle_spawner" type="Node3D" parent="su57" unique_id=710169650]

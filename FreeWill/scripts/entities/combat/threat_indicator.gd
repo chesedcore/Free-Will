@@ -18,10 +18,11 @@ func _ready() -> void:
 	#start_beeping()
 
 var max_dist : float = 300
-var min_dist : float = 25
+var min_dist : float = 75
 var scale_speed : float = 4
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+var parry_indicating : bool = false
+
 func _process(delta: float) -> void:
 	if target_node == null:
 		get_parent().threat_indicators.erase(self)
@@ -33,19 +34,20 @@ func _process(delta: float) -> void:
 
 		arrow.scale = lerp(arrow.scale, Vector3.ONE * scale_factor,scale_speed* delta)
 		look_at(target_node.global_position)
+		if distance<= min_dist and !parry_indicating:
+			parry_indicating = true
+			var material :  = mesh.get_surface_override_material(0).duplicate()
+			
+			material.emission_enabled = true
+			mesh.set_surface_override_material(0,material)
+		if distance>= min_dist and parry_indicating:
+			parry_indicating = true
+			var material :  = mesh.get_surface_override_material(0).duplicate()
+			
+			material.emission_enabled = false
+			mesh.set_surface_override_material(0,material)
 		#var beep_time :float = clamp((distance - min_dist) / (max_dist - min_dist), 0.0, 1.0)
 		#beeptimer.wait_time = lerp(0.1, 1.0, beep_time)
 
 func _on_beeptimer_timeout() -> void:
 	beepnoise.play()
-
-func start_beeping() -> void:
-	if not beeptimer or not beepnoise: return
-	while target_node != null:
-		var distance :float = global_position.distance_to(target_node.global_position)
-		var beep_time  :float= clamp((distance - min_dist) / (max_dist - min_dist), 0.0, 1.0)
-		var delay :float= lerp(0.01, 1.0, beep_time)
-		var volume : float = lerp (-10,0,beep_time)
-		beepnoise.volume_db = volume
-		beepnoise.play()
-		await get_tree().create_timer(delay).timeout

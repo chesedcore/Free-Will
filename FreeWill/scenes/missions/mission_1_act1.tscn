@@ -15,7 +15,7 @@
 script = ExtResource("2_67xhj")
 spawn_dialog = "Intro"
 waveinfo = Dictionary[int, int]({
-0: 2
+0: 6
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
@@ -23,14 +23,14 @@ metadata/_custom_type_script = "uid://capww07pslxpm"
 script = ExtResource("2_67xhj")
 spawn_dialog = "mission1_wave2"
 waveinfo = Dictionary[int, int]({
-0: 3
+0: 9
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
 [sub_resource type="Resource" id="Resource_myx56"]
 script = ExtResource("2_67xhj")
 waveinfo = Dictionary[int, int]({
-0: 4
+0: 12
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
@@ -38,26 +38,26 @@ metadata/_custom_type_script = "uid://capww07pslxpm"
 script = ExtResource("2_67xhj")
 spawn_dialog = "mission1_wave4"
 waveinfo = Dictionary[int, int]({
-0: 3,
-2: 2
+0: 9,
+1: 2
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
 [sub_resource type="Resource" id="Resource_mctdd"]
 script = ExtResource("2_67xhj")
 waveinfo = Dictionary[int, int]({
-0: 2,
+0: 6,
 2: 2,
-3: 1
+3: 3
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
 [sub_resource type="Resource" id="Resource_feyy3"]
 script = ExtResource("2_67xhj")
 waveinfo = Dictionary[int, int]({
-0: 2,
+0: 12,
 2: 2,
-3: 2
+3: 6
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
@@ -65,18 +65,18 @@ metadata/_custom_type_script = "uid://capww07pslxpm"
 script = ExtResource("2_67xhj")
 spawn_dialog = "mission1_wave7"
 waveinfo = Dictionary[int, int]({
-0: 4,
-1: 2
+0: 12,
+1: 6
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
 [sub_resource type="Resource" id="Resource_v5q0b"]
 script = ExtResource("2_67xhj")
 waveinfo = Dictionary[int, int]({
-0: 4,
-1: 2,
+0: 12,
+1: 6,
 2: 2,
-3: 2
+3: 6
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 

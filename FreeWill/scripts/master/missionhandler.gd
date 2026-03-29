@@ -79,10 +79,9 @@ func spawn_wave()->void:
 		if not wave.spawn_dialog.is_empty():
 			#Dialogic.Inputs.block_input(100000)
 			Dialogic.start(wave.spawn_dialog)
-			await Dialogic.timeline_ended
-		else:
-			#artifical wait for wave
-			await  get_tree().create_timer(.5).timeout
+			#await Dialogic.timeline_ended
+
+		await  get_tree().create_timer(.5).timeout
 		for enemytype : WaveResource.EnemyTypes in wave.waveinfo.keys():
 			match enemytype:
 				WaveResource.EnemyTypes.StandardPlane:
