@@ -33,5 +33,8 @@ static func create_sound_settings() -> SoundSettings:
 static func create_keybind_settings() -> KeybindSettings:
 	return preload("res://scenes/ui/keybind_settings.tscn").instantiate()
 
+static func create_game_over() -> GameOverScene:
+	return preload("res://scenes/entities/game_over_scene.tscn").instantiate()
+
 static func create_options_menu() -> OptionsMenu:
 	return preload("res://scenes/ui/options_menu.tscn").instantiate()

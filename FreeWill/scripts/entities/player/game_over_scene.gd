@@ -11,6 +11,8 @@ var completed : bool = false
 var player: PlayerTank
 @export var label: Label
 
+var current_scene: String
+var current_wave_idx: int
 
 func _ready() -> void:
 	if completed:
@@ -32,12 +34,12 @@ const MISSION_SELECT = preload("res://scenes/ui/mission_select.tscn")
 
 func retry() -> void:
 	IFFTracker.clear_tracked_entities()
-
+	
 	# Bubba:
 	# When we have actual stages this should be replaced with something that is not as shit.
-	queue_free.call_deferred()
-	get_tree().reload_current_scene.call_deferred()
-
+	var mission_handler := load(current_scene).instantiate() as MissonHandler
+	mission_handler.current_wave = current_wave_idx
+	EventBus.change_game_container_to.emit(mission_handler)
 
 
 func return_to_menu() -> void:

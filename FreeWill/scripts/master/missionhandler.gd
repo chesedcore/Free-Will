@@ -34,24 +34,31 @@ const BOMBERSPAWNHEIGHT : float = 1340
 var tank : PlayerTank 
 
 #wave count starts from 0 remember to increment in display 
-var current_wave :int= 0
-var enemy_count : int = 0
+var current_wave: int = 0
+var enemy_count: int = 0
 
 #temporary mission start logic
 func _ready() -> void:
+	stagehandler.tank_fucking_exploded.connect(_on_tank_fucking_exploded)
 	Dialogic.timeline_started.connect(lower_sfx_and_music)
 	Dialogic.timeline_ended.connect(raise_sfx_and_music)
 	#wanted the tank to start with some motion so uhhh yeahhhhh
 	tank = stagehandler.tank
 	tank.linear_velocity += tank.camera_gimbal.global_transform.basis.z * (tank.GUN_FIRE_FORCE *10)
 	fade_in()
-	
-	
-	
-	
 	await spawn_wave()
 	mission_music.play()
+
 var enemy_scenes :Dictionary[WaveResource.EnemyTypes,Resource] = {}
+
+func _on_tank_fucking_exploded() -> void:
+	tank.tank_model.hide()
+	var game_over_scene := Registry.create_game_over()
+	game_over_scene.player = tank
+	game_over_scene.current_scene = get_scene_file_path()
+	game_over_scene.current_wave_idx = current_wave
+	AudioManager.play_sound_at(tank.global_position, preload("res://audio/sfx/large_explosion.ogg"), 15.0)
+	add_child.call_deferred(game_over_scene)
 
 #SPAWNCONSTS
 const PLANESPAWNRADIUS: float = 50 
@@ -62,6 +69,7 @@ const BOMBERSPAWNRADIUS : float = 1000
 const BOMBERSPAWNDISTANCE : float =500
 const SHARKSPAWNDISTANCE : float = 500
 const SHARKSPAWNRADIUS : float = 1000
+
 func spawn_wave()->void:
 	if current_wave >= waves.size():
 		end_mission()
@@ -216,20 +224,16 @@ func on_enemy_death()->void:
 	if enemy_count ==0:
 		
 		spawn_wave()
-func end_mission()->void:
-	#Dialogic.Inputs.block_input(100000)
+func end_mission() -> void:
 	Dialogic.start(act_end_dialog)
 	await Dialogic.timeline_ended
 	if stagehandler.tank.is_dead == false:
-		#Gael: gonna remove mission selection status for now and just transition to next scene manually
-		#stagehandler.mission_complete_screen()
-		#MissionStatus.complete_mission(mission_title)
 		await fade_out()
 		if enviorment:
 			var grapple_points : Array[Node] = get_tree().get_nodes_in_group("Grapple Points")
 			for point in grapple_points:
 				IFFTracker.stop_tracking_entity(point)
-		EventBus.change_game_container_to.emit(load(scene_to_transition_to))
+		EventBus.change_game_container_to.emit(load(scene_to_transition_to).instantiate())
 
 
 func fade_in()->void:

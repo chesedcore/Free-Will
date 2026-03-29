@@ -19,9 +19,7 @@ func _wire_up_signals() -> void:
 	control.resume.connect(_on_resume_clicked)
 	control.options.connect(_on_options_clicked)
 
-func _on_game_container_change_request(packed_scene: PackedScene) -> void:
-	var node_to_change_to := packed_scene.instantiate()
-	
+func _on_game_container_change_request(node_to_change_to: Node) -> void:
 	game.queue_free()
 	add_child(node_to_change_to)
 	

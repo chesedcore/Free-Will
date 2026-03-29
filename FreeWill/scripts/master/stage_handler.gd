@@ -1,5 +1,7 @@
 class_name StageHandler extends Node3D
 
+signal tank_fucking_exploded
+
 @export var ui: CombatUI
 @export var enemies_list: EnemiesList
 @export var tank: PlayerTank
@@ -7,7 +9,7 @@ class_name StageHandler extends Node3D
 @export var weapons: Node3D
 
 
-const HITSTOP_TIME := 0.25
+const HITSTOP_TIME := 0.4
 const HITSTOP_SLOW_DOWN_FACTOR := 0.001
 
 func _ready() -> void:
@@ -30,7 +32,7 @@ func _setup_name_tracking() -> void:
 	
 	var entities := enemies 
 	if environment:
-		var grapple_points :=  get_tree().get_nodes_in_group("Grapple Points")
+		var grapple_points := get_tree().get_nodes_in_group("Grapple Points")
 		entities = entities + grapple_points
 	ui.track_these_entities(entities)
 
@@ -50,15 +52,7 @@ func _on_spawn_weaponry(node: Node) -> void:
 	weapons.add_child(node)
 
 func _on_tank_fucking_exploded() -> void:
-	tank.tank_model.hide()
-	var game_over_scene: GameOverScene = \
-		(load("res://scenes/entities/game_over_scene.tscn") as PackedScene).instantiate()
-	game_over_scene.player = tank
-	AudioManager.play_sound_at(tank.global_position, preload("res://audio/sfx/large_explosion.ogg"), 15.0)
-
-	#Gael : for some reason the game over screen causes the  camera crash if its not a child of stage handler
-	#get_tree().root.add_child.call_deferred(game_over_scene)
-	add_child.call_deferred(game_over_scene)
+	tank_fucking_exploded.emit()
 
 func _on_tank_damaged() -> void:
 	_hitstop(2.0)

@@ -6,4 +6,4 @@ extends ColorRect
 func _ready() -> void:
 	Dialogic.start(dialog)
 	await Dialogic.timeline_ended
-	EventBus.change_game_container_to.emit(load(scene_to_transition_to))
+	EventBus.change_game_container_to.emit(load(scene_to_transition_to).instantiate())

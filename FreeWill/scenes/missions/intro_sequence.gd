@@ -15,4 +15,4 @@ func _input(event: InputEvent) -> void:
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
-	EventBus.change_game_container_to.emit(MISSION_1_ACT_1)
+	EventBus.change_game_container_to.emit(MISSION_1_ACT_1.instantiate())
