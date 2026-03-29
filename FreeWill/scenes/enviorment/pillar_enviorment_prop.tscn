@@ -9,8 +9,6 @@
 height = 12.22385
 radius = 0.6347656
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_hjo03"]
-
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_hpypo"]
 height = 0.42016977
 radius = 1.0
@@ -51,14 +49,6 @@ surface_material_override/0 = ExtResource("2_xnpp2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1237726937]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.382868, 0)
 shape = SubResource("CylinderShape3D_hjo03")
-
-[node name="Grapple Point" type="StaticBody3D" parent="." unique_id=865896495 groups=["Grapple Points"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9346273, 1.227533)
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Grapple Point" unique_id=951886521]
-shape = SubResource("SphereShape3D_hjo03")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1847182464]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5440769, 0)

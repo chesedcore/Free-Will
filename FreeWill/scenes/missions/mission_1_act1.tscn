@@ -88,6 +88,9 @@ waveinfo = Dictionary[int, int]({
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hjo03"]
+cull_mode = 2
+
 [node name="Mission1_act1" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints", "enemies_list", "enviorment", "transition")]
 script = ExtResource("1_pwc3s")
 mission_title = 2
@@ -174,62 +177,139 @@ color = Color(0, 0, 0, 1)
 [node name="pillar_enviorment_prop" parent="enviorment" unique_id=1395337680 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 1433.1635, 2.2414856, 545.34607)
 
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
+[node name="top" parent="enviorment/pillar_enviorment_prop" index="0" unique_id=1253579231]
+surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
+
+[node name="mid" parent="enviorment/pillar_enviorment_prop" index="1" unique_id=1740687350]
+surface_material_override/0 = null
+
+[node name="mid2" parent="enviorment/pillar_enviorment_prop" index="2" unique_id=952200282]
+surface_material_override/0 = null
+
+[node name="bottom" parent="enviorment/pillar_enviorment_prop" index="3" unique_id=2116577679]
+surface_material_override/0 = null
 
 [node name="borderpillarx" parent="enviorment" unique_id=457154737 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(299.99997, 0, 0, 0, -1.3113416e-05, 299.99997, 0, -299.99997, -1.3113416e-05, 2500, 0, 1345)
 
-[node name="Grapple Point" parent="enviorment/borderpillarx" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
+[node name="top" parent="enviorment/borderpillarx" index="0" unique_id=1253579231]
+surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
+
+[node name="mid" parent="enviorment/borderpillarx" index="1" unique_id=1740687350]
+surface_material_override/0 = null
+
+[node name="mid2" parent="enviorment/borderpillarx" index="2" unique_id=952200282]
+surface_material_override/0 = null
+
+[node name="bottom" parent="enviorment/borderpillarx" index="3" unique_id=2116577679]
+surface_material_override/0 = null
 
 [node name="borderpillarx2" parent="enviorment" unique_id=1100865456 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(299.99997, 0, 0, 0, -1.3113416e-05, 299.99997, 0, -299.99997, -1.3113416e-05, -2500, 0, 1345)
 
-[node name="Grapple Point" parent="enviorment/borderpillarx2" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
+[node name="top" parent="enviorment/borderpillarx2" index="0" unique_id=1253579231]
+surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
+
+[node name="mid" parent="enviorment/borderpillarx2" index="1" unique_id=1740687350]
+surface_material_override/0 = null
+
+[node name="mid2" parent="enviorment/borderpillarx2" index="2" unique_id=952200282]
+surface_material_override/0 = null
+
+[node name="bottom" parent="enviorment/borderpillarx2" index="3" unique_id=2116577679]
+surface_material_override/0 = null
 
 [node name="borderpillarz" parent="enviorment" unique_id=1942290633 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(-1.3113415e-05, 299.99997, 0, -299.99997, -1.3113415e-05, 0, 0, 0, 299.99997, -1941, 0, 2500)
 
-[node name="Grapple Point" parent="enviorment/borderpillarz" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
+[node name="top" parent="enviorment/borderpillarz" index="0" unique_id=1253579231]
+surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
+
+[node name="mid" parent="enviorment/borderpillarz" index="1" unique_id=1740687350]
+surface_material_override/0 = null
+
+[node name="mid2" parent="enviorment/borderpillarz" index="2" unique_id=952200282]
+surface_material_override/0 = null
+
+[node name="bottom" parent="enviorment/borderpillarz" index="3" unique_id=2116577679]
+surface_material_override/0 = null
 
 [node name="borderpillarz2" parent="enviorment" unique_id=1332274677 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(-1.3113415e-05, 299.99997, 0, -299.99997, -1.3113415e-05, 0, 0, 0, 299.99997, -1941, 0, -2500)
 
-[node name="Grapple Point" parent="enviorment/borderpillarz2" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
+[node name="top" parent="enviorment/borderpillarz2" index="0" unique_id=1253579231]
+surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
+
+[node name="mid" parent="enviorment/borderpillarz2" index="1" unique_id=1740687350]
+surface_material_override/0 = null
+
+[node name="mid2" parent="enviorment/borderpillarz2" index="2" unique_id=952200282]
+surface_material_override/0 = null
+
+[node name="bottom" parent="enviorment/borderpillarz2" index="3" unique_id=2116577679]
+surface_material_override/0 = null
 
 [node name="pillar_enviorment_prop4" parent="enviorment" unique_id=2004984867 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(212.13203, -149.99998, 150, 0, 212.13205, 212.13203, -212.13203, -149.99998, 150, 1739.3833, -194.28061, 2415.9868)
 
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop4" index="5" unique_id=865896495]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47145295, 4.4854894, -0.45429754)
+[node name="top" parent="enviorment/pillar_enviorment_prop4" index="0" unique_id=1253579231]
+surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
+
+[node name="mid" parent="enviorment/pillar_enviorment_prop4" index="1" unique_id=1740687350]
+surface_material_override/0 = null
+
+[node name="mid2" parent="enviorment/pillar_enviorment_prop4" index="2" unique_id=952200282]
+surface_material_override/0 = null
+
+[node name="bottom" parent="enviorment/pillar_enviorment_prop4" index="3" unique_id=2116577679]
+surface_material_override/0 = null
 
 [node name="pillar_enviorment_prop2" parent="enviorment" unique_id=25018902 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, -1490.3333, 2.2414856, 543.649)
 
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop2" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.0402534, -0.6599872)
+[node name="top" parent="enviorment/pillar_enviorment_prop2" index="0" unique_id=1253579231]
+surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
+
+[node name="mid" parent="enviorment/pillar_enviorment_prop2" index="1" unique_id=1740687350]
+surface_material_override/0 = null
+
+[node name="mid2" parent="enviorment/pillar_enviorment_prop2" index="2" unique_id=952200282]
+surface_material_override/0 = null
+
+[node name="bottom" parent="enviorment/pillar_enviorment_prop2" index="3" unique_id=2116577679]
+surface_material_override/0 = null
 
 [node name="pillar_enviorment_prop3" parent="enviorment" unique_id=1394351015 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(88.81719, 170.95547, 229.96896, -2.2400001e-05, 240.7623, -178.97908, -286.55106, 52.98805, 71.27946, -1674.8796, -195.88904, 1197.836)
 
 [node name="top" parent="enviorment/pillar_enviorment_prop3" index="0" unique_id=1253579231]
 transform = Transform3D(1.0000007, 0, 0, 0, 1, 0, 0, 0, 1.0000002, 0, 10.860665, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
 
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop3" index="5" unique_id=865896495]
-transform = Transform3D(1, 0, -2.9802322e-08, -2.9802322e-08, 1, 9.313226e-09, -8.940697e-08, -1.4901161e-08, 1, -0.034509182, 3.3235202, 0.534611)
+[node name="mid" parent="enviorment/pillar_enviorment_prop3" index="1" unique_id=1740687350]
+surface_material_override/0 = null
+
+[node name="mid2" parent="enviorment/pillar_enviorment_prop3" index="2" unique_id=952200282]
+surface_material_override/0 = null
+
+[node name="bottom" parent="enviorment/pillar_enviorment_prop3" index="3" unique_id=2116577679]
+surface_material_override/0 = null
 
 [node name="pillar_enviorment_prop5" parent="enviorment" unique_id=1709534713 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(204.7549, 158.25752, 151.75633, 0, 207.63783, -216.53297, -219.2611, 147.7873, 141.71622, -1674.8796, -110.83008, -2419.752)
 
 [node name="top" parent="enviorment/pillar_enviorment_prop5" index="0" unique_id=1253579231]
 transform = Transform3D(1.0000007, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 10.860665, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
 
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop5" index="5" unique_id=865896495]
-transform = Transform3D(1, 5.9604645e-08, 8.940697e-08, 0, 1, -2.9802322e-08, 0, 0, 1, 0.14593196, 3.5714614, 0.41495752)
+[node name="mid" parent="enviorment/pillar_enviorment_prop5" index="1" unique_id=1740687350]
+surface_material_override/0 = null
+
+[node name="mid2" parent="enviorment/pillar_enviorment_prop5" index="2" unique_id=952200282]
+surface_material_override/0 = null
+
+[node name="bottom" parent="enviorment/pillar_enviorment_prop5" index="3" unique_id=2116577679]
+surface_material_override/0 = null
 
 [node name="mission_music" type="AudioStreamPlayer" parent="." unique_id=1660453610]
 stream = ExtResource("10_d871a")
