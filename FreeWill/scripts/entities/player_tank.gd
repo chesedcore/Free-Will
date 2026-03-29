@@ -440,10 +440,10 @@ func parry_the_water() -> void:
 	cool_shit_happened.emit(CoolShit.Shit.PARRY_THE_WATER, 130)
 
 #world boundries suck so ill just uh check how far the tank is from origin  hi this is gael btw
-const  BOUNDARY : float = 5000
+const  BOUNDARY : float = 2500
 func _poll_tank_distance()->void :
-	if abs( global_position.x) >= BOUNDARY or abs(global_position.z)>= BOUNDARY:
-		#play warning dialog if no dialog current exists
+	if abs( global_position.x) >= BOUNDARY or abs(global_position.z)>= BOUNDARY or global_position.y >= BOUNDARY:
+		#play warning dialog if no dialog currently exists
 		if  Dialogic.current_timeline == null:
 			Dialogic.start("distance_warning")
 		linear_velocity += - linear_velocity * 2

@@ -80,7 +80,7 @@ func spawn_wave()->void:
 			#Dialogic.Inputs.block_input(100000)
 			Dialogic.start(wave.spawn_dialog)
 			if current_wave == 0:
-				print("waiting")
+				
 				await Dialogic.timeline_ended
 		#ARTIFICALLY AWAIT THE FUCKING IFFTRACKER CRASHESSSSSSSS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+++++++++++++++++++++++++
 		await  get_tree().create_timer(.5).timeout
@@ -126,7 +126,7 @@ func spawn_wave()->void:
 						new_enemy.position = pos
 						new_enemy.position.y = BOATSPAWNHEIGHT
 						new_enemy.died.connect(on_enemy_death)
-						new_enemy.name = "Enemy CargoShip " +str(i+1)
+						new_enemy.name = "Enemy ShieldShip " +str(i+1)
 						enemies_list.seaborne_enemies.add_child(new_enemy)
 				WaveResource.EnemyTypes.ElitePlane:
 					if ! elite_plane:
@@ -249,12 +249,16 @@ func fade_out()->void:
 
 func lower_sfx_and_music()->void :
 	var bus_index : int= AudioServer.get_bus_index("Music")
-	AudioServer.set_bus_volume_db(bus_index, -10.0)
+	var sfx_volume := AudioServer.get_bus_volume_db(bus_index)
+	AudioServer.set_bus_volume_db(bus_index, sfx_volume -10.0)
 	bus_index = AudioServer.get_bus_index("SFX")
-	AudioServer.set_bus_volume_db(bus_index, -10.0)
+	var music_volume := AudioServer.get_bus_volume_db(bus_index)
+	AudioServer.set_bus_volume_db(bus_index, music_volume -10.0)
 
 func raise_sfx_and_music()->void :
 	var bus_index : int= AudioServer.get_bus_index("Music")
-	AudioServer.set_bus_volume_db(bus_index, 0.0)
+	var sfx_volume := AudioServer.get_bus_volume_db(bus_index)
+	AudioServer.set_bus_volume_db(bus_index, sfx_volume +10.0)
 	bus_index = AudioServer.get_bus_index("SFX")
-	AudioServer.set_bus_volume_db(bus_index, 0.0)
+	var music_volume := AudioServer.get_bus_volume_db(bus_index)
+	AudioServer.set_bus_volume_db(bus_index, music_volume +10.0)
