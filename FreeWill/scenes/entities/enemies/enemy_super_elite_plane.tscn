@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="4_lhfu2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_awjt7"]
-radius = 35.90674
-height = 71.81348
+radius = 54.536133
+height = 109.072266
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2lh61"]
 
@@ -29,11 +29,11 @@ model = NodePath("su57")
 health = 150.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2012983732]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, -4.694158e-08, 1.0738983)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_awjt7")
 
 [node name="su57" parent="." unique_id=165544230 instance=ExtResource("2_na4k2")]
-transform = Transform3D(-16, 0, -2.4159328e-06, 0, 16, 0, 2.4159328e-06, 0, -16, 0, 0, 0)
+transform = Transform3D(-32, 0, -4.8318657e-06, 0, 32, 0, 4.8318657e-06, 0, -32, 0, 0, 0)
 
 [node name="Body" parent="su57" index="0" unique_id=1894194987]
 surface_material_override/0 = SubResource("StandardMaterial3D_2lh61")

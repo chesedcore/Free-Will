@@ -5,7 +5,7 @@
 [ext_resource type="Material" uid="uid://b2623gy7ys17k" path="res://assets/models/battleship_cannon_color.tres" id="2_w3oou"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w3oou"]
-size = Vector3(154.21301, 38.08751, 69.34691)
+size = Vector3(288.71304, 78.05502, 96.00287)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dh4vq"]
 vertex_color_use_as_albedo = true
@@ -33,11 +33,11 @@ smoke_spawner2 = NodePath("battle_ship_model/SmokeSpawnpoint2")
 smoke_spawner3 = NodePath("battle_ship_model/SmokeSpawnpoint3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=339972857]
-transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 0.07058347, 4.099909, 2.992981)
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, -0.473423, 27.50167, -7.9163513)
 shape = SubResource("BoxShape3D_w3oou")
 
 [node name="battle_ship_model" parent="." unique_id=165609570 instance=ExtResource("2_v25cr")]
-transform = Transform3D(-1.3113416e-06, 0, 30, 0, 30, 0, -30, 0, -1.3113416e-06, 0, 0, 0)
+transform = Transform3D(-2.6226833e-06, 0, 60, 0, 60, 0, -60, 0, -2.6226833e-06, 0, 0, 0)
 
 [node name="Cube" parent="battle_ship_model" index="0" unique_id=688779422]
 surface_material_override/0 = SubResource("StandardMaterial3D_dh4vq")

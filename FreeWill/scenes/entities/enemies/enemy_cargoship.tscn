@@ -10,7 +10,7 @@ vertex_color_use_as_albedo = true
 albedo_color = Color(0.30842465, 0.9142758, 0.9999998, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_86esa"]
-size = Vector3(55.606415, 33.050293, 179.12967)
+size = Vector3(146.98663, 114.208405, 370.58087)
 
 [node name="enemy_cargoship" type="CharacterBody3D" unique_id=586216509 node_paths=PackedStringArray("cargo_ship_model", "smoke_spawners")]
 collision_layer = 4
@@ -20,10 +20,10 @@ cargo_ship_model = NodePath("cargo_ship")
 smoke_spawners = [NodePath("Marker3D"), NodePath("Marker3D2"), NodePath("Marker3D3"), NodePath("Marker3D4")]
 
 [node name="cargo_ship" parent="." unique_id=967678059 instance=ExtResource("1_86esa")]
-transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+transform = Transform3D(60, 0, 0, 0, 60, 0, 0, 0, 60, 0, 0, 0)
 
 [node name="Cube" parent="cargo_ship" index="0" unique_id=174884091]
-transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, -0.099999994, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.099999994, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_8oo4p")
 
 [node name="Cube_001" parent="cargo_ship" index="1" unique_id=655426364]
@@ -93,7 +93,7 @@ material_override = ExtResource("2_766on")
 material_override = ExtResource("2_766on")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=327118369]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0599823, -11.170654, 0.72776794)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6654205, -6.34153, 0.56389236)
 shape = SubResource("BoxShape3D_86esa")
 
 [node name="Shield_refresh_time" type="Timer" parent="." unique_id=282499012]
