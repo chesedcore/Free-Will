@@ -34,7 +34,7 @@ const PARRY_WINDOW := 0.75
 const PARRY_CHAIN_EXTENSION := 0.5
 
 const RAILGUN_COOLDOWN := 0.85
-@export var RAILGUN_RANGE := 750.0
+@export var RAILGUN_RANGE := 3000.0
 @export var RAILGUN_RADIUS_WIDTH := 10.0
 
 const MAX_HEALTH: float = 250.0
