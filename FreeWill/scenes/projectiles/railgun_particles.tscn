@@ -123,10 +123,10 @@ point_count = 2
 curve = SubResource("Curve_kg684")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pwgt8"]
-emission_shape_offset = Vector3(0, 381.03375, 0)
+emission_shape_offset = Vector3(0, 380.99, 0)
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
-emission_ring_height = 762.0675
+emission_ring_height = 761.98
 emission_ring_radius = 1.0
 emission_ring_inner_radius = 0.0
 emission_ring_cone_angle = 90.0
@@ -179,7 +179,7 @@ process_material = SubResource("ParticleProcessMaterial_oww5q")
 draw_pass_1 = SubResource("CapsuleMesh_7wyjk")
 
 [node name="ShockwaveParticles" type="GPUParticles3D" parent="." unique_id=1980418967]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 662.265, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 662, 0)
 emitting = false
 amount = 6
 lifetime = 3.0

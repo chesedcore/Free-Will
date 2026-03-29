@@ -76,3 +76,7 @@ static func spawn_particles(railgun_range:float, pos:Vector3, camera_gimbal:Came
 	tree.current_scene.add_child(particles)
 	particles.basis = capsule_basis
 	particles.global_position = pos
+
+static func compile_particles(tree : SceneTree) -> void:
+	var particles := Registry.create_railgun()
+	tree.current_scene.add_child(particles)
