@@ -25,7 +25,7 @@ can_be_shielded = true
 lock_on_timer = NodePath("lock_on_timer")
 missle_spawner = NodePath("su57/missle_spawner")
 line_of_sight = NodePath("line_of_sight")
-shield_scale = 40.0
+shield_scale = 60.0
 model = NodePath("su57")
 health = 150.0
 
