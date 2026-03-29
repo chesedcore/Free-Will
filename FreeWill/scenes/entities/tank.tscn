@@ -3,8 +3,11 @@
 [ext_resource type="Script" uid="uid://c7xy4j8d6608x" path="res://scripts/entities/player_tank.gd" id="1_xcn37"]
 [ext_resource type="PackedScene" uid="uid://ciqvl3ekbok17" path="res://models/player_tank.blend" id="2_fn73n"]
 [ext_resource type="AudioStream" uid="uid://l52ex3drqvuq" path="res://audio/sfx/rocket_launch.ogg" id="2_xioay"]
+[ext_resource type="Material" uid="uid://nvi6067o6oj7" path="res://res/tank_mats/green_4.material" id="4_n6nx7"]
 [ext_resource type="Script" uid="uid://ygulxcf75ylm" path="res://scripts/effects/wind_lines.gd" id="5_hjnge"]
+[ext_resource type="Material" uid="uid://dlc7km5h5mqct" path="res://res/tank_mats/green_2.material" id="5_whocj"]
 [ext_resource type="PackedScene" uid="uid://bigipu066vsh1" path="res://models/kunai.blend" id="6_rlhxg"]
+[ext_resource type="Material" uid="uid://8aqronk8hojl" path="res://res/tank_mats/green_3.material" id="6_xkrtr"]
 [ext_resource type="Shader" uid="uid://bihimqq7vee8d" path="res://shaderslop/shockwave.gdshader" id="7_l4ev5"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_uedwi"]
 [ext_resource type="Script" uid="uid://wel3y4ne2cus" path="res://scripts/effects/tank_wind_trail.gd" id="7_ywmen"]
@@ -261,7 +264,18 @@ camera_shake_animation_player = NodePath("CameraGimbal/CameraShakeAnimationPlaye
 
 [node name="TankModel" parent="." unique_id=1331045763 instance=ExtResource("2_fn73n")]
 
-[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" parent_id_path=PackedInt32Array(1331045763, 1225671377) index="0" unique_id=1789710507]
+[node name="Base" parent="TankModel" index="0" unique_id=1397067049]
+surface_material_override/0 = ExtResource("5_whocj")
+surface_material_override/1 = ExtResource("4_n6nx7")
+surface_material_override/2 = ExtResource("6_xkrtr")
+
+[node name="Barrel" parent="TankModel" index="1" unique_id=1225671377]
+surface_material_override/0 = ExtResource("4_n6nx7")
+surface_material_override/1 = ExtResource("5_whocj")
+surface_material_override/2 = ExtResource("6_xkrtr")
+surface_material_override/3 = ExtResource("4_n6nx7")
+
+[node name="TrailRendererBarrel" type="Node3D" parent="TankModel/Barrel" index="0" unique_id=1789710507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12447949, -0.14218903, 8.478878)
 script = ExtResource("10_hsoq5")
 min_vertex_distance = 0.1
@@ -370,7 +384,7 @@ debug_color = Color(0, 0.5950001, 0.7, 1)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1235218430]
 physics_interpolation_mode = 1
-transform = Transform3D(-1, 0, -8.742278e-08, -2.262668e-08, 0.9659259, 0.25881907, 8.444392e-08, 0.25881907, -0.9659258, 0, 10, -20)
+transform = Transform3D(-1, 8.881784e-16, -8.742278e-08, -2.262668e-08, 0.9659258, 0.25881907, 8.444392e-08, 0.25881907, -0.9659258, 0, 10, -20)
 top_level = true
 far = 20000.0
 

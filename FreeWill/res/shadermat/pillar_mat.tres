@@ -1,0 +1,27 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ciwcm6lkrshl2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ss41p"]
+render_priority = 1
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.03
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
+[resource]
+resource_name = "Darker Green"
+next_pass = SubResource("StandardMaterial3D_ss41p")
+cull_mode = 2
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.445875, 0.45, 0.42749998, 1)
+metallic = 0.25
+metallic_specular = 1.0
+roughness = 0.3
+stencil_mode = 1
+stencil_flags = 2
+stencil_outline_thickness = 0.03
