@@ -427,7 +427,18 @@ func _physics_process(delta: float) -> void:
 		#beeper.stop()
 
 func _poll_tank_death() -> void:
-	if global_position.y < -5.0: _kill()
+	if not global_position.y < -5.0: return
+	
+	if parry_window_timer.is_active():
+		parry_the_water()
+		return
+	
+	_kill()
+
+func parry_the_water() -> void:
+	linear_velocity += Vector3.UP * DASH_FORCE
+	cool_shit_happened.emit(CoolShit.Shit.PARRY_THE_WATER, 130)
+
 #world boundries suck so ill just uh check how far the tank is from origin  hi this is gael btw
 const  BOUNDARY : float = 5000
 func _poll_tank_distance()->void :
