@@ -1,6 +1,6 @@
 class_name MissonHandler extends Node3D
 
-#Gael: Worried about too many preload ill load an enemy only when we need it 
+#Gael: Worried about too many preload ill load an enemy only when we need it
 #const ENEMY_PLANE = preload("res://scenes/entities/enemies/enemy_plane.tscn")
 #const ENEMY_BATTLE_SHIP = preload("res://scenes/entities/enemies/enemy_battle_ship.tscn")
 
@@ -31,9 +31,9 @@ const BOMBERSPAWNHEIGHT : float = 1340
 
 @export var transition: ColorRect
 
-var tank : PlayerTank 
+var tank : PlayerTank
 
-#wave count starts from 0 remember to increment in display 
+#wave count starts from 0 remember to increment in display
 var current_wave: int = 0
 var enemy_count: int = 0
 
@@ -57,15 +57,15 @@ func _on_tank_fucking_exploded() -> void:
 	game_over_scene.player = tank
 	game_over_scene.current_scene = get_scene_file_path()
 	#this actually advances a wave upon death so gotta decrement by 1 BUT DONT INCREMENNT IF THE PLAYER DIES DURING STARTING DIALOG
-	game_over_scene.current_wave_idx = current_wave 
+	game_over_scene.current_wave_idx = current_wave
 	if current_wave > 0 :
-		
+
 		game_over_scene.current_wave_idx -= 1
 	AudioManager.play_sound_at(tank.global_position, preload("res://audio/sfx/large_explosion.ogg"), 15.0)
 	add_child.call_deferred(game_over_scene)
 
 #SPAWNCONSTS
-const PLANESPAWNRADIUS: float = 50 
+const PLANESPAWNRADIUS: float = 50
 const PLANESPAWNDISTANCE: float= 50
 const BOATSPANWRADIUS : float = 300
 const BOATSPAWNDISTANCE: float = 100
@@ -84,7 +84,7 @@ func spawn_wave()->void:
 			#Dialogic.Inputs.block_input(100000)
 			Dialogic.start(wave.spawn_dialog)
 			if current_wave == 0:
-				
+
 				await Dialogic.timeline_ended
 		#ARTIFICALLY AWAIT THE FUCKING IFFTRACKER CRASHESSSSSSSS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+++++++++++++++++++++++++
 		await  get_tree().create_timer(.5).timeout
@@ -97,7 +97,7 @@ func spawn_wave()->void:
 							standard_plane = load("res://scenes/entities/enemies/enemy_plane.tscn")
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy : EnemyPlane = standard_plane.instantiate()
-						
+
 						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
 						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,PLANESPAWNRADIUS,PLANESPAWNDISTANCE)
 						new_enemy.position = pos
@@ -105,13 +105,13 @@ func spawn_wave()->void:
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Enemy Plane " +str(i+1)
 						enemies_list.airborne_enemies.add_child(new_enemy)
-						
+
 				WaveResource.EnemyTypes.StandardGunboat:
 					if ! standard_boat:
 						standard_boat = load("res://scenes/entities/enemies/enemy_battle_ship.tscn")
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy : EnemyBattleship = standard_boat.instantiate()
-						
+
 						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
 						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,BOATSPANWRADIUS,BOATSPAWNDISTANCE)
 						new_enemy.position = pos
@@ -124,7 +124,7 @@ func spawn_wave()->void:
 						cargo_boat = load("res://scenes/entities/enemies/enemy_cargoship.tscn")
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy : EnemyCargoShip = cargo_boat.instantiate()
-						
+
 						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
 						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,BOATSPANWRADIUS,BOATSPAWNDISTANCE)
 						new_enemy.position = pos
@@ -137,7 +137,7 @@ func spawn_wave()->void:
 						elite_plane = load("res://scenes/entities/enemies/enemy_elite_plane.tscn")
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy : EnemyPlane = elite_plane.instantiate()
-						
+
 						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
 						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,PLANESPAWNRADIUS,PLANESPAWNDISTANCE)
 						new_enemy.position =pos
@@ -152,7 +152,7 @@ func spawn_wave()->void:
 							super_elite_plane = load("res://scenes/entities/enemies/enemy_super_elite_plane.tscn")
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy : SuperEnemyPlane= super_elite_plane.instantiate()
-						
+
 						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
 						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,PLANESPAWNRADIUS,PLANESPAWNDISTANCE)
 						new_enemy.position = pos
@@ -167,7 +167,7 @@ func spawn_wave()->void:
 							bomber_plane = load("res://scenes/entities/enemies/enemy_bomber_plane.tscn")
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy :EnemyBomberPlane= bomber_plane.instantiate()
-						
+
 						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
 						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,BOMBERSPAWNRADIUS,BOMBERSPAWNDISTANCE)
 						new_enemy.position = pos
@@ -181,7 +181,7 @@ func spawn_wave()->void:
 							shark_carrier = load("res://scenes/entities/enemies/enemy_shark_carrier.tscn")
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy :EnemySharkCarrier= shark_carrier.instantiate()
-						
+
 						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
 						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,SHARKSPAWNRADIUS,SHARKSPAWNDISTANCE)
 						new_enemy.position = pos
@@ -193,7 +193,7 @@ func spawn_wave()->void:
 		current_wave +=1
 		var enemies := enemies_list.get_enemies()
 		stagehandler.ui.track_these_entities(enemies)
-	
+
 
 const BORDER : float = 5000
 
@@ -206,19 +206,19 @@ func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: fl
 		)
 		var candidate : Vector3 = base_pos + offset
 		if  abs(candidate.x)>= BORDER or abs(candidate.z)>= BORDER:
-			continue 
+			continue
 		var is_valid := true
 		var entites : Array[Node] = enemies_list.get_enemies() + enviorment.get_children()
-		
+
 		for entity in entites:
 			if entity.global_position.distance_to(candidate) < min_distance:
 				is_valid = false
 				break
-		
+
 		if is_valid:
 			#print(candidate)
 			return candidate
-	
+
 	return base_pos
 
 
@@ -230,7 +230,7 @@ func on_enemy_death()->void:
 		print("deathnoises")
 		DeathNoises.play_random_noise()
 	if enemy_count ==0:
-		
+
 		spawn_wave()
 func end_mission() -> void:
 	if Dialogic.current_timeline:
@@ -249,7 +249,7 @@ func end_mission() -> void:
 func fade_in()->void:
 	var fade_in_tween : Tween = get_tree().create_tween().set_ease(Tween.EASE_OUT)
 	fade_in_tween.tween_property(transition,"modulate",Color("ffffff00"),2)
-	
+
 func fade_out()->void:
 	var fade_out_tween : Tween = get_tree().create_tween().set_ease(Tween.EASE_OUT)
 	fade_out_tween.tween_property(transition,"modulate",Color("ffffff"),1)

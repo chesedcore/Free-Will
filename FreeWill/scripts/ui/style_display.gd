@@ -14,11 +14,13 @@ var style_time: float = 3.0
 
 
 func _ready() -> void:
+	return
 	test_points_label.text = "points: %s" % [style_points]
 	style_loss_time_bar.max_value = STYLE_RESET_TIME
 
 
 func _process(delta: float) -> void:
+	return
 	visible = (style_time > 0.0)
 	style_time_update(delta)
 
@@ -46,6 +48,7 @@ func lame_shit(points_to_remove: int) -> void:
 
 
 func display_update() -> void:
+	return
 	test_points_label.text = "points: %s" % [style_points]
 
 

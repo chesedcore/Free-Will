@@ -14,10 +14,10 @@ var initial_smoke := false
 
 func _physics_process(delta: float) -> void:
 	if player:
-		
+
 		var base_pos :Vector3 = base.global_position
 		var flat_target : Vector3= player.global_position
-		flat_target.y = base_pos.y  
+		flat_target.y = base_pos.y
 		base.look_at(flat_target, Vector3.UP)
 		base.rotation.y = lerp_angle(base.rotation.y, base.rotation.y, rotation_speed * delta)
 
@@ -38,7 +38,7 @@ func _on_attack_timer_timeout() -> void:
 		CannonParticles.attach_to(shark_spawn_location)
 		shark_spawn_location.get_child(0).scale = Vector3(3.,3.,3.)
 		var new_missile :HomingMissile = SHARK.instantiate()
-		
+
 		new_missile.target_node = player
 		EventBus.spawn_weaponry.emit(new_missile)
 		new_missile.global_position =shark_spawn_location.global_position

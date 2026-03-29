@@ -428,11 +428,11 @@ func _physics_process(delta: float) -> void:
 
 func _poll_tank_death() -> void:
 	if not global_position.y < -5.0: return
-	
+
 	if parry_window_timer.is_active():
 		parry_the_water()
 		return
-	
+
 	_kill()
 
 func parry_the_water() -> void:
