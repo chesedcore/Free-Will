@@ -30,4 +30,6 @@ func play_random_noise() -> void:
 		_refill()
 
 	var sound: AudioStream = dupe_sounds.pop_back()
-	AudioManager.play_sound(sound,0,"Voice")
+	var bus_index : int = AudioServer.get_bus_index("Voice")
+	var curr_voice_db : = AudioServer.get_bus_volume_db(bus_index)
+	AudioManager.play_sound(sound, curr_voice_db + 2,"Voice",false)
