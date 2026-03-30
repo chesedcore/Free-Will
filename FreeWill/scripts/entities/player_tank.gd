@@ -153,6 +153,7 @@ func _execute_railgun() -> void:
 	shake(0.5, 3.)
 	for target in targets_hit:
 		target.damage(rail_gun_damage)
+		target.apply_knockback(global_position.direction_to(target.global_position))
 
 	is_firing_railgun = false
 
@@ -283,6 +284,8 @@ func _attempt_parry() -> void:
 
 
 func _execute_parry() -> void:
+	linear_velocity *= 0.25
+
 	reset_rotation()
 	create_tween().tween_property(self, "linear_velocity:y", 0.0, PARRY_WINDUP).set_ease(Tween.EASE_OUT_IN).set_trans(Tween.TRANS_CUBIC)
 
@@ -321,7 +324,10 @@ func _end_parry() -> void:
 
 
 func _extend_parry_window() -> void:
+	add_child.call_deferred(preload("res://scenes/ui/parry_flash.tscn").instantiate())
+	AudioManager.play_sound(preload("res://audio/sfx/parry.ogg"), 10.0)
 	cool_shit_happened.emit(CoolShit.Shit.PARRY, 100)
+
 	reset_rotation()
 	if parry_window_timer.is_active():
 		parry_window_timer.start(PARRY_CHAIN_EXTENSION)

@@ -1,4 +1,4 @@
-class_name  BaseEnemy extends CharacterBody3D
+class_name BaseEnemy extends CharacterBody3D
 
 #replace with model
 @export var model: Node3D
@@ -17,3 +17,7 @@ func kill() -> void:
 	DeathExplosionParticles.spawn_at(get_tree(), self)
 	died.emit()
 	queue_free.call_deferred()
+
+
+func apply_knockback(dir: Vector3, strength: float = 255.0) -> void:
+	velocity += dir * strength

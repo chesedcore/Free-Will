@@ -1,11 +1,12 @@
 extends Node
 
 var all_sounds: Array[AudioStream] = []
-
 var dupe_sounds: Array[AudioStream] = []
+
 
 func _ready() -> void:
 	_init_sounds()
+
 
 func _init_sounds()->void:
 	if all_sounds.is_empty():
