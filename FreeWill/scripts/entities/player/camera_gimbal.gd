@@ -98,7 +98,7 @@ func start_dash_tween(duration: float, fov_boost: float, cam_pullback: float) ->
 	if recovery_tween: recovery_tween.kill()
 
 	tank.shake(duration)
-
+	tank.afterimage_enable()
 	dash_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
 	dash_tween.set_parallel(true)
@@ -118,6 +118,7 @@ func recover(duration: float) -> void:
 	recovery_tween.set_parallel(true)
 	recovery_tween.tween_property(camera, "fov", BASE_FOV, duration * 0.5)
 	recovery_tween.tween_property(phantom_camera, "position:z", base_camera_z, duration * 0.5)
+	tank.afterimage_disable()
 
 
 func dash_effect_update(delta: float) -> void:

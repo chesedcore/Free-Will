@@ -26,7 +26,7 @@ const DASH_EFFECT_DURATION := 5.0
 
 # TODO: Bubba: this may be too few missles. I do think preventing the player from spamming
 # the missiles is a good idea. Probably needs adjusting tho
-const MAX_MISSILES: int = 4
+const MAX_MISSILES: int = 2
 
 const PARRY_COOLDOWN := 0.75
 const PARRY_WINDUP := 0.01
@@ -252,7 +252,7 @@ func _debug_draw_capsule(xform: Transform3D, height: float, radius: float, durat
 	instance.queue_free()
 
 func _execute_dash() -> void:
-	cool_shit_happened.emit(CoolShit.Shit.DODGE, 10)
+	#cool_shit_happened.emit(CoolShit.Shit.DODGE, 10)
 
 	var input_dir: Vector2 = Input.get_vector("left", "right", "up", "down")
 	if input_dir.is_zero_approx(): input_dir = Vector2.UP
@@ -260,7 +260,7 @@ func _execute_dash() -> void:
 	var dash_direction := move_dir
 	linear_velocity += dash_direction * DASH_FORCE
 
-	#camera_gimbal.trigger_dash_effect(DASH_EFFECT_DURATION, DASH_FOV_BOOST, DASH_CAMERA_PULLBACK)
+	camera_gimbal.trigger_dash_effect(DASH_EFFECT_DURATION, DASH_FOV_BOOST, DASH_CAMERA_PULLBACK)
 
 	# Dodge roll
 	if (absf(input_dir.x) > 0.0):
@@ -308,6 +308,7 @@ func _execute_parry() -> void:
 	_parry_tween.chain()
 	_parry_tween.tween_callback(func() -> void:
 		parry_window_timer.start_cooldown()
+		afterimage_enable()
 	)
 	_parry_tween.tween_property(tank_model, "rotation_degrees:x", 120, PARRY_WINDOW)
 	_parry_tween.finished.connect(_on_parry_finished)
@@ -322,6 +323,7 @@ func _on_parry_finished() -> void:
 
 
 func _end_parry() -> void:
+	afterimage_disable()
 	_stop_gimbal_update = false
 	AudioManager.play_sound_at(barrel_position_marker.global_position, cannon_fire_sound)
 

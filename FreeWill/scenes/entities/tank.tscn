@@ -453,7 +453,7 @@ shader_parameter/max_alpha = 0.1370000065075
 shader_parameter/color_tint = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_ig2cu")
 
-[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component", "grapple_rope_mesh_1", "grapple_rope_mesh_2", "kunai_model", "idle_kunai_model", "wind_player", "beeper", "beeptimer", "charge_particles", "charge_spark_particles", "style_display", "camera_shake_animation_player")]
+[node name="Tank" type="RigidBody3D" unique_id=290108966 node_paths=PackedStringArray("camera_gimbal", "tank_model", "barrel_look_at_marker", "barrel_position_marker", "bullet_spawn_position_marker", "turret", "hull", "shake_component", "grapple_rope_mesh_1", "grapple_rope_mesh_2", "kunai_model", "idle_kunai_model", "wind_player", "beeper", "beeptimer", "charge_particles", "charge_spark_particles", "style_display", "camera_shake_animation_player", "afterimage_barrel", "afterimage_base")]
 collision_layer = 2
 collision_mask = 5
 mass = 200.0
@@ -481,10 +481,12 @@ charge_particles = NodePath("TankModel/BarrelMuzzle/ChargeParticles")
 charge_spark_particles = NodePath("TankModel/BarrelMuzzle/ChargeSparkParticles")
 style_display = NodePath("GameUI/StyleDisplay")
 camera_shake_animation_player = NodePath("CameraGimbal/CameraShakeAnimationPlayer")
+afterimage_barrel = NodePath("TankModel/Barrel/GPUParticles3D")
+afterimage_base = NodePath("TankModel/Base/GPUParticles3D")
 
 [node name="TankModel" parent="." unique_id=1331045763 instance=ExtResource("2_fn73n")]
 
-[node name="Base" parent="TankModel" index="0" unique_id=1780638612]
+[node name="Base" parent="TankModel" index="0" unique_id=1116037873]
 surface_material_override/0 = ExtResource("5_whocj")
 surface_material_override/1 = ExtResource("4_n6nx7")
 surface_material_override/2 = ExtResource("6_xkrtr")
@@ -496,7 +498,7 @@ lifetime = 0.25
 process_material = SubResource("ParticleProcessMaterial_xkrtr")
 draw_pass_1 = SubResource("ArrayMesh_6kjl2")
 
-[node name="Barrel" parent="TankModel" index="1" unique_id=1313246652]
+[node name="Barrel" parent="TankModel" index="1" unique_id=273784910]
 surface_material_override/0 = ExtResource("4_n6nx7")
 surface_material_override/1 = ExtResource("5_whocj")
 surface_material_override/2 = ExtResource("6_xkrtr")
@@ -520,7 +522,6 @@ process_material = SubResource("ParticleProcessMaterial_xkrtr")
 draw_pass_1 = SubResource("ArrayMesh_whocj")
 
 [node name="Node3D" type="Node3D" parent="TankModel" unique_id=630549247 node_paths=PackedStringArray("trail_renderer_l", "trail_renderer_r", "trail_renderer_l2", "trail_renderer_r2")]
-visible = false
 script = ExtResource("7_ywmen")
 trail_renderer_l = NodePath("TrailRendererL")
 trail_renderer_r = NodePath("TrailRendererR")
