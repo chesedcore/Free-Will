@@ -227,12 +227,11 @@ func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: fl
 func on_enemy_death()->void:
 	enemy_count -= 1
 	if ! Dialogic.current_timeline and randi_range(1,100)<= 101 :
-		print("deathnoises")
-		#if CriesOfTormentedSouls.all_sounds
-		CriesOfTormentedSouls.play_random_noise()
-	if enemy_count ==0:
-
+		if not AudioManager.is_playing():
+			CriesOfTormentedSouls.play_random_noise()
+	if enemy_count == 0:
 		spawn_wave()
+
 func end_mission() -> void:
 	if Dialogic.current_timeline:
 		await Dialogic.timeline_ended

@@ -3,6 +3,14 @@ extends Node
 ## AudioManager class.
 
 
+func is_playing_voice() -> bool:
+	var players: Array[AudioStreamPlayer]
+	players.assign(get_children())
+	for player in players:
+		if player.bus == "Voice": return true
+	return false
+	
+
 func play_sound_at(position: Vector3, sound: AudioStream, volume_db: float = 0.0, randomize_pitch: bool = true) -> void:
 	var new_sound_player := AudioStreamPlayer3D.new()
 
@@ -37,3 +45,7 @@ func play_sound(sound: AudioStream, volume_db: float = 0.0, bus: String = "SFX",
 
 	add_child(new_sound_player)
 	new_sound_player.play()
+
+func play_death_noise(sound: AudioStream, volume_db: float = 0.0, bus: String = "SFX",randomize_pitch: bool = true) -> void:
+	if is_playing_voice(): return
+	play_sound(sound, volume_db, bus, randomize_pitch)
