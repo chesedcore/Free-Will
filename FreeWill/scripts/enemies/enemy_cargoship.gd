@@ -32,6 +32,8 @@ func damage(amount: float) -> void:
 
 func kill() -> void:
 	EnemySignalBus.cargo_ship_deactivate_shield.emit()
+	for spawner in smoke_spawners:
+		DeathExplosionParticles.spawn_at(get_tree(), spawner)
 	super.kill()
 
 

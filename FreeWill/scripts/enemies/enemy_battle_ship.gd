@@ -111,4 +111,8 @@ func damage(amount: float) -> void:
 	StationarySmokeParticles.attach_to(smoke_spawner2)
 	StationarySmokeParticles.attach_to(smoke_spawner3)
 
-	
+func kill() -> void:
+	DeathExplosionParticles.spawn_at(get_tree(), smoke_spawner1)
+	DeathExplosionParticles.spawn_at(get_tree(), smoke_spawner2)
+	DeathExplosionParticles.spawn_at(get_tree(), smoke_spawner3)
+	super()
