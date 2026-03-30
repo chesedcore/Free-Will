@@ -1,5 +1,7 @@
 class_name MissonHandler extends Node3D
 
+const AUDIO_DIALOGUE_DIP: float = 5.0
+
 #Gael: Worried about too many preload ill load an enemy only when we need it
 #const ENEMY_PLANE = preload("res://scenes/entities/enemies/enemy_plane.tscn")
 #const ENEMY_BATTLE_SHIP = preload("res://scenes/entities/enemies/enemy_battle_ship.tscn")
@@ -256,18 +258,11 @@ func fade_out()->void:
 
 
 func lower_sfx_and_music()->void :
-
-	var bus_index : int= AudioServer.get_bus_index("Music")
+	var bus_index : int= AudioServer.get_bus_index("Audio Ducking")
 	var sfx_volume := AudioServer.get_bus_volume_db(bus_index)
-	AudioServer.set_bus_volume_db(bus_index, sfx_volume -15.0)
-	bus_index = AudioServer.get_bus_index("SFX")
-	var music_volume := AudioServer.get_bus_volume_db(bus_index)
-	AudioServer.set_bus_volume_db(bus_index, music_volume -15.0)
+	AudioServer.set_bus_volume_db(bus_index, sfx_volume -AUDIO_DIALOGUE_DIP)
 
 func raise_sfx_and_music()->void :
-	var bus_index : int= AudioServer.get_bus_index("Music")
+	var bus_index : int= AudioServer.get_bus_index("Audio Ducking")
 	var sfx_volume := AudioServer.get_bus_volume_db(bus_index)
-	AudioServer.set_bus_volume_db(bus_index, sfx_volume +15.0)
-	bus_index = AudioServer.get_bus_index("SFX")
-	var music_volume := AudioServer.get_bus_volume_db(bus_index)
-	AudioServer.set_bus_volume_db(bus_index, music_volume +15.0)
+	AudioServer.set_bus_volume_db(bus_index, sfx_volume + AUDIO_DIALOGUE_DIP)
