@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://4sawn7spnp0f"]
 
 [ext_resource type="AudioStream" uid="uid://brfx0g6w0w0li" path="res://audio/mus/Credits/MISSION SUCCESS.ogg" id="1_8ggla"]
-[ext_resource type="Texture2D" uid="uid://bt2jghecfjfkq" path="res://icon.svg" id="2_huu5m"]
+[ext_resource type="PackedScene" uid="uid://cyjg7srb4135o" path="res://itch_page/logo.tscn" id="2_huu5m"]
+[ext_resource type="Texture2D" uid="uid://bmvwv0p77ix2h" path="res://assets/textures/tankbackgroundlogowhite.png" id="3_17l06"]
 [ext_resource type="FontFile" uid="uid://38d0ljavacn8" path="res://assets/fonts/ZenDots-Regular.ttf" id="3_icb2l"]
 [ext_resource type="Texture2D" uid="uid://both20ypxavv6" path="res://assets/ui/Logo small blue.PNG" id="4_17l06"]
 
@@ -102,12 +103,23 @@ autoplay = &"ROLL CREDITS"
 
 [node name="Node2D" type="Node2D" parent="." unique_id=415846472]
 
-[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=2093087784]
-visible = false
-position = Vector2(563, 295)
-scale = Vector2(5.12, 1.745)
-skew = -0.15184365
-texture = ExtResource("2_huu5m")
+[node name="Control" parent="Node2D" unique_id=640372975 instance=ExtResource("2_huu5m")]
+offset_left = 158.0
+offset_top = 117.0
+offset_right = 158.0
+offset_bottom = 117.0
+scale = Vector2(0.75, 0.75)
+
+[node name="Tankbackgroundlogoblack" parent="Node2D/Control" index="0" unique_id=1796187258]
+modulate = Color(17.24, 17.24, 17.24, 1)
+position = Vector2(564.38354, 358.90414)
+texture = ExtResource("3_17l06")
+
+[node name="Label" parent="Node2D/Control" index="1" unique_id=1982933149]
+offset_left = 43.835625
+offset_top = 238.35611
+offset_right = 1082.8356
+offset_bottom = 419.3561
 
 [node name="CreativeDirector" type="Label" parent="Node2D" unique_id=1560003576]
 offset_left = 279.0
@@ -497,3 +509,5 @@ text = "THE END
 
 Thanks for playing!"
 horizontal_alignment = 1
+
+[editable path="Node2D/Control"]
