@@ -24,7 +24,7 @@ const BOMBERSPAWNHEIGHT : float = 2750
 @export var act_end_dialog : String
 
 @export var waves : Array[WaveResource]
-@export var spawnpoints: Node3D
+@export var spawnpoints_og: Node3D
 
 @export var enemies_list: EnemiesList
 
@@ -88,6 +88,7 @@ const SHARKSPAWNDISTANCE : float = 500
 const SHARKSPAWNRADIUS : float = 1000
 
 func spawn_wave()->void:
+	var spawnpoints  :Array[Node]= spawnpoints_og.get_children()
 	if current_wave >= waves.size():
 		end_mission()
 	else:
@@ -111,9 +112,9 @@ func spawn_wave()->void:
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy : EnemyPlane = standard_plane.instantiate()
 
-						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
-						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,PLANESPAWNRADIUS,PLANESPAWNDISTANCE)
-						new_enemy.position = pos
+						var spawnpoint :Node3D = spawnpoints.pick_random()
+						#var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,PLANESPAWNRADIUS,PLANESPAWNDISTANCE)
+						new_enemy.position = spawnpoint.position
 						new_enemy.position.y = PLANESPAWNHEIGHT
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Enemy Plane " +str(i+1)
@@ -125,9 +126,10 @@ func spawn_wave()->void:
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy : EnemyBattleship = standard_boat.instantiate()
 
-						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
-						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,BOATSPANWRADIUS,BOATSPAWNDISTANCE)
-						new_enemy.position = pos
+						var spawnpoint :Node3D = spawnpoints.pick_random()
+						spawnpoints.erase(spawnpoint)
+						#var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,BOATSPANWRADIUS,BOATSPAWNDISTANCE)
+						new_enemy.position = spawnpoint.global_position
 						new_enemy.position.y = BOATSPAWNHEIGHT
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Enemy BattleShip " +str(i+1)
@@ -138,9 +140,10 @@ func spawn_wave()->void:
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy : EnemyCargoShip = cargo_boat.instantiate()
 
-						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
-						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,BOATSPANWRADIUS,BOATSPAWNDISTANCE)
-						new_enemy.position = pos
+						var spawnpoint :Node3D = spawnpoints.pick_random()
+						spawnpoints.erase(spawnpoint)
+						#var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,BOATSPANWRADIUS,BOATSPAWNDISTANCE)
+						new_enemy.position = spawnpoint.global_position
 						new_enemy.position.y = BOATSPAWNHEIGHT
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Enemy ShieldShip " +str(i+1)
@@ -151,9 +154,9 @@ func spawn_wave()->void:
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy : EnemyPlane = elite_plane.instantiate()
 
-						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
-						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,PLANESPAWNRADIUS,PLANESPAWNDISTANCE)
-						new_enemy.position =pos
+						var spawnpoint :Node3D = spawnpoints.pick_random()
+						#var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,PLANESPAWNRADIUS,PLANESPAWNDISTANCE)
+						new_enemy.position =spawnpoint.position
 						new_enemy.position.y = PLANESPAWNHEIGHT
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Enemy Elite Plane " +str(i+1)
@@ -166,9 +169,9 @@ func spawn_wave()->void:
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy : SuperEnemyPlane= super_elite_plane.instantiate()
 
-						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
-						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,PLANESPAWNRADIUS,PLANESPAWNDISTANCE)
-						new_enemy.position = pos
+						var spawnpoint :Node3D = spawnpoints.pick_random()
+						#var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,PLANESPAWNRADIUS,PLANESPAWNDISTANCE)
+						new_enemy.position = spawnpoint.global_position
 						new_enemy.position.y = PLANESPAWNHEIGHT
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Super Elite Enemy Plane " +str(i+1)
@@ -181,9 +184,9 @@ func spawn_wave()->void:
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy :EnemyBomberPlane= bomber_plane.instantiate()
 
-						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
-						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,BOMBERSPAWNRADIUS,BOMBERSPAWNDISTANCE)
-						new_enemy.position = pos
+						var spawnpoint :Node3D = spawnpoints.pick_random()
+						#var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,BOMBERSPAWNRADIUS,BOMBERSPAWNDISTANCE)
+						new_enemy.position = spawnpoint.global_position
 						new_enemy.position.y = BOMBERSPAWNHEIGHT
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Bomber Plane " +str(i+1)
@@ -195,9 +198,10 @@ func spawn_wave()->void:
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy :EnemySharkCarrier= shark_carrier.instantiate()
 
-						var spawnpoint :Node3D = spawnpoints.get_children().pick_random()
-						var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,SHARKSPAWNRADIUS,SHARKSPAWNDISTANCE)
-						new_enemy.position = pos
+						var spawnpoint :Node3D = spawnpoints.pick_random()
+						spawnpoints.erase(spawnpoint)
+						#var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,SHARKSPAWNRADIUS,SHARKSPAWNDISTANCE)
+						new_enemy.position = spawnpoint.global_position
 						new_enemy.position.y = BOATSPAWNHEIGHT
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Shark Carrier " +str(i+1)

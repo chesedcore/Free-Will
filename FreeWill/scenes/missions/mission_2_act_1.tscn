@@ -98,16 +98,90 @@ waveinfo = Dictionary[int, int]({
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
-[node name="Mission2_act1" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints", "enemies_list", "transition")]
+[node name="Mission2_act1" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints_og", "enemies_list", "transition")]
 script = ExtResource("1_mxxdg")
 scene_to_transition_to = "res://scenes/missions/mission2_act1_to_2_interlude.tscn"
 mission_music = NodePath("mission_music")
 stagehandler = NodePath("stagehandler")
 act_end_dialog = "mission2_act1_end"
 waves = Array[ExtResource("2_15gmh")]([SubResource("Resource_niyrk"), SubResource("Resource_0yhn2"), SubResource("Resource_myx56"), SubResource("Resource_1lad2"), SubResource("Resource_mctdd"), SubResource("Resource_feyy3"), SubResource("Resource_dtlup"), SubResource("Resource_v5q0b"), SubResource("Resource_jh3e7")])
-spawnpoints = NodePath("stagehandler/Tank/spawnpoints")
+spawnpoints_og = NodePath("spawnpoints")
 enemies_list = NodePath("EnemiesList")
 transition = NodePath("CanvasLayer/transition")
+
+[node name="spawnpoints" type="Node3D" parent="." unique_id=578110763]
+
+[node name="spawnpoint" type="Marker3D" parent="spawnpoints" unique_id=1473993971]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 206.51031, -145.7824)
+gizmo_extents = 10.0
+
+[node name="spawnpoint2" type="Marker3D" parent="spawnpoints" unique_id=960278477]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -920.8863, 206.51031, -145.7824)
+gizmo_extents = 10.0
+
+[node name="spawnpoint3" type="Marker3D" parent="spawnpoints" unique_id=1170612175]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -920.8863, 206.51031, -1384.8586)
+gizmo_extents = 10.0
+
+[node name="spawnpoint4" type="Marker3D" parent="spawnpoints" unique_id=2090373365]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -73.101135, 206.51031, -1384.8586)
+gizmo_extents = 10.0
+
+[node name="spawnpoint10" type="Marker3D" parent="spawnpoints" unique_id=284386562]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 1185.4902, 206.51031, -1384.8586)
+gizmo_extents = 10.0
+
+[node name="spawnpoint12" type="Marker3D" parent="spawnpoints" unique_id=2017119883]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 1185.4902, 206.51031, -2379.1345)
+gizmo_extents = 10.0
+
+[node name="spawnpoint13" type="Marker3D" parent="spawnpoints" unique_id=358317953]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 715.88574, 206.51031, -1931.8901)
+gizmo_extents = 10.0
+
+[node name="spawnpoint14" type="Marker3D" parent="spawnpoints" unique_id=1472666950]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 715.88574, 206.51031, -817.11206)
+gizmo_extents = 10.0
+
+[node name="spawnpoint15" type="Marker3D" parent="spawnpoints" unique_id=592000941]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -446.18677, 206.51031, -817.11206)
+gizmo_extents = 10.0
+
+[node name="spawnpoint16" type="Marker3D" parent="spawnpoints" unique_id=135211352]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -446.18677, 206.51031, -2046.4514)
+gizmo_extents = 10.0
+
+[node name="spawnpoint17" type="Marker3D" parent="spawnpoints" unique_id=910109599]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1117.533, 206.51031, -2046.4514)
+gizmo_extents = 10.0
+
+[node name="spawnpoint18" type="Marker3D" parent="spawnpoints" unique_id=452066266]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1117.533, 206.51031, -914.06116)
+gizmo_extents = 10.0
+
+[node name="spawnpoint11" type="Marker3D" parent="spawnpoints" unique_id=1193652409]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 1185.4902, 206.51031, -68.46265)
+gizmo_extents = 10.0
+
+[node name="spawnpoint5" type="Marker3D" parent="spawnpoints" unique_id=1486947601]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -73.101, 206.51, -2554.844)
+gizmo_extents = 10.0
+
+[node name="spawnpoint6" type="Marker3D" parent="spawnpoints" unique_id=656350907]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -807.03534, 206.51, -2554.844)
+gizmo_extents = 10.0
+
+[node name="spawnpoint7" type="Marker3D" parent="spawnpoints" unique_id=1112966528]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1540.5391, 206.51, -2554.844)
+gizmo_extents = 10.0
+
+[node name="spawnpoint8" type="Marker3D" parent="spawnpoints" unique_id=2095973632]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1540.5391, 206.51, -1406.9376)
+gizmo_extents = 10.0
+
+[node name="spawnpoint9" type="Marker3D" parent="spawnpoints" unique_id=979132265]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, -1540.5391, 206.51, -528.33813)
+gizmo_extents = 10.0
 
 [node name="stagehandler" type="Node3D" parent="." unique_id=810361068 node_paths=PackedStringArray("ui", "enemies_list", "tank", "weapons")]
 script = ExtResource("3_u1uo4")
@@ -120,27 +194,6 @@ weapons = NodePath("Weapons")
 
 [node name="Tank" parent="stagehandler" unique_id=290108966 instance=ExtResource("5_kmq4t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 986.909, -700)
-
-[node name="spawnpoints" type="Node3D" parent="stagehandler/Tank" unique_id=578110763]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -335.62222, 0)
-
-[node name="spawnpoint" type="Node3D" parent="stagehandler/Tank/spawnpoints" unique_id=416100832]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 683.45483)
-
-[node name="spawnpoint2" type="Node3D" parent="stagehandler/Tank/spawnpoints" unique_id=1162161091]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1065.6646, 0, 619.9346)
-
-[node name="spawnpoint3" type="Node3D" parent="stagehandler/Tank/spawnpoints" unique_id=1899343557]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -952.364, 0, -1058.3073)
-
-[node name="spawnpoint4" type="Node3D" parent="stagehandler/Tank/spawnpoints" unique_id=1722255186]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.16568, 0, -856.8644)
-
-[node name="spawnpoint5" type="Node3D" parent="stagehandler/Tank/spawnpoints" unique_id=1953111077]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 911.78076, 0, -577.7593)
-
-[node name="spawnpoint6" type="Node3D" parent="stagehandler/Tank/spawnpoints" unique_id=381901489]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 949.9374, 0, 686.8104)
 
 [node name="UI" parent="stagehandler" unique_id=121542168 instance=ExtResource("6_dhjx0")]
 
