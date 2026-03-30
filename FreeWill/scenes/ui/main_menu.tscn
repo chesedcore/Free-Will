@@ -1,49 +1,39 @@
 [gd_scene format=3 uid="uid://dr1v73kln85wn"]
 
-[ext_resource type="Material" uid="uid://bvhqeqdmijflx" path="res://res/shadermat/theme_stripes.tres" id="1_fe2o3"]
-[ext_resource type="Script" uid="uid://biym5kgfo7ohl" path="res://scripts/util_scripts/cascadev2.gd" id="2_fe2o3"]
-[ext_resource type="PackedScene" uid="uid://dvcp2k1c3lraf" path="res://scenes/temp/temp_tank.tscn" id="3_1g8jr"]
-
-[sub_resource type="Shader" id="Shader_sl1te"]
-code = "shader_type canvas_item;
-
-uniform vec4 color_gap: source_color = vec4(0.25);
-uniform vec4 color_stripe: source_color = vec4(1.0, 1.0, 1.0, 1.0);
-uniform float divisions = 8.0; // increase for more stripe density
-uniform float stripe_bias = 2.5; // 1.0 means no stripes; 2.0 means stripes and gaps are equal size
-uniform float speed = 0.1;
-uniform float angle = 0.7854; // in radians
-
-
-uniform float skew = 0;
-
-void vertex() {
-	VERTEX.x += VERTEX.y * skew;
-}
-
-
-void fragment() {
-
-
-	float w = cos(angle) * UV.x + sin(angle) * UV.y - speed * TIME;
-	if (floor(mod(w * divisions, stripe_bias)) < 0.0001) {
-		COLOR = color_gap;
-	} else {
-		COLOR = color_stripe;
-	}
-}"
+[ext_resource type="Script" uid="uid://bq8sqw3w34a2r" path="res://scripts/ui/cascade.gd" id="1_fe2o3"]
+[ext_resource type="Texture2D" uid="uid://dktyko4dhwqa6" path="res://assets/tanksunimgcuziamlazy.png" id="1_m1kxf"]
+[ext_resource type="Shader" uid="uid://doveve2ovrg0t" path="res://shaderslop/stripes.gdshader" id="2_1g8jr"]
+[ext_resource type="Script" uid="uid://bu4hq8w0u7f1t" path="res://scripts/ui/menu_button.gd" id="3_1g8jr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fe2o3"]
-shader = SubResource("Shader_sl1te")
+shader = ExtResource("2_1g8jr")
 shader_parameter/color_gap = Color(0, 0, 0, 1)
-shader_parameter/color_stripe = Color(0, 0.7294118, 0.8039216, 1)
+shader_parameter/color_stripe = Color(1, 1, 0, 1)
 shader_parameter/divisions = 8.0
 shader_parameter/stripe_bias = 2.5
-shader_parameter/speed = 0.075
+shader_parameter/speed = 0.1
 shader_parameter/angle = 4.785
 shader_parameter/skew = 0.0
 
-[node name="MainMenu" type="Control" unique_id=1979099766]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1g8jr"]
+shader = ExtResource("2_1g8jr")
+shader_parameter/color_gap = Color(0, 0, 0, 1)
+shader_parameter/color_stripe = Color(1, 1, 0, 1)
+shader_parameter/divisions = 8.0
+shader_parameter/stripe_bias = 2.5
+shader_parameter/speed = 0.1
+shader_parameter/angle = 4.785
+shader_parameter/skew = 0.0
+
+[sub_resource type="FontVariation" id="FontVariation_x2yvf"]
+
+[sub_resource type="FontVariation" id="FontVariation_uhagc"]
+
+[sub_resource type="FontVariation" id="FontVariation_1g8jr"]
+
+[sub_resource type="FontVariation" id="FontVariation_m1kxf"]
+
+[node name="MainMenu" type="Control" unique_id=998454863]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,118 +42,314 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_lock_ = true
 
-[node name="Background" type="ColorRect" parent="." unique_id=1285181798]
-visible = false
-material = ExtResource("1_fe2o3")
+[node name="Background" type="TextureRect" parent="." unique_id=1041362767]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_m1kxf")
+
+[node name="CascadeV2" type="Control" parent="." unique_id=1526948226]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fe2o3")
+cascade_type = 2
+begin_on_ready = true
+tween_in_time = 0.5
+stagger_time = 0.04
 metadata/_edit_lock_ = true
 
-[node name="CascadeV2" type="Control" parent="." unique_id=1207365168]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_fe2o3")
-tween_in_time = 0.6
-metadata/_custom_type_script = "uid://biym5kgfo7ohl"
-
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="CascadeV2" unique_id=1791331676]
-visible = false
-modulate = Color(0, 0, 0, 0.6745098)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 326.0
-offset_top = 68.0
-offset_right = 326.0
-offset_bottom = 68.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SubViewport" type="SubViewport" parent="CascadeV2/SubViewportContainer2" unique_id=1034314316]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(1152, 648)
-render_target_update_mode = 0
-
-[node name="Node3D" parent="CascadeV2/SubViewportContainer2/SubViewport" unique_id=2027508469 instance=ExtResource("3_1g8jr")]
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="CascadeV2" unique_id=222853924]
-modulate = Color(0.56078434, 1, 1, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SubViewport" type="SubViewport" parent="CascadeV2/SubViewportContainer" unique_id=1496986347]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(1152, 648)
-render_target_update_mode = 4
-
-[node name="Node3D" parent="CascadeV2/SubViewportContainer/SubViewport" unique_id=1628686990 instance=ExtResource("3_1g8jr")]
-
-[node name="Shadow" type="ColorRect" parent="CascadeV2" unique_id=1585416011]
+[node name="RandomShit16" type="ColorRect" parent="CascadeV2" unique_id=1943546956]
 layout_mode = 0
-offset_left = 214.0
-offset_top = -178.00002
-offset_right = 255.25253
-offset_bottom = 795.28
-rotation = 0.26887745
-color = Color(0, 0, 0, 0.22352941)
+offset_left = 115.0
+offset_top = 198.0
+offset_right = 240.2557
+offset_bottom = 326.0075
+rotation = 0.941209
+color = Color(0, 0, 0, 0.44313726)
 
-[node name="ColorRect" type="ColorRect" parent="CascadeV2" unique_id=79623810]
+[node name="RandomShit" type="ColorRect" parent="CascadeV2" unique_id=441503380]
 layout_mode = 0
-offset_left = 201.05241
-offset_top = -159.24252
-offset_right = 242.30495
-offset_bottom = 814.0375
-rotation = 0.26887745
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
+offset_left = 120.0
+offset_top = 197.0
+offset_right = 245.2557
+offset_bottom = 325.00748
+rotation = 0.941209
+color = Color(0.13174233, 0.13174233, 0.13174233, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="CascadeV2/ColorRect" unique_id=42316485]
+[node name="RandomShit2" type="ColorRect" parent="CascadeV2" unique_id=1303690997]
+layout_mode = 0
+offset_left = 118.890274
+offset_top = 209.52203
+offset_right = 225.59703
+offset_bottom = 319.4504
+rotation = 0.941209
+color = Color(0.8334029, 1, 0, 1)
+
+[node name="RandomShit19" type="ColorRect" parent="CascadeV2" unique_id=749188728]
+layout_mode = 0
+offset_left = 323.1953
+offset_top = 466.0
+offset_right = 448.45102
+offset_bottom = 594.00757
+rotation = 1.0369382
+color = Color(0, 0, 0, 0.44313726)
+
+[node name="RandomShit20" type="ColorRect" parent="CascadeV2" unique_id=1031476661]
+layout_mode = 0
+offset_left = 328.1953
+offset_top = 465.0
+offset_right = 453.45102
+offset_bottom = 593.00745
+rotation = 1.0369382
+color = Color(0.057996348, 0.057996348, 0.05799634, 1)
+
+[node name="RandomShit21" type="ColorRect" parent="CascadeV2" unique_id=1004913566]
+layout_mode = 0
+offset_left = 326.26013
+offset_top = 476.1256
+offset_right = 434.58908
+offset_bottom = 586.05396
+rotation = 1.0369382
+color = Color(0.8334029, 1, 0, 1)
+
+[node name="RandomShit11" type="ColorRect" parent="CascadeV2" unique_id=1237208334]
+layout_mode = 0
+offset_left = -28.999998
+offset_top = -7.0
+offset_right = 11.846148
+offset_bottom = 776.9881
+rotation = -0.33460373
+color = Color(0, 0, 0, 0.37100002)
+
+[node name="RandomShit12" type="ColorRect" parent="CascadeV2" unique_id=80138419]
+layout_mode = 0
+offset_left = 427.0
+offset_top = -58.0
+offset_right = 467.84613
+offset_bottom = 725.9881
+rotation = 0.796815
+color = Color(0, 0, 0, 0.37100002)
+
+[node name="RandomShit3" type="ColorRect" parent="CascadeV2" unique_id=1486572985]
+modulate = Color(0, 0, 0, 1)
 material = SubResource("ShaderMaterial_fe2o3")
 layout_mode = 0
-offset_left = 10.669342
-offset_right = 32.410797
-offset_bottom = 946.0431
-color = Color(0, 0.7294118, 0.8039216, 1)
-metadata/_edit_lock_ = true
-
-[node name="Shadow2" type="ColorRect" parent="CascadeV2" unique_id=438617124]
-layout_mode = 0
-offset_left = -53.000015
-offset_top = 414.0
-offset_right = -11.747482
-offset_bottom = 1387.28
-rotation = -1.2534785
-color = Color(0, 0, 0, 0.22352941)
-
-[node name="ColorRect2" type="ColorRect" parent="CascadeV2" unique_id=471774911]
-layout_mode = 0
-offset_left = -73.0
-offset_top = 398.24252
-offset_right = -31.747467
-offset_bottom = 1371.5225
-rotation = -1.2534785
+offset_left = -25.754482
+offset_top = -21.4975
+offset_right = 11.32201
+offset_bottom = 763.5964
+rotation = -0.33460373
 color = Color(0, 0, 0, 1)
 
-[node name="ColorRect2" type="ColorRect" parent="CascadeV2/ColorRect2" unique_id=478661964]
-material = SubResource("ShaderMaterial_fe2o3")
+[node name="RandomShit4" type="ColorRect" parent="CascadeV2" unique_id=1163395420]
 layout_mode = 0
-offset_left = 10.669342
-offset_right = 32.410797
-offset_bottom = 946.0431
-color = Color(0, 0.7294118, 0.8039216, 1)
-metadata/_edit_lock_ = true
+offset_left = -20.806625
+offset_top = -23.920822
+offset_right = 5.33136
+offset_bottom = 760.06726
+rotation = -0.33460373
+color = Color(0, 0, 0, 1)
+
+[node name="RandomShit5" type="ColorRect" parent="CascadeV2" unique_id=1175590876]
+material = SubResource("ShaderMaterial_1g8jr")
+layout_mode = 0
+offset_left = 432.62833
+offset_top = -59.206596
+offset_right = 469.7541
+offset_bottom = 725.88727
+rotation = 0.79134834
+color = Color(0, 0, 0, 1)
+
+[node name="RandomShit13" type="ColorRect" parent="CascadeV2" unique_id=1580329856]
+layout_mode = 0
+offset_left = -197.0
+offset_top = -35.0
+offset_right = -182.35956
+offset_bottom = 1199.1221
+rotation = -0.6879951
+color = Color(0, 0, 0, 0.49500003)
+
+[node name="RandomShit9" type="ColorRect" parent="CascadeV2" unique_id=1064730811]
+layout_mode = 0
+offset_left = -187.0
+offset_top = -35.0
+offset_right = -172.35956
+offset_bottom = 1199.1221
+rotation = -0.6879951
+color = Color(0, 0, 0, 1)
+
+[node name="RandomShit14" type="ColorRect" parent="CascadeV2" unique_id=916374050]
+layout_mode = 0
+offset_left = -74.51789
+offset_top = 627.65967
+offset_right = -59.87745
+offset_bottom = 1890.59
+rotation = -1.7411577
+color = Color(0, 0, 0, 0.4)
+
+[node name="RandomShit10" type="ColorRect" parent="CascadeV2" unique_id=1551025107]
+layout_mode = 0
+offset_left = -81.51788
+offset_top = 623.65967
+offset_right = -66.87744
+offset_bottom = 1908.2169
+rotation = -1.7411577
+color = Color(0, 0, 0, 1)
+
+[node name="RandomShit23" type="ColorRect" parent="CascadeV2" unique_id=2057706417]
+layout_mode = 0
+offset_left = 316.06903
+offset_top = 490.393
+offset_right = 403.53735
+offset_bottom = 575.84607
+rotation = 1.0369382
+color = Color(0, 0, 0, 0.49)
+
+[node name="RandomShit22" type="ColorRect" parent="CascadeV2" unique_id=1920193837]
+layout_mode = 0
+offset_left = 321.069
+offset_top = 491.39288
+offset_right = 408.53732
+offset_bottom = 576.84595
+rotation = 1.0369382
+color = Color(0, 0, 0, 1)
+
+[node name="RandomShit24" type="ColorRect" parent="CascadeV2" unique_id=797464214]
+layout_mode = 0
+offset_left = 318.99997
+offset_top = 500.0
+offset_right = 393.5767
+offset_bottom = 572.85846
+rotation = 1.0369382
+
+[node name="RandomShit6" type="ColorRect" parent="CascadeV2" unique_id=2072446973]
+layout_mode = 0
+offset_left = 439.1796
+offset_top = -55.76545
+offset_right = 464.60312
+offset_bottom = 732.0666
+rotation = 0.79134834
+color = Color(0, 0, 0, 1)
+
+[node name="RandomShit15" type="ColorRect" parent="CascadeV2" unique_id=885505165]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 224.0
+offset_right = 198.72955
+offset_bottom = 316.77875
+rotation = 0.941209
+color = Color(0, 0, 0, 0.56200004)
+
+[node name="RandomShit7" type="ColorRect" parent="CascadeV2" unique_id=1268553908]
+layout_mode = 0
+offset_left = 116.98864
+offset_top = 222.5513
+offset_right = 204.7182
+offset_bottom = 317.7904
+rotation = 0.941209
+color = Color(0, 0, 0, 1)
+
+[node name="RandomShit8" type="ColorRect" parent="CascadeV2" unique_id=1223657141]
+layout_mode = 0
+offset_left = 115.36679
+offset_top = 235.85547
+offset_right = 183.15479
+offset_bottom = 312.2851
+rotation = 0.941209
+
+[node name="RandomShit18" type="ColorRect" parent="CascadeV2" unique_id=2144441060]
+layout_mode = 0
+offset_left = 108.204254
+offset_top = 244.77705
+offset_right = 169.1773
+offset_bottom = 307.7292
+rotation = 0.941209
+color = Color(0, 0, 0, 0.47100002)
+
+[node name="RandomShit17" type="ColorRect" parent="CascadeV2" unique_id=1754455624]
+layout_mode = 0
+offset_left = 113.50063
+offset_top = 243.83266
+offset_right = 170.59082
+offset_bottom = 306.19696
+rotation = 0.941209
+color = Color(0, 0.8570065, 1, 1)
+
+[node name="START_GAME" type="RichTextLabel" parent="CascadeV2" unique_id=1479283884]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 402.0
+offset_top = 478.35095
+offset_right = 682.0
+offset_bottom = 517.35095
+rotation = -0.1710785
+theme_override_fonts/normal_font = SubResource("FontVariation_x2yvf")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "START GAME"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="START_GAME2" type="RichTextLabel" parent="CascadeV2" unique_id=1553145649 node_paths=PackedStringArray("undershadow_text")]
+layout_mode = 0
+offset_left = 409.0
+offset_top = 480.3509
+offset_right = 689.0
+offset_bottom = 519.3509
+rotation = -0.1710785
+theme_override_fonts/normal_font = SubResource("FontVariation_uhagc")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "START GAME"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_1g8jr")
+intensifier = 0.4
+undershadow_text = NodePath("../START_GAME")
+
+[node name="OPTIONS" type="RichTextLabel" parent="CascadeV2" unique_id=2125300098]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 782.0
+offset_top = 412.15665
+offset_right = 1062.0
+offset_bottom = 451.15665
+rotation = -0.16922307
+theme_override_fonts/normal_font = SubResource("FontVariation_1g8jr")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "OPTIONS"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OPTIONS2" type="RichTextLabel" parent="CascadeV2" unique_id=1569317329 node_paths=PackedStringArray("undershadow_text")]
+layout_mode = 0
+offset_left = 789.0
+offset_top = 414.15662
+offset_right = 1069.0
+offset_bottom = 453.15662
+rotation = -0.16922307
+theme_override_fonts/normal_font = SubResource("FontVariation_m1kxf")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "OPTIONS"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_1g8jr")
+intensifier = 0.4
+undershadow_text = NodePath("../OPTIONS")
