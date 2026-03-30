@@ -1,0 +1,52 @@
+[gd_resource type="Environment" format=3 uid="uid://b2vxsu67jppe7"]
+
+[sub_resource type="Curve" id="Curve_dahg8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.6470588, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_3xa22"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_711sv"]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_s4lyc"]
+curve_x = SubResource("Curve_dahg8")
+curve_y = SubResource("Curve_3xa22")
+curve_z = SubResource("Curve_711sv")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_r10io"]
+load_path = "res://.godot/imported/EveningSkyHDRI028B_1K_HDR.exr-3f64889a536d576d780685d1ac5d14d1.bptc.ctex"
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_ne85t"]
+panorama = SubResource("CompressedTexture2D_r10io")
+
+[sub_resource type="Sky" id="Sky_37d0s"]
+sky_material = SubResource("PanoramaSkyMaterial_ne85t")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_37d0s")
+tonemap_mode = 3
+tonemap_exposure = 0.6
+glow_enabled = true
+glow_levels/3 = 1.34
+glow_levels/4 = 1.6
+glow_levels/5 = 3.27
+glow_levels/6 = 0.94
+glow_levels/7 = 0.47
+glow_normalized = true
+glow_intensity = 1.0
+glow_bloom = 0.3
+glow_blend_mode = 0
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.3311, 0.38879168, 0.43, 1)
+fog_density = 1.0
+fog_sky_affect = 0.75
+fog_depth_curve = 2.0
+fog_depth_end = 8000.0
+adjustment_enabled = true
+adjustment_color_correction = SubResource("CurveXYZTexture_s4lyc")
