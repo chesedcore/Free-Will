@@ -19,6 +19,8 @@ func fall_to_height()-> void:
 	var height_range : float = randi_range(60,1600)
 	var fall_tween :Tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
 	fall_tween.tween_property(self,"global_position:y",height_range,3)
+	await  fall_tween.finished
+	explosion_timer.start()
 
 
 func _on_body_entered(body: Node3D) -> void:
@@ -26,20 +28,18 @@ func _on_body_entered(body: Node3D) -> void:
 	if body is PlayerTank:
 		
 		trigger_body = body
-		explosion_timer.start()
 func _on_explosion_timer_timeout() -> void:
 	model.visible = false
 	if trigger_body:
 		trigger_body.damage(25)
-	var new_explosion : ExplosionParticles = MISSIE_EXPLOSION_PARTICLES.instantiate()
-	add_child(new_explosion)
+	
 	AudioManager.play_sound_at(global_position,EXPLOSION)
-	await  new_explosion.smoke_particles.finished
+	
 	kill()
 	
 func kill() -> void:
 	IFFTracker.stop_tracking_entity(self)
-
+	DeathExplosionParticles.spawn_at(get_tree(), self)
 	queue_free.call_deferred()
 
 func _on_body_exited(body: Node3D) -> void:

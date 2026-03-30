@@ -78,33 +78,13 @@ waveinfo = Dictionary[int, int]({
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
-[sub_resource type="Resource" id="Resource_jemu3"]
-script = ExtResource("2_5b6dr")
-waveinfo = Dictionary[int, int]({
-0: 10,
-1: 6,
-2: 4,
-3: 5,
-4: 3
-})
-metadata/_custom_type_script = "uid://capww07pslxpm"
-
-[sub_resource type="Resource" id="Resource_u1r7f"]
-script = ExtResource("2_5b6dr")
-waveinfo = Dictionary[int, int]({
-3: 8,
-4: 4,
-6: 4
-})
-metadata/_custom_type_script = "uid://capww07pslxpm"
-
 [node name="Mission2_act2" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints", "enemies_list", "transition")]
 script = ExtResource("1_xkyyl")
 scene_to_transition_to = "res://scenes/credits/credits.tscn"
 mission_music = NodePath("mission_music")
 stagehandler = NodePath("stagehandler")
 act_end_dialog = "mission2_act2_end"
-waves = Array[ExtResource("2_5b6dr")]([SubResource("Resource_5b6dr"), SubResource("Resource_cr04a"), SubResource("Resource_rbt6g"), SubResource("Resource_7n4jq"), SubResource("Resource_frfto"), SubResource("Resource_dio51"), SubResource("Resource_4lg1i"), SubResource("Resource_jemu3"), SubResource("Resource_u1r7f")])
+waves = Array[ExtResource("2_5b6dr")]([SubResource("Resource_5b6dr"), SubResource("Resource_cr04a"), SubResource("Resource_rbt6g"), SubResource("Resource_7n4jq"), SubResource("Resource_frfto"), SubResource("Resource_dio51"), SubResource("Resource_4lg1i")])
 spawnpoints = NodePath("stagehandler/Tank/spawnpoints")
 enemies_list = NodePath("EnemiesList")
 transition = NodePath("CanvasLayer/transition")

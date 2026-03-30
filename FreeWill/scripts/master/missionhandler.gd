@@ -37,11 +37,24 @@ var tank : PlayerTank
 var current_wave: int = 0
 var enemy_count: int = 0
 
-#temporary mission start logic
-func _ready() -> void:
+func wire_signals()->void:
 	stagehandler.tank_fucking_exploded.connect(_on_tank_fucking_exploded)
 	Dialogic.timeline_started.connect(lower_sfx_and_music)
 	Dialogic.timeline_ended.connect(raise_sfx_and_music)
+	Dialogic.signal_event.connect(_on_dialogic_signal)
+	
+func _on_dialogic_signal(argument:String)->void:
+	if argument == "no_fade":
+		fadeout_time = 0.001
+	if argument == "end":
+		EventBus.change_game_container_to.emit(load(scene_to_transition_to).instantiate())
+
+
+
+
+#temporary mission start logic
+func _ready() -> void:
+	wire_signals()
 	#wanted the tank to start with some motion so uhhh yeahhhhh
 	tank = stagehandler.tank
 	tank.linear_velocity += tank.camera_gimbal.global_transform.basis.z * (tank.GUN_FIRE_FORCE *10)
@@ -248,10 +261,10 @@ func end_mission() -> void:
 func fade_in()->void:
 	var fade_in_tween : Tween = get_tree().create_tween().set_ease(Tween.EASE_OUT)
 	fade_in_tween.tween_property(transition,"modulate",Color("ffffff00"),2)
-
+var fadeout_time : float= 1.0
 func fade_out()->void:
 	var fade_out_tween : Tween = get_tree().create_tween().set_ease(Tween.EASE_OUT)
-	fade_out_tween.tween_property(transition,"modulate",Color("ffffff"),1)
+	fade_out_tween.tween_property(transition,"modulate",Color("ffffff"),fadeout_time)
 	await fade_out_tween.finished
 
 

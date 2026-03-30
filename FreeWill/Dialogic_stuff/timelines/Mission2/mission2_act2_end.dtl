@@ -14,3 +14,4 @@ on the mainland has been halted! Support is on the way!
 General: I KNEW THOSE REGRESSIANS WOULDN’T STAND A CHANCE!
 [voice path="res://audio/Exported Voicelines/Mission 2/General/mission2_general_11_big-f-bomb.ogg" volume="0.0" bus="Voice"]
 General: How could they?! They fought a flying fu-
+[signal arg="end"]
