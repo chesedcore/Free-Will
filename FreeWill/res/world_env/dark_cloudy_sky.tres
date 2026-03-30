@@ -1,4 +1,4 @@
-[gd_resource type="Environment" format=3 uid="uid://dlfmfw8k7mg27"]
+[gd_resource type="Environment" format=3 uid="uid://dlfchxfgfcmoo"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oi72p"]
 load_path = "res://.godot/imported/EveningSkyHDRI028B_1K_HDR.exr-3f64889a536d576d780685d1ac5d14d1.bptc.ctex"

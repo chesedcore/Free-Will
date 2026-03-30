@@ -1,0 +1,183 @@
+[gd_scene format=3 uid="uid://b1xvirnj2mt1l"]
+
+[ext_resource type="Script" uid="uid://hkuju2my0qay" path="res://scripts/master/missionhandler.gd" id="1_xkyyl"]
+[ext_resource type="Script" uid="uid://capww07pslxpm" path="res://scripts/master/waveresource.gd" id="2_5b6dr"]
+[ext_resource type="Script" uid="uid://ohbv2yfd1i1x" path="res://scripts/master/stage_handler.gd" id="3_cr04a"]
+[ext_resource type="PackedScene" uid="uid://bfm11gbihbc6c" path="res://scenes/maps/mission_2_battlefield.tscn" id="4_rbt6g"]
+[ext_resource type="Environment" uid="uid://c6plbqks3riqa" path="res://res/world_env/sky_on_fire.tres" id="5_5b6dr"]
+[ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="5_7n4jq"]
+[ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="6_frfto"]
+[ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scripts/master/enemies_list.gd" id="7_dio51"]
+[ext_resource type="AudioStream" uid="uid://w4n8wy4maeaq" path="res://audio/mus/Mission 2/finish the job.ogg" id="8_4lg1i"]
+
+[sub_resource type="Resource" id="Resource_5b6dr"]
+script = ExtResource("2_5b6dr")
+spawn_dialog = "mission2_act_2_intro"
+waveinfo = Dictionary[int, int]({
+0: 10
+})
+metadata/_custom_type_script = "uid://capww07pslxpm"
+
+[sub_resource type="Resource" id="Resource_cr04a"]
+script = ExtResource("2_5b6dr")
+waveinfo = Dictionary[int, int]({
+0: 10,
+5: 2,
+6: 1
+})
+metadata/_custom_type_script = "uid://capww07pslxpm"
+
+[sub_resource type="Resource" id="Resource_rbt6g"]
+script = ExtResource("2_5b6dr")
+waveinfo = Dictionary[int, int]({
+0: 10,
+3: 5,
+6: 1
+})
+metadata/_custom_type_script = "uid://capww07pslxpm"
+
+[sub_resource type="Resource" id="Resource_7n4jq"]
+script = ExtResource("2_5b6dr")
+waveinfo = Dictionary[int, int]({
+0: 10,
+1: 6,
+4: 3
+})
+metadata/_custom_type_script = "uid://capww07pslxpm"
+
+[sub_resource type="Resource" id="Resource_frfto"]
+script = ExtResource("2_5b6dr")
+spawn_dialog = "mission2_act2_wave5"
+waveinfo = Dictionary[int, int]({
+0: 10,
+2: 3,
+3: 5,
+5: 2
+})
+metadata/_custom_type_script = "uid://capww07pslxpm"
+
+[sub_resource type="Resource" id="Resource_dio51"]
+script = ExtResource("2_5b6dr")
+waveinfo = Dictionary[int, int]({
+0: 10,
+2: 2,
+3: 4,
+5: 2,
+6: 2
+})
+metadata/_custom_type_script = "uid://capww07pslxpm"
+
+[sub_resource type="Resource" id="Resource_4lg1i"]
+script = ExtResource("2_5b6dr")
+spawn_dialog = "mission2_act2_wave7"
+waveinfo = Dictionary[int, int]({
+0: 10,
+1: 6,
+3: 3,
+5: 1
+})
+metadata/_custom_type_script = "uid://capww07pslxpm"
+
+[sub_resource type="Resource" id="Resource_jemu3"]
+script = ExtResource("2_5b6dr")
+waveinfo = Dictionary[int, int]({
+0: 10,
+1: 6,
+2: 4,
+3: 5,
+4: 3
+})
+metadata/_custom_type_script = "uid://capww07pslxpm"
+
+[sub_resource type="Resource" id="Resource_u1r7f"]
+script = ExtResource("2_5b6dr")
+waveinfo = Dictionary[int, int]({
+3: 8,
+4: 4,
+6: 4
+})
+metadata/_custom_type_script = "uid://capww07pslxpm"
+
+[node name="Mission2_act2" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints", "enemies_list", "transition")]
+script = ExtResource("1_xkyyl")
+scene_to_transition_to = "res://scenes/credits/credits.tscn"
+mission_music = NodePath("mission_music")
+stagehandler = NodePath("stagehandler")
+act_end_dialog = "mission2_act2_end"
+waves = Array[ExtResource("2_5b6dr")]([SubResource("Resource_5b6dr"), SubResource("Resource_cr04a"), SubResource("Resource_rbt6g"), SubResource("Resource_7n4jq"), SubResource("Resource_frfto"), SubResource("Resource_dio51"), SubResource("Resource_4lg1i"), SubResource("Resource_jemu3"), SubResource("Resource_u1r7f")])
+spawnpoints = NodePath("stagehandler/Tank/spawnpoints")
+enemies_list = NodePath("EnemiesList")
+transition = NodePath("CanvasLayer/transition")
+
+[node name="stagehandler" type="Node3D" parent="." unique_id=810361068 node_paths=PackedStringArray("ui", "enemies_list", "tank", "weapons")]
+script = ExtResource("3_cr04a")
+ui = NodePath("UI")
+enemies_list = NodePath("../EnemiesList")
+tank = NodePath("Tank")
+weapons = NodePath("Weapons")
+
+[node name="Mission2Battlefield" parent="stagehandler" unique_id=1690070922 instance=ExtResource("4_rbt6g")]
+
+[node name="WorldEnvironment" parent="stagehandler/Mission2Battlefield" index="2" unique_id=1284041793]
+environment = ExtResource("5_5b6dr")
+
+[node name="Tank" parent="stagehandler" unique_id=290108966 instance=ExtResource("5_7n4jq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 986.909, -700)
+
+[node name="spawnpoints" type="Node3D" parent="stagehandler/Tank" unique_id=578110763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -335.62222, 0)
+
+[node name="spawnpoint" type="Node3D" parent="stagehandler/Tank/spawnpoints" unique_id=416100832]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 683.45483)
+
+[node name="spawnpoint2" type="Node3D" parent="stagehandler/Tank/spawnpoints" unique_id=1162161091]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1065.6646, 0, 619.9346)
+
+[node name="spawnpoint3" type="Node3D" parent="stagehandler/Tank/spawnpoints" unique_id=1899343557]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -952.364, 0, -1058.3073)
+
+[node name="spawnpoint4" type="Node3D" parent="stagehandler/Tank/spawnpoints" unique_id=1722255186]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.16568, 0, -856.8644)
+
+[node name="spawnpoint5" type="Node3D" parent="stagehandler/Tank/spawnpoints" unique_id=1953111077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 911.78076, 0, -577.7593)
+
+[node name="spawnpoint6" type="Node3D" parent="stagehandler/Tank/spawnpoints" unique_id=381901489]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 949.9374, 0, 686.8104)
+
+[node name="UI" parent="stagehandler" unique_id=121542168 instance=ExtResource("6_frfto")]
+
+[node name="Weapons" type="Node3D" parent="stagehandler" unique_id=1747668875]
+
+[node name="EnemiesList" type="Node3D" parent="." unique_id=1848485939 node_paths=PackedStringArray("airborne_enemies", "seaborne_enemies")]
+script = ExtResource("7_dio51")
+airborne_enemies = NodePath("AirborneEnemies")
+seaborne_enemies = NodePath("Seaborne enemies")
+
+[node name="AirborneEnemies" type="Node3D" parent="EnemiesList" unique_id=676954822]
+
+[node name="Seaborne enemies" type="Node3D" parent="EnemiesList" unique_id=386092668]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=956286427]
+layer = 2
+
+[node name="transition" type="ColorRect" parent="CanvasLayer" unique_id=159990764]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="mission_music" type="AudioStreamPlayer" parent="." unique_id=1660453610]
+stream = ExtResource("8_4lg1i")
+bus = &"Music"
+
+[editable path="stagehandler/Mission2Battlefield"]
+[editable path="stagehandler/Mission2Battlefield/Gear1"]
+[editable path="stagehandler/Mission2Battlefield/Gear1/gear_1"]
+[editable path="stagehandler/Mission2Battlefield/Gear2"]
+[editable path="stagehandler/Mission2Battlefield/Gear2/gear_1"]
+[editable path="stagehandler/Mission2Battlefield/Gear3"]
+[editable path="stagehandler/Mission2Battlefield/Gear3/gear_1"]

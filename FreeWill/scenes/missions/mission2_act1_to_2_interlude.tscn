@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://btxebtmj68tyn"]
+
+[ext_resource type="Script" uid="uid://ck7rtqj16tyy6" path="res://scripts/master/interlude.gd" id="1_5gdwa"]
+
+[node name="Node3D" type="Node3D" unique_id=265147375]
+
+[node name="interlude" type="ColorRect" parent="." unique_id=2103684567]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("1_5gdwa")
+dialog = "mission2_interlude"
+scene_to_transition_to = "res://scenes/missions/mission_2_act_2.tscn"

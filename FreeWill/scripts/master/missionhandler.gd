@@ -27,7 +27,7 @@ const BOMBERSPAWNHEIGHT : float = 2750
 @export var spawnpoints: Node3D
 
 @export var enemies_list: EnemiesList
-@export var enviorment: Node3D
+
 
 @export var transition: ColorRect
 
@@ -187,7 +187,7 @@ func spawn_wave()->void:
 						new_enemy.position = pos
 						new_enemy.position.y = BOATSPAWNHEIGHT
 						new_enemy.died.connect(on_enemy_death)
-						new_enemy.name = "Bomber Plane " +str(i+1)
+						new_enemy.name = "Shark Carrier " +str(i+1)
 						enemies_list.seaborne_enemies.add_child(new_enemy)
 			enemy_count += wave.waveinfo[enemytype]
 		current_wave +=1
