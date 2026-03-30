@@ -28,8 +28,8 @@ AudioManager="*uid://ccewu7gffr4af"
 Dialogic="*uid://ds2q0uclmolvu"
 MissionStatus="*uid://65hct6fp2nba"
 EnemySignalBus="*uid://03vt4btrtru2"
-EventBus="*uid://cv17rrbp0rsi3"
 CriesOfTormentedSouls="*uid://bi2jvk7sx5uan"
+EventBus="*uid://cv17rrbp0rsi3"
 
 [debug]
 
