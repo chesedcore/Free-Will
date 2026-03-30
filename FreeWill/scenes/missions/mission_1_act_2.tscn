@@ -17,6 +17,7 @@ spawn_dialog = "mission1_act2_intro"
 waveinfo = Dictionary[int, int]({
 0: 6,
 1: 6,
+4: 1,
 5: 1
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
@@ -142,29 +143,27 @@ size = Vector2(10000, 10000)
 subdivide_width = 300
 subdivide_depth = 300
 
-[node name="Mission1_act2" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints", "enemies_list", "enviorment", "transition")]
+[node name="Mission1_act2" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints", "enemies_list", "transition")]
 script = ExtResource("1_e1x6y")
 mission_title = 2
-scene_to_transition_to = "res://scenes/credits/credits.tscn"
+scene_to_transition_to = "res://scenes/missions/mission1_to_mission2_interlude.tscn"
 mission_music = NodePath("mission_music")
 stagehandler = NodePath("stagehandler")
 act_end_dialog = "mission1_act2_end"
 waves = Array[ExtResource("2_q70iu")]([SubResource("Resource_x2y18"), SubResource("Resource_08rrl"), SubResource("Resource_cetxk"), SubResource("Resource_xmt5l"), SubResource("Resource_e1x6y"), SubResource("Resource_q70iu"), SubResource("Resource_7ieol"), SubResource("Resource_ut7qk")])
 spawnpoints = NodePath("stagehandler/Tank/spawnpoints")
 enemies_list = NodePath("EnemiesList")
-enviorment = NodePath("enviorment")
 transition = NodePath("CanvasLayer/transition")
 
 [node name="Ocean" type="MeshInstance3D" parent="." unique_id=713502013]
 transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -0.093763605, -63.03884, -0.8690749)
 mesh = SubResource("PlaneMesh_optku")
 
-[node name="stagehandler" type="Node3D" parent="." unique_id=810361068 node_paths=PackedStringArray("ui", "enemies_list", "tank", "environment", "weapons")]
+[node name="stagehandler" type="Node3D" parent="." unique_id=810361068 node_paths=PackedStringArray("ui", "enemies_list", "tank", "weapons")]
 script = ExtResource("4_ut7qk")
 ui = NodePath("UI")
 enemies_list = NodePath("../EnemiesList")
 tank = NodePath("Tank")
-environment = NodePath("../enviorment")
 weapons = NodePath("Weapons")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="stagehandler" unique_id=234805234]
@@ -230,50 +229,26 @@ color = Color(0, 0, 0, 1)
 [node name="pillar_enviorment_prop" parent="enviorment" unique_id=1395337680 instance=ExtResource("9_q70iu")]
 transform = Transform3D(-1.3113416e-05, 0, -299.99997, 0, 299.99997, 0, 299.99997, 0, -1.3113416e-05, 1433.1635, 2.2414856, 545.34607)
 
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
-
 [node name="pillar_enviorment_prop2" parent="enviorment" unique_id=487048540 instance=ExtResource("9_q70iu")]
 transform = Transform3D(-1.3113416e-05, 0, -299.99997, 0, 299.99997, 0, 299.99997, 0, -1.3113416e-05, 1433.1635, 2.2414856, -1241.6477)
-
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop2" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
 
 [node name="pillar_enviorment_prop5" parent="enviorment" unique_id=884838753 instance=ExtResource("9_q70iu")]
 transform = Transform3D(-1.3113416e-05, 0, -299.99997, 0, 299.99997, 0, 299.99997, 0, -1.3113416e-05, -1342.5168, 2.2414856, -1309.2942)
 
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop5" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, -0.7638345)
-
 [node name="pillar_enviorment_prop6" parent="enviorment" unique_id=1795904837 instance=ExtResource("9_q70iu")]
 transform = Transform3D(-1.3113416e-05, 0, -299.99997, 0, 299.99997, 0, 299.99997, 0, -1.3113416e-05, -1342.5168, 2.2414856, 506.66064)
-
-[node name="Grapple Point" parent="enviorment/pillar_enviorment_prop6" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, -0.6738348)
 
 [node name="borderpillarx" parent="enviorment" unique_id=1354109632 instance=ExtResource("9_q70iu")]
 transform = Transform3D(299.99997, 0, 0, 0, -1.3113416e-05, 299.99997, 0, -299.99997, -1.3113416e-05, 2500, 0, 1345)
 
-[node name="Grapple Point" parent="enviorment/borderpillarx" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
-
 [node name="borderpillarx2" parent="enviorment" unique_id=1656489903 instance=ExtResource("9_q70iu")]
 transform = Transform3D(299.99997, 0, 0, 0, -1.3113416e-05, 299.99997, 0, -299.99997, -1.3113416e-05, -2500, 0, 1345)
-
-[node name="Grapple Point" parent="enviorment/borderpillarx2" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
 
 [node name="borderpillarz" parent="enviorment" unique_id=1625327278 instance=ExtResource("9_q70iu")]
 transform = Transform3D(-1.3113415e-05, 299.99997, 0, -299.99997, -1.3113415e-05, 0, 0, 0, 299.99997, -1941, 0, 2500)
 
-[node name="Grapple Point" parent="enviorment/borderpillarz" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
-
 [node name="borderpillarz2" parent="enviorment" unique_id=984720752 instance=ExtResource("9_q70iu")]
 transform = Transform3D(-1.3113415e-05, 299.99997, 0, -299.99997, -1.3113415e-05, 0, 0, 0, 299.99997, -1941, 0, -2500)
-
-[node name="Grapple Point" parent="enviorment/borderpillarz2" index="5" unique_id=865896495]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 2.2008157, 0.60616577)
 
 [node name="mission_music" type="AudioStreamPlayer" parent="." unique_id=1028125758]
 stream = ExtResource("10_7ieol")

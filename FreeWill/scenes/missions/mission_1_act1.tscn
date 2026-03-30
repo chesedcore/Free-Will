@@ -88,31 +88,26 @@ waveinfo = Dictionary[int, int]({
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hjo03"]
-cull_mode = 2
-
-[node name="Mission1_act1" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints", "enemies_list", "enviorment", "transition")]
+[node name="Mission1_act1" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints", "enemies_list", "transition")]
 script = ExtResource("1_pwc3s")
 mission_title = 2
-scene_to_transition_to = "res://scenes/missions/interlude.tscn"
+scene_to_transition_to = "res://scenes/missions/mission1_act1_to_2_interlude.tscn"
 mission_music = NodePath("mission_music")
 stagehandler = NodePath("stagehandler")
 act_end_dialog = "mission1_end"
 waves = Array[ExtResource("2_67xhj")]([SubResource("Resource_niyrk"), SubResource("Resource_0yhn2"), SubResource("Resource_myx56"), SubResource("Resource_1lad2"), SubResource("Resource_mctdd"), SubResource("Resource_feyy3"), SubResource("Resource_dtlup"), SubResource("Resource_v5q0b"), SubResource("Resource_jh3e7")])
 spawnpoints = NodePath("stagehandler/Tank/spawnpoints")
 enemies_list = NodePath("EnemiesList")
-enviorment = NodePath("enviorment")
 transition = NodePath("CanvasLayer/transition")
 
 [node name="Ocean" parent="." unique_id=1773392108 instance=ExtResource("3_pwc3s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.093763605, -63.03884, -0.8690749)
 
-[node name="stagehandler" type="Node3D" parent="." unique_id=810361068 node_paths=PackedStringArray("ui", "enemies_list", "tank", "environment", "weapons")]
+[node name="stagehandler" type="Node3D" parent="." unique_id=810361068 node_paths=PackedStringArray("ui", "enemies_list", "tank", "weapons")]
 script = ExtResource("4_n6kqd")
 ui = NodePath("UI")
 enemies_list = NodePath("../EnemiesList")
 tank = NodePath("Tank")
-environment = NodePath("../enviorment")
 weapons = NodePath("Weapons")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="stagehandler" unique_id=234805234]
@@ -177,150 +172,30 @@ color = Color(0, 0, 0, 1)
 [node name="pillar_enviorment_prop" parent="enviorment" unique_id=1395337680 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, 1433.1635, 2.2414856, 545.34607)
 
-[node name="top" parent="enviorment/pillar_enviorment_prop" index="0" unique_id=1253579231]
-surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
-
-[node name="mid" parent="enviorment/pillar_enviorment_prop" index="1" unique_id=1740687350]
-surface_material_override/0 = null
-
-[node name="mid2" parent="enviorment/pillar_enviorment_prop" index="2" unique_id=952200282]
-surface_material_override/0 = null
-
-[node name="bottom" parent="enviorment/pillar_enviorment_prop" index="3" unique_id=2116577679]
-surface_material_override/0 = null
-
 [node name="borderpillarx" parent="enviorment" unique_id=457154737 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(299.99997, 0, 0, 0, -1.3113416e-05, 299.99997, 0, -299.99997, -1.3113416e-05, 2500, 0, 1345)
-
-[node name="top" parent="enviorment/borderpillarx" index="0" unique_id=1253579231]
-surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
-
-[node name="mid" parent="enviorment/borderpillarx" index="1" unique_id=1740687350]
-surface_material_override/0 = null
-
-[node name="mid2" parent="enviorment/borderpillarx" index="2" unique_id=952200282]
-surface_material_override/0 = null
-
-[node name="bottom" parent="enviorment/borderpillarx" index="3" unique_id=2116577679]
-surface_material_override/0 = null
 
 [node name="borderpillarx2" parent="enviorment" unique_id=1100865456 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(299.99997, 0, 0, 0, -1.3113416e-05, 299.99997, 0, -299.99997, -1.3113416e-05, -2500, 0, 1345)
 
-[node name="top" parent="enviorment/borderpillarx2" index="0" unique_id=1253579231]
-surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
-
-[node name="mid" parent="enviorment/borderpillarx2" index="1" unique_id=1740687350]
-surface_material_override/0 = null
-
-[node name="mid2" parent="enviorment/borderpillarx2" index="2" unique_id=952200282]
-surface_material_override/0 = null
-
-[node name="bottom" parent="enviorment/borderpillarx2" index="3" unique_id=2116577679]
-surface_material_override/0 = null
-
 [node name="borderpillarz" parent="enviorment" unique_id=1942290633 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(-1.3113415e-05, 299.99997, 0, -299.99997, -1.3113415e-05, 0, 0, 0, 299.99997, -1941, 0, 2500)
-
-[node name="top" parent="enviorment/borderpillarz" index="0" unique_id=1253579231]
-surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
-
-[node name="mid" parent="enviorment/borderpillarz" index="1" unique_id=1740687350]
-surface_material_override/0 = null
-
-[node name="mid2" parent="enviorment/borderpillarz" index="2" unique_id=952200282]
-surface_material_override/0 = null
-
-[node name="bottom" parent="enviorment/borderpillarz" index="3" unique_id=2116577679]
-surface_material_override/0 = null
 
 [node name="borderpillarz2" parent="enviorment" unique_id=1332274677 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(-1.3113415e-05, 299.99997, 0, -299.99997, -1.3113415e-05, 0, 0, 0, 299.99997, -1941, 0, -2500)
 
-[node name="top" parent="enviorment/borderpillarz2" index="0" unique_id=1253579231]
-surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
-
-[node name="mid" parent="enviorment/borderpillarz2" index="1" unique_id=1740687350]
-surface_material_override/0 = null
-
-[node name="mid2" parent="enviorment/borderpillarz2" index="2" unique_id=952200282]
-surface_material_override/0 = null
-
-[node name="bottom" parent="enviorment/borderpillarz2" index="3" unique_id=2116577679]
-surface_material_override/0 = null
-
 [node name="pillar_enviorment_prop4" parent="enviorment" unique_id=2004984867 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(212.13203, -149.99998, 150, 0, 212.13205, 212.13203, -212.13203, -149.99998, 150, 1739.3833, -194.28061, 2415.9868)
-
-[node name="top" parent="enviorment/pillar_enviorment_prop4" index="0" unique_id=1253579231]
-surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
-
-[node name="mid" parent="enviorment/pillar_enviorment_prop4" index="1" unique_id=1740687350]
-surface_material_override/0 = null
-
-[node name="mid2" parent="enviorment/pillar_enviorment_prop4" index="2" unique_id=952200282]
-surface_material_override/0 = null
-
-[node name="bottom" parent="enviorment/pillar_enviorment_prop4" index="3" unique_id=2116577679]
-surface_material_override/0 = null
 
 [node name="pillar_enviorment_prop2" parent="enviorment" unique_id=25018902 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(300, 0, 0, 0, 300, 0, 0, 0, 300, -1490.3333, 2.2414856, 543.649)
 
-[node name="top" parent="enviorment/pillar_enviorment_prop2" index="0" unique_id=1253579231]
-surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
-
-[node name="mid" parent="enviorment/pillar_enviorment_prop2" index="1" unique_id=1740687350]
-surface_material_override/0 = null
-
-[node name="mid2" parent="enviorment/pillar_enviorment_prop2" index="2" unique_id=952200282]
-surface_material_override/0 = null
-
-[node name="bottom" parent="enviorment/pillar_enviorment_prop2" index="3" unique_id=2116577679]
-surface_material_override/0 = null
-
 [node name="pillar_enviorment_prop3" parent="enviorment" unique_id=1394351015 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(88.81719, 170.95547, 229.96896, -2.2400001e-05, 240.7623, -178.97908, -286.55106, 52.98805, 71.27946, -1674.8796, -195.88904, 1197.836)
-
-[node name="top" parent="enviorment/pillar_enviorment_prop3" index="0" unique_id=1253579231]
-transform = Transform3D(1.0000007, 0, 0, 0, 1, 0, 0, 0, 1.0000002, 0, 10.860665, 0)
-surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
-
-[node name="mid" parent="enviorment/pillar_enviorment_prop3" index="1" unique_id=1740687350]
-surface_material_override/0 = null
-
-[node name="mid2" parent="enviorment/pillar_enviorment_prop3" index="2" unique_id=952200282]
-surface_material_override/0 = null
-
-[node name="bottom" parent="enviorment/pillar_enviorment_prop3" index="3" unique_id=2116577679]
-surface_material_override/0 = null
 
 [node name="pillar_enviorment_prop5" parent="enviorment" unique_id=1709534713 instance=ExtResource("10_n6kqd")]
 transform = Transform3D(204.7549, 158.25752, 151.75633, 0, 207.63783, -216.53297, -219.2611, 147.7873, 141.71622, -1674.8796, -110.83008, -2419.752)
 
-[node name="top" parent="enviorment/pillar_enviorment_prop5" index="0" unique_id=1253579231]
-transform = Transform3D(1.0000007, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 10.860665, 0)
-surface_material_override/0 = SubResource("StandardMaterial3D_hjo03")
-
-[node name="mid" parent="enviorment/pillar_enviorment_prop5" index="1" unique_id=1740687350]
-surface_material_override/0 = null
-
-[node name="mid2" parent="enviorment/pillar_enviorment_prop5" index="2" unique_id=952200282]
-surface_material_override/0 = null
-
-[node name="bottom" parent="enviorment/pillar_enviorment_prop5" index="3" unique_id=2116577679]
-surface_material_override/0 = null
-
 [node name="mission_music" type="AudioStreamPlayer" parent="." unique_id=1660453610]
 stream = ExtResource("10_d871a")
 bus = &"Music"
-
-[editable path="enviorment/pillar_enviorment_prop"]
-[editable path="enviorment/borderpillarx"]
-[editable path="enviorment/borderpillarx2"]
-[editable path="enviorment/borderpillarz"]
-[editable path="enviorment/borderpillarz2"]
-[editable path="enviorment/pillar_enviorment_prop4"]
-[editable path="enviorment/pillar_enviorment_prop2"]
-[editable path="enviorment/pillar_enviorment_prop3"]
-[editable path="enviorment/pillar_enviorment_prop5"]
