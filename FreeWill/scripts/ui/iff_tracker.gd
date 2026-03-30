@@ -19,6 +19,7 @@ const LOCKON_RANGE_SQ := pow(1250, 2)
 static func new_iff(with_name: String) -> IFF:
 	var iff := preload("res://scenes/ui/IFF.tscn").instantiate() as IFF
 	iff.set_iff(with_name)
+	iff.iff_tracked_name = with_name
 	return iff
 
 static func from_control(control: Control) -> IFFTracker:

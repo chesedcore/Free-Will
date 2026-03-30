@@ -208,7 +208,7 @@ func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: fl
 		if  abs(candidate.x)>= BORDER or abs(candidate.z)>= BORDER:
 			continue
 		var is_valid := true
-		var entites : Array[Node] = enemies_list.get_enemies() 
+		var entites : Array[Node] = enemies_list.get_enemies()
 
 		for entity in entites:
 			if entity.global_position.distance_to(candidate) < min_distance:
@@ -256,7 +256,7 @@ func fade_out()->void:
 
 
 func lower_sfx_and_music()->void :
-	
+
 	var bus_index : int= AudioServer.get_bus_index("Music")
 	var sfx_volume := AudioServer.get_bus_volume_db(bus_index)
 	AudioServer.set_bus_volume_db(bus_index, sfx_volume -15.0)
