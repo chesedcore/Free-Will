@@ -20,7 +20,7 @@ var shark_carrier : Resource
 
 const PLANESPAWNHEIGHT : float = 670
 const BOATSPAWNHEIGHT : float = 3
-const BOMBERSPAWNHEIGHT : float = 1340
+const BOMBERSPAWNHEIGHT : float = 2750
 @export var act_end_dialog : String
 
 @export var waves : Array[WaveResource]
@@ -195,7 +195,7 @@ func spawn_wave()->void:
 		stagehandler.ui.track_these_entities(enemies)
 
 
-const BORDER : float = 5000
+const BORDER : float = 2500
 
 func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: float, max_attempts := 20) -> Vector3:
 	for i in range(max_attempts):
@@ -208,7 +208,7 @@ func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: fl
 		if  abs(candidate.x)>= BORDER or abs(candidate.z)>= BORDER:
 			continue
 		var is_valid := true
-		var entites : Array[Node] = enemies_list.get_enemies() + enviorment.get_children()
+		var entites : Array[Node] = enemies_list.get_enemies() 
 
 		for entity in entites:
 			if entity.global_position.distance_to(candidate) < min_distance:
@@ -226,7 +226,7 @@ func get_valid_spawn_position(base_pos: Vector3, radius: float, min_distance: fl
 #maybe we can death noises here
 func on_enemy_death()->void:
 	enemy_count -= 1
-	if ! Dialogic.current_timeline and randi_range(1,100)<= 101:
+	if ! Dialogic.current_timeline and randi_range(1,100)<= 40:
 		CriesOfTormentedSouls.play_random_noise()
 	if enemy_count == 0:
 		spawn_wave()

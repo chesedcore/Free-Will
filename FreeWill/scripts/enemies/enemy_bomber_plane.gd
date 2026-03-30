@@ -5,7 +5,7 @@ class_name  EnemyBomberPlane extends BaseEnemy
 
 const BOMB = preload("res://scenes/entities/combat/bomb.tscn")
 
-const  BORDER = 5000
+const  BORDER = 3000
 
 var speed : float= 150
 var dir : Vector3

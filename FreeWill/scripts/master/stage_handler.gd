@@ -5,7 +5,7 @@ signal tank_fucking_exploded
 @export var ui: CombatUI
 @export var enemies_list: EnemiesList
 @export var tank: PlayerTank
-@export var environment: Node3D
+#@export var environment: Node3D
 @export var weapons: Node3D
 
 
@@ -31,9 +31,9 @@ func _setup_name_tracking() -> void:
 	var enemies := enemies_list.get_enemies()
 	
 	var entities := enemies 
-	if environment:
-		var grapple_points := get_tree().get_nodes_in_group("Grapple Points")
-		entities = entities + grapple_points
+	#if environment:
+		#var grapple_points := get_tree().get_nodes_in_group("Grapple Points")
+		#entities = entities + grapple_points
 	ui.track_these_entities(entities)
 
 func _on_hitstop_timer_expired() -> void:

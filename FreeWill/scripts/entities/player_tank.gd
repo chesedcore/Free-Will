@@ -453,7 +453,7 @@ func parry_the_water() -> void:
 #world boundries suck so ill just uh check how far the tank is from origin  hi this is gael btw
 const  BOUNDARY : float = 2500
 func _poll_tank_distance()->void :
-	if abs( global_position.x) >= BOUNDARY or abs(global_position.z)>= BOUNDARY or global_position.y >= BOUNDARY:
+	if abs( global_position.x) >= BOUNDARY or abs(global_position.z)>= BOUNDARY or global_position.y >= BOUNDARY+500:
 		#play warning dialog if no dialog currently exists
 		if  Dialogic.current_timeline == null:
 			Dialogic.start("distance_warning")

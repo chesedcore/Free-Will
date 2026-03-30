@@ -12,14 +12,14 @@ var summoned_decoys : bool = false
 func damage(amount: float) -> void:
 	super.damage(amount)
 	AerialSmokeParticles.attach_to(self)
-	if health <= HALF_HP and !summoned_decoys:
-		summoned_decoys = true
-		for pos :Node3D in decoy_holder.get_children():
-			var new_decoy : Decoy = DECOY.instantiate()
-			pos.add_child.call_deferred(new_decoy)
-			decoys.append(new_decoy)
-		print("summoning")
-		decoys_spawned.emit(decoys)
+	#if health <= HALF_HP and !summoned_decoys:
+		#summoned_decoys = true
+		#for pos :Node3D in decoy_holder.get_children():
+			#var new_decoy : Decoy = DECOY.instantiate()
+			#pos.add_child.call_deferred(new_decoy)
+			#decoys.append(new_decoy)
+		#print("summoning")
+		#decoys_spawned.emit(decoys)
 var dying : bool = false
 func kill() -> void:
 	if ! dying :
