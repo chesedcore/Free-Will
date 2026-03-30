@@ -10,7 +10,7 @@ radius = 30.731934
 height = 61.463867
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0s5y7"]
-size = Vector3(710.5298, 265.8328, 966.73)
+size = Vector3(710.5298, 265.8328, 793.8163)
 
 [node name="Enemy_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("obstacle_detectors", "lock_on_timer", "missle_spawner", "line_of_sight", "model")]
 collision_layer = 4
@@ -47,7 +47,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="line_of_sight" unique_id=1769567354]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.596893, -22.851494, -505.11362)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.596893, -22.851494, -591.57043)
 shape = SubResource("BoxShape3D_0s5y7")
 
 [node name="lock_on_timer" type="Timer" parent="." unique_id=1804442152]

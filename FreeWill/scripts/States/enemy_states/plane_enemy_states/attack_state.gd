@@ -39,6 +39,7 @@ func enter() -> void:
 	lock_on_timer.timeout.connect(on_locked_on)
 	heading = enemy.velocity.normalized()
 	lock_on_timer.start()
+	los.body_exited.connect(on_los_body_exit)
 	#threat_indicator = THREAT_INDICATOR.instantiate()
 	#threat_indicator.target_node = enemy
 	#player.add_child(threat_indicator)
@@ -69,6 +70,7 @@ func on_los_body_exit(body : Node3D)->void:
 	if body is PlayerTank:
 
 		lock_on_timer.stop()
+		Transitioned.emit(self,EnemyPlane.STATES.INTERCEPT)
 
 
 
@@ -80,14 +82,10 @@ func on_locked_on()->void:
 	else:
 		#print("lost lock")
 		pass
-
 	Transitioned.emit(self,EnemyPlane.STATES.EVADE)
 
 
 
-func on_los_body_exited(body : Node3D)->void:
-	if body is PlayerTank:
-		is_locked_on = false
 
 
 

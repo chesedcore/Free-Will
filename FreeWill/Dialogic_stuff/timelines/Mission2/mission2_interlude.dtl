@@ -1,12 +1,21 @@
+[voice path="res://audio/Exported Voicelines/Mission 2/General/mission2_general_04_there-you-are.ogg" volume="0.0" bus="Voice"]
 General: There you are! Good job escaping! They almost had you there.
+[voice path="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_11_concerned.ogg" volume="0.0" bus="Voice"]
 Phoenix: I’m concerned with how well he managed to mask his fleet's location…
-General: That was Admiral Yi, one of the highest-ranking members of the Regressian\
-navy.
+[voice path="res://audio/Exported Voicelines/Mission 2/General/mission2_general_05_that-was-yi.ogg" volume="0.0" bus="Voice"]
+General: That was Admiral Yi, one of the highest-\
+ranking members of the Regressian navy.
+[voice path="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_12_formidable.ogg" volume="0.0" bus="Voice"]
 Phoenix: He’s definitely a far more formidable foe than that Destro…
+[voice path="res://audio/Exported Voicelines/Mission 2/General/mission2_general_06_hot-on-your-trail.ogg" volume="0.0" bus="Voice"]
 General: And he’s hot on your trail. They’re sending everything they’ve got to our carrier,so we have to act fast.
-Phoenix: Hmmm... I’m getting reports of a gigantic fleet bundling up dangerously close to the mainland. We could sneak attack there and distract Yi and his units away from the\
-Carrier
-General: Good! If there is any unit that can destroy a man like him, it is YOU THREE!\
-Team Diablo!!
+[voice path="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_13_sneak-attack.ogg" volume="0.0" bus="Voice"]
+Phoenix: Hmmm... I’m getting reports of a gigantic fleet bundling up dangerously close to the mainland.\
+We could sneak attack there and distract Yi and his units away from the Carrier
+[voice path="res://audio/Exported Voicelines/Mission 2/General/mission2_general_07_you-three.ogg" volume="0.0" bus="Voice"]
+General: Good! If there is any unit that can destroy a man like him, \
+it is YOU THREE! Team Diablo!!
+[voice path="res://audio/Exported Voicelines/Mission 2/General/mission2_general_08_guide-them.ogg" volume="0.0" bus="Voice"]
 General: Phoenix! Guide them to that location and make sure Yi and his forces take note of this!
+[voice path="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_14_roger.ogg" volume="0.0" bus="Voice"]
 Phoenix: Roger!

@@ -1,2 +1,4 @@
+[voice path="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_16_enough.ogg" volume="0.0" bus="Voice"]
 Yi: Enough! Destroy them! Do it now!
+[voice path="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_17_executed.ogg" volume="0.0" bus="Voice"]
 Yi: Everyone who retreats will be executed! NOW GO!

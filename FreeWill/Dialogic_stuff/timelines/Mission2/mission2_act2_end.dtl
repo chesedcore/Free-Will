@@ -1,7 +1,16 @@
-Yi: No!!! My fleet! Great Leader Felix… forgive me, for I have failed you! I can no longer deliver you your life’s greatest wish… Thus arrives the end for the Great Admi-%##&
+[voice path="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_18_no.ogg" volume="0.0" bus="Voice"]
+Yi: No!!! My fleet!
+[voice path="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_19_final-message.ogg" volume="0.0" bus="Voice"]
+Yi: Great Leader Felix… forgive me, for I have failed you! I can no longer deliver you\
+your life’s greatest wish… Thus arrives the end for the Great Admi-%##&
+[voice path="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_12_we-did-it.ogg" volume="0.0" bus="Voice"]
 Vegas: Yeah! We did it! Screw your cardboard houses!
+[voice path="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_13_accolades.ogg" volume="0.0" bus="Voice"]
 Vegas: Hey, do you think they’ll run out of room for the victory markings on our tank?
+[voice path="res://audio/Exported Voicelines/Mission 2/General/mission2_general_09_you-did-it.ogg" volume="0.0" bus="Voice"]
 General: YOU DID IT! GOOD WORK EVERYONE! Yi’s fleet is no more and their attack\
 on the mainland has been halted! Support is on the way!
+[voice path="res://audio/Exported Voicelines/Mission 2/General/mission2_general_10_wouldnt-stand-a-chance.ogg" volume="0.0" bus="Voice"]
 General: I KNEW THOSE REGRESSIANS WOULDN’T STAND A CHANCE!
+[voice path="res://audio/Exported Voicelines/Mission 2/General/mission2_general_11_big-f-bomb.ogg" volume="0.0" bus="Voice"]
 General: How could they?! They fought a flying fu-

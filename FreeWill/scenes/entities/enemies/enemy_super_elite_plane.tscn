@@ -11,7 +11,7 @@ height = 109.072266
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2lh61"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rdc4f"]
-size = Vector3(710.5298, 265.8328, 751.81256)
+size = Vector3(710.5298, 265.8328, 431.0987)
 
 [node name="Enemy_super_elite_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("decoy_holder", "obstacle_detectors", "lock_on_timer", "missle_spawner", "line_of_sight", "model")]
 collision_layer = 4
@@ -83,7 +83,7 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="line_of_sight" unique_id=1769567354]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.596893, -8.916077, -380.44583)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.596893, -8.916077, -409.00095)
 shape = SubResource("BoxShape3D_rdc4f")
 
 [node name="lock_on_timer" type="Timer" parent="." unique_id=1804442152]

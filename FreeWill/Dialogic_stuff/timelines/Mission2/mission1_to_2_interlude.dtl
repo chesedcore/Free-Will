@@ -2,12 +2,11 @@
 General: That was amazing! Let’s do it again! Flying tank! Woo!
 [voice path="res://audio/Exported Voicelines/Mission 2/General/mission2_general_02_find-regressians.ogg" volume="0.0" bus="Voice"]
 General: Phoenix! Find me some Regressians to attack!
-[voice volume="0.0" bus="Voice"]
-Phoenix: Phoenix! Find me some Regressians to attack!
+Phoenix: ....
 [voice path="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_01_small-force.ogg" volume="0.0" bus="Voice"]
 Phoenix: ...Okay, fine, there’s a small force west of here. Likely moving towards the\
 mainland for an attack. We could get to them before that happens.
 [voice path="res://audio/Exported Voicelines/Mission 2/General/mission2_general_03_splendid.ogg" volume="0.0" bus="Voice"]
 General: SPLENDID! Make me proud, team Diablo!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_01_sir-yes-sir.ogg" volume="0.0" bus="Voice"]
 Vegas: Sir, yes sir!

@@ -5,8 +5,8 @@ thought him a mere fool.
 Yi: So, I must offer my apologies.
 [voice path="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_06_full-might.ogg" volume="0.0" bus="Voice"]
 Yi: Now I see that you are an opponent deserving of the full might of my arsenal.
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_07_theres-more.ogg" volume="0.0" bus="Voice"]
 Phoenix: That wasn’t-…? There’s more!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_07_the-mission.ogg" volume="0.0" bus="Voice"]
 Yi: Everything for the mission! Glorious Regressia shall turn every building on this\
 forsaken planet into wonderful cardboard!!

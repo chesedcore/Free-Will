@@ -1,7 +1,14 @@
+[voice path="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_09_return-now.ogg" volume="0.0" bus="Voice"]
 Phoenix: Return, now! Get out of here!
+[voice path="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_06_take-that.ogg" volume="0.0" bus="Voice"]
 Vegas: Yeah! Take that, stupid admiral!
+[voice path="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_08_tail-tucked.ogg" volume="0.0" bus="Voice"]
 Yi: Take that’? You’re merely running with your tail tucked between your legs.
+[voice path="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_09_hard-to-call-that.ogg" volume="0.0" bus="Voice"]
 Yi: Hard to call that a victory, hmm?
+[voice path="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_07_what-did-you-say.ogg" volume="0.0" bus="Voice"]
 Vegas: What did you say?! Why don’t I come over there and-
+[voice path="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_10_bait.ogg" volume="0.0" bus="Voice"]
 Phoenix: Hey, hey, relax! He’s just trying to bait you.
+[voice path="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_08_that-dumb.ogg" volume="0.0" bus="Voice"]
 Vegas: I just- Hmph…! Do you really think I’m that dumb?

@@ -2,7 +2,7 @@
 Phoenix: Umm… hold on. Guys?! Oh crap, this is ba-#$%...
 [voice path="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_01_prodigy.ogg" volume="0.0" bus="Voice"]
 Yi: Hmph! So it appears that this tank-flying prodigy is not of a very strategic mind.
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_02_get-out.ogg" volume="0.0" bus="Voice"]
 Vegas: Hey, who’re you? Get out of our comms!
 [voice path="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_02_no-concern.ogg" volume="0.0" bus="Voice"]
 Yi: It is of no concern to you. I recommend that you make peace with the little time you have left.
@@ -15,5 +15,5 @@ Phoenix: Only chance is to head back, regroup at the carrier and fight back with
 [voice path="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_06_stupider-things.ogg" volume="0.0" bus="Voice"]
 Phoenix: But you’ve done stupider things. Fight through their forces and escape once\
 there’s an opening!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_03_cooked.ogg" volume="0.0" bus="Voice"]
 Vegas: Yeah! These guys don’t realize how cooked they are! Flying tank, baby!”

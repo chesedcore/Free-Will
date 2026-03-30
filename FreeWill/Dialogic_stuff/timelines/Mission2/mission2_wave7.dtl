@@ -1,4 +1,5 @@
-[voice volume="0.0" bus="Voice"]
-Phoenix: Wait, their troops are thinning out in the southeast! That might be our opening. One more wave, then get back ASAP!
-[voice volume="0.0" bus="Voice"]
+[voice path="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_08_thinning-out.ogg" volume="0.0" bus="Voice"]
+Phoenix: Wait, their troops are thinning out in the southeast! That might be our opening.\
+ One more wave, then get back ASAP!
+[voice path="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_05_scram.ogg" volume="0.0" bus="Voice"]
 Vegas: You heard her, buddy! Let’s dust these guys and prepare to scram!

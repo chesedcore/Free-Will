@@ -1,10 +1,22 @@
-Vegas: Alright, there we go! Flying tank sneak attack, baby! They won’t know what hit ‘em!
+[voice path="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_09_sneak-attack.ogg" volume="0.0" bus="Voice"]
+Vegas: Alright, here we go! Flying tank sneak attack, baby! They won’t know what hit ‘em!
+[voice path="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_15_hubris.ogg" volume="0.0" bus="Voice"]
 Phoenix: I know you two run on it, but please don’t let your hubris blind you…
-Phoenix: The whole plan is that they WILL know what hit ‘em. And it seems to be working. Yi’s fleet just took a sharp turn.
-Phoenix: Since he took the bait, you don’t actually have to engage with the fleet by the mainland. Once Yi is here, focus all your power on them instead!
+[voice path="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_16_the-whole-plan.ogg" volume="0.0" bus="Voice"]
+Phoenix: The whole plan is that they WILL know what hit ‘em. And it seems to be working. \
+Yi’s fleet just took a sharp turn.
+[voice path="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_17_took-the-bait.ogg" volume="0.0" bus="Voice"]
+Phoenix: Since he took the bait, you don’t actually have to engage with the fleet by the mainland. \
+Once Yi is here, focus all your power on them instead!
+[voice path="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_10_quite-a-read.ogg" volume="0.0" bus="Voice"]
 Yi: I see… whoever’s commanding you certainly has quite a read on our movements.
+[voice path="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_11_accounted.ogg" volume="0.0" bus="Voice"]
 Yi: Thankfully, I already accounted for a spy in our midst.
+[voice path="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_10_sky.ogg" volume="0.0" bus="Voice"]
 Vegas: Hey… hey, is the sky supposed to be on fire?
+[voice path="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_12_no-longer-be-accepting.ogg" volume="0.0" bus="Voice"]
 Yi: I will no longer be accepting surrender. You are being sunk right here and right now.
+[voice path="res://audio/Exported Voicelines/Mission 2/Yi/mission2_yi_13_flamewall.ogg" volume="0.0" bus="Voice"]
 Yi: Advance, my flamewall, destroy them! For cardboard! For Felix!
+[voice path="res://audio/Exported Voicelines/Mission 2/Phoenix/mission2_phoenix_18_do-ya-thing.ogg" volume="0.0" bus="Voice"]
 Phoenix: I’m not even worried at this point… do your thing, guys.
