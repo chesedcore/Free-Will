@@ -62,6 +62,9 @@ const UI := UIBus.Feedback
 @export var charge_spark_particles: GPUParticles3D
 @export var style_display: StyleDisplay
 @export var camera_shake_animation_player: AnimationPlayer
+@export var afterimage_barrel : GPUParticles3D
+@export var afterimage_base : GPUParticles3D
+
 
 #cooldowns
 @onready var dash_cooldown := Cooldown.from_time(DASH_COOLDOWN, self)
@@ -533,6 +536,14 @@ func grapple_update(delta: float) -> void:
 
 	if (global_position.distance_squared_to(grappled_target.global_position) < 500.0):
 		grappled_target = null
+
+func afterimage_enable() -> void:
+	afterimage_barrel.emitting = true
+	afterimage_base.emitting = true
+
+func afterimage_disable() -> void:
+	afterimage_barrel.emitting = false
+	afterimage_base.emitting = false
 
 func stop_model_update() -> void:
 	_stop_gimbal_update = true
