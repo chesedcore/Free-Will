@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bfm11gbihbc6c"]
 
 [ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="1_gd4ah"]
-[ext_resource type="Environment" uid="uid://b2vxsu67jppe7" path="res://res/world_env/sky_on_fire.tres" id="2_2lvk5"]
+[ext_resource type="Environment" uid="uid://dlfmfw8k7mg27" path="res://res/world_env/dark_cloudy_sky.tres" id="2_2lvk5"]
 [ext_resource type="PackedScene" uid="uid://mf201g24k23x" path="res://scenes/entities/tank.tscn" id="3_eunoo"]
 [ext_resource type="PackedScene" uid="uid://b5oi77k2llexl" path="res://scenes/enviorment/pillar_enviorment_prop.tscn" id="4_li585"]
 [ext_resource type="PackedScene" uid="uid://dcf0xd2d825jc" path="res://scripts/entities/gear_1.tscn" id="5_2lvk5"]

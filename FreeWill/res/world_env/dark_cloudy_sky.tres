@@ -1,22 +1,5 @@
 [gd_resource type="Environment" format=3 uid="uid://dlfmfw8k7mg27"]
 
-[sub_resource type="Curve" id="Curve_axpre"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.6470588, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_3juu3"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_32u6r"]
-_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
-point_count = 2
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_ojje4"]
-curve_x = SubResource("Curve_axpre")
-curve_y = SubResource("Curve_3juu3")
-curve_z = SubResource("Curve_32u6r")
-
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oi72p"]
 load_path = "res://.godot/imported/EveningSkyHDRI028B_1K_HDR.exr-3f64889a536d576d780685d1ac5d14d1.bptc.ctex"
 
@@ -48,4 +31,3 @@ fog_density = 1.0
 fog_sky_affect = 0.75
 fog_depth_curve = 2.0
 fog_depth_end = 8000.0
-adjustment_color_correction = SubResource("CurveXYZTexture_ojje4")
