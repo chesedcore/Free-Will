@@ -228,7 +228,8 @@ func on_enemy_death()->void:
 	enemy_count -= 1
 	if ! Dialogic.current_timeline and randi_range(1,100)<= 101 :
 		print("deathnoises")
-		DeathNoises.play_random_noise()
+		#if CriesOfTormentedSouls.all_sounds
+		CriesOfTormentedSouls.play_random_noise()
 	if enemy_count ==0:
 
 		spawn_wave()
