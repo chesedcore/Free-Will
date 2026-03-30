@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cyjg7srb4135o"]
+
+[ext_resource type="Texture2D" uid="uid://cuks5f56kab4n" path="res://assets/textures/tankbackgroundlogoblack.png" id="1_14d4i"]
+[ext_resource type="FontFile" uid="uid://38d0ljavacn8" path="res://assets/fonts/ZenDots-Regular.ttf" id="2_o7gdd"]
+[ext_resource type="FontFile" uid="uid://c3ctnfm2fdke0" path="res://assets/fonts/Kalam-Bold.ttf" id="3_8m4g4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ed1cw"]
+font = ExtResource("2_o7gdd")
+font_size = 150
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 50
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(9, 9)
+
+[sub_resource type="LabelSettings" id="LabelSettings_snatm"]
+font = ExtResource("3_8m4g4")
+font_size = 80
+font_color = Color(1, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.1254902)
+shadow_offset = Vector2(6.845, 7.1)
+
+[node name="Control" type="Control" unique_id=640372975]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tankbackgroundlogoblack" type="Sprite2D" parent="." unique_id=1796187258]
+position = Vector2(580, 325.7)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_14d4i")
+
+[node name="Label" type="Label" parent="." unique_id=1982933149]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -536.25
+offset_top = -81.17496
+offset_right = 502.75
+offset_bottom = 99.82504
+grow_horizontal = 2
+grow_vertical = 2
+text = "FREE WILL"
+label_settings = SubResource("LabelSettings_ed1cw")
+
+[node name="Label2" type="Label" parent="." unique_id=158155451]
+layout_mode = 0
+offset_left = 533.75
+offset_top = 373.12503
+offset_right = 1103.5913
+offset_bottom = 502.12503
+rotation = -0.080244385
+text = "DEVIL MAY FLY"
+label_settings = SubResource("LabelSettings_snatm")

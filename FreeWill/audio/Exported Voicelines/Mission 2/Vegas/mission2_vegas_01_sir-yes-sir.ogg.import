@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cxjvhabqq4ww4"
+path="res://.godot/imported/mission2_vegas_01_sir-yes-sir.ogg-c42072cc82659801e9b5cb7e6e0e4f34.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_01_sir-yes-sir.ogg"
+dest_files=["res://.godot/imported/mission2_vegas_01_sir-yes-sir.ogg-c42072cc82659801e9b5cb7e6e0e4f34.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

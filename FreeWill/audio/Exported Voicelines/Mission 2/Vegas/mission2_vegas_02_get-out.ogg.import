@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://j5q3x6y1gv6b"
+path="res://.godot/imported/mission2_vegas_02_get-out.ogg-673adcb1ec5576fa7ffc611413de2b10.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_02_get-out.ogg"
+dest_files=["res://.godot/imported/mission2_vegas_02_get-out.ogg-673adcb1ec5576fa7ffc611413de2b10.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

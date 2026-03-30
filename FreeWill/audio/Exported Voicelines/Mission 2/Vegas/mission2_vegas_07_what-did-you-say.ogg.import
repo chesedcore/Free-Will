@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b75d12apsay7k"
+path="res://.godot/imported/mission2_vegas_07_what-did-you-say.ogg-ecd1d1fdf061e52d916a824aa165a7e6.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_07_what-did-you-say.ogg"
+dest_files=["res://.godot/imported/mission2_vegas_07_what-did-you-say.ogg-ecd1d1fdf061e52d916a824aa165a7e6.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

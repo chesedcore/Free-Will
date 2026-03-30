@@ -146,6 +146,7 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/opti
 
 folder_colors={
 "res://audio/": "purple",
+"res://itch_page/": "teal",
 "res://models/": "orange",
 "res://res/": "pink",
 "res://scenes/": "green",

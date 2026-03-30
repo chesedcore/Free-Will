@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://c7c7iqsethkoe"]
+
+[ext_resource type="Texture2D" uid="uid://bdflbd6m70iug" path="res://assets/textures/Screenshot 2026-03-30 132725.png" id="1_ta262"]
+[ext_resource type="Texture2D" uid="uid://cuks5f56kab4n" path="res://assets/textures/tankbackgroundlogoblack.png" id="2_nwa0i"]
+[ext_resource type="Shader" uid="uid://cgvoo24srn2kn" path="res://shaderslop/vignette.gdshader" id="3_cg3nh"]
+[ext_resource type="FontFile" uid="uid://38d0ljavacn8" path="res://assets/fonts/ZenDots-Regular.ttf" id="4_6eai1"]
+[ext_resource type="FontFile" uid="uid://c3ctnfm2fdke0" path="res://assets/fonts/Kalam-Bold.ttf" id="5_lonw2"]
+[ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="6_t20kb"]
+[ext_resource type="PackedScene" uid="uid://ccoy0lyh3mq63" path="res://scenes/enviorment/ocean.tscn" id="7_vis81"]
+[ext_resource type="PackedScene" uid="uid://b5oi77k2llexl" path="res://scenes/enviorment/pillar_enviorment_prop.tscn" id="8_ltx17"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_13nhl"]
+shader = ExtResource("3_cg3nh")
+shader_parameter/vignette_intensity = 0.5
+shader_parameter/vignette_opacity = 0.5
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kh44r"]
+font = ExtResource("4_6eai1")
+font_size = 150
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 50
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(9, 9)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yk8o1"]
+font = ExtResource("5_lonw2")
+font_size = 80
+font_color = Color(1, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.1254902)
+shadow_offset = Vector2(6.845, 7.1)
+
+[node name="Control" type="Control" unique_id=1486935160]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=498920426]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.9941027)
+color = Color(0, 0.47843137, 1, 1)
+
+[node name="Screenshot20260330130311" type="Sprite2D" parent="." unique_id=274455967]
+position = Vector2(574.5, 324.50003)
+scale = Vector2(1.0304931, 1.0251969)
+texture = ExtResource("1_ta262")
+
+[node name="Tankbackgroundlogoblack" type="Sprite2D" parent="." unique_id=2142655370]
+position = Vector2(608.25, 301.57498)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_nwa0i")
+
+[node name="Vignette" type="ColorRect" parent="." unique_id=617321038]
+material = SubResource("ShaderMaterial_13nhl")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="." unique_id=2049314780]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -508.0
+offset_top = -105.29999
+offset_right = 531.0
+offset_bottom = 75.70001
+grow_horizontal = 2
+grow_vertical = 2
+text = "FREE WILL"
+label_settings = SubResource("LabelSettings_kh44r")
+
+[node name="Label2" type="Label" parent="." unique_id=1798819755]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 349.0
+offset_right = 1131.8413
+offset_bottom = 478.0
+rotation = -0.080244385
+text = "DEVIL MAY FLY"
+label_settings = SubResource("LabelSettings_yk8o1")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=215971308]
+environment = ExtResource("6_t20kb")
+
+[node name="Ocean" parent="." unique_id=1773392108 instance=ExtResource("7_vis81")]
+
+[node name="pillar_enviorment_prop" parent="." unique_id=1395337680 instance=ExtResource("8_ltx17")]
+transform = Transform3D(186.43976, -71.64746, 0, 71.64746, 186.43976, 0, 0, 0, 199.73267, 1833.4973, 88.368286, 1903.442)
+
+[node name="pillar_enviorment_prop2" parent="." unique_id=1708642737 instance=ExtResource("8_ltx17")]
+transform = Transform3D(197.64273, 28.818113, 0, -26.930407, 184.69629, -71.09969, -10.258511, 70.35575, 186.64935, -1383.1931, 50.797546, 1903.442)
+
+[node name="pillar_enviorment_prop3" parent="." unique_id=1550085213 instance=ExtResource("8_ltx17")]
+transform = Transform3D(191.3204, 5.9356155, -57.047356, -26.930403, 184.69627, -71.09968, 50.639748, 75.79699, 177.71771, 394.11353, 0, -37.947266)

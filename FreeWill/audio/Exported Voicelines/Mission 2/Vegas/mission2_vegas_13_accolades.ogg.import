@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://m1aobqq7e2if"
+path="res://.godot/imported/mission2_vegas_13_accolades.ogg-c26b4ab40124fded6e132ae150dbc432.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_13_accolades.ogg"
+dest_files=["res://.godot/imported/mission2_vegas_13_accolades.ogg-c26b4ab40124fded6e132ae150dbc432.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

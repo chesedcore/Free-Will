@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b7ci0krgly8ei"
+path="res://.godot/imported/mission2_vegas_11_tank-pilot.ogg-1337faf689668aea331594aad277ca57.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_11_tank-pilot.ogg"
+dest_files=["res://.godot/imported/mission2_vegas_11_tank-pilot.ogg-1337faf689668aea331594aad277ca57.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

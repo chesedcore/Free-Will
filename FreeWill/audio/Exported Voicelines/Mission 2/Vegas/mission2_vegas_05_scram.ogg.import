@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cf5skqbxv01yr"
+path="res://.godot/imported/mission2_vegas_05_scram.ogg-b3ea96504592f662a7f11b9f8f42a67c.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 2/Vegas/mission2_vegas_05_scram.ogg"
+dest_files=["res://.godot/imported/mission2_vegas_05_scram.ogg-b3ea96504592f662a7f11b9f8f42a67c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

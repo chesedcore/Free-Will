@@ -1,100 +1,8 @@
 [gd_scene format=3 uid="uid://dtrnb1s4drfja"]
 
 [ext_resource type="Script" uid="uid://dyq3t3g5f2nsu" path="res://scripts/folder/explody_tank.gd" id="1_lwfs0"]
-[ext_resource type="Script" uid="uid://0ojllin61s8j" path="res://scripts/folder/explodytankcontroller.gd" id="2_lhvys"]
 [ext_resource type="PackedScene" uid="uid://namjkr07wt6t" path="res://scripts/folder/pillar.tscn" id="2_s2102"]
-[ext_resource type="Texture2D" uid="uid://b3trxnwj0dchl" path="res://assets/textures/tank.png" id="3_s2102"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vom55"]
-size = Vector2(25, 48)
-
-[sub_resource type="Curve" id="Curve_s2102"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_vom55"]
-curve = SubResource("Curve_s2102")
-
-[sub_resource type="Gradient" id="Gradient_w3jem"]
-interpolation_color_space = 2
-colors = PackedColorArray(0.15487596, 0.154876, 0.15487596, 1, 0.16924527, 0.1692453, 0.16924527, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_lti1r"]
-gradient = SubResource("Gradient_w3jem")
-
-[sub_resource type="Gradient" id="Gradient_k2opj"]
-interpolation_color_space = 2
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_5ow67"]
-gradient = SubResource("Gradient_k2opj")
-
-[sub_resource type="Curve" id="Curve_l8xo3"]
-_limits = [0.0, 100.0, 0.0, 1.0]
-_data = [Vector2(0, 0.127572), 0.0, 0.0, 0, 0, Vector2(0.127572, 0), 0.0, 0.0, 0, 0, Vector2(1, 14.295044), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_gpgvw"]
-curve = SubResource("Curve_l8xo3")
-
-[sub_resource type="Curve" id="Curve_vfioa"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.8219978, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_abscb"]
-curve = SubResource("Curve_vfioa")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_14rs2"]
-lifetime_randomness = 1.0
-direction = Vector3(0, 1, 0)
-spread = 67.003
-initial_velocity_min = 200.0
-initial_velocity_max = 200.0
-gravity = Vector3(0, 0, 0)
-damping_max = 34.246002
-damping_curve = SubResource("CurveTexture_gpgvw")
-scale_min = 8.0
-scale_max = 10.0
-scale_curve = SubResource("CurveTexture_abscb")
-color_ramp = SubResource("GradientTexture1D_5ow67")
-color_initial_ramp = SubResource("GradientTexture1D_lti1r")
-alpha_curve = SubResource("CurveTexture_vom55")
-
-[sub_resource type="Gradient" id="Gradient_ciqg6"]
-offsets = PackedFloat32Array(1)
-colors = PackedColorArray(0.99267596, 0.44324714, 2.0792484e-05, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_51fe7"]
-gradient = SubResource("Gradient_ciqg6")
-width = 1
-
-[sub_resource type="Curve" id="Curve_jjabf"]
-_limits = [0.0, 100.0, 0.0, 1.0]
-_data = [Vector2(0.22006473, 0), 0.0, 0.0, 0, 0, Vector2(1, 100), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_7hc31"]
-curve = SubResource("Curve_jjabf")
-
-[sub_resource type="Curve" id="Curve_rfbol"]
-_data = [Vector2(0, 0), 0.0, 9.516436, 0, 0, Vector2(0.06796116, 1), -6.4623987e-07, -6.4623987e-07, 0, 0, Vector2(0.44336566, 0.18537855), -0.97390926, -0.97390926, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_4ur6b"]
-curve = SubResource("Curve_rfbol")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0uw4e"]
-lifetime_randomness = 1.0
-direction = Vector3(0, 1, 0)
-spread = 10.0
-initial_velocity_min = 169.4
-initial_velocity_max = 465.5
-gravity = Vector3(0, 0, 0)
-damping_min = 1.2980001
-damping_max = 100.00001
-damping_curve = SubResource("CurveTexture_7hc31")
-scale_min = 5.0
-scale_max = 10.0
-scale_curve = SubResource("CurveTexture_4ur6b")
+[ext_resource type="PackedScene" uid="uid://dqavvadpkqxyr" path="res://scripts/folder/explodytank.tscn" id="3_lwfs0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_s2102"]
 font_size = 40
@@ -107,35 +15,7 @@ script = ExtResource("1_lwfs0")
 pillar_scene = ExtResource("2_s2102")
 tank = NodePath("Tank")
 
-[node name="Tank" type="CharacterBody2D" parent="." unique_id=134386566]
-script = ExtResource("2_lhvys")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Tank" unique_id=694067216]
-position = Vector2(1.5, 0)
-shape = SubResource("RectangleShape2D_vom55")
-
-[node name="Sprite2D" type="Sprite2D" parent="Tank" unique_id=922804499]
-rotation = -1.5707964
-scale = Vector2(2, 2)
-texture = ExtResource("3_s2102")
-
-[node name="GPUParticles2D" type="GPUParticles2D" parent="Tank" unique_id=996540091]
-position = Vector2(-8, 42)
-emitting = false
-one_shot = true
-speed_scale = 2.0
-explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_14rs2")
-
-[node name="GPUParticles2D2" type="GPUParticles2D" parent="Tank" unique_id=1962988074]
-position = Vector2(-8, 42)
-emitting = false
-amount = 10
-texture = SubResource("GradientTexture1D_51fe7")
-one_shot = true
-speed_scale = 2.0
-explosiveness = 1.0
-process_material = SubResource("ParticleProcessMaterial_0uw4e")
+[node name="Tank" parent="." unique_id=712243128 instance=ExtResource("3_lwfs0")]
 
 [node name="PillarTimer" type="Timer" parent="." unique_id=330576840]
 wait_time = 1.5
