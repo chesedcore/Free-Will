@@ -122,6 +122,7 @@ func acquire_lock(origin_body: PhysicsBody3D) -> void:
 
 ##manually cycle to the next available target
 func cycle_lock(origin_body: PhysicsBody3D) -> void:
+	AudioManager.play_sound(preload("res://audio/sfx/cycle_beep.ogg"), 15.0, "SFX", false)
 	var lockable_entities: Array[PhysicsBody3D] = []
 
 	for entity: PhysicsBody3D in _tracked_entities.keys():
