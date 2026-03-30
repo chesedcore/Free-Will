@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://cvdxbd6rscjpy"]
+
+[sub_resource type="Curve" id="Curve_uk16f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_paiu8"]
+curve = SubResource("Curve_uk16f")
+
+[sub_resource type="Curve" id="Curve_2ftoy"]
+_data = [Vector2(0, 0.7185385), 0.0, 0.82459366, 0, 0, Vector2(0.13000001, 0.7361299), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.4422724, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gufwn"]
+curve = SubResource("Curve_2ftoy")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0q2ol"]
+direction = Vector3(0, -1, 0)
+spread = 15.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 98, 0)
+scale_min = 7.0
+scale_max = 13.0
+scale_curve = SubResource("CurveTexture_gufwn")
+alpha_curve = SubResource("CurveTexture_paiu8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ue1ln"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.43137255, 0, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_u2a47"]
+material = SubResource("StandardMaterial3D_ue1ln")
+radial_segments = 8
+rings = 4
+
+[node name="Node3D" type="Node3D" unique_id=809468678]
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1034930989]
+amount = 100
+lifetime = 1.2
+process_material = SubResource("ParticleProcessMaterial_0q2ol")
+draw_pass_1 = SubResource("SphereMesh_u2a47")
