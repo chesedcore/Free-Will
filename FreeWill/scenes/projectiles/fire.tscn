@@ -38,7 +38,7 @@ material = SubResource("StandardMaterial3D_ue1ln")
 radial_segments = 8
 rings = 4
 
-[node name="Node3D" type="Node3D" unique_id=809468678]
+[node name="Fire" type="Node3D" unique_id=809468678]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1034930989]
 amount = 100
