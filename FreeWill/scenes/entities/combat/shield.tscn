@@ -13,6 +13,7 @@ vertex_color_use_as_albedo = true
 albedo_color = Color(0.30980393, 0.9137255, 1, 1)
 emission_enabled = true
 emission = Color(0, 1.693, 2.298, 1)
+emission_energy_multiplier = 0.2
 
 [node name="Shield" type="Area3D" unique_id=1476353986]
 collision_layer = 0

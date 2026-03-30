@@ -5,7 +5,7 @@ var _paused: bool = false
 var promise: Promise
 
 @export var control: PauseMenuButtonsHandler
-@export var game: Node3D
+@export var game: Node
 @export var blur_drive: BlurDrive
 @export var pause_menu: CanvasLayer
 @export var lateral_bars: LateralBars
@@ -22,13 +22,13 @@ func _wire_up_signals() -> void:
 func _on_game_container_change_request(node_to_change_to: Node) -> void:
 	game.queue_free()
 	add_child(node_to_change_to)
-	
+
 	game = node_to_change_to
 	move_child(game, 0)
 
 func reset_promise(signals: Array[Signal] = []) -> void:
 	if promise: promise.deny()
-	promise = Promise.from_signal_arr(signals).all() 
+	promise = Promise.from_signal_arr(signals).all()
 
 func _on_resume_clicked() -> void:
 	unpause_game()
