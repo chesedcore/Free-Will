@@ -122,7 +122,6 @@ func acquire_lock(origin_body: PhysicsBody3D) -> void:
 
 ##manually cycle to the next available target
 func cycle_lock(origin_body: PhysicsBody3D) -> void:
-	AudioManager.play_sound(preload("res://audio/sfx/cycle_beep.ogg"), 15.0, "SFX", false)
 	var lockable_entities: Array[PhysicsBody3D] = []
 
 	for entity: PhysicsBody3D in _tracked_entities.keys():
@@ -136,6 +135,8 @@ func cycle_lock(origin_body: PhysicsBody3D) -> void:
 	if lockable_entities.is_empty():
 		_locked_entity = null
 		return
+
+	AudioManager.play_sound(preload("res://audio/sfx/cycle_beep.ogg"), 15.0, "SFX", false)
 
 	#ugly ahh function to sort by how close shit is to the center of the screen
 	lockable_entities.sort_custom(func(a: PhysicsBody3D, b: PhysicsBody3D) -> bool:
