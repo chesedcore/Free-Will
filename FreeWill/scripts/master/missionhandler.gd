@@ -20,7 +20,7 @@ var bomber_plane : Resource
 var shark_carrier : Resource
 @export var stagehandler: StageHandler
 
-const PLANESPAWNHEIGHT : float = 670
+const PLANESPAWNHEIGHT : float = 1200
 const BOATSPAWNHEIGHT : float = 3
 const BOMBERSPAWNHEIGHT : float = 2750
 @export var act_end_dialog : String

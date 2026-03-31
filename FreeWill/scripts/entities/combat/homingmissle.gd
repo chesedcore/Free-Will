@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 	elif parried:
 		locked_on = false
 
-	if locked_on:
+	if locked_on and target_node:
 		var distance : float = global_position.distance_to(target_node.global_position)
 		var speed :float= max(velocity.length(), 0.01)
 		var predict_time : float = min(distance/ speed,0.075)

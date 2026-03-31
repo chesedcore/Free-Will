@@ -145,7 +145,6 @@ subdivide_depth = 300
 
 [node name="Mission1_act2" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints_og", "enemies_list", "transition")]
 script = ExtResource("1_e1x6y")
-mission_title = 2
 scene_to_transition_to = "res://scenes/missions/mission1_to_mission2_interlude.tscn"
 mission_music = NodePath("mission_music")
 stagehandler = NodePath("stagehandler")

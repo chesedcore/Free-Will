@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://4sawn7spnp0f"]
 
 [ext_resource type="AudioStream" uid="uid://brfx0g6w0w0li" path="res://audio/mus/Credits/MISSION SUCCESS.ogg" id="1_8ggla"]
+[ext_resource type="Script" uid="uid://djiwvb0x2tnk4" path="res://scenes/credits/credits.gd" id="1_icb2l"]
 [ext_resource type="PackedScene" uid="uid://cyjg7srb4135o" path="res://itch_page/logo.tscn" id="2_huu5m"]
 [ext_resource type="Texture2D" uid="uid://bmvwv0p77ix2h" path="res://assets/textures/tankbackgroundlogowhite.png" id="3_17l06"]
 [ext_resource type="FontFile" uid="uid://38d0ljavacn8" path="res://assets/fonts/ZenDots-Regular.ttf" id="3_icb2l"]
@@ -82,6 +83,7 @@ _data = {
 }
 
 [node name="Credits" type="CanvasLayer" unique_id=1589853051]
+script = ExtResource("1_icb2l")
 metadata/_edit_vertical_guides_ = [2574.0, 901.0]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1071609130]
@@ -511,5 +513,7 @@ text = "THE END
 
 Thanks for playing!"
 horizontal_alignment = 1
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 
 [editable path="Node2D/Control"]
