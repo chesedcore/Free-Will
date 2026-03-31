@@ -15,6 +15,6 @@ static func attach_to(node: Node) -> void:
 	var particles := Registry.create_cannonfire()
 	node.add_child(particles)
 
-static func compile_particles(tree : SceneTree) -> void:
+static func compile_particles(node : Node3D) -> void:
 	var particles := Registry.create_cannonfire()
-	tree.current_scene.add_child(particles)
+	node.add_child(particles)

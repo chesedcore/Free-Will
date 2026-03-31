@@ -16,7 +16,7 @@ static func spawn_at(scene_tree :SceneTree, node : Node3D, volume_db := 20.) -> 
 	scene_tree.root.add_child(particles)
 	particles.global_position = node.global_position
 
-static func compile_particles(tree : SceneTree) -> void:
+static func compile_particles(node : Node3D) -> void:
 	var particles := Registry.create_explosion()
 	particles.explosion_sfx.volume_db = -80.
-	tree.current_scene.add_child(particles)
+	node.add_child(particles)

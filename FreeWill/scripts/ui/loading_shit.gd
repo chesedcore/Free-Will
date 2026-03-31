@@ -4,14 +4,14 @@ signal finished
 
 func _ready() -> void:
 	var tree := get_tree()
-	RailgunParticles.compile_particles(tree)
-	CannonParticles.compile_particles(tree)
-	ExplosionParticles.compile_particles(tree)
-	DeathExplosionParticles.compile_particles(tree)
-	RailCannonParticles.compile_particles(tree)
-	AerialSmokeParticles.compile_particles(tree)
-	StationarySmokeParticles.compile_particles(tree)
-	ParryParticles.compile_particles(tree)
+	RailgunParticles.compile_particles(self)
+	CannonParticles.compile_particles(self)
+	ExplosionParticles.compile_particles(self)
+	DeathExplosionParticles.compile_particles(self)
+	RailCannonParticles.compile_particles(self)
+	AerialSmokeParticles.compile_particles(self)
+	StationarySmokeParticles.compile_particles(self)
+	ParryParticles.compile_particles(self)
 	
 	await tree.process_frame
 	await tree.process_frame

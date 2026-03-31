@@ -13,6 +13,6 @@ static func attach_to(tree : SceneTree, basis : Basis, pos : Vector3) -> void:
 	particles.basis = basis
 	particles.position = pos
 
-static func compile_particles(tree : SceneTree) -> void:
+static func compile_particles(node : Node3D) -> void:
 	var particles := Registry.create_parry_particles()
-	tree.current_scene.add_child(particles)
+	node.add_child(particles)

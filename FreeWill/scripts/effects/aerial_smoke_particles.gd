@@ -4,6 +4,6 @@ static func attach_to(node : Node3D) -> void:
 	var particles := Registry.create_aerial_smoke()
 	node.add_child(particles)
 
-static func compile_particles(tree : SceneTree) -> void:
+static func compile_particles(node : Node3D) -> void:
 	var particles := Registry.create_aerial_smoke()
-	tree.current_scene.add_child(particles)
+	node.add_child(particles)
