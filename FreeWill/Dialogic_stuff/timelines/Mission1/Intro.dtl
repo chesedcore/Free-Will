@@ -44,6 +44,7 @@ Just try shootin’ ‘em, I’ll load up the cannon for ya!
 [voice path="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_09_manuals.ogg" volume="0.0" bus="Voice"]
 Vegas: Handy that those tank controls are via mouse and keyboard now! Here, take a\
 look at the old manuals in case you feel rusty!
+[signal arg="manual_time"]
 [voice path="res://audio/Exported Voicelines/Mission 1/Destro/mission1_destro_01_is-that-a.ogg" volume="0.0" bus="Voice"]
 Destro: Is that… is that a flying tank? Shoot down that vehicle! Now!
 [voice path="res://audio/Exported Voicelines/Mission 1/Mooks/mission1_mooks_01_yes-sir.ogg" volume="0.0" bus="Voice"]
