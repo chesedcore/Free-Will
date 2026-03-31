@@ -104,13 +104,14 @@ autoplay = &"ROLL CREDITS"
 [node name="Node2D" type="Node2D" parent="." unique_id=415846472]
 
 [node name="Control" parent="Node2D" unique_id=640372975 instance=ExtResource("2_huu5m")]
-offset_left = 158.0
-offset_top = 117.0
-offset_right = 158.0
-offset_bottom = 117.0
+offset_left = 137.0
+offset_top = 98.0
+offset_right = 137.0
+offset_bottom = 98.0
 scale = Vector2(0.75, 0.75)
 
 [node name="Tankbackgroundlogoblack" parent="Node2D/Control" index="0" unique_id=1796187258]
+visible = false
 modulate = Color(17.24, 17.24, 17.24, 1)
 position = Vector2(564.38354, 358.90414)
 texture = ExtResource("3_17l06")
