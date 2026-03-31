@@ -97,6 +97,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2131815111]
 stream = ExtResource("1_8ggla")
+volume_db = 3.0
 bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=250688667]
