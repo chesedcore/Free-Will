@@ -37,13 +37,13 @@ func _process(delta: float) -> void:
 		if distance<= min_dist and !parry_indicating:
 			parry_indicating = true
 			var material :  = mesh.get_surface_override_material(0).duplicate()
-			
+
 			material.emission_enabled = true
 			mesh.set_surface_override_material(0,material)
 		if distance>= min_dist and parry_indicating:
 			parry_indicating = true
 			var material :  = mesh.get_surface_override_material(0).duplicate()
-			
+
 			material.emission_enabled = false
 			mesh.set_surface_override_material(0,material)
 		#var beep_time :float = clamp((distance - min_dist) / (max_dist - min_dist), 0.0, 1.0)

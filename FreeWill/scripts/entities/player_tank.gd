@@ -12,7 +12,7 @@ const GUN_GIMBAL_ROTATION_SPEED: float = 6.0
 const BODY_ROTATION_SPEED: float = 1.0
 const RAILGUN_FIRE_FORCE: float = 300.0
 const GUN_FIRE_FORCE: float = 50.0
-const GRAPPLE_STRENGTH: float = 25.0
+const GRAPPLE_STRENGTH: float = 50.0
 
 const MAX_SPEED: float = 150.0
 
@@ -564,5 +564,6 @@ func shake(for_time: float = 1.5, shake_amp : float = 1.) -> void:
 
 func _on_body_entered(body: Node) -> void:
 	if (body is BaseEnemy):
+		damage(25.0)
 		body.damage(50.0)
 		linear_velocity = body.global_position.direction_to(global_position) * 50.0
