@@ -64,6 +64,14 @@ base_font = ExtResource("3_m8eaw")
 resource_local_to_scene = true
 base_font = ExtResource("3_m8eaw")
 
+[sub_resource type="FontVariation" id="FontVariation_yuuuf"]
+resource_local_to_scene = true
+base_font = ExtResource("3_m8eaw")
+
+[sub_resource type="FontVariation" id="FontVariation_up733"]
+resource_local_to_scene = true
+base_font = ExtResource("3_m8eaw")
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0lrld"]
 shader = ExtResource("4_ftak0")
 shader_parameter/color_gap = Color(0, 0, 0, 0)
@@ -154,7 +162,7 @@ offset_right = 1229.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 
-[node name="Cascade" type="Control" parent="PauseMenu" unique_id=2113227010 node_paths=PackedStringArray("resume_button", "options_button", "retry_button")]
+[node name="Cascade" type="Control" parent="PauseMenu" unique_id=2113227010 node_paths=PackedStringArray("resume_button", "options_button", "retry_button", "toggle_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -166,6 +174,7 @@ script = ExtResource("3_ftak0")
 resume_button = NodePath("RESUME2")
 options_button = NodePath("OPTIONS2")
 retry_button = NodePath("RETRY_STAGE2")
+toggle_button = NodePath("TOGGLE2")
 start_on_ready = false
 stagger = 0.05
 metadata/_edit_lock_ = true
@@ -268,10 +277,10 @@ corresponding_marquee = NodePath("../../MarqueeContainer/ResumeMarquee")
 modulate = Color(0.37187055, 0.3491902, 0.93189055, 1)
 z_index = 1
 layout_mode = 0
-offset_left = 316.75995
-offset_top = 310.81775
-offset_right = 819.24677
-offset_bottom = 383.81778
+offset_left = 306.75995
+offset_top = 285.0
+offset_right = 809.24677
+offset_bottom = 358.00003
 rotation = -0.061099287
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_fonts/normal_font = SubResource("FontVariation_6dj5d")
@@ -286,10 +295,10 @@ vertical_alignment = 1
 [node name="OPTIONS2" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=15396994 node_paths=PackedStringArray("undershadow_text", "corresponding_marquee")]
 z_index = 1
 layout_mode = 0
-offset_left = 349.55078
-offset_top = 305.63547
-offset_right = 804.3671
-offset_bottom = 378.63547
+offset_left = 339.55078
+offset_top = 279.81772
+offset_right = 794.3671
+offset_bottom = 352.81772
 rotation = -0.061099287
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_fonts/normal_font = SubResource("FontVariation_ou4dh")
@@ -308,10 +317,10 @@ corresponding_marquee = NodePath("../../MarqueeContainer/Options")
 modulate = Color(0.8570065, 0, 0, 1)
 z_index = 1
 layout_mode = 0
-offset_left = 330.75992
-offset_top = 427.81772
-offset_right = 850.1644
-offset_bottom = 500.81775
+offset_left = 304.74414
+offset_top = 372.99997
+offset_right = 824.1487
+offset_bottom = 446.0
 rotation = -0.061099287
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_fonts/normal_font = SubResource("FontVariation_0lrld")
@@ -326,10 +335,10 @@ vertical_alignment = 1
 [node name="RETRY_STAGE2" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=776853827 node_paths=PackedStringArray("undershadow_text", "corresponding_marquee")]
 z_index = 1
 layout_mode = 0
-offset_left = 370.2813
-offset_top = 420.63547
-offset_right = 825.09766
-offset_bottom = 493.63547
+offset_left = 344.26553
+offset_top = 365.81772
+offset_right = 799.0819
+offset_bottom = 438.81772
 rotation = -0.061099287
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_fonts/normal_font = SubResource("FontVariation_4rfht")
@@ -343,6 +352,48 @@ vertical_alignment = 1
 script = ExtResource("6_ftak0")
 undershadow_text = NodePath("../RETRY_STAGE")
 corresponding_marquee = NodePath("../../MarqueeContainer/ToMenu")
+
+[node name="TOGGLE" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=1272573454]
+modulate = Color(0.961202, 0.36556464, 0.7977378, 1)
+z_index = 1
+layout_mode = 0
+offset_left = 1.7924194
+offset_top = 459.0
+offset_right = 1151.2078
+offset_bottom = 532.0
+rotation = -0.061099287
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = SubResource("FontVariation_yuuuf")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "TOGGLE FULLSCREEN"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TOGGLE2" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=91031305 node_paths=PackedStringArray("undershadow_text", "corresponding_marquee")]
+z_index = 1
+layout_mode = 0
+offset_left = -31.904251
+offset_top = 456.0125
+offset_right = 1199.5518
+offset_bottom = 529.0126
+rotation = -0.061099287
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_fonts/normal_font = SubResource("FontVariation_up733")
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "TOGGLE FULLSCREEN"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("6_ftak0")
+intensifier = 0.5
+undershadow_text = NodePath("../TOGGLE")
+corresponding_marquee = NodePath("../../MarqueeContainer/Toggle")
+metadata/_edit_lock_ = true
 
 [node name="MarqueeContainer" type="Control" parent="PauseMenu" unique_id=924971221 node_paths=PackedStringArray("marquees")]
 visible = false
@@ -383,10 +434,10 @@ metadata/_edit_lock_ = true
 [node name="Options" type="ColorRect" parent="PauseMenu/MarqueeContainer" unique_id=357183211]
 material = SubResource("ShaderMaterial_0gb65")
 layout_mode = 0
-offset_left = -66.95685
-offset_top = 305.9987
-offset_right = 1209.346
-offset_bottom = 380.4133
+offset_left = -75.99999
+offset_top = 278.0
+offset_right = 1200.3027
+offset_bottom = 352.4146
 rotation = -0.061086524
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
@@ -406,10 +457,10 @@ metadata/_edit_lock_ = true
 [node name="ToMenu" type="ColorRect" parent="PauseMenu/MarqueeContainer" unique_id=753689334]
 material = SubResource("ShaderMaterial_srbcc")
 layout_mode = 0
-offset_left = -31.956848
-offset_top = 421.9987
-offset_right = 1244.346
-offset_bottom = 496.41324
+offset_left = -71.0
+offset_top = 366.99997
+offset_right = 1205.3027
+offset_bottom = 441.41452
 rotation = -0.061086524
 pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
@@ -417,6 +468,29 @@ script = ExtResource("8_6dj5d")
 metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="PauseMenu/MarqueeContainer/ToMenu" unique_id=116802829]
+layout_mode = 0
+offset_left = 2.4234133
+offset_top = 10.140594
+offset_right = 1280.9214
+offset_bottom = 67.46196
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="Toggle" type="ColorRect" parent="PauseMenu/MarqueeContainer" unique_id=930588419]
+material = SubResource("ShaderMaterial_srbcc")
+layout_mode = 0
+offset_left = -68.0
+offset_top = 453.00003
+offset_right = 1208.3027
+offset_bottom = 527.41455
+rotation = -0.061086524
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+script = ExtResource("8_6dj5d")
+metadata/_edit_lock_ = true
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu/MarqueeContainer/Toggle" unique_id=1418174794]
 layout_mode = 0
 offset_left = 2.4234133
 offset_top = 10.140594
@@ -435,12 +509,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="LoadingShitDock" type="Control" parent="." unique_id=2136856264]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="LoadingShit" parent="LoadingShitDock" unique_id=800179156 instance=ExtResource("12_ba28l")]
 
@@ -450,3 +529,4 @@ layer = 2
 [node name="Manual" parent="CanvasLayer" unique_id=1769783037 instance=ExtResource("13_yuuuf")]
 visible = false
 mouse_filter = 2
+metadata/_edit_lock_ = true
