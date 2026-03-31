@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://m3uoyp8n084o"]
 
 [ext_resource type="Script" uid="uid://ctk3wvrboaipf" path="res://scripts/master/game_container.gd" id="1_s5use"]
-[ext_resource type="PackedScene" uid="uid://ctyibpk8u187h" path="res://scenes/missions/intro_sequence.tscn" id="2_ba28l"]
 [ext_resource type="Script" uid="uid://bq5q3ek827hqh" path="res://scripts/ui/lateral_bars.gd" id="3_0gb65"]
 [ext_resource type="Script" uid="uid://boq2iw1k61chi" path="res://scripts/ui/pause_menu_buttons.gd" id="3_ftak0"]
 [ext_resource type="FontFile" uid="uid://38d0ljavacn8" path="res://assets/fonts/ZenDots-Regular.ttf" id="3_m8eaw"]
@@ -12,6 +11,7 @@
 [ext_resource type="Script" uid="uid://c1jqeh1jayhha" path="res://scripts/ui/marquee_container.gd" id="7_srbcc"]
 [ext_resource type="Script" uid="uid://bq3wxnm2alcqb" path="res://scripts/ui/marquee.gd" id="8_6dj5d"]
 [ext_resource type="Shader" uid="uid://doveve2ovrg0t" path="res://shaderslop/stripes.gdshader" id="10_ba28l"]
+[ext_resource type="PackedScene" uid="uid://bls1vdkj63qw8" path="res://scenes/ui/loading_shit.tscn" id="12_ba28l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ou4dh"]
 shader = ExtResource("3_ou4dh")
@@ -93,7 +93,7 @@ shader_parameter/speed = 0.1
 shader_parameter/angle = 2.985
 shader_parameter/skew = 0.0
 
-[node name="GameContainer" type="Control" unique_id=1778160351 node_paths=PackedStringArray("control", "game", "blur_drive", "pause_menu", "lateral_bars", "options_dock")]
+[node name="GameContainer" type="Control" unique_id=1778160351 node_paths=PackedStringArray("control", "blur_drive", "pause_menu", "lateral_bars", "options_dock", "loading_shit")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,14 +102,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_s5use")
 control = NodePath("PauseMenu/Cascade")
-game = NodePath("intro_sequence")
 blur_drive = NodePath("PauseMenu/BlurDrive")
 pause_menu = NodePath("PauseMenu")
 lateral_bars = NodePath("PauseMenu/LateralBars")
 options_dock = NodePath("PauseMenu/OptionsDock")
+loading_shit = NodePath("LoadingShitDock/LoadingShit")
 metadata/_edit_lock_ = true
-
-[node name="intro_sequence" parent="." unique_id=805400210 instance=ExtResource("2_ba28l")]
 
 [node name="PauseMenu" type="CanvasLayer" parent="." unique_id=152509453]
 layer = 2
@@ -435,3 +433,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="LoadingShitDock" type="Control" parent="." unique_id=2136856264]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="LoadingShit" parent="LoadingShitDock" unique_id=800179156 instance=ExtResource("12_ba28l")]

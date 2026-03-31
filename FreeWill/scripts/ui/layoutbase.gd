@@ -26,9 +26,7 @@ func _on_dialogic_signal(argument:String)->void:
 		final_dialog = dialog_text.text
 		hide()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+
 
 func show()->void:
 

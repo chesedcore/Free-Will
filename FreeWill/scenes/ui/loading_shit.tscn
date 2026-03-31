@@ -31,6 +31,9 @@ offset_right = 104.0
 offset_bottom = 35.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "loading shit"
+text = "Compiling shaders!
+
+This is an unavoidable engine quirk.
+Use the downloadable if you want to get past this fast."
 horizontal_alignment = 1
 vertical_alignment = 1

@@ -10,6 +10,7 @@ var promise: Promise
 @export var pause_menu: CanvasLayer
 @export var lateral_bars: LateralBars
 @export var options_dock: Control
+@export var loading_shit: LoadingShit
 
 func _ready() -> void:
 	_wire_up_signals()
@@ -18,9 +19,15 @@ func _wire_up_signals() -> void:
 	EventBus.change_game_container_to.connect(_on_game_container_change_request)
 	control.resume.connect(_on_resume_clicked)
 	control.options.connect(_on_options_clicked)
+	loading_shit.finished.connect(_on_loading_shit_finished)
+
+func _on_loading_shit_finished() -> void:
+	loading_shit.queue_free()
+	var actual_factual_main_game_intro_sequence := preload("res://scenes/missions/intro_sequence.tscn").instantiate()
+	EventBus.change_game_container_to.emit(actual_factual_main_game_intro_sequence)
 
 func _on_game_container_change_request(node_to_change_to: Node) -> void:
-	game.queue_free()
+	if game: game.queue_free()
 	add_child(node_to_change_to)
 
 	game = node_to_change_to

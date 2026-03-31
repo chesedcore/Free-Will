@@ -1,4 +1,4 @@
-extends Node3D
+class_name LoadingShit extends Node3D
 
 signal finished
 

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bq8sqw3w34a2r" path="res://scripts/ui/cascade.gd" id="1_fe2o3"]
 [ext_resource type="Texture2D" uid="uid://dktyko4dhwqa6" path="res://assets/tanksunimgcuziamlazy.png" id="1_m1kxf"]
+[ext_resource type="Script" uid="uid://be1tujespbwol" path="res://scripts/ui/main_menu.gd" id="1_x2yvf"]
 [ext_resource type="Shader" uid="uid://doveve2ovrg0t" path="res://shaderslop/stripes.gdshader" id="2_1g8jr"]
 [ext_resource type="Script" uid="uid://bu4hq8w0u7f1t" path="res://scripts/ui/menu_button.gd" id="3_1g8jr"]
 
@@ -33,13 +34,18 @@ shader_parameter/skew = 0.0
 
 [sub_resource type="FontVariation" id="FontVariation_m1kxf"]
 
-[node name="MainMenu" type="Control" unique_id=998454863]
+[node name="MainMenu" type="Control" unique_id=998454863 node_paths=PackedStringArray("start_button", "options_button", "options_dock", "cascade")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_x2yvf")
+start_button = NodePath("Cascade/START_GAME2")
+options_button = NodePath("Cascade/OPTIONS2")
+options_dock = NodePath("OptionsDock")
+cascade = NodePath("Cascade")
 metadata/_edit_lock_ = true
 
 [node name="Background" type="TextureRect" parent="." unique_id=1041362767]
@@ -51,7 +57,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_m1kxf")
 
-[node name="CascadeV2" type="Control" parent="." unique_id=1526948226]
+[node name="Cascade" type="Control" parent="." unique_id=1526948226]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,7 +71,7 @@ tween_in_time = 0.5
 stagger_time = 0.04
 metadata/_edit_lock_ = true
 
-[node name="RandomShit16" type="ColorRect" parent="CascadeV2" unique_id=1943546956]
+[node name="RandomShit16" type="ColorRect" parent="Cascade" unique_id=1943546956]
 layout_mode = 0
 offset_left = 115.0
 offset_top = 198.0
@@ -74,7 +80,7 @@ offset_bottom = 326.0075
 rotation = 0.941209
 color = Color(0, 0, 0, 0.44313726)
 
-[node name="RandomShit" type="ColorRect" parent="CascadeV2" unique_id=441503380]
+[node name="RandomShit" type="ColorRect" parent="Cascade" unique_id=441503380]
 layout_mode = 0
 offset_left = 120.0
 offset_top = 197.0
@@ -83,7 +89,7 @@ offset_bottom = 325.00748
 rotation = 0.941209
 color = Color(0.13174233, 0.13174233, 0.13174233, 1)
 
-[node name="RandomShit2" type="ColorRect" parent="CascadeV2" unique_id=1303690997]
+[node name="RandomShit2" type="ColorRect" parent="Cascade" unique_id=1303690997]
 layout_mode = 0
 offset_left = 118.890274
 offset_top = 209.52203
@@ -92,7 +98,7 @@ offset_bottom = 319.4504
 rotation = 0.941209
 color = Color(0.8334029, 1, 0, 1)
 
-[node name="RandomShit19" type="ColorRect" parent="CascadeV2" unique_id=749188728]
+[node name="RandomShit19" type="ColorRect" parent="Cascade" unique_id=749188728]
 layout_mode = 0
 offset_left = 323.1953
 offset_top = 466.0
@@ -101,7 +107,7 @@ offset_bottom = 594.00757
 rotation = 1.0369382
 color = Color(0, 0, 0, 0.44313726)
 
-[node name="RandomShit20" type="ColorRect" parent="CascadeV2" unique_id=1031476661]
+[node name="RandomShit20" type="ColorRect" parent="Cascade" unique_id=1031476661]
 layout_mode = 0
 offset_left = 328.1953
 offset_top = 465.0
@@ -110,7 +116,7 @@ offset_bottom = 593.00745
 rotation = 1.0369382
 color = Color(0.057996348, 0.057996348, 0.05799634, 1)
 
-[node name="RandomShit21" type="ColorRect" parent="CascadeV2" unique_id=1004913566]
+[node name="RandomShit21" type="ColorRect" parent="Cascade" unique_id=1004913566]
 layout_mode = 0
 offset_left = 326.26013
 offset_top = 476.1256
@@ -119,7 +125,7 @@ offset_bottom = 586.05396
 rotation = 1.0369382
 color = Color(0.8334029, 1, 0, 1)
 
-[node name="RandomShit11" type="ColorRect" parent="CascadeV2" unique_id=1237208334]
+[node name="RandomShit11" type="ColorRect" parent="Cascade" unique_id=1237208334]
 layout_mode = 0
 offset_left = -28.999998
 offset_top = -7.0
@@ -128,7 +134,7 @@ offset_bottom = 776.9881
 rotation = -0.33460373
 color = Color(0, 0, 0, 0.37100002)
 
-[node name="RandomShit12" type="ColorRect" parent="CascadeV2" unique_id=80138419]
+[node name="RandomShit12" type="ColorRect" parent="Cascade" unique_id=80138419]
 layout_mode = 0
 offset_left = 427.0
 offset_top = -58.0
@@ -137,7 +143,7 @@ offset_bottom = 725.9881
 rotation = 0.796815
 color = Color(0, 0, 0, 0.37100002)
 
-[node name="RandomShit3" type="ColorRect" parent="CascadeV2" unique_id=1486572985]
+[node name="RandomShit3" type="ColorRect" parent="Cascade" unique_id=1486572985]
 modulate = Color(0, 0, 0, 1)
 material = SubResource("ShaderMaterial_fe2o3")
 layout_mode = 0
@@ -148,7 +154,7 @@ offset_bottom = 763.5964
 rotation = -0.33460373
 color = Color(0, 0, 0, 1)
 
-[node name="RandomShit4" type="ColorRect" parent="CascadeV2" unique_id=1163395420]
+[node name="RandomShit4" type="ColorRect" parent="Cascade" unique_id=1163395420]
 layout_mode = 0
 offset_left = -20.806625
 offset_top = -23.920822
@@ -157,7 +163,7 @@ offset_bottom = 760.06726
 rotation = -0.33460373
 color = Color(0, 0, 0, 1)
 
-[node name="RandomShit5" type="ColorRect" parent="CascadeV2" unique_id=1175590876]
+[node name="RandomShit5" type="ColorRect" parent="Cascade" unique_id=1175590876]
 material = SubResource("ShaderMaterial_1g8jr")
 layout_mode = 0
 offset_left = 432.62833
@@ -167,7 +173,7 @@ offset_bottom = 725.88727
 rotation = 0.79134834
 color = Color(0, 0, 0, 1)
 
-[node name="RandomShit13" type="ColorRect" parent="CascadeV2" unique_id=1580329856]
+[node name="RandomShit13" type="ColorRect" parent="Cascade" unique_id=1580329856]
 layout_mode = 0
 offset_left = -197.0
 offset_top = -35.0
@@ -176,7 +182,7 @@ offset_bottom = 1199.1221
 rotation = -0.6879951
 color = Color(0, 0, 0, 0.49500003)
 
-[node name="RandomShit9" type="ColorRect" parent="CascadeV2" unique_id=1064730811]
+[node name="RandomShit9" type="ColorRect" parent="Cascade" unique_id=1064730811]
 layout_mode = 0
 offset_left = -187.0
 offset_top = -35.0
@@ -185,7 +191,7 @@ offset_bottom = 1199.1221
 rotation = -0.6879951
 color = Color(0, 0, 0, 1)
 
-[node name="RandomShit14" type="ColorRect" parent="CascadeV2" unique_id=916374050]
+[node name="RandomShit14" type="ColorRect" parent="Cascade" unique_id=916374050]
 layout_mode = 0
 offset_left = -74.51789
 offset_top = 627.65967
@@ -194,7 +200,7 @@ offset_bottom = 1890.59
 rotation = -1.7411577
 color = Color(0, 0, 0, 0.4)
 
-[node name="RandomShit10" type="ColorRect" parent="CascadeV2" unique_id=1551025107]
+[node name="RandomShit10" type="ColorRect" parent="Cascade" unique_id=1551025107]
 layout_mode = 0
 offset_left = -81.51788
 offset_top = 623.65967
@@ -203,7 +209,7 @@ offset_bottom = 1908.2169
 rotation = -1.7411577
 color = Color(0, 0, 0, 1)
 
-[node name="RandomShit23" type="ColorRect" parent="CascadeV2" unique_id=2057706417]
+[node name="RandomShit23" type="ColorRect" parent="Cascade" unique_id=2057706417]
 layout_mode = 0
 offset_left = 316.06903
 offset_top = 490.393
@@ -212,7 +218,7 @@ offset_bottom = 575.84607
 rotation = 1.0369382
 color = Color(0, 0, 0, 0.49)
 
-[node name="RandomShit22" type="ColorRect" parent="CascadeV2" unique_id=1920193837]
+[node name="RandomShit22" type="ColorRect" parent="Cascade" unique_id=1920193837]
 layout_mode = 0
 offset_left = 321.069
 offset_top = 491.39288
@@ -221,7 +227,7 @@ offset_bottom = 576.84595
 rotation = 1.0369382
 color = Color(0, 0, 0, 1)
 
-[node name="RandomShit24" type="ColorRect" parent="CascadeV2" unique_id=797464214]
+[node name="RandomShit24" type="ColorRect" parent="Cascade" unique_id=797464214]
 layout_mode = 0
 offset_left = 318.99997
 offset_top = 500.0
@@ -229,7 +235,7 @@ offset_right = 393.5767
 offset_bottom = 572.85846
 rotation = 1.0369382
 
-[node name="RandomShit6" type="ColorRect" parent="CascadeV2" unique_id=2072446973]
+[node name="RandomShit6" type="ColorRect" parent="Cascade" unique_id=2072446973]
 layout_mode = 0
 offset_left = 439.1796
 offset_top = -55.76545
@@ -238,7 +244,7 @@ offset_bottom = 732.0666
 rotation = 0.79134834
 color = Color(0, 0, 0, 1)
 
-[node name="RandomShit15" type="ColorRect" parent="CascadeV2" unique_id=885505165]
+[node name="RandomShit15" type="ColorRect" parent="Cascade" unique_id=885505165]
 layout_mode = 0
 offset_left = 111.0
 offset_top = 224.0
@@ -247,7 +253,7 @@ offset_bottom = 316.77875
 rotation = 0.941209
 color = Color(0, 0, 0, 0.56200004)
 
-[node name="RandomShit7" type="ColorRect" parent="CascadeV2" unique_id=1268553908]
+[node name="RandomShit7" type="ColorRect" parent="Cascade" unique_id=1268553908]
 layout_mode = 0
 offset_left = 116.98864
 offset_top = 222.5513
@@ -256,7 +262,7 @@ offset_bottom = 317.7904
 rotation = 0.941209
 color = Color(0, 0, 0, 1)
 
-[node name="RandomShit8" type="ColorRect" parent="CascadeV2" unique_id=1223657141]
+[node name="RandomShit8" type="ColorRect" parent="Cascade" unique_id=1223657141]
 layout_mode = 0
 offset_left = 115.36679
 offset_top = 235.85547
@@ -264,7 +270,7 @@ offset_right = 183.15479
 offset_bottom = 312.2851
 rotation = 0.941209
 
-[node name="RandomShit18" type="ColorRect" parent="CascadeV2" unique_id=2144441060]
+[node name="RandomShit18" type="ColorRect" parent="Cascade" unique_id=2144441060]
 layout_mode = 0
 offset_left = 108.204254
 offset_top = 244.77705
@@ -273,7 +279,7 @@ offset_bottom = 307.7292
 rotation = 0.941209
 color = Color(0, 0, 0, 0.47100002)
 
-[node name="RandomShit17" type="ColorRect" parent="CascadeV2" unique_id=1754455624]
+[node name="RandomShit17" type="ColorRect" parent="Cascade" unique_id=1754455624]
 layout_mode = 0
 offset_left = 113.50063
 offset_top = 243.83266
@@ -282,7 +288,7 @@ offset_bottom = 306.19696
 rotation = 0.941209
 color = Color(0, 0.8570065, 1, 1)
 
-[node name="START_GAME" type="RichTextLabel" parent="CascadeV2" unique_id=1479283884]
+[node name="START_GAME" type="RichTextLabel" parent="Cascade" unique_id=1479283884]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = 402.0
@@ -299,7 +305,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="START_GAME2" type="RichTextLabel" parent="CascadeV2" unique_id=1553145649 node_paths=PackedStringArray("undershadow_text")]
+[node name="START_GAME2" type="RichTextLabel" parent="Cascade" unique_id=1553145649 node_paths=PackedStringArray("undershadow_text")]
 layout_mode = 0
 offset_left = 409.0
 offset_top = 480.3509
@@ -318,7 +324,7 @@ script = ExtResource("3_1g8jr")
 intensifier = 0.4
 undershadow_text = NodePath("../START_GAME")
 
-[node name="OPTIONS" type="RichTextLabel" parent="CascadeV2" unique_id=2125300098]
+[node name="OPTIONS" type="RichTextLabel" parent="Cascade" unique_id=2125300098]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = 782.0
@@ -335,7 +341,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OPTIONS2" type="RichTextLabel" parent="CascadeV2" unique_id=1569317329 node_paths=PackedStringArray("undershadow_text")]
+[node name="OPTIONS2" type="RichTextLabel" parent="Cascade" unique_id=1569317329 node_paths=PackedStringArray("undershadow_text")]
 layout_mode = 0
 offset_left = 789.0
 offset_top = 414.15662
@@ -353,3 +359,12 @@ vertical_alignment = 1
 script = ExtResource("3_1g8jr")
 intensifier = 0.4
 undershadow_text = NodePath("../OPTIONS")
+
+[node name="OptionsDock" type="Control" parent="." unique_id=1644734234]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

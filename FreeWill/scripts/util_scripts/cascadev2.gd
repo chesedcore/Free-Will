@@ -123,7 +123,6 @@ func stop() -> void:
 	top_level_t.kill()
 
 func _ready() -> void:
-	await get_tree().process_frame
 	_initialise()
 	_reset_state()
 	
