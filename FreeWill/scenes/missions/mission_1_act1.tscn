@@ -90,7 +90,6 @@ metadata/_custom_type_script = "uid://capww07pslxpm"
 
 [node name="Mission1_act1" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints_og", "enemies_list", "transition")]
 script = ExtResource("1_pwc3s")
-mission_title = 2
 scene_to_transition_to = "res://scenes/missions/mission1_act1_to_2_interlude.tscn"
 mission_music = NodePath("mission_music")
 stagehandler = NodePath("stagehandler")

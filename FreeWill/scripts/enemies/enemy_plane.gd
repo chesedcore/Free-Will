@@ -20,6 +20,8 @@ var shield : Node3D
 var is_shield_active : bool = false
 @export var shield_scale: float = 15
 
+var ONFUCKINGFIRE : bool = false
+
 
 func wire_signals()->void:
 	EnemySignalBus.cargo_ship_shield.connect(on_shield)
@@ -81,8 +83,12 @@ func on_fire_missile(target : Node3D)->void:
 	var new_missile :HomingMissile = HOMINGMISSLE.instantiate()
 
 	new_missile.target_node = target
+	if ONFUCKINGFIRE:
+		new_missile.ONFUCKINGFIRE = true
 	EventBus.spawn_weaponry.emit(new_missile)
 	new_missile.sender = self
+	if ONFUCKINGFIRE:
+		new_missile.ONFUCKINGFIRE = true
 	new_missile.global_position = missle_spawner.global_position
 
 
