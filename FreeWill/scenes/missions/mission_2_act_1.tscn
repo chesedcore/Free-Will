@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c7uti4uihs7l2" path="res://scenes/ui/combat_ui.tscn" id="6_dhjx0"]
 [ext_resource type="Script" uid="uid://2vnvyhwmfiq3" path="res://scripts/master/enemies_list.gd" id="7_nq7x7"]
 [ext_resource type="AudioStream" uid="uid://w4n8wy4maeaq" path="res://audio/mus/Mission 2/finish the job.ogg" id="8_mxxdg"]
+[ext_resource type="AudioStream" uid="uid://blxouyspbvit8" path="res://audio/mus/Ambient/chill tank beats to shoot enemy planes to.ogg" id="9_15gmh"]
 
 [sub_resource type="Resource" id="Resource_niyrk"]
 script = ExtResource("2_15gmh")
@@ -98,7 +99,7 @@ waveinfo = Dictionary[int, int]({
 })
 metadata/_custom_type_script = "uid://capww07pslxpm"
 
-[node name="Mission2_act1" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints_og", "enemies_list", "transition")]
+[node name="Mission2_act1" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints_og", "enemies_list", "transition", "ambient_music")]
 script = ExtResource("1_mxxdg")
 scene_to_transition_to = "res://scenes/missions/mission2_act1_to_2_interlude.tscn"
 mission_music = NodePath("mission_music")
@@ -108,6 +109,7 @@ waves = Array[ExtResource("2_15gmh")]([SubResource("Resource_niyrk"), SubResourc
 spawnpoints_og = NodePath("spawnpoints")
 enemies_list = NodePath("EnemiesList")
 transition = NodePath("CanvasLayer/transition")
+ambient_music = NodePath("ambient_music")
 
 [node name="spawnpoints" type="Node3D" parent="." unique_id=578110763]
 
@@ -222,4 +224,9 @@ color = Color(0, 0, 0, 1)
 
 [node name="mission_music" type="AudioStreamPlayer" parent="." unique_id=1660453610]
 stream = ExtResource("8_mxxdg")
+bus = &"Music"
+
+[node name="ambient_music" type="AudioStreamPlayer" parent="." unique_id=1877215295]
+stream = ExtResource("9_15gmh")
+autoplay = true
 bus = &"Music"

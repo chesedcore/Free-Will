@@ -51,6 +51,7 @@ func _on_dialogic_signal(argument:String)->void:
 	if argument == "end":
 		EventBus.change_game_container_to.emit(load(scene_to_transition_to).instantiate())
 
+@export var ambient_music: AudioStreamPlayer
 
 
 
@@ -62,6 +63,7 @@ func _ready() -> void:
 	tank.linear_velocity += tank.camera_gimbal.global_transform.basis.z * (tank.GUN_FIRE_FORCE *10)
 	fade_in()
 	await spawn_wave()
+	ambient_music.stop()
 	mission_music.play()
 
 var enemy_scenes :Dictionary[WaveResource.EnemyTypes,Resource] = {}

@@ -26,7 +26,7 @@ var parry_indicating : bool = false
 func _process(delta: float) -> void:
 	if target_node == null:
 		get_parent().threat_indicators.erase(self)
-		call_deferred("queue_free")
+		queue_free.call_deferred()
 	else:
 		distance = global_position.distance_to(target_node.global_position)
 		var scale_factor := remap(distance, 0, max_dist, 1.25, 0.25)
