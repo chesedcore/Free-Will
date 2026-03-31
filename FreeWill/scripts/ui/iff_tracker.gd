@@ -19,6 +19,7 @@ const LOCKON_RANGE_SQ := pow(1250, 2)
 static func new_iff(with_name: String) -> IFF:
 	var iff := preload("res://scenes/ui/IFF.tscn").instantiate() as IFF
 	iff.set_iff(with_name)
+	iff.iff_tracked_name = with_name
 	return iff
 
 static func from_control(control: Control) -> IFFTracker:
@@ -134,6 +135,8 @@ func cycle_lock(origin_body: PhysicsBody3D) -> void:
 	if lockable_entities.is_empty():
 		_locked_entity = null
 		return
+
+	AudioManager.play_sound(preload("res://audio/sfx/cycle_beep.ogg"), 15.0, "SFX", false)
 
 	#ugly ahh function to sort by how close shit is to the center of the screen
 	lockable_entities.sort_custom(func(a: PhysicsBody3D, b: PhysicsBody3D) -> bool:

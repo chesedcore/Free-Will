@@ -4,6 +4,9 @@ class_name IFF extends Node2D
 @export var outer: Node2D
 @export var iff_name: Label
 
+@export var dim_color: Color = Color(0.36, 0.36, 0.36, 0.5)
+@export var normal_color: Color = Color(1.0, 1.0, 1.0, 1.0)
+
 enum State {
 	ON_SCREEN,
 	FOCUSED,
@@ -13,10 +16,21 @@ enum State {
 var state := State.ON_SCREEN
 
 var t: Tween
+var iff_tracked_name: String
+
 @export var time := 0.3
 
 func _ready() -> void:
 	setup()
+
+func _process(_delta: float) -> void:
+	if (Engine.get_process_frames() % 20 == 0):
+		if (state == State.LOCKED_ON):
+			iff_name.set_text(iff_tracked_name)
+			create_tween().tween_property(self, "modulate", normal_color, 0.15)
+		else:
+			iff_name.set_text("")
+			create_tween().tween_property(self, "modulate", dim_color, 0.5)
 
 func reset_tween() -> void:
 	if t: t.kill()
@@ -60,4 +74,7 @@ func change_state(to: IFF.State) -> void:
 		State.LOCKED_ON: to_locked()
 
 func set_iff(to: String) -> void:
-	iff_name.set_text(to)
+	if (state == State.LOCKED_ON):
+		iff_name.set_text(to)
+	else:
+		iff_name.set_text("")

@@ -3,7 +3,7 @@
 [ext_resource type="Shader" uid="uid://bvxngudpwn4nh" path="res://shaderslop/water.gdshader" id="1_gd4ah"]
 [ext_resource type="Environment" uid="uid://dlfchxfgfcmoo" path="res://res/world_env/dark_cloudy_sky.tres" id="2_2lvk5"]
 [ext_resource type="PackedScene" uid="uid://b5oi77k2llexl" path="res://scenes/enviorment/pillar_enviorment_prop.tscn" id="4_li585"]
-[ext_resource type="PackedScene" path="res://scripts/entities/gear_1.tscn" id="5_2lvk5"]
+[ext_resource type="PackedScene" uid="uid://dcf0xd2d825jc" path="res://scripts/entities/gear_1.tscn" id="5_2lvk5"]
 
 [sub_resource type="Gradient" id="Gradient_7kl64"]
 offsets = PackedFloat32Array(0.33802816, 0.7640845)
@@ -68,7 +68,7 @@ subdivide_depth = 300
 [node name="Mission2Battlefield" type="Node3D" unique_id=1690070922]
 
 [node name="Ocean" type="MeshInstance3D" parent="." unique_id=1883953202]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -0.093763605, -142.19995, -0.8690749)
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 2, -1.5894911, -142.19995, -0.8690749)
 mesh = SubResource("PlaneMesh_114n2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=674383754]
@@ -97,19 +97,19 @@ transform = Transform3D(1478.2644, 254.42937, 0, -254.42937, 1478.2644, 0, 0, 0,
 transform = Transform3D(232.57108, -121.27561, 425.67935, 231.18439, 443.34378, 7.6293945e-06, -377.44464, 196.8208, 262.292, -1843.0475, 317.04712, -178.5939)
 rotate_small_gear = false
 
-[node name="SmallGear" parent="Gear1/gear_1" parent_id_path=PackedInt32Array(650852620, 1124313960) index="1" unique_id=1928708481]
+[node name="SmallGear" parent="Gear1/gear_1" parent_id_path=PackedInt32Array(650852620, 1124313960) index="1" unique_id=1311225964]
 transform = Transform3D(0.9086491, -0.75908643, 2.9802322e-08, 0.7590864, 0.9086492, 0, 1.4901161e-08, 2.9802322e-08, 1.1839998, -0.2517562, -0.48279482, 0)
 
 [node name="Gear2" parent="." unique_id=1409312287 instance=ExtResource("5_2lvk5")]
 transform = Transform3D(-290.91977, 0, 194.5911, 0, 350, 0, -194.5911, 0, -290.91977, -1953.0922, 351.7685, -4723.2144)
 
-[node name="SmallGear" parent="Gear2/gear_1" parent_id_path=PackedInt32Array(1409312287, 1124313960) index="1" unique_id=1928708481]
+[node name="SmallGear" parent="Gear2/gear_1" parent_id_path=PackedInt32Array(1409312287, 1124313960) index="1" unique_id=1311225964]
 transform = Transform3D(0.64406264, 0, 0.99349815, 0, 1.1839997, 0, -0.99349815, 0, 0.64406264, 0, 0, 0)
 
 [node name="Gear3" parent="." unique_id=966136562 instance=ExtResource("5_2lvk5")]
 transform = Transform3D(-330.7176, -110.536964, -30.123749, -114.51466, 321.74417, 76.596825, 3.5010376, 82.23295, -340.18445, 3144.7415, 351.7685, -3103.7388)
 
-[node name="SmallGear" parent="Gear3/gear_1" parent_id_path=PackedInt32Array(966136562, 1124313960) index="1" unique_id=1928708481]
+[node name="SmallGear" parent="Gear3/gear_1" parent_id_path=PackedInt32Array(966136562, 1124313960) index="1" unique_id=1311225964]
 transform = Transform3D(-0.055234008, -0.59479666, 1.022263, 0.10297252, 1.0170727, 0.5973403, -1.1782197, 0.11677237, 0.004282728, 0, 0, 0)
 
 [editable path="Gear1"]
