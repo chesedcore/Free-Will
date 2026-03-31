@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://droqs2no40wtk"
+path="res://.godot/imported/mission1_vegas_shield_01.ogg-8bf73f4f9c5209704c9bdf1463c0124a.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Exported Voicelines/Mission 1/Vegas/mission1_vegas_shield_01.ogg"
+dest_files=["res://.godot/imported/mission1_vegas_shield_01.ogg-8bf73f4f9c5209704c9bdf1463c0124a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

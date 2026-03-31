@@ -7,6 +7,7 @@ func _ready() -> void:
 	
 	sparks.finished.connect(queue_free)
 
+@warning_ignore("shadowed_variable_base_class")
 static func attach_to(tree : SceneTree, basis : Basis, pos : Vector3) -> void:
 	var particles := Registry.create_parry_particles()
 	tree.root.add_child(particles)

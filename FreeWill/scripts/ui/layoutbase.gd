@@ -1,4 +1,5 @@
 
+@warning_ignore("missing_tool")
 extends DialogicLayoutLayer
 
 @export var dialogcontainer: MarginContainer

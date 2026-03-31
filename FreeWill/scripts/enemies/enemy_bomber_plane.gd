@@ -18,10 +18,10 @@ func _ready() -> void:
 	heading = -global_basis.z
 	
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	velocity = heading * speed 
 	move_and_slide()
-	if (global_position.x >= BORDER or global_position.x <= -BORDER) or  (global_position.z >= BORDER or global_position.z <= -BORDER):
+	if (global_position.x >= BORDER or global_position.x <= -BORDER) or (global_position.z >= BORDER or global_position.z <= -BORDER):
 		kill()
  
 func _on_drop_timer_timeout() -> void:

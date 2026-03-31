@@ -10,11 +10,6 @@ func _ready() -> void:
 	fall_to_height()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func fall_to_height()-> void:
 	var height_range : float = randi_range(60,1600)
 	var fall_tween :Tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
