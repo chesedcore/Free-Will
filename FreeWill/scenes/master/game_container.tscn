@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bq3wxnm2alcqb" path="res://scripts/ui/marquee.gd" id="8_6dj5d"]
 [ext_resource type="Shader" uid="uid://doveve2ovrg0t" path="res://shaderslop/stripes.gdshader" id="10_ba28l"]
 [ext_resource type="PackedScene" uid="uid://bls1vdkj63qw8" path="res://scenes/ui/loading_shit.tscn" id="12_ba28l"]
+[ext_resource type="PackedScene" uid="uid://boefj4loyy2tp" path="res://scenes/ui/manual.tscn" id="13_yuuuf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ou4dh"]
 shader = ExtResource("3_ou4dh")
@@ -93,7 +94,7 @@ shader_parameter/speed = 0.1
 shader_parameter/angle = 2.985
 shader_parameter/skew = 0.0
 
-[node name="GameContainer" type="Control" unique_id=1778160351 node_paths=PackedStringArray("control", "blur_drive", "pause_menu", "lateral_bars", "options_dock", "loading_shit")]
+[node name="GameContainer" type="Control" unique_id=1778160351 node_paths=PackedStringArray("control", "blur_drive", "pause_menu", "lateral_bars", "options_dock", "loading_shit", "manual")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -107,6 +108,7 @@ pause_menu = NodePath("PauseMenu")
 lateral_bars = NodePath("PauseMenu/LateralBars")
 options_dock = NodePath("PauseMenu/OptionsDock")
 loading_shit = NodePath("LoadingShitDock/LoadingShit")
+manual = NodePath("CanvasLayer/Manual")
 metadata/_edit_lock_ = true
 
 [node name="PauseMenu" type="CanvasLayer" parent="." unique_id=152509453]
@@ -163,7 +165,7 @@ mouse_filter = 2
 script = ExtResource("3_ftak0")
 resume_button = NodePath("RESUME2")
 options_button = NodePath("OPTIONS2")
-menu_button = NodePath("TO MENU2")
+menu_button = NodePath("RETRY_STAGE2")
 start_on_ready = false
 stagger = 0.05
 metadata/_edit_lock_ = true
@@ -302,7 +304,7 @@ script = ExtResource("6_ftak0")
 undershadow_text = NodePath("../OPTIONS")
 corresponding_marquee = NodePath("../../MarqueeContainer/Options")
 
-[node name="TO MENU" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=1138815517]
+[node name="RETRY_STAGE" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=1138815517]
 modulate = Color(0.8570065, 0, 0, 1)
 z_index = 1
 layout_mode = 0
@@ -315,13 +317,13 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_fonts/normal_font = SubResource("FontVariation_0lrld")
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "TO MENU"
+text = "RETRY"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TO MENU2" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=776853827 node_paths=PackedStringArray("undershadow_text", "corresponding_marquee")]
+[node name="RETRY_STAGE2" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=776853827 node_paths=PackedStringArray("undershadow_text", "corresponding_marquee")]
 z_index = 1
 layout_mode = 0
 offset_left = 370.2813
@@ -333,13 +335,13 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_fonts/normal_font = SubResource("FontVariation_4rfht")
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "TO MENU"
+text = "RETRY"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("6_ftak0")
-undershadow_text = NodePath("../TO MENU")
+undershadow_text = NodePath("../RETRY_STAGE")
 corresponding_marquee = NodePath("../../MarqueeContainer/ToMenu")
 
 [node name="MarqueeContainer" type="Control" parent="PauseMenu" unique_id=924971221 node_paths=PackedStringArray("marquees")]
@@ -441,3 +443,10 @@ offset_bottom = 40.0
 mouse_filter = 2
 
 [node name="LoadingShit" parent="LoadingShitDock" unique_id=800179156 instance=ExtResource("12_ba28l")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=203962456]
+layer = 2
+
+[node name="Manual" parent="CanvasLayer" unique_id=1769783037 instance=ExtResource("13_yuuuf")]
+visible = false
+mouse_filter = 2
