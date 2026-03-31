@@ -73,7 +73,7 @@ func _on_tank_fucking_exploded() -> void:
 	var game_over_scene := Registry.create_game_over()
 	game_over_scene.player = tank
 	game_over_scene.current_scene = get_scene_file_path()
-	#this actually advances a wave upon death so gotta decrement by 1 BUT DONT INCREMENNT IF THE PLAYER DIES DURING STARTING DIALOG
+	#this actually advances a wave upon death so gotta decrement by 1 BUT DONT DECREMENT IF THE PLAYER DIES DURING STARTING DIALOG
 	game_over_scene.current_wave_idx = current_wave
 	if current_wave > 0 :
 

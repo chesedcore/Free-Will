@@ -28,7 +28,11 @@ func _wire_up_signals() -> void:
 func retry() -> void:
 	var scene := get_current_game_scene()
 	if scene is not MissonHandler: return
+	
 	scene.current_wave = game.current_wave
+	#this actually advances a wave  so gotta decrement by 1 BUT DONT DECREMENT IF THE PLAYER DIES DURING STARTING DIALOG
+	if game.current_wave > 0 :
+		scene.current_wave -= 1
 	EventBus.change_game_container_to.emit(scene)
 	unpause_game()
 
