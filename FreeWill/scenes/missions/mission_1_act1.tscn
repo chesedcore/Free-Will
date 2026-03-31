@@ -12,9 +12,23 @@
 [ext_resource type="PackedScene" uid="uid://b5oi77k2llexl" path="res://scenes/enviorment/pillar_enviorment_prop.tscn" id="10_n6kqd"]
 [ext_resource type="AudioStream" uid="uid://blxouyspbvit8" path="res://audio/mus/Ambient/chill tank beats to shoot enemy planes to.ogg" id="11_n6kqd"]
 
-[sub_resource type="Resource" id="Resource_niyrk"]
+[sub_resource type="Resource" id="Resource_n6kqd"]
 script = ExtResource("2_67xhj")
 spawn_dialog = "Intro"
+waveinfo = Dictionary[int, int]({
+0: 1
+})
+metadata/_custom_type_script = "uid://capww07pslxpm"
+
+[sub_resource type="Resource" id="Resource_bxqsf"]
+script = ExtResource("2_67xhj")
+waveinfo = Dictionary[int, int]({
+0: 3
+})
+metadata/_custom_type_script = "uid://capww07pslxpm"
+
+[sub_resource type="Resource" id="Resource_niyrk"]
+script = ExtResource("2_67xhj")
 waveinfo = Dictionary[int, int]({
 0: 6
 })
@@ -95,7 +109,7 @@ scene_to_transition_to = "res://scenes/missions/mission1_act1_to_2_interlude.tsc
 mission_music = NodePath("mission_music")
 stagehandler = NodePath("stagehandler")
 act_end_dialog = "mission1_end"
-waves = Array[ExtResource("2_67xhj")]([SubResource("Resource_niyrk"), SubResource("Resource_0yhn2"), SubResource("Resource_myx56"), SubResource("Resource_1lad2"), SubResource("Resource_mctdd"), SubResource("Resource_feyy3"), SubResource("Resource_dtlup"), SubResource("Resource_v5q0b"), SubResource("Resource_jh3e7")])
+waves = Array[ExtResource("2_67xhj")]([SubResource("Resource_n6kqd"), SubResource("Resource_bxqsf"), SubResource("Resource_niyrk"), SubResource("Resource_0yhn2"), SubResource("Resource_myx56"), SubResource("Resource_1lad2"), SubResource("Resource_mctdd"), SubResource("Resource_feyy3"), SubResource("Resource_dtlup"), SubResource("Resource_v5q0b"), SubResource("Resource_jh3e7")])
 spawnpoints_og = NodePath("spawnpoints")
 enemies_list = NodePath("EnemiesList")
 transition = NodePath("CanvasLayer/transition")

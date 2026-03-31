@@ -101,9 +101,9 @@ func spawn_wave()->void:
 		if not wave.spawn_dialog.is_empty():
 			#Dialogic.Inputs.block_input(100000)
 			Dialogic.start(wave.spawn_dialog)
-			if current_wave == 0:
-
-				await Dialogic.timeline_ended
+			#if current_wave == 0:
+#
+				#await Dialogic.timeline_ended
 		#ARTIFICALLY AWAIT THE FUCKING IFFTRACKER CRASHESSSSSSSS AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+++++++++++++++++++++++++
 		await  get_tree().create_timer(.5).timeout
 		for enemytype : WaveResource.EnemyTypes in wave.waveinfo.keys():
