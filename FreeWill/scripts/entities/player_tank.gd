@@ -64,6 +64,7 @@ const UI := UIBus.Feedback
 @export var camera_shake_animation_player: AnimationPlayer
 @export var afterimage_barrel : GPUParticles3D
 @export var afterimage_base : GPUParticles3D
+@export var game_ui: GameUI
 
 
 #cooldowns
@@ -99,6 +100,7 @@ func _wire_up_signals() -> void:
 	parry_window_timer.timeout.connect(_end_parry)
 	cool_shit_happened.connect(style_display.cool_shit)
 	lame_shit_happened.connect(style_display.lame_shit)
+	fucking_exploded.connect(game_ui.hide)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("fire"):
@@ -400,6 +402,7 @@ func _kill() -> void:
 	is_dead = true
 	freeze = true
 	fucking_exploded.emit()
+	add_child(preload("res://scenes/entities/explosion_particles.tscn").instantiate())
 
 
 func _physics_process(delta: float) -> void:
