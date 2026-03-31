@@ -49,6 +49,7 @@ cascade = NodePath("Cascade")
 metadata/_edit_lock_ = true
 
 [node name="Background" type="TextureRect" parent="." unique_id=1041362767]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

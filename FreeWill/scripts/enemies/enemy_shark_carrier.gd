@@ -12,6 +12,8 @@ var rotation_speed: float = 5.0
 
 var initial_smoke := false
 
+var ONFUCKINGFIRE : bool = false
+
 func _physics_process(delta: float) -> void:
 	if player:
 
@@ -40,6 +42,7 @@ func _on_attack_timer_timeout() -> void:
 		var new_missile :HomingMissile = SHARK.instantiate()
 
 		new_missile.target_node = player
+		new_missile.ONFUCKINGFIRE = ONFUCKINGFIRE
 		EventBus.spawn_weaponry.emit(new_missile)
 		new_missile.global_position =shark_spawn_location.global_position
 

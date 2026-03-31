@@ -139,10 +139,10 @@ shape = SubResource("BoxShape3D_dh4vq")
 [node name="bigfuckcannon" parent="." unique_id=1188493055 instance=ExtResource("3_sun43")]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.6850383, 85.95831, 1.7649922)
 
-[node name="Cube" parent="bigfuckcannon" index="0" unique_id=924779880]
+[node name="Cube" parent="bigfuckcannon" index="0" unique_id=359725260]
 transform = Transform3D(0.42202696, 0, -0.90658325, 0, 1, 0, 0.90658325, 0, 0.42202696, 0, 0, 0)
 
-[node name="Cylinder" parent="bigfuckcannon/Cube" index="0" unique_id=1953835809]
+[node name="Cylinder" parent="bigfuckcannon/Cube" index="0" unique_id=1619101259]
 transform = Transform3D(3.234432, 0, 0, 0, 8.222984, 2.6309855, 0, -11.499502, 1.8813467, 0, 5.6715136, 0)
 
 [node name="shark_spawn_location" type="Node3D" parent="bigfuckcannon/Cube" index="1" unique_id=1761556580]
@@ -158,7 +158,7 @@ visible = false
 [node name="navy" parent="." unique_id=1476522542 instance=ExtResource("5_sun43")]
 transform = Transform3D(40, 0, 0, 0, 40, 0, 0, 0, 40, 0, 49.90677, -74.71877)
 
-[node name="Cube" parent="navy" index="1" unique_id=766810654]
+[node name="Cube" parent="navy" index="1" unique_id=786265211]
 surface_material_override/3 = SubResource("StandardMaterial3D_g16pl")
 
 [node name="Cannon" type="MeshInstance3D" parent="." unique_id=587835005]

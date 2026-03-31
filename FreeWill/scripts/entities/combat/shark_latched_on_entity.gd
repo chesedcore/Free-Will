@@ -4,8 +4,12 @@ class_name SharkLatchedOn extends Node3D
 @export var duration : float = 3
 
 var latched_on_tank : PlayerTank
+var ONFUCKINGFIRE : bool =false
+@export var fire: GPUParticles3D
 
 func _ready() -> void:
+	if ONFUCKINGFIRE:
+		fire.emitting = true
 	if  Dialogic.current_timeline == null:
 			Dialogic.start("shark_warning")
 

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://crarwtsifq85y" path="res://scripts/entities/combat/shark.gd" id="1_f2uss"]
 [ext_resource type="PackedScene" uid="uid://comalupd3cy86" path="res://assets/models/shark.blend" id="2_gy8dw"]
+[ext_resource type="PackedScene" uid="uid://cvdxbd6rscjpy" path="res://scenes/projectiles/fire.tscn" id="3_gy8dw"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_buov0"]
 radius = 5.116699
@@ -11,10 +12,11 @@ height = 41.536564
 radius = 5.8344727
 height = 47.460587
 
-[node name="shark" type="CharacterBody3D" unique_id=1409877024]
+[node name="shark" type="CharacterBody3D" unique_id=1409877024 node_paths=PackedStringArray("fire")]
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_f2uss")
+fire = NodePath("Node3D/GPUParticles3D")
 lifespan = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1514301715]
@@ -32,4 +34,13 @@ shape = SubResource("CapsuleShape3D_f2uss")
 [node name="shark" parent="." unique_id=768403268 instance=ExtResource("2_gy8dw")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
+[node name="Node3D" parent="." unique_id=809468678 instance=ExtResource("3_gy8dw")]
+transform = Transform3D(0.185, 0, 0, 0, 0.185, 0, 0, 0, 0.185, 0, 4.8368444, -12.786099)
+
+[node name="GPUParticles3D" parent="Node3D" index="0" unique_id=1034930989]
+transform = Transform3D(1.035, 0, 0, 0, 1.035, 0, 0, 0, 1.035, 0, 0, 0)
+emitting = false
+
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+
+[editable path="Node3D"]

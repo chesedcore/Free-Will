@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://brqh6t5d1dyrl" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="5_m4rw2"]
 [ext_resource type="PackedScene" uid="uid://ci8bdb60xolp7" path="res://assets/models/aim120.glb" id="6_6v3ii"]
 [ext_resource type="Shader" uid="uid://cwxrvexdarj2x" path="res://shaderslop/wind_trail.gdshader" id="6_vvwqs"]
+[ext_resource type="PackedScene" uid="uid://cvdxbd6rscjpy" path="res://scenes/projectiles/fire.tscn" id="7_o3kth"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vt8wv"]
 radius = 1.2529297
@@ -78,12 +79,13 @@ albedo_color = Color(0.47788018, 0.47788018, 0.47788, 1)
 metallic = 1.0
 roughness = 0.3
 
-[node name="deathmissile" type="CharacterBody3D" unique_id=1409877024]
+[node name="deathmissile" type="CharacterBody3D" unique_id=1409877024 node_paths=PackedStringArray("fire")]
 collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_6v3ii")
 Max_speed = 350.0
 turn_speed = 30.0
+fire = NodePath("Node3D/GPUParticles3D")
 damage_value = 50.0
 lock_off_dist = 0.0
 lifespan = 30.0
@@ -142,6 +144,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_x1vvv")
 [node name="Plane_003" parent="aim120" index="4" unique_id=143485898]
 surface_material_override/0 = SubResource("StandardMaterial3D_m4rw2")
 
+[node name="Node3D" parent="." unique_id=809468678 instance=ExtResource("7_o3kth")]
+
+[node name="GPUParticles3D" parent="Node3D" index="0" unique_id=1034930989]
+emitting = false
+
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 
 [editable path="aim120"]
+[editable path="Node3D"]
