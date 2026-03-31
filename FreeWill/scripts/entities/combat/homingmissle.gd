@@ -51,7 +51,8 @@ func _physics_process(delta: float) -> void:
 		trail_renderer.position.y = 0.524 + randf_range(-0.5,0.5)
 	if not target_node and not parried:
 		return
-
+	elif parried:
+		locked_on = false
 
 	if locked_on:
 		var distance : float = global_position.distance_to(target_node.global_position)

@@ -1,19 +1,29 @@
 [gd_scene format=3 uid="uid://yfaua8q24qyy"]
 
 [ext_resource type="Script" uid="uid://dmxvdy4eibha1" path="res://scripts/entities/combat/shield.gd" id="1_pj6p0"]
+[ext_resource type="ArrayMesh" uid="uid://w7s3omlo74xd" path="res://assets/models/mesh_shield_1.obj" id="2_ej7kq"]
+[ext_resource type="Shader" uid="uid://bjlgmqblygjbm" path="res://shaderslop/shield.gdshader" id="2_o20ou"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_40gup"]
 radius = 0.5209356
 
-[sub_resource type="SphereMesh" id="SphereMesh_pj6p0"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bc5nf"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_40gup"]
-transparency = 1
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.30980393, 0.9137255, 1, 1)
-emission_enabled = true
-emission = Color(0, 1.693, 2.298, 1)
-emission_energy_multiplier = 0.2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ej7kq"]
+render_priority = 0
+shader = ExtResource("2_o20ou")
+shader_parameter/shield_color = Color(0.1, 0.6, 1, 1)
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_bc5nf")
+shader_parameter/wave_height = 0.2
+shader_parameter/wave_speed = Vector2(0.1, 0.05)
+shader_parameter/fresnel_power = 1.3100000384750001
+shader_parameter/center_visibility = 0.0
+shader_parameter/hit_position = Vector3(1, 1, 0.2)
+shader_parameter/hit_progress = 1.0
+shader_parameter/hit_color = Color(1, 0, 0, 1)
+shader_parameter/hit_radius = 3.0
+shader_parameter/hit_ring_width = 0.3
+shader_parameter/hit_push_force = 0.5
 
 [node name="Shield" type="Area3D" unique_id=1476353986]
 collision_layer = 0
@@ -24,7 +34,7 @@ script = ExtResource("1_pj6p0")
 shape = SubResource("SphereShape3D_40gup")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1947294510]
-mesh = SubResource("SphereMesh_pj6p0")
-surface_material_override/0 = SubResource("StandardMaterial3D_40gup")
+mesh = ExtResource("2_ej7kq")
+surface_material_override/0 = SubResource("ShaderMaterial_ej7kq")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

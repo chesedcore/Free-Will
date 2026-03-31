@@ -23,8 +23,10 @@ void fragment(){
 	
 	float inner = 1.0 - circle(UV + uv_adjustment, inner_radius, 0.1 - fade_effect );
 	
+	float alpha_value = COLOR.a;
+	
 	ALBEDO = color.rgb;
 	EMISSION = color.rgb * (emission_strength - (outer + inner));
-	ALPHA = 1. - (outer + inner);
+	ALPHA = max(alpha_value - (outer + inner), 0.);
 	
 }
