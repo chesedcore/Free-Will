@@ -4,6 +4,9 @@
 [ext_resource type="Material" uid="uid://cwb8gmqffrrl" path="res://shaderslop/particleslop/aura.tres" id="2_p7mq3"]
 [ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="3_ln3mf"]
 [ext_resource type="PackedScene" uid="uid://cvdxbd6rscjpy" path="res://scenes/projectiles/fire.tscn" id="4_2wrl6"]
+[ext_resource type="Material" uid="uid://bi5ljtnhtn52r" path="res://shaderslop/particleslop/railgun_charge_particles.tres" id="5_y8b0r"]
+[ext_resource type="Shader" uid="uid://bihimqq7vee8d" path="res://shaderslop/shockwave.gdshader" id="6_a4wnf"]
+[ext_resource type="Material" uid="uid://c7abap7piyhrl" path="res://shaderslop/particleslop/railgun_charge_sparks_particles.tres" id="7_mtcuy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n6nx7"]
 render_priority = 1
@@ -211,8 +214,38 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_n6nx7")
 
-[node name="Node3D" type="Node3D" unique_id=800179156]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wro4j"]
+render_priority = 0
+shader = ExtResource("6_a4wnf")
+shader_parameter/color = Color(0.5, 0, 1, 1)
+shader_parameter/outer_radius = 0.35
+shader_parameter/inner_radius = 0.19
+shader_parameter/uv_adjustment = Vector2(0.25, -0.25)
+shader_parameter/emission_strength = 20.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bajqd"]
+material = SubResource("ShaderMaterial_wro4j")
+top_radius = 15.0
+bottom_radius = 15.0
+height = 0.001
+radial_segments = 16
+rings = 0
+cap_bottom = false
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4ev5"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 100.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_dg23g"]
+material = SubResource("StandardMaterial3D_l4ev5")
+radial_segments = 8
+rings = 4
+
+[node name="Node3D" type="Node3D" unique_id=800179156 node_paths=PackedStringArray("charge_particles", "charge_spark_particles")]
 script = ExtResource("1_xwu5q")
+charge_particles = NodePath("ChargeParticles")
+charge_spark_particles = NodePath("ChargeSparkParticles")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=958345954]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.789439)
@@ -263,3 +296,27 @@ draw_pass_1 = SubResource("ArrayMesh_ln3mf")
 [node name="thruster_particles" parent="." unique_id=1747782805 instance=ExtResource("3_ln3mf")]
 
 [node name="Fire" parent="." unique_id=809468678 instance=ExtResource("4_2wrl6")]
+
+[node name="ChargeParticles" type="GPUParticles3D" parent="." unique_id=213482271]
+transform = Transform3D(-1, -8.742278e-08, -3.821371e-15, 0, -4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, -0.08780639, -0.23830223, -0.17059898)
+emitting = false
+amount = 2
+lifetime = 0.2
+one_shot = true
+fixed_fps = 60
+local_coords = true
+process_material = ExtResource("5_y8b0r")
+draw_pass_1 = SubResource("CylinderMesh_bajqd")
+
+[node name="ChargeSparkParticles" type="GPUParticles3D" parent="." unique_id=843459983]
+transform = Transform3D(-1, -8.742278e-08, -3.821371e-15, 0, -4.371139e-08, 1, -8.742278e-08, 1, 4.371139e-08, -0.08780639, -0.23830223, -0.17059898)
+cast_shadow = 0
+emitting = false
+amount = 16
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = ExtResource("7_mtcuy")
+draw_pass_1 = SubResource("SphereMesh_dg23g")

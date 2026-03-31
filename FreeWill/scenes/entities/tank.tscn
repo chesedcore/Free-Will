@@ -10,7 +10,7 @@
 [ext_resource type="Material" uid="uid://8aqronk8hojl" path="res://res/tank_mats/green_3.material" id="6_xkrtr"]
 [ext_resource type="Shader" uid="uid://bihimqq7vee8d" path="res://shaderslop/shockwave.gdshader" id="7_l4ev5"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_uedwi"]
-[ext_resource type="Material" uid="uid://c5d3mpwrd8a5a" path="res://shaderslop/particleslop/aura.tres" id="7_whocj"]
+[ext_resource type="Material" uid="uid://cwb8gmqffrrl" path="res://shaderslop/particleslop/aura.tres" id="7_whocj"]
 [ext_resource type="Script" uid="uid://wel3y4ne2cus" path="res://scripts/effects/tank_wind_trail.gd" id="7_ywmen"]
 [ext_resource type="Material" uid="uid://cumspkgnerlec" path="res://shaderslop/speed_lines.material" id="8_rlhxg"]
 [ext_resource type="Script" uid="uid://df8hs8d0hc522" path="res://scripts/entities/player/camera_gimbal.gd" id="8_tafis"]
@@ -20,6 +20,8 @@
 [ext_resource type="Script" uid="uid://brqh6t5d1dyrl" path="res://addons/TrailRenderer/Runtime/GD/trail_renderer.gd" id="10_hsoq5"]
 [ext_resource type="Script" uid="uid://cuffvge5ad4aa" path="res://addons/phantom_camera/scripts/resources/phantom_camera_noise_3d.gd" id="11_ekcgd"]
 [ext_resource type="Shader" uid="uid://cwxrvexdarj2x" path="res://shaderslop/wind_trail.gdshader" id="11_if5yn"]
+[ext_resource type="Material" uid="uid://bi5ljtnhtn52r" path="res://shaderslop/particleslop/railgun_charge_particles.tres" id="11_k24xd"]
+[ext_resource type="Material" uid="uid://c7abap7piyhrl" path="res://shaderslop/particleslop/railgun_charge_sparks_particles.tres" id="13_gy3ka"]
 [ext_resource type="Shader" uid="uid://cgvoo24srn2kn" path="res://shaderslop/vignette.gdshader" id="13_ig2cu"]
 [ext_resource type="Shader" uid="uid://ywoqnuhd07r3" path="res://shaderslop/edgeblur.gdshader" id="13_uedwi"]
 [ext_resource type="Shader" uid="uid://cj0vp4oks780m" path="res://shaderslop/filmgrain.gdshader" id="15_tafis"]
@@ -274,20 +276,6 @@ shader_parameter/max_alpha = 0.1450000068875
 shader_parameter/color_tint = Color(1, 1, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_oqcw2")
 
-[sub_resource type="Curve" id="Curve_616kc"]
-_limits = [0.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_l4ev5"]
-curve = SubResource("Curve_616kc")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_h5iat"]
-gravity = Vector3(0, 0, 0)
-scale_min = 0.29999998
-scale_max = 0.29999998
-scale_curve = SubResource("CurveTexture_l4ev5")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wro4j"]
 render_priority = 0
 shader = ExtResource("7_l4ev5")
@@ -305,22 +293,6 @@ height = 0.001
 radial_segments = 16
 rings = 0
 cap_bottom = false
-
-[sub_resource type="CurveTexture" id="CurveTexture_elt2t"]
-curve = SubResource("Curve_616kc")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n6nx7"]
-emission_shape = 2
-emission_sphere_radius = 7.0
-spread = 180.0
-initial_velocity_min = 6.2999997
-initial_velocity_max = 6.2999997
-gravity = Vector3(0, 0, 0)
-radial_accel_min = -300.0
-radial_accel_max = -300.0
-scale_min = 0.5
-scale_max = 0.5
-scale_curve = SubResource("CurveTexture_elt2t")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4ev5"]
 emission_enabled = true
@@ -567,7 +539,7 @@ lifetime = 0.2
 one_shot = true
 fixed_fps = 60
 local_coords = true
-process_material = SubResource("ParticleProcessMaterial_h5iat")
+process_material = ExtResource("11_k24xd")
 draw_pass_1 = SubResource("CylinderMesh_kstey")
 
 [node name="ChargeSparkParticles" type="GPUParticles3D" parent="TankModel/BarrelMuzzle" unique_id=75512929]
@@ -580,7 +552,7 @@ one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
 local_coords = true
-process_material = SubResource("ParticleProcessMaterial_n6nx7")
+process_material = ExtResource("13_gy3ka")
 draw_pass_1 = SubResource("SphereMesh_616kc")
 
 [node name="IdleKunaiModel" parent="TankModel" unique_id=1936580332 instance=ExtResource("6_rlhxg")]
