@@ -2,9 +2,19 @@
 
 [ext_resource type="Script" uid="uid://c26jmcj2u5qya" path="res://scripts/entities/combat/shark_latched_on_entity.gd" id="1_tewug"]
 [ext_resource type="PackedScene" uid="uid://comalupd3cy86" path="res://assets/models/shark.blend" id="2_gew2b"]
+[ext_resource type="PackedScene" uid="uid://cvdxbd6rscjpy" path="res://scenes/projectiles/fire.tscn" id="3_gew2b"]
 
-[node name="shark_latched_on_entity" type="Node3D" unique_id=1782445779]
+[node name="shark_latched_on_entity" type="Node3D" unique_id=1782445779 node_paths=PackedStringArray("fire")]
 script = ExtResource("1_tewug")
+fire = NodePath("Node3D/GPUParticles3D")
 
 [node name="shark" parent="." unique_id=103575166 instance=ExtResource("2_gew2b")]
 transform = Transform3D(0.3567945, -4.9866853, -8.660581, 0.011681836, 8.6663, -4.9894977, 9.993626, 0.1679054, 0.3150342, -19.187052, -10.0361, -0.062451035)
+
+[node name="Node3D" parent="." unique_id=809468678 instance=ExtResource("3_gew2b")]
+transform = Transform3D(0.99987173, 0, -0.016017133, 0, 1, 0, 0.016017133, 0, 0.99987173, -15.281923, -2.841723, -0.025208868)
+
+[node name="GPUParticles3D" parent="Node3D" index="0" unique_id=1034930989]
+emitting = false
+
+[editable path="Node3D"]

@@ -6,6 +6,7 @@ const THREAT_INDICATOR = preload("res://scenes/entities/combat/threat_indicator.
 @export var sender : PhysicsBody3D
 @export var Max_speed : float = 250
 @export var turn_speed : float =5
+@export var fire: GPUParticles3D
 
 @export var damage_value: float = 10.0
 @export var impact_sound: AudioStream = preload("res://audio/sfx/explosion.ogg")
@@ -21,7 +22,7 @@ var locked_on : bool = true
 var threat_indicator : ThreatIndicator
 
 var lifetime := 0.
-
+var ONFUCKINGFIRE:bool = false
 func _process(_delta: float) -> void:
 	if global_position.y <= -10:
 		var trail := trail_renderer
@@ -32,6 +33,8 @@ func _process(_delta: float) -> void:
 		queue_free.call_deferred()
 
 func  _ready() -> void:
+	if ONFUCKINGFIRE:
+		fire.emitting = true
 	AudioManager.play_sound_at(global_position, spawn_sound, 10.0)
 
 	if target_node:

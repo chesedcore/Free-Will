@@ -6,7 +6,7 @@ const AUDIO_DIALOGUE_DIP: float = 5.0
 #const ENEMY_PLANE = preload("res://scenes/entities/enemies/enemy_plane.tscn")
 #const ENEMY_BATTLE_SHIP = preload("res://scenes/entities/enemies/enemy_battle_ship.tscn")
 
-@export var mission_title :MissionStatus.MISSION_TITLES
+@export var ON_FUCKING_FIRE : bool = false
 @export var scene_to_transition_to : String
 @export var mission_music: AudioStreamPlayer
 
@@ -113,13 +113,14 @@ func spawn_wave()->void:
 							standard_plane = load("res://scenes/entities/enemies/enemy_plane.tscn")
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy : EnemyPlane = standard_plane.instantiate()
-
+						
 						var spawnpoint :Node3D = spawnpoints.pick_random()
 						#var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,PLANESPAWNRADIUS,PLANESPAWNDISTANCE)
 						new_enemy.position = spawnpoint.position
 						new_enemy.position.y = PLANESPAWNHEIGHT
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Enemy Plane " +str(i+1)
+						new_enemy.ONFUCKINGFIRE = ON_FUCKING_FIRE
 						enemies_list.airborne_enemies.add_child(new_enemy)
 
 				WaveResource.EnemyTypes.StandardGunboat:
@@ -162,6 +163,7 @@ func spawn_wave()->void:
 						new_enemy.position.y = PLANESPAWNHEIGHT
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Enemy Elite Plane " +str(i+1)
+						new_enemy.ONFUCKINGFIRE = ON_FUCKING_FIRE
 						enemies_list.airborne_enemies.add_child(new_enemy)
 				WaveResource.EnemyTypes.SuperElitePlane:
 					#number of enemiies of the specificed tyoeeeee
@@ -177,7 +179,8 @@ func spawn_wave()->void:
 						new_enemy.position.y = PLANESPAWNHEIGHT
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Super Elite Enemy Plane " +str(i+1)
-						new_enemy.decoys_spawned.connect(stagehandler.ui.track_these_entities)
+						#new_enemy.decoys_spawned.connect(stagehandler.ui.track_these_entities)
+						new_enemy.ONFUCKINGFIRE = ON_FUCKING_FIRE
 						enemies_list.airborne_enemies.add_child(new_enemy)
 				WaveResource.EnemyTypes.BomberPlane:
 					#number of enemiies of the specificed tyoeeeee
@@ -207,6 +210,7 @@ func spawn_wave()->void:
 						new_enemy.position.y = BOATSPAWNHEIGHT
 						new_enemy.died.connect(on_enemy_death)
 						new_enemy.name = "Shark Carrier " +str(i+1)
+						new_enemy.ONFUCKINGFIRE = ON_FUCKING_FIRE
 						enemies_list.seaborne_enemies.add_child(new_enemy)
 			enemy_count += wave.waveinfo[enemytype]
 		current_wave +=1

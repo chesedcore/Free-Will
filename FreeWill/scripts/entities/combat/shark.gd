@@ -4,6 +4,7 @@ const SHARK_LATCHED_ON_ENTITY = preload("res://scenes/entities/combat/shark_latc
 func attach_shark(tank: PlayerTank)->void:
 	var new_shark :SharkLatchedOn = SHARK_LATCHED_ON_ENTITY.instantiate()
 	new_shark.latched_on_tank = tank
+	new_shark.ONFUCKINGFIRE = ONFUCKINGFIRE
 	tank.add_child(new_shark)
 	tank.has_a_big_ass_shark_chewing_on_its_ass = true
 func _on_hitbox_body_entered(body: Node3D) -> void:

@@ -80,6 +80,7 @@ metadata/_custom_type_script = "uid://capww07pslxpm"
 
 [node name="Mission2_act2" type="Node3D" unique_id=899790025 node_paths=PackedStringArray("mission_music", "stagehandler", "spawnpoints_og", "enemies_list", "transition")]
 script = ExtResource("1_xkyyl")
+ON_FUCKING_FIRE = true
 scene_to_transition_to = "res://scenes/credits/credits.tscn"
 mission_music = NodePath("mission_music")
 stagehandler = NodePath("stagehandler")
