@@ -15,5 +15,6 @@ func _ready() -> void:
 	
 	await tree.process_frame
 	await tree.process_frame
+	await tree.process_frame
 	
 	finished.emit()
