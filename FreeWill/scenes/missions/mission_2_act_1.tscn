@@ -229,4 +229,4 @@ bus = &"Music"
 [node name="ambient_music" type="AudioStreamPlayer" parent="." unique_id=1877215295]
 stream = ExtResource("9_15gmh")
 autoplay = true
-bus = &"Music"
+bus = &"Voice"

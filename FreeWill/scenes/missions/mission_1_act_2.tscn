@@ -296,7 +296,7 @@ bus = &"Music"
 [node name="ambient_music" type="AudioStreamPlayer" parent="." unique_id=1110902186]
 stream = ExtResource("11_ut7qk")
 autoplay = true
-bus = &"Music"
+bus = &"Voice"
 
 [editable path="enviorment/pillar_enviorment_prop"]
 [editable path="enviorment/pillar_enviorment_prop2"]

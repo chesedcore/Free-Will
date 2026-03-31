@@ -213,7 +213,7 @@ bus = &"Music"
 [node name="ambient_music" type="AudioStreamPlayer" parent="." unique_id=2123217289]
 stream = ExtResource("10_cr04a")
 autoplay = true
-bus = &"Music"
+bus = &"Voice"
 
 [editable path="stagehandler/Mission2Battlefield"]
 [editable path="stagehandler/Mission2Battlefield/Gear1"]
