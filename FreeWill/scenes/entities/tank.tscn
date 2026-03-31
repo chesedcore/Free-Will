@@ -10,6 +10,7 @@
 [ext_resource type="Material" uid="uid://8aqronk8hojl" path="res://res/tank_mats/green_3.material" id="6_xkrtr"]
 [ext_resource type="Shader" uid="uid://bihimqq7vee8d" path="res://shaderslop/shockwave.gdshader" id="7_l4ev5"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_uedwi"]
+[ext_resource type="Material" uid="uid://c5d3mpwrd8a5a" path="res://shaderslop/particleslop/aura.tres" id="7_whocj"]
 [ext_resource type="Script" uid="uid://wel3y4ne2cus" path="res://scripts/effects/tank_wind_trail.gd" id="7_ywmen"]
 [ext_resource type="Material" uid="uid://cumspkgnerlec" path="res://shaderslop/speed_lines.material" id="8_rlhxg"]
 [ext_resource type="Script" uid="uid://df8hs8d0hc522" path="res://scripts/entities/player/camera_gimbal.gd" id="8_tafis"]
@@ -26,7 +27,7 @@
 [ext_resource type="Script" uid="uid://8ckcjgc3u1r0" path="res://scripts/entities/player/game_ui.gd" id="17_uedwi"]
 [ext_resource type="Texture2D" uid="uid://b1aaow6gsi7yb" path="res://assets/ui/health_bar_front.png" id="18_ekcgd"]
 [ext_resource type="Script" uid="uid://cicma3kluvpxo" path="res://scripts/util_scripts/shake.gd" id="19_oqcw2"]
-[ext_resource type="Shader" uid="uid://dewwkri53s35" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
+[ext_resource type="Shader" uid="uid://drd3l3yes5apm" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
 [ext_resource type="Texture2D" uid="uid://b1aarwwoofr3x" path="res://assets/textures/Reticle-29.png" id="22_hsoq5"]
 [ext_resource type="Texture2D" uid="uid://vwb6m76hhawe" path="res://assets/textures/chain.png" id="24_4sl2t"]
 [ext_resource type="Script" uid="uid://ckjjx6lxlertl" path="res://scripts/ui/style_display.gd" id="25_616kc"]
@@ -34,20 +35,6 @@
 [ext_resource type="PackedScene" uid="uid://djjju40wwfv2f" path="res://scenes/entities/wind_player.tscn" id="26_if5yn"]
 [ext_resource type="AudioStream" uid="uid://clcxonh7xwwit" path="res://audio/sfx/beepv2.ogg" id="26_xioay"]
 [ext_resource type="Texture2D" uid="uid://c1ojtmgswt45q" path="res://assets/textures/test_style_meter_front.png" id="27_wro4j"]
-
-[sub_resource type="Curve" id="Curve_n6nx7"]
-_limits = [0.0, 0.04969883, 0.0, 1.0]
-_data = [Vector2(0, 0.026832879), 0.0, -0.059025053, 0, 0, Vector2(1, 0), -0.05866191, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_whocj"]
-curve = SubResource("Curve_n6nx7")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xkrtr"]
-gravity = Vector3(0, 0, 0)
-scale_min = 1.01
-scale_max = 1.1
-alpha_curve = SubResource("CurveTexture_whocj")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n6nx7"]
 render_priority = 1
@@ -487,7 +474,7 @@ game_ui = NodePath("GameUI")
 
 [node name="TankModel" parent="." unique_id=1331045763 instance=ExtResource("2_fn73n")]
 
-[node name="Base" parent="TankModel" index="0" unique_id=1397067049]
+[node name="Base" parent="TankModel" index="0" unique_id=1780638612]
 surface_material_override/0 = ExtResource("5_whocj")
 surface_material_override/1 = ExtResource("4_n6nx7")
 surface_material_override/2 = ExtResource("6_xkrtr")
@@ -496,10 +483,10 @@ surface_material_override/2 = ExtResource("6_xkrtr")
 emitting = false
 amount = 50
 lifetime = 0.25
-process_material = SubResource("ParticleProcessMaterial_xkrtr")
+process_material = ExtResource("7_whocj")
 draw_pass_1 = SubResource("ArrayMesh_6kjl2")
 
-[node name="Barrel" parent="TankModel" index="1" unique_id=1225671377]
+[node name="Barrel" parent="TankModel" index="1" unique_id=1313246652]
 surface_material_override/0 = ExtResource("4_n6nx7")
 surface_material_override/1 = ExtResource("5_whocj")
 surface_material_override/2 = ExtResource("6_xkrtr")
@@ -519,7 +506,7 @@ metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 emitting = false
 amount = 50
 lifetime = 0.25
-process_material = SubResource("ParticleProcessMaterial_xkrtr")
+process_material = ExtResource("7_whocj")
 draw_pass_1 = SubResource("ArrayMesh_whocj")
 
 [node name="Node3D" type="Node3D" parent="TankModel" unique_id=630549247 node_paths=PackedStringArray("trail_renderer_l", "trail_renderer_r", "trail_renderer_l2", "trail_renderer_r2")]
