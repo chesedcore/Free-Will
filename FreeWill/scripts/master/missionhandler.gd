@@ -100,6 +100,8 @@ func spawn_wave()->void:
 		#play some dialog
 		if not wave.spawn_dialog.is_empty():
 			#Dialogic.Inputs.block_input(100000)
+			if Dialogic.current_timeline:
+				await  Dialogic.timeline_ended
 			Dialogic.start(wave.spawn_dialog)
 			#if current_wave == 0:
 #
