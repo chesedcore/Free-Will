@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://qkubs2iruwvt" path="res://scenes/maps/main_menu_background.tscn" id="2_uhagc"]
 [ext_resource type="Script" uid="uid://bu4hq8w0u7f1t" path="res://scripts/ui/menu_button.gd" id="3_1g8jr"]
 [ext_resource type="PackedScene" uid="uid://cyjg7srb4135o" path="res://itch_page/logo.tscn" id="7_btxxm"]
+[ext_resource type="AudioStream" uid="uid://c4la847t2ycvt" path="res://audio/mus/Title/title.ogg" id="8_wb0q5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fe2o3"]
 shader = ExtResource("2_1g8jr")
@@ -400,5 +401,11 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=987573306]
+stream = ExtResource("8_wb0q5")
+autoplay = true
+bus = &"Music"
+parameters/looping = true
 
 [editable path="Control"]
