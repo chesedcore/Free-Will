@@ -113,6 +113,8 @@ func deflect_this_missile() -> void:
 		lifetime = 0.
 		hitbox.set_collision_mask_value(3, true)
 	else:
+		if threat_indicator:
+			threat_indicator.target_node = null
 		locked_on = false
 	flip_basis.call_deferred()
 
