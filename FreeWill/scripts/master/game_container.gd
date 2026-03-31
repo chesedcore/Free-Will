@@ -22,7 +22,18 @@ func _wire_up_signals() -> void:
 	EventBus.change_game_container_to.connect(_on_game_container_change_request)
 	control.resume.connect(_on_resume_clicked)
 	control.options.connect(_on_options_clicked)
+	control.retry.connect(retry)
 	loading_shit.finished.connect(_on_loading_shit_finished)
+
+func retry() -> void:
+	var scene := get_current_game_scene()
+	if scene is not MissonHandler: return
+	scene.current_wave = game.current_wave
+	EventBus.change_game_container_to.emit(scene)
+	unpause_game()
+
+func get_current_game_scene() -> Node:
+	return load(game.scene_file_path).instantiate() 
 
 func kill_the_fucking_manual_im_going_to_go_insane() -> void:
 	unpause_game(false)

@@ -154,7 +154,7 @@ offset_right = 1229.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 
-[node name="Cascade" type="Control" parent="PauseMenu" unique_id=2113227010 node_paths=PackedStringArray("resume_button", "options_button", "menu_button")]
+[node name="Cascade" type="Control" parent="PauseMenu" unique_id=2113227010 node_paths=PackedStringArray("resume_button", "options_button", "retry_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -165,7 +165,7 @@ mouse_filter = 2
 script = ExtResource("3_ftak0")
 resume_button = NodePath("RESUME2")
 options_button = NodePath("OPTIONS2")
-menu_button = NodePath("RETRY_STAGE2")
+retry_button = NodePath("RETRY_STAGE2")
 start_on_ready = false
 stagger = 0.05
 metadata/_edit_lock_ = true
