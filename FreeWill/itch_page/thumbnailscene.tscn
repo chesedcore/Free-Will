@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://c7c7iqsethkoe"]
 
-[ext_resource type="Texture2D" uid="uid://bdflbd6m70iug" path="res://assets/textures/Screenshot 2026-03-30 132725.png" id="1_ta262"]
 [ext_resource type="Texture2D" uid="uid://cuks5f56kab4n" path="res://assets/textures/tankbackgroundlogoblack.png" id="2_nwa0i"]
 [ext_resource type="Shader" uid="uid://cgvoo24srn2kn" path="res://shaderslop/vignette.gdshader" id="3_cg3nh"]
 [ext_resource type="FontFile" uid="uid://38d0ljavacn8" path="res://assets/fonts/ZenDots-Regular.ttf" id="4_6eai1"]
@@ -8,8 +7,9 @@
 [ext_resource type="Environment" uid="uid://belsmqiypkadu" path="res://res/world_env/sea_blue_sky.tres" id="6_t20kb"]
 [ext_resource type="PackedScene" uid="uid://ccoy0lyh3mq63" path="res://scenes/enviorment/ocean.tscn" id="7_vis81"]
 [ext_resource type="PackedScene" uid="uid://b5oi77k2llexl" path="res://scenes/enviorment/pillar_enviorment_prop.tscn" id="8_ltx17"]
+[ext_resource type="PackedScene" uid="uid://dcf0xd2d825jc" path="res://scripts/entities/gear_1.tscn" id="8_ta262"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_13nhl"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ta262"]
 shader = ExtResource("3_cg3nh")
 shader_parameter/vignette_intensity = 0.5
 shader_parameter/vignette_opacity = 0.5
@@ -50,23 +50,18 @@ grow_vertical = 2
 scale = Vector2(1, 0.9941027)
 color = Color(0, 0.47843137, 1, 1)
 
-[node name="Screenshot20260330130311" type="Sprite2D" parent="." unique_id=274455967]
-position = Vector2(574.5, 324.50003)
-scale = Vector2(1.0304931, 1.0251969)
-texture = ExtResource("1_ta262")
-
 [node name="Tankbackgroundlogoblack" type="Sprite2D" parent="." unique_id=2142655370]
-position = Vector2(608.25, 301.57498)
-scale = Vector2(0.6, 0.6)
+visible = false
+position = Vector2(468, 201.8)
+scale = Vector2(0.4, 0.4)
 texture = ExtResource("2_nwa0i")
 
 [node name="Vignette" type="ColorRect" parent="." unique_id=617321038]
-material = SubResource("ShaderMaterial_13nhl")
+material = SubResource("ShaderMaterial_ta262")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 61.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -78,22 +73,24 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -508.0
-offset_top = -105.29999
-offset_right = 531.0
-offset_bottom = 75.70001
+offset_left = -301.0
+offset_top = -63.0
+offset_right = 738.0
+offset_bottom = 118.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.56, 0.56)
 text = "FREE WILL"
 label_settings = SubResource("LabelSettings_kh44r")
 
 [node name="Label2" type="Label" parent="." unique_id=1798819755]
 layout_mode = 0
-offset_left = 562.0
-offset_top = 349.0
-offset_right = 1131.8413
-offset_bottom = 478.0
-rotation = -0.080244385
+offset_left = 488.99997
+offset_top = 226.19998
+offset_right = 1058.8413
+offset_bottom = 355.19998
+rotation = -0.13106816
+scale = Vector2(0.56, 0.56)
 text = "DEVIL MAY FLY"
 label_settings = SubResource("LabelSettings_yk8o1")
 
@@ -103,10 +100,56 @@ environment = ExtResource("6_t20kb")
 [node name="Ocean" parent="." unique_id=1773392108 instance=ExtResource("7_vis81")]
 
 [node name="pillar_enviorment_prop" parent="." unique_id=1395337680 instance=ExtResource("8_ltx17")]
-transform = Transform3D(186.43976, -71.64746, 0, 71.64746, 186.43976, 0, 0, 0, 199.73267, 1833.4973, 88.368286, 1903.442)
+transform = Transform3D(178.74821, -48.073708, 75.04095, 51.87408, 192.8788, 0, -72.46589, 19.489449, 185.09999, 1103.7136, 88.368286, 1903.442)
 
 [node name="pillar_enviorment_prop2" parent="." unique_id=1708642737 instance=ExtResource("8_ltx17")]
-transform = Transform3D(197.64273, 28.818113, 0, -26.930407, 184.69629, -71.09969, -10.258511, 70.35575, 186.64935, -1383.1931, 50.797546, 1903.442)
+transform = Transform3D(130.67001, -9.221771, 150.77614, -41.478584, 189.50676, 47.53804, -145.25156, -62.412292, 122.064926, -1383.1931, 50.797546, 1903.442)
 
 [node name="pillar_enviorment_prop3" parent="." unique_id=1550085213 instance=ExtResource("8_ltx17")]
-transform = Transform3D(191.3204, 5.9356155, -57.047356, -26.930403, 184.69627, -71.09968, 50.639748, 75.79699, 177.71771, 394.11353, 0, -37.947266)
+transform = Transform3D(166.15407, -101.80021, -43.848232, 95.24054, 171.54106, -37.3633, 56.702618, 10.1733265, 191.24448, 694.0602, -224.6607, -64.7605)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1860532355]
+transform = Transform3D(-0.8038587, -0.22282377, -0.5515077, 0, 0.92718375, -0.37460685, 0.5948203, -0.30113098, -0.74532473, -1243.1416, 110.462036, -555.53284)
+
+[node name="Gear1" parent="." unique_id=650852620 instance=ExtResource("8_ta262")]
+transform = Transform3D(13.470973, 81.33065, 182.21922, 72.25352, 168.25298, -80.438545, -186.00522, 71.247826, -18.049465, 1884.199, 0, 889.46436)
+gear_speed = 0.0
+speed_randomization = 0.0
+
+[node name="SmallGear" parent="Gear1/gear_1" parent_id_path=PackedInt32Array(650852620, 1124313960) index="1" unique_id=944047517]
+transform = Transform3D(0.21507008, -0.13669038, -1.156251, 0.8140535, 0.8582989, 0.0499523, 0.83241624, -0.80404854, 0.24988833, 0, 0, 0)
+
+[node name="Gear2" parent="." unique_id=1630456126 instance=ExtResource("8_ta262")]
+transform = Transform3D(18.079979, 0, -299.4547, 0, 299.99997, 0, 299.4547, 0, 18.079979, -1409.6619, -6.6470947, 2267.302)
+gear_speed = 0.0
+speed_randomization = 0.0
+
+[node name="LargeGear" parent="Gear2/gear_1" parent_id_path=PackedInt32Array(1630456126, 1124313960) index="0" unique_id=1849811816]
+transform = Transform3D(-0.84639883, 0.38287798, 0.37015247, 0.48252454, 0.84546447, 0.22882028, -0.22534055, 0.37228087, -0.90034884, 0, 0, 0)
+
+[node name="SmallGear" parent="Gear2/gear_1" parent_id_path=PackedInt32Array(1630456126, 1124313960) index="1" unique_id=944047517]
+transform = Transform3D(0.09081076, 1.1778165, -0.079723686, -0.87774074, 0.12083522, 0.78538203, 0.78941727, -0.0011354387, 0.8824252, 0, 0, 0)
+
+[node name="Gear3" parent="." unique_id=1578459049 instance=ExtResource("8_ta262")]
+transform = Transform3D(-89.12638, 0, -120.65025, 86.90714, 104.04583, -64.199776, 83.68771, -108.04842, -61.821526, 1389.7836, 321.8827, -454.1833)
+gear_speed = 0.0
+speed_randomization = 0.0
+
+[node name="LargeGear" parent="Gear3/gear_1" parent_id_path=PackedInt32Array(1578459049, 1124313960) index="0" unique_id=1849811816]
+transform = Transform3D(0.9995104, 0.016723782, 0.026440889, -0.01613152, 0.9996176, -0.022456765, -0.02680631, 0.022019297, 0.99939805, 0, 0, 0)
+
+[node name="SmallGear" parent="Gear3/gear_1" parent_id_path=PackedInt32Array(1578459049, 1124313960) index="1" unique_id=944047517]
+transform = Transform3D(1.0544301, 0.04975453, 0.53624177, -0.3857777, 0.8923944, 0.67576754, -0.37577435, -0.7765371, 0.810948, 0, 0, 0)
+
+[node name="pillar_enviorment_prop4" parent="." unique_id=2018728834 instance=ExtResource("8_ltx17")]
+transform = Transform3D(149.73518, 3.8440356, -132.5315, 51.894646, 182.26761, 63.917625, 122.009514, -82.241974, 135.46196, 2740.277, 142.77655, -190.89014)
+
+[node name="pillar_enviorment_prop5" parent="." unique_id=822142342 instance=ExtResource("8_ltx17")]
+transform = Transform3D(172.25806, -53.13552, -86.624214, 72.80513, 183.46678, 32.238876, 70.898186, -59.300484, 177.36089, -2247.5642, 142.77655, 4159.6523)
+
+[editable path="Gear1"]
+[editable path="Gear1/gear_1"]
+[editable path="Gear2"]
+[editable path="Gear2/gear_1"]
+[editable path="Gear3"]
+[editable path="Gear3/gear_1"]
