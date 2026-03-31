@@ -108,6 +108,7 @@ func _on_game_unpaused(_res: Variant, _without_manual := true) -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
+		if manual.on_screen: return
 		if _paused: unpause_game()
 		else: pause_game()
 	

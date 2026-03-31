@@ -13,16 +13,16 @@ var style_points: int = 0
 var style_time: float = 3.0
 
 
-func _ready() -> void:
-	return
-	test_points_label.text = "points: %s" % [style_points]
-	style_loss_time_bar.max_value = STYLE_RESET_TIME
+#func _ready() -> void:
+	#return
+	#test_points_label.text = "points: %s" % [style_points]
+	#style_loss_time_bar.max_value = STYLE_RESET_TIME
 
 
-func _process(delta: float) -> void:
-	return
-	visible = (style_time > 0.0)
-	style_time_update(delta)
+#func _process(delta: float) -> void:
+	#return
+	#visible = (style_time > 0.0)
+	#style_time_update(delta)
 
 
 func cool_shit(shit: CoolShit.Shit, points: int) -> void:
@@ -37,19 +37,19 @@ func cool_shit(shit: CoolShit.Shit, points: int) -> void:
 	style_time = STYLE_RESET_TIME
 	style_gained.emit(points)
 
-	display_update()
+	#display_update()
 
 
 func lame_shit(points_to_remove: int) -> void:
 	style_points -= points_to_remove
 	style_time *= 0.5
 	style_lost.emit(points_to_remove)
-	display_update()
+	#display_update()
 
 
-func display_update() -> void:
-	return
-	test_points_label.text = "points: %s" % [style_points]
+#func display_update() -> void:
+	#return
+	#test_points_label.text = "points: %s" % [style_points]
 
 
 func style_time_update(delta: float) -> void:
