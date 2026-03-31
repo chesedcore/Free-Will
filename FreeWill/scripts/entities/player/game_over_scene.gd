@@ -5,26 +5,21 @@ const ROT_SPEED: float = 0.25
 @export var camera_rot_point: Node3D
 @export var camera: Camera3D
 
-@export var retry_button: Button
-@export var menu_button: Button
+@export var retry_button: PauseMenuButton
 var completed : bool = false
 var player: PlayerTank
-@export var label: Label
 
 var current_scene: String
 var current_wave_idx: int
 
 func _ready() -> void:
-	if completed:
-		label.text = "Mission Complete"
-
+	Dialogic.end_timeline(true)
 	camera.make_current()
 	camera_rot_point.global_position = player.global_position
 
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-	retry_button.pressed.connect(retry)
-	menu_button.pressed.connect(return_to_menu)
+	retry_button.clicked.connect(retry)
 
 
 func _physics_process(delta: float) -> void:
