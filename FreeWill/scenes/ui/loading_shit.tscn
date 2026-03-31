@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bls1vdkj63qw8"]
 
 [ext_resource type="Script" uid="uid://dhrrsaftn2o36" path="res://scripts/ui/loading_shit.gd" id="1_xwu5q"]
-[ext_resource type="Material" uid="uid://c5d3mpwrd8a5a" path="res://shaderslop/particleslop/aura.tres" id="2_p7mq3"]
+[ext_resource type="Material" uid="uid://cwb8gmqffrrl" path="res://shaderslop/particleslop/aura.tres" id="2_p7mq3"]
 [ext_resource type="PackedScene" uid="uid://d4liki7bitmtm" path="res://scenes/entities/thruster_particles.tscn" id="3_ln3mf"]
 [ext_resource type="PackedScene" uid="uid://cvdxbd6rscjpy" path="res://scenes/projectiles/fire.tscn" id="4_2wrl6"]
 

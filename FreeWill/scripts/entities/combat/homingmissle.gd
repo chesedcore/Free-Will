@@ -20,6 +20,7 @@ var locked_on : bool = true
 @export var lock_off_dist : float = 15
 @export var lifespan : float = 5
 var threat_indicator : ThreatIndicator
+var parried := false
 
 var lifetime := 0.
 var ONFUCKINGFIRE:bool = false
@@ -48,7 +49,7 @@ func _physics_process(delta: float) -> void:
 	if trail_renderer:
 		trail_renderer.position.x = randf_range(-0.5,.5)
 		trail_renderer.position.y = 0.524 + randf_range(-0.5,0.5)
-	if not target_node:
+	if not target_node and not parried:
 		return
 
 
@@ -103,6 +104,7 @@ func try_damage_tank(body: PlayerTank, amount: float) -> Result:
 
 func deflect_this_missile() -> void:
 	if sender:
+		parried = true
 		if threat_indicator:
 			threat_indicator.target_node = null
 		locked_on = true
