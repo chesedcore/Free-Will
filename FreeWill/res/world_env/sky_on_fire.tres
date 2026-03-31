@@ -1,7 +1,7 @@
 [gd_resource type="Environment" format=3 uid="uid://c6plbqks3riqa"]
 
 [sub_resource type="Curve" id="Curve_dahg8"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.6470588, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.49631453, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_3xa22"]
@@ -29,8 +29,11 @@ sky_material = SubResource("PanoramaSkyMaterial_ne85t")
 [resource]
 background_mode = 2
 sky = SubResource("Sky_37d0s")
-tonemap_mode = 3
-tonemap_exposure = 0.6
+ambient_light_source = 2
+ambient_light_color = Color(0.31, 0.1612, 0.1612, 1)
+ambient_light_energy = 0.6
+tonemap_mode = 4
+tonemap_exposure = 0.65
 glow_enabled = true
 glow_levels/3 = 1.34
 glow_levels/4 = 1.6

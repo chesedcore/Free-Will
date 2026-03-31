@@ -220,7 +220,8 @@ theme_override_fonts/font = ExtResource("3_icb2l")
 theme_override_font_sizes/font_size = 25
 text = "Monarch
 Bubba
-gael"
+gael
+TitaniumLili"
 horizontal_alignment = 1
 
 [node name="VFX" type="Label" parent="Node2D" unique_id=1390283192]
