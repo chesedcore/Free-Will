@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://c447ciurq67jv"]
+
+[ext_resource type="Script" uid="uid://byep2oxj8trp0" path="res://scripts/effects/railgunstationary.gd" id="1_2mxyr"]
+[ext_resource type="Shader" uid="uid://bihimqq7vee8d" path="res://shaderslop/shockwave.gdshader" id="1_pvcws"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mxyr"]
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0, 1, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.76862746, 1, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fgvh0"]
+material = SubResource("StandardMaterial3D_2mxyr")
+radius = 3.0
+height = 200.0
+radial_segments = 8
+rings = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3rvpx"]
+render_priority = 0
+shader = ExtResource("1_pvcws")
+shader_parameter/color = Color(0.49411765, 0, 1, 1)
+shader_parameter/outer_radius = 0.33
+shader_parameter/inner_radius = 0.215
+shader_parameter/uv_adjustment = Vector2(0.25, -0.25)
+shader_parameter/emission_strength = 100.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dhv8s"]
+material = SubResource("ShaderMaterial_3rvpx")
+top_radius = 15.0
+bottom_radius = 15.0
+height = 0.001
+rings = 0
+cap_bottom = false
+
+[sub_resource type="Curve" id="Curve_y603y"]
+
+[sub_resource type="Curve" id="Curve_iy1fu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_fvqui"]
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_51bo7"]
+curve_x = SubResource("Curve_y603y")
+curve_y = SubResource("Curve_iy1fu")
+curve_z = SubResource("Curve_fvqui")
+
+[sub_resource type="Curve" id="Curve_fab3q"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 1, Vector2(1, 0), 0.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_8l5oq"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.122977346, 0.23498702), 0.0, 0.0, 0, 0, Vector2(0.9, 0.235), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_p48ya"]
+_limits = [-2.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 1, Vector2(1, 0), 0.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_36sfh"]
+curve_x = SubResource("Curve_fab3q")
+curve_y = SubResource("Curve_8l5oq")
+curve_z = SubResource("Curve_p48ya")
+
+[sub_resource type="Curve" id="Curve_utotr"]
+_data = [Vector2(0, 1), 0.0, -0.5555555, 0, 1, Vector2(0.90000004, 0.5), -0.5555555, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dctvq"]
+curve = SubResource("Curve_utotr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gfsmq"]
+emission_shape_offset = Vector3(0, -100, 0)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 200.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 20.0
+initial_velocity_max = 30.0
+directional_velocity_min = -30.000015
+directional_velocity_max = -30.000015
+directional_velocity_curve = SubResource("CurveXYZTexture_51bo7")
+orbit_velocity_min = 2.0000002
+orbit_velocity_max = 2.0000002
+orbit_velocity_curve = SubResource("CurveXYZTexture_36sfh")
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_dctvq")
+turbulence_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lubw5"]
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 4.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_iwvu5"]
+material = SubResource("StandardMaterial3D_lubw5")
+radius = 1.0
+height = 2.0
+radial_segments = 8
+rings = 4
+
+[node name="Node3D" type="Node3D" unique_id=650380534 node_paths=PackedStringArray("rings")]
+script = ExtResource("1_2mxyr")
+rings = [NodePath("MeshInstance3D2"), NodePath("MeshInstance3D3"), NodePath("MeshInstance3D4"), NodePath("MeshInstance3D5"), NodePath("MeshInstance3D6")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=644650203]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
+mesh = SubResource("CapsuleMesh_fgvh0")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1730975567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -25.165892, 0)
+mesh = SubResource("CylinderMesh_dhv8s")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1780856722]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -60.165894, 0)
+mesh = SubResource("CylinderMesh_dhv8s")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=94199026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -95.16589, 0)
+mesh = SubResource("CylinderMesh_dhv8s")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="." unique_id=1612132489]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -140.1659, 0)
+mesh = SubResource("CylinderMesh_dhv8s")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="." unique_id=1481693405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -175.1659, 0)
+mesh = SubResource("CylinderMesh_dhv8s")
+
+[node name="SwirlyParticles" type="GPUParticles3D" parent="." unique_id=1123474793]
+amount = 50
+lifetime = 3.0
+visibility_aabb = AABB(-4, -200, -4, 8, 200, 8)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_gfsmq")
+draw_pass_1 = SubResource("SphereMesh_iwvu5")

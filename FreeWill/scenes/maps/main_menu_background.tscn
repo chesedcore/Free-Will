@@ -1,12 +1,14 @@
-[gd_scene format=3 uid="uid://di8nvnrosioty"]
+[gd_scene format=3 uid="uid://qkubs2iruwvt"]
 
 [ext_resource type="PackedScene" uid="uid://ccoy0lyh3mq63" path="res://scenes/enviorment/ocean.tscn" id="1_3x4ab"]
 [ext_resource type="Texture2D" uid="uid://dt0meotpr4qfb" path="res://res/world_env/EveningSkyHDRI042B_1K_HDR.exr" id="2_k1v37"]
 [ext_resource type="PackedScene" uid="uid://ciqvl3ekbok17" path="res://models/player_tank.blend" id="7_tx482"]
 [ext_resource type="Material" uid="uid://dlc7km5h5mqct" path="res://res/tank_mats/green_2.material" id="8_7obd7"]
 [ext_resource type="PackedScene" uid="uid://b5oi77k2llexl" path="res://scenes/enviorment/pillar_enviorment_prop.tscn" id="8_k1v37"]
+[ext_resource type="PackedScene" uid="uid://c447ciurq67jv" path="res://scenes/maps/railgunstationary.tscn" id="8_l8do8"]
 [ext_resource type="Material" uid="uid://nvi6067o6oj7" path="res://res/tank_mats/green_4.material" id="9_6x1cp"]
 [ext_resource type="Material" uid="uid://8aqronk8hojl" path="res://res/tank_mats/green_3.material" id="10_hnmu4"]
+[ext_resource type="PackedScene" uid="uid://dcf0xd2d825jc" path="res://scripts/entities/gear_1.tscn" id="10_vyyx1"]
 [ext_resource type="PackedScene" uid="uid://bigipu066vsh1" path="res://models/kunai.blend" id="11_4jdp4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a5oyu"]
@@ -23,7 +25,6 @@ background_mode = 2
 sky = SubResource("Sky_g7g4h")
 sky_rotation = Vector3(0, 1.012291, 0)
 tonemap_mode = 3
-tonemap_exposure = 1.35
 glow_enabled = true
 glow_levels/3 = 1.34
 glow_levels/4 = 1.6
@@ -55,7 +56,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-753.02435, 56.1407, -565.897)]
+"values": [Vector3(-752.5033, 51.21193, -587.9257)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -80,10 +81,10 @@ tracks/0/path = NodePath("Node3D:position")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.43333337, 0.6666667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.16666667, 0.41, 0.61, 0.79),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-753.02435, 56.1407, -565.897), Vector3(-754.499, 55.641, -565.897), Vector3(-753.514, 54.858, -565.897)]
+"values": [Vector3(-752.5033, 51.21193, -587.9257), Vector3(-753.40765, 51.21193, -587.0851), Vector3(-751.85864, 51.21193, -588.52496), Vector3(-752.9717, 51.21193, -587.4903), Vector3(-750.88824, 51.21193, -589.4269)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -92,10 +93,10 @@ tracks/1/path = NodePath("TankModel:position")
 tracks/1/interp = 2
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.26666668, 0.33333334, 0.40000004, 0.56666666, 0.6333333, 0.7, 0.8, 0.8666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.13, 0.32, 0.53, 0.84),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector3(-753.11, 52.597, -548.437), Vector3(-753.11, 52.082, -548.437), Vector3(-752.92, 52.153, -549.092), Vector3(-753.11, 52.597, -548.437), Vector3(-753.11, 52.082, -548.437), Vector3(-752.92, 52.153, -549.092), Vector3(-753.11, 52.597, -548.437), Vector3(-753.11, 52.082, -548.437), Vector3(-752.92, 52.153, -549.092), Vector3(-753.11, 52.597, -548.437), Vector3(-753.11, 52.082, -548.437)]
+"values": [Vector3(-753.11, 52.597, -548.437), Vector3(-753.0296, 53.295486, -548.6736), Vector3(-753.1461, 52.283104, -548.33075), Vector3(-754.5038, 52.46889, -549.3468), Vector3(-752.03406, 52.88678, -547.81464)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_k1v37"]
@@ -105,6 +106,7 @@ _data = {
 }
 
 [node name="MainMenuBackground" type="Node3D" unique_id=642517192]
+metadata/_edit_horizontal_guides_ = [-194.0]
 
 [node name="Ocean" parent="." unique_id=1773392108 instance=ExtResource("1_3x4ab")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.093763605, -63.03884, -0.8690749)
@@ -112,32 +114,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.093763605, -63.03884, -0.8
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1741657862]
 transform = Transform3D(0.99998426, -0.0036078133, 0.0042996025, 0.0022680946, 0.9604571, 0.27841896, -0.005134067, -0.2784048, 0.9604502, 0, 66.714584, 0)
 light_color = Color(1, 0.6125, 0.25, 1)
+light_energy = 0.3
+light_indirect_energy = 1.14
 shadow_enabled = true
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="." unique_id=1668702169]
 transform = Transform3D(-0.6543095, 0.21197332, -0.72591066, 0.0022680946, 0.960457, 0.2784189, 0.7562233, 0.18052572, -0.62891704, 0, 66.714584, 0)
-light_energy = 0.345
+light_energy = 0.2
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=860181992]
 environment = SubResource("Environment_l8do8")
 
 [node name="Node3D" type="Node3D" parent="." unique_id=2022388639]
-transform = Transform3D(-0.7324352, 0, -0.6808367, 0, 1, 0, 0.6808367, 0, -0.7324352, -753.02435, 56.1407, -565.897)
+transform = Transform3D(-0.7324352, 0, -0.6808367, 0, 1, 0, 0.6808367, 0, -0.7324352, -752.5033, 51.21193, -587.9257)
+visible = false
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Node3D" unique_id=996614271]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.065, -2.655, 0)
 remote_path = NodePath("../../SubViewportContainer/SubViewport/MenuCamera")
 
 [node name="TankModel" parent="." unique_id=319077804 instance=ExtResource("7_tx482")]
-transform = Transform3D(-0.85320073, 0.15741663, 0.49726102, 0.12120174, 0.9871089, -0.104528464, -0.50730526, -0.028914865, -0.8612812, -753.11, 52.597, -548.437)
+transform = Transform3D(-0.83619463, 0.10837842, 0.5376175, -0.0871234, 0.9415811, -0.32532233, -0.5414683, -0.31887183, -0.7779029, -753.11, 52.597, -548.437)
 
-[node name="Base" parent="TankModel" index="0" unique_id=1397067049]
+[node name="Base" parent="TankModel" index="0" unique_id=1780638612]
 surface_material_override/0 = ExtResource("8_7obd7")
 surface_material_override/1 = ExtResource("9_6x1cp")
 surface_material_override/2 = ExtResource("10_hnmu4")
 
-[node name="Barrel" parent="TankModel" index="1" unique_id=1225671377]
+[node name="Barrel" parent="TankModel" index="1" unique_id=1313246652]
 surface_material_override/0 = ExtResource("9_6x1cp")
 surface_material_override/1 = ExtResource("8_7obd7")
 surface_material_override/2 = ExtResource("10_hnmu4")
@@ -145,6 +150,9 @@ surface_material_override/3 = ExtResource("9_6x1cp")
 
 [node name="IdleKunaiModel" parent="TankModel" unique_id=1545081728 instance=ExtResource("11_4jdp4")]
 transform = Transform3D(0.37188384, 0, 0, 0, 0.30845535, 0.20773269, 0, -0.20773269, 0.30845535, -0.7223202, 3.6428447, -0.23234469)
+
+[node name="Node3D" parent="TankModel" unique_id=650380534 instance=ExtResource("8_l8do8")]
+transform = Transform3D(0.25, 0, 0, 0, -1.0927847e-08, 0.25, 0, -0.25, -1.0927847e-08, 2.6524066e-08, 2.6173456, 8.401469)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=680362686]
 libraries/ = SubResource("AnimationLibrary_k1v37")
@@ -171,6 +179,22 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="MenuCamera" type="Camera3D" parent="SubViewportContainer/SubViewport" unique_id=731741271]
-transform = Transform3D(-0.7324352, 0, -0.6808367, 0, 1, 0, 0.6808367, 0, -0.7324352, -755.2693, 53.485703, -563.8102)
+transform = Transform3D(-0.7324352, 0, -0.6808367, 0, 1, 0, 0.6808367, 0, -0.7324352, -754.7482, 48.55693, -585.8389)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=380306051]
+transform = Transform3D(-0.33209556, 0.68226725, 0.6513248, 0.72830796, -0.25332394, 0.63670605, 0.5993998, 0.6858122, -0.4127729, -736.84125, 71.15895, -557.9621)
+light_energy = 3.435
+spot_range = 39.47076
+spot_attenuation = 0.0
+
+[node name="Gear1" parent="." unique_id=650852620 instance=ExtResource("10_vyyx1")]
+transform = Transform3D(80.47434, 0, -59.36228, 0, 100, 0, 59.36228, 0, 80.47434, 1608.483, 68.005, 920.245)
+gear_speed = 0.05
+speed_randomization = 0.0
+
+[node name="Gear2" parent="." unique_id=526131138 instance=ExtResource("10_vyyx1")]
+transform = Transform3D(-215.07144, -24.535055, -207.70728, -43.809574, 296.60425, 10.326965, 204.51163, 37.73534, -216.21991, -997.64703, 10.804886, 2566.134)
+gear_speed = 0.01
+speed_randomization = 0.0
 
 [editable path="TankModel"]
