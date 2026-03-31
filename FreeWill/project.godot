@@ -132,7 +132,7 @@ text/autoadvance_per_word_delay=0.01
 
 [display]
 
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 
 [dotnet]
 
