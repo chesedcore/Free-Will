@@ -128,20 +128,20 @@ metadata/_custom_type_script = "uid://brqh6t5d1dyrl"
 [node name="aim120" parent="." unique_id=1463893993 instance=ExtResource("6_6v3ii")]
 transform = Transform3D(3, 0, 0, 0, -3, -2.6226832e-07, 0, 2.6226832e-07, -3, 0, 0, 0)
 
-[node name="Cylinder" parent="aim120" index="0" unique_id=1451388386]
+[node name="Cylinder" parent="aim120" index="0" unique_id=804134327]
 surface_material_override/0 = SubResource("StandardMaterial3D_6v3ii")
 surface_material_override/1 = SubResource("StandardMaterial3D_vvwqs")
 
-[node name="Plane" parent="aim120" index="1" unique_id=320209881]
+[node name="Plane" parent="aim120" index="1" unique_id=834626543]
 surface_material_override/0 = SubResource("StandardMaterial3D_o3kth")
 
-[node name="Plane_001" parent="aim120" index="2" unique_id=1645609196]
+[node name="Plane_001" parent="aim120" index="2" unique_id=293621965]
 surface_material_override/0 = SubResource("StandardMaterial3D_kkaqu")
 
-[node name="Plane_002" parent="aim120" index="3" unique_id=2084039485]
+[node name="Plane_002" parent="aim120" index="3" unique_id=2090480506]
 surface_material_override/0 = SubResource("StandardMaterial3D_x1vvv")
 
-[node name="Plane_003" parent="aim120" index="4" unique_id=143485898]
+[node name="Plane_003" parent="aim120" index="4" unique_id=370571278]
 surface_material_override/0 = SubResource("StandardMaterial3D_m4rw2")
 
 [node name="Node3D" parent="." unique_id=809468678 instance=ExtResource("7_o3kth")]
