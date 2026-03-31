@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://doveve2ovrg0t" path="res://shaderslop/stripes.gdshader" id="2_1g8jr"]
 [ext_resource type="PackedScene" uid="uid://qkubs2iruwvt" path="res://scenes/maps/main_menu_background.tscn" id="2_uhagc"]
 [ext_resource type="Script" uid="uid://bu4hq8w0u7f1t" path="res://scripts/ui/menu_button.gd" id="3_1g8jr"]
+[ext_resource type="PackedScene" uid="uid://cyjg7srb4135o" path="res://itch_page/logo.tscn" id="7_btxxm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fe2o3"]
 shader = ExtResource("2_1g8jr")
@@ -384,3 +385,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Control" parent="." unique_id=640372975 instance=ExtResource("7_btxxm")]
+layout_mode = 1
+offset_left = 447.0
+offset_top = 395.0
+offset_right = 447.0
+offset_bottom = 395.0
+rotation = -0.174
+scale = Vector2(0.59, 0.59)
+
+[node name="Tankbackgroundlogoblack" parent="Control" index="0" unique_id=1796187258]
+visible = false
+
+[editable path="Control"]
