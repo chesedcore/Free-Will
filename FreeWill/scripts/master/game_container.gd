@@ -28,7 +28,7 @@ func _wire_up_signals() -> void:
 func retry() -> void:
 	var scene := get_current_game_scene()
 	if scene is not MissonHandler: return
-	
+
 	scene.current_wave = game.current_wave
 	#this actually advances a wave  so gotta decrement by 1 BUT DONT DECREMENT IF THE PLAYER DIES DURING STARTING DIALOG
 	if game.current_wave > 0 :
@@ -37,7 +37,7 @@ func retry() -> void:
 	unpause_game()
 
 func get_current_game_scene() -> Node:
-	return load(game.scene_file_path).instantiate() 
+	return load(game.scene_file_path).instantiate()
 
 func kill_the_fucking_manual_im_going_to_go_insane() -> void:
 	unpause_game(false)
@@ -72,7 +72,7 @@ func _on_options_clicked() -> void:
 func pause_game(show_menu := true) -> void:
 	if Dialogic.current_timeline: Dialogic.paused = true
 	reset_promise()
-	if show_menu: 
+	if show_menu:
 		pause_menu.show()
 		control.cascade_in()
 	else:
@@ -87,7 +87,7 @@ func unpause_game(unroll_menu := true) -> void:
 	if Dialogic.current_timeline: Dialogic.paused = false
 	blur_drive.unblur()
 	lateral_bars.scroll_out()
-	
+
 	if unroll_menu:
 		control.cascade_out()
 		reset_promise([control.cascade_out_chain_finished, blur_drive.t.finished, lateral_bars.t.finished])
@@ -110,7 +110,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("pause"):
 		if _paused: unpause_game()
 		else: pause_game()
-	
+
 	if Input.is_action_just_pressed("manual"):
 		if not _paused:
 			if not manual.on_screen: pause_game(false)

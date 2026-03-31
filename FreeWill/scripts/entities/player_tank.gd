@@ -101,6 +101,7 @@ func _wire_up_signals() -> void:
 	cool_shit_happened.connect(style_display.cool_shit)
 	lame_shit_happened.connect(style_display.lame_shit)
 	fucking_exploded.connect(game_ui.hide)
+	body_entered.connect(_on_body_entered)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("fire"):
@@ -559,3 +560,9 @@ func start_model_update() -> void:
 func shake(for_time: float = 1.5, shake_amp : float = 1.) -> void:
 	shake_component.shake_amp = shake_amp
 	shake_component.shake(for_time)
+
+
+func _on_body_entered(body: Node) -> void:
+	if (body is BaseEnemy):
+		body.damage(50.0)
+		linear_velocity = body.global_position.direction_to(global_position) * 50.0
