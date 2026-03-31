@@ -44,7 +44,7 @@ func wire_signals()->void:
 	Dialogic.timeline_started.connect(lower_sfx_and_music)
 	Dialogic.timeline_ended.connect(raise_sfx_and_music)
 	Dialogic.signal_event.connect(_on_dialogic_signal)
-	
+
 func _on_dialogic_signal(argument:String)->void:
 	if argument == "no_fade":
 		fadeout_time = 0.001
