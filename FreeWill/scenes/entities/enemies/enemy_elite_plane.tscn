@@ -14,7 +14,7 @@ size = Vector3(710.5298, 265.8328, 615.15735)
 
 [node name="Enemy_elite_plane" type="CharacterBody3D" unique_id=187691756 node_paths=PackedStringArray("lock_on_timer", "missle_spawner", "line_of_sight", "model")]
 collision_layer = 4
-collision_mask = 5
+collision_mask = 3
 script = ExtResource("1_4dp5g")
 can_be_shielded = true
 lock_on_timer = NodePath("lock_on_timer")
