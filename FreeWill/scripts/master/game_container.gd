@@ -17,6 +17,7 @@ func _ready() -> void:
 	_wire_up_signals()
 
 func _wire_up_signals() -> void:
+	Dialogic.signal_event.connect(_summon_manual, CONNECT_ONE_SHOT)
 	manual.get_out.connect(kill_the_fucking_manual_im_going_to_go_insane)
 	EventBus.change_game_container_to.connect(_on_game_container_change_request)
 	control.resume.connect(_on_resume_clicked)
@@ -26,16 +27,15 @@ func _wire_up_signals() -> void:
 func kill_the_fucking_manual_im_going_to_go_insane() -> void:
 	unpause_game(false)
 
+func _summon_manual(argument: String) -> void:
+	if argument == "manual_time":
+		pause_game(false)
+
 func _on_loading_shit_finished() -> void:
 	loading_shit.queue_free()
 	var actual_factual_main_game_intro_sequence := preload("res://scenes/missions/intro_sequence.tscn")\
 		.instantiate() as Intro
 	EventBus.change_game_container_to.emit(actual_factual_main_game_intro_sequence)
-	actual_factual_main_game_intro_sequence.show_manual.connect(
-		func() -> void:
-			await get_tree().create_timer(1).timeout
-			pause_game(false)
-	)
 
 func _on_game_container_change_request(node_to_change_to: Node) -> void:
 	if game: game.queue_free()
