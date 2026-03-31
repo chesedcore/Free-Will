@@ -77,6 +77,7 @@ directories/dtl_directory={
 "mission2_wave4": "res://Dialogic_stuff/timelines/Mission2/mission2_wave4.dtl",
 "mission2_wave7": "res://Dialogic_stuff/timelines/Mission2/mission2_wave7.dtl",
 "shark_warning": "res://Dialogic_stuff/timelines/shark_warning.dtl",
+"shield_enemies": "res://Dialogic_stuff/timelines/Mission1/shield_enemies.dtl",
 "test": "res://Dialogic_stuff/timelines/test.dtl",
 "test_mission_end": "res://Dialogic_stuff/timelines/testmission/test_mission_end.dtl",
 "test_mission_wave1": "res://Dialogic_stuff/timelines/testmission/test_mission_wave1.dtl",

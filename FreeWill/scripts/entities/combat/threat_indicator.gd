@@ -30,6 +30,7 @@ var scale_speed : float = 4
 var parry_indicating : bool = false
 
 func _process(delta: float) -> void:
+	
 	if target_node == null:
 		get_parent().threat_indicators.erase(self)
 		queue_free.call_deferred()

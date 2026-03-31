@@ -60,6 +60,7 @@ metadata/_custom_type_script = "uid://capww07pslxpm"
 
 [sub_resource type="Resource" id="Resource_mctdd"]
 script = ExtResource("2_67xhj")
+spawn_dialog = "shield_enemies"
 waveinfo = Dictionary[int, int]({
 0: 6,
 2: 2,
