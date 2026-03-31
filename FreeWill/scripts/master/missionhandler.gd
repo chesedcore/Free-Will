@@ -280,10 +280,8 @@ func fade_out()->void:
 
 func lower_sfx_and_music()->void :
 	var bus_index : int= AudioServer.get_bus_index("Audio Ducking")
-	var sfx_volume := AudioServer.get_bus_volume_db(bus_index)
-	AudioServer.set_bus_volume_db(bus_index, sfx_volume -AUDIO_DIALOGUE_DIP)
+	AudioServer.set_bus_volume_db(bus_index, -AUDIO_DIALOGUE_DIP)
 
 func raise_sfx_and_music()->void :
 	var bus_index : int= AudioServer.get_bus_index("Audio Ducking")
-	var sfx_volume := AudioServer.get_bus_volume_db(bus_index)
-	AudioServer.set_bus_volume_db(bus_index, sfx_volume + AUDIO_DIALOGUE_DIP)
+	AudioServer.set_bus_volume_db(bus_index, 0.)
