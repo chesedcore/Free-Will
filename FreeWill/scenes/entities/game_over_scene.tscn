@@ -75,7 +75,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_fonts/normal_font = ExtResource("3_y2825")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
-text = "Flight Status: Revoked"
+text = "Status: Fell Off"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -91,7 +91,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_fonts/normal_font = ExtResource("3_y2825")
 theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
-text = "Flight Status: [color=red]Revoked"
+text = "Status: [color=red]Fell Off"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
