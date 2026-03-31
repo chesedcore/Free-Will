@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dktyko4dhwqa6" path="res://assets/tanksunimgcuziamlazy.png" id="1_m1kxf"]
 [ext_resource type="Script" uid="uid://be1tujespbwol" path="res://scripts/ui/main_menu.gd" id="1_x2yvf"]
 [ext_resource type="Shader" uid="uid://doveve2ovrg0t" path="res://shaderslop/stripes.gdshader" id="2_1g8jr"]
+[ext_resource type="PackedScene" uid="uid://qkubs2iruwvt" path="res://scenes/maps/main_menu_background.tscn" id="2_uhagc"]
 [ext_resource type="Script" uid="uid://bu4hq8w0u7f1t" path="res://scripts/ui/menu_button.gd" id="3_1g8jr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fe2o3"]
@@ -34,7 +35,7 @@ shader_parameter/skew = 0.0
 
 [sub_resource type="FontVariation" id="FontVariation_m1kxf"]
 
-[node name="MainMenu" type="Control" unique_id=998454863 node_paths=PackedStringArray("start_button", "options_button", "options_dock", "cascade")]
+[node name="MainMenu" type="Control" unique_id=998454863 node_paths=PackedStringArray("start_button", "options_button", "options_dock", "cascade", "fade_out")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,7 +47,10 @@ start_button = NodePath("Cascade/START_GAME2")
 options_button = NodePath("Cascade/OPTIONS2")
 options_dock = NodePath("OptionsDock")
 cascade = NodePath("Cascade")
+fade_out = NodePath("FadeOut")
 metadata/_edit_lock_ = true
+
+[node name="MainMenuBackground" parent="." unique_id=642517192 instance=ExtResource("2_uhagc")]
 
 [node name="Background" type="TextureRect" parent="." unique_id=1041362767]
 visible = false
@@ -369,3 +373,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="FadeOut" type="ColorRect" parent="." unique_id=1683218858]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

@@ -4,6 +4,7 @@ class_name MainMenu extends Control
 @export var options_button: PauseMenuButton
 @export var options_dock: Control
 @export var cascade: Cascade
+@export var fade_out: ColorRect
 
 signal start_game
 
@@ -15,6 +16,7 @@ func _wire_up_signals() -> void:
 	options_button.clicked.connect(_on_options_button_clicked)
 
 func _on_start_button_clicked() -> void:
+	create_tween().tween_property(fade_out, "modulate", Color.WHITE, 0.5)
 	cascade.cascade_out()
 	cascade.cascade_finished.connect(_on_cascade_finished, CONNECT_ONE_SHOT)
 

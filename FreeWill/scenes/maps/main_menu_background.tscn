@@ -137,12 +137,12 @@ remote_path = NodePath("../../SubViewportContainer/SubViewport/MenuCamera")
 [node name="TankModel" parent="." unique_id=319077804 instance=ExtResource("7_tx482")]
 transform = Transform3D(-0.83619463, 0.10837842, 0.5376175, -0.0871234, 0.9415811, -0.32532233, -0.5414683, -0.31887183, -0.7779029, -753.11, 52.597, -548.437)
 
-[node name="Base" parent="TankModel" index="0" unique_id=1780638612]
+[node name="Base" parent="TankModel" index="0" unique_id=1397067049]
 surface_material_override/0 = ExtResource("8_7obd7")
 surface_material_override/1 = ExtResource("9_6x1cp")
 surface_material_override/2 = ExtResource("10_hnmu4")
 
-[node name="Barrel" parent="TankModel" index="1" unique_id=1313246652]
+[node name="Barrel" parent="TankModel" index="1" unique_id=1225671377]
 surface_material_override/0 = ExtResource("9_6x1cp")
 surface_material_override/1 = ExtResource("8_7obd7")
 surface_material_override/2 = ExtResource("10_hnmu4")
@@ -166,11 +166,13 @@ transform = Transform3D(286.97717, 173.35849, -159.25342, 1.30258395e-05, 251.10
 transform = Transform3D(-280.9775, -178.52798, 164.16489, 0, 251.23927, 273.22067, -242.5332, 206.82674, -190.18692, 2338.6387, -1912.58, -2325.054)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1425986058]
+z_index = -1435
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=2106135982]

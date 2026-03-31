@@ -113,7 +113,7 @@ func spawn_wave()->void:
 							standard_plane = load("res://scenes/entities/enemies/enemy_plane.tscn")
 					for i in range(wave.waveinfo[enemytype]):
 						var new_enemy : EnemyPlane = standard_plane.instantiate()
-						
+
 						var spawnpoint :Node3D = spawnpoints.pick_random()
 						#var pos : Vector3= get_valid_spawn_position(spawnpoint.global_position,PLANESPAWNRADIUS,PLANESPAWNDISTANCE)
 						new_enemy.position = spawnpoint.position

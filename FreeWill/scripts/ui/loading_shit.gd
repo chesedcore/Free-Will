@@ -12,9 +12,9 @@ func _ready() -> void:
 	AerialSmokeParticles.compile_particles(self)
 	StationarySmokeParticles.compile_particles(self)
 	ParryParticles.compile_particles(self)
-	
+
 	await tree.process_frame
 	await tree.process_frame
 	await tree.process_frame
-	
+
 	finished.emit()

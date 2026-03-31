@@ -4,7 +4,7 @@ class_name IFF extends Node2D
 @export var outer: Node2D
 @export var iff_name: Label
 
-@export var dim_color: Color = Color(0.36, 0.36, 0.36, 0.5)
+@export var dim_color: Color = Color(0.75, 0.75, 0.75, 0.392)
 @export var normal_color: Color = Color(1.0, 1.0, 1.0, 1.0)
 
 enum State {
