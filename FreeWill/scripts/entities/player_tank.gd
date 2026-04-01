@@ -572,6 +572,9 @@ func shake(for_time: float = 1.5, shake_amp : float = 1.) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
+	if (body == grappled_target):
+		return
+
 	if (body is BaseEnemy):
 		damage(25.0)
 		body.damage(50.0)
