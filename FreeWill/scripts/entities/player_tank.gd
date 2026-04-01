@@ -132,7 +132,9 @@ func _attempt_railgun_fire() -> void:
 
 	_execute_railgun()
 	UIBus.attempted_railgun.emit(Result.Ok_as_is())
+
 var rail_gun_damage : float = 100
+
 func _execute_railgun() -> void:
 	if (is_firing_railgun):
 		return
@@ -158,6 +160,7 @@ func _execute_railgun() -> void:
 	RailCannonParticles.attach_to(bullet_spawn_position_marker)
 	shake(0.5, 3.)
 	for target in targets_hit:
+		EventBus.whoa_this_happened.emit("hit!")
 		target.damage(rail_gun_damage)
 		target.apply_knockback(global_position.direction_to(target.global_position))
 
@@ -334,7 +337,7 @@ func _end_parry() -> void:
 func _extend_parry_window() -> void:
 	add_child.call_deferred(preload("res://scenes/ui/parry_flash.tscn").instantiate())
 	AudioManager.play_sound(preload("res://audio/sfx/parry.ogg"), 10.0)
-	cool_shit_happened.emit(CoolShit.Shit.PARRY, 100)
+	EventBus.whoa_this_happened.emit("parry!")
 
 	reset_rotation()
 	if parry_window_timer.is_active():
@@ -458,7 +461,7 @@ func _poll_tank_death() -> void:
 
 func parry_the_water() -> void:
 	linear_velocity += Vector3.UP * DASH_FORCE
-	cool_shit_happened.emit(CoolShit.Shit.PARRY_THE_WATER, 130)
+	EventBus.whoa_this_happened.emit("Water parry?!")
 
 #world boundries suck so ill just uh check how far the tank is from origin  hi this is gael btw
 const  BOUNDARY : float = 2500
@@ -494,7 +497,9 @@ func grapple() -> void:
 	grappled_target = IFFTracker.get_lock_this_frame().unwrap_unchecked()
 	if (!grappled_target):
 		return
-
+	
+	EventBus.whoa_this_happened.emit("grappled!")
+	
 	print("GRAPPLED")
 	AudioManager.play_sound(preload("res://audio/sfx/grapple_fire.ogg"))
 

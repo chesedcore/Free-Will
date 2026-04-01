@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dumwjfkfxnopc"]
+
+[ext_resource type="Script" uid="uid://k14g21xircnf" path="res://scripts/ui/cool_shit_label.gd" id="1_ku43p"]
+
+[node name="CoolShit" type="RichTextLabel" unique_id=1894161080]
+offset_right = 129.0
+offset_bottom = 39.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[shake]Parry!"
+fit_content = true
+autowrap_mode = 0
+script = ExtResource("1_ku43p")

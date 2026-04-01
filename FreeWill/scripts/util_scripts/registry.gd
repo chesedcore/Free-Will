@@ -41,3 +41,6 @@ static func create_game_over() -> GameOverScene:
 
 static func create_options_menu() -> OptionsMenu:
 	return preload("res://scenes/ui/options_menu.tscn").instantiate()
+
+static func create_cool_label() -> RichTextLabel:
+	return preload("res://scripts/ui/cool_shit_label.tscn").instantiate()

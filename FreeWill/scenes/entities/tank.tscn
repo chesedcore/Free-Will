@@ -29,7 +29,7 @@
 [ext_resource type="Script" uid="uid://8ckcjgc3u1r0" path="res://scripts/entities/player/game_ui.gd" id="17_uedwi"]
 [ext_resource type="Texture2D" uid="uid://b1aaow6gsi7yb" path="res://assets/ui/health_bar_front.png" id="18_ekcgd"]
 [ext_resource type="Script" uid="uid://cicma3kluvpxo" path="res://scripts/util_scripts/shake.gd" id="19_oqcw2"]
-[ext_resource type="Shader" uid="uid://dewwkri53s35" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
+[ext_resource type="Shader" uid="uid://drd3l3yes5apm" path="res://shaderslop/rope.gdshader" id="21_ekcgd"]
 [ext_resource type="Texture2D" uid="uid://b1aarwwoofr3x" path="res://assets/textures/Reticle-29.png" id="22_hsoq5"]
 [ext_resource type="Texture2D" uid="uid://vwb6m76hhawe" path="res://assets/textures/chain.png" id="24_4sl2t"]
 [ext_resource type="Script" uid="uid://ckjjx6lxlertl" path="res://scripts/ui/style_display.gd" id="25_616kc"]
@@ -448,7 +448,7 @@ game_ui = NodePath("GameUI")
 
 [node name="TankModel" parent="." unique_id=1331045763 instance=ExtResource("2_fn73n")]
 
-[node name="Base" parent="TankModel" index="0" unique_id=1397067049]
+[node name="Base" parent="TankModel" index="0" unique_id=1116037873]
 surface_material_override/0 = ExtResource("5_whocj")
 surface_material_override/1 = ExtResource("4_n6nx7")
 surface_material_override/2 = ExtResource("6_xkrtr")
@@ -460,7 +460,7 @@ lifetime = 0.25
 process_material = ExtResource("7_whocj")
 draw_pass_1 = SubResource("ArrayMesh_6kjl2")
 
-[node name="Barrel" parent="TankModel" index="1" unique_id=1225671377]
+[node name="Barrel" parent="TankModel" index="1" unique_id=273784910]
 surface_material_override/0 = ExtResource("4_n6nx7")
 surface_material_override/1 = ExtResource("5_whocj")
 surface_material_override/2 = ExtResource("6_xkrtr")
@@ -654,9 +654,10 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="GameUI" type="CanvasLayer" parent="." unique_id=839091213 node_paths=PackedStringArray("health_bar")]
+[node name="GameUI" type="CanvasLayer" parent="." unique_id=839091213 node_paths=PackedStringArray("health_bar", "cool_stuff")]
 script = ExtResource("17_uedwi")
 health_bar = NodePath("HealthBar")
+cool_stuff = NodePath("CoolStuff")
 
 [node name="SpeedLines" type="ColorRect" parent="GameUI" unique_id=111747411]
 material = ExtResource("8_rlhxg")
@@ -700,6 +701,20 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("22_hsoq5")
+
+[node name="CoolStuff" type="Control" parent="GameUI" unique_id=2040685421]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 668.0
+offset_top = 203.0
+offset_right = -394.0
+offset_bottom = -197.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
 
 [node name="StyleDisplay" type="Control" parent="GameUI" unique_id=182994859 node_paths=PackedStringArray("test_rank_label", "test_points_label", "style_loss_time_bar")]
 visible = false
