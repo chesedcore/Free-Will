@@ -81,38 +81,34 @@ func rebind_action(new_event: InputEvent, index: int) -> void:
 		awaiting_input.disabled = false
 	awaiting_input = null
 	
-	save_keybinds()
+	save_single_keybind(action_name)
 	update_labels()
 
-func save_keybinds() -> void:
+func save_single_keybind(action: StringName) -> void:
 	var config := ConfigFile.new()
+	config.load(CONFIG_PATH)
 	
-	for action in InputMap.get_actions():
-		if action.begins_with("ui_"):
-			continue
-		
-		var events := InputMap.action_get_events(action)
-		var event_array: Array[Dictionary] = []
-		
-		for event in events:
-			if event is InputEventKey:
-				event_array.append({
-					"type": "key",
-					"keycode": event.physical_keycode
-				})
-			elif event is InputEventMouseButton:
-				event_array.append({
-					"type": "mouse",
-					"button_index": event.button_index
-				})
-			elif event is InputEventJoypadButton:
-				event_array.append({
-					"type": "joypad",
-					"button_index": event.button_index
-				})
-		
-		config.set_value("keybinds", action, event_array)
+	var events := InputMap.action_get_events(action)
+	var event_array: Array[Dictionary] = []
 	
+	for event in events:
+		if event is InputEventKey:
+			event_array.append({
+				"type": "key",
+				"keycode": event.physical_keycode
+			})
+		elif event is InputEventMouseButton:
+			event_array.append({
+				"type": "mouse",
+				"button_index": event.button_index
+			})
+		elif event is InputEventJoypadButton:
+			event_array.append({
+				"type": "joypad",
+				"button_index": event.button_index
+			})
+	
+	config.set_value("keybinds", action, event_array)
 	config.save(CONFIG_PATH)
 
 func load_keybinds() -> void:
