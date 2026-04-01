@@ -10,9 +10,17 @@ const ZERO_POINT_THREE = 0.45
 @onready var original_text := self.text
 var t: Tween
 
+func play_hover_sound() -> void:
+	AudioManager.play_sound(preload("res://audio/ui/hover.ogg"))
+
+func play_click_sound() -> void:
+	AudioManager.play_sound(preload("res://audio/ui/press.ogg"))
+
 func _wire_up_signals() -> void:
 	mouse_entered.connect(highlight_in)
+	mouse_entered.connect(play_hover_sound)
 	mouse_exited.connect(highlight_out)
+	clicked.connect(play_click_sound)
 
 func _ready() -> void:
 	_wire_up_signals()
