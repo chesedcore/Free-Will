@@ -89,12 +89,23 @@ base_font = SubResource("FontVariation_0ejsc")
 [sub_resource type="FontVariation" id="FontVariation_hb1yv"]
 base_font = SubResource("FontVariation_0ejsc")
 
+[sub_resource type="FontVariation" id="FontVariation_dqh3v"]
+base_font = SubResource("FontVariation_0ejsc")
+
+[sub_resource type="FontVariation" id="FontVariation_2046m"]
+base_font = SubResource("FontVariation_0ejsc")
+
+[sub_resource type="FontVariation" id="FontVariation_7sqx0"]
+
+[sub_resource type="FontVariation" id="FontVariation_c8maq"]
+base_font = SubResource("FontVariation_0ejsc")
+
 [sub_resource type="FontVariation" id="FontVariation_ovlcw"]
 
 [sub_resource type="FontVariation" id="FontVariation_gff41"]
 base_font = SubResource("FontVariation_0ejsc")
 
-[node name="OptionsMenu" type="Control" unique_id=299335495 node_paths=PackedStringArray("trash", "sounds", "keybinds", "leave", "cascade_v_2")]
+[node name="OptionsMenu" type="Control" unique_id=299335495 node_paths=PackedStringArray("trash", "sounds", "keybinds", "leave", "callouts", "cascade_v_2", "fullscreen")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -107,7 +118,9 @@ trash = NodePath("trash")
 sounds = NodePath("CascadeV2/OnlyForTheSkew2/Sounds")
 keybinds = NodePath("CascadeV2/OnlyForTheSkew4/Keybinds")
 leave = NodePath("CascadeV2/OnlyForTheSkew6/Leave")
+callouts = NodePath("CascadeV2/OnlyForTheSkew8/Callouts")
 cascade_v_2 = NodePath("CascadeV2")
+fullscreen = NodePath("CascadeV2/OnlyForTheSkew10/Fullscreen")
 metadata/_edit_lock_ = true
 
 [node name="trash" type="Control" parent="." unique_id=1604255328]
@@ -263,6 +276,87 @@ vertical_alignment = 1
 script = ExtResource("2_wj2x4")
 intensifier = 0.4
 undershadow_text = NodePath("../../OnlyForTheSkew3/PauseMenuButton")
+metadata/_custom_type_script = "uid://bu4hq8w0u7f1t"
+
+[node name="OnlyForTheSkew7" type="Node2D" parent="CascadeV2" unique_id=974663670]
+z_index = 1
+skew = -0.34208453
+
+[node name="Callouts2" type="RichTextLabel" parent="CascadeV2/OnlyForTheSkew7" unique_id=1790273592]
+modulate = Color(1, 0.548779, 0.3574912, 1)
+offset_left = 58.9404
+offset_top = 298.2833
+offset_right = 421.65262
+offset_bottom = 365.2833
+theme_override_fonts/normal_font = SubResource("FontVariation_dqh3v")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "disable callouts"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OnlyForTheSkew8" type="Node2D" parent="CascadeV2" unique_id=332230089]
+z_index = 1
+position = Vector2(75, 183)
+skew = -0.34208453
+
+[node name="Callouts" type="RichTextLabel" parent="CascadeV2/OnlyForTheSkew8" unique_id=2046411210 node_paths=PackedStringArray("undershadow_text")]
+offset_left = 53.815933
+offset_top = 100.84311
+offset_right = 416.52814
+offset_bottom = 167.84311
+theme_override_fonts/normal_font = SubResource("FontVariation_2046m")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "disable callouts"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_wj2x4")
+intensifier = 0.4
+undershadow_text = NodePath("../../OnlyForTheSkew7/Callouts2")
+metadata/_custom_type_script = "uid://bu4hq8w0u7f1t"
+metadata/_edit_lock_ = true
+
+[node name="OnlyForTheSkew9" type="Node2D" parent="CascadeV2" unique_id=1664748627]
+z_index = 1
+skew = -0.34208453
+
+[node name="PauseMenuButton" type="RichTextLabel" parent="CascadeV2/OnlyForTheSkew9" unique_id=1187079966]
+modulate = Color(0.3470683, 0.3470683, 0.3470683, 1)
+offset_left = 30.726685
+offset_top = 369.4042
+offset_right = 443.43884
+offset_bottom = 436.4042
+theme_override_fonts/normal_font = SubResource("FontVariation_7sqx0")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "toggle fullscreen"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OnlyForTheSkew10" type="Node2D" parent="CascadeV2" unique_id=1628014465]
+z_index = 1
+position = Vector2(75, 183)
+skew = -0.34208453
+
+[node name="Fullscreen" type="RichTextLabel" parent="CascadeV2/OnlyForTheSkew10" unique_id=213120003 node_paths=PackedStringArray("undershadow_text")]
+offset_left = 45.24614
+offset_top = 170.90253
+offset_right = 422.09485
+offset_bottom = 237.90253
+theme_override_fonts/normal_font = SubResource("FontVariation_c8maq")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "toggle fullscreen"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_wj2x4")
+intensifier = 0.4
+undershadow_text = NodePath("../../OnlyForTheSkew9/PauseMenuButton")
 metadata/_custom_type_script = "uid://bu4hq8w0u7f1t"
 
 [node name="OnlyForTheSkew5" type="Node2D" parent="CascadeV2" unique_id=785611325]

@@ -568,6 +568,7 @@ func stop_model_update() -> void:
 func start_model_update() -> void:
 	_stop_gimbal_update = false
 
+
 func shake(for_time: float = 1.5, shake_amp : float = 1.) -> void:
 	shake_component.shake_amp = shake_amp
 	shake_component.shake(for_time)

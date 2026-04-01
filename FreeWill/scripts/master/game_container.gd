@@ -23,14 +23,7 @@ func _wire_up_signals() -> void:
 	control.resume.connect(_on_resume_clicked)
 	control.options.connect(_on_options_clicked)
 	control.retry.connect(retry)
-	control.toggle_fullscreen.connect(_on_toggle_fullscreen)
 	loading_shit.finished.connect(_on_loading_shit_finished)
-
-func _on_toggle_fullscreen() -> void:
-	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func retry() -> void:
 	var scene := get_current_game_scene()

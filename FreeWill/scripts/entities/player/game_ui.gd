@@ -19,6 +19,7 @@ func health_display_update() -> void:
 	health_bar.max_value = tank.MAX_HEALTH
 
 func _on_shit_happened(string: String) -> void:
+	if not EventBus.callout_enabled: return
 	var label := Registry.create_cool_label()
 	label.text = "[shake]"+string
 	add_cool_label(label)

@@ -64,14 +64,6 @@ base_font = ExtResource("3_m8eaw")
 resource_local_to_scene = true
 base_font = ExtResource("3_m8eaw")
 
-[sub_resource type="FontVariation" id="FontVariation_yuuuf"]
-resource_local_to_scene = true
-base_font = ExtResource("3_m8eaw")
-
-[sub_resource type="FontVariation" id="FontVariation_up733"]
-resource_local_to_scene = true
-base_font = ExtResource("3_m8eaw")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0lrld"]
 shader = ExtResource("4_ftak0")
 shader_parameter/color_gap = Color(0, 0, 0, 0)
@@ -162,7 +154,7 @@ offset_right = 1229.0
 offset_bottom = 648.0
 color = Color(0, 0, 0, 1)
 
-[node name="Cascade" type="Control" parent="PauseMenu" unique_id=2113227010 node_paths=PackedStringArray("resume_button", "options_button", "retry_button", "toggle_button")]
+[node name="Cascade" type="Control" parent="PauseMenu" unique_id=2113227010 node_paths=PackedStringArray("resume_button", "options_button", "retry_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -174,7 +166,6 @@ script = ExtResource("3_ftak0")
 resume_button = NodePath("RESUME2")
 options_button = NodePath("OPTIONS2")
 retry_button = NodePath("RETRY_STAGE2")
-toggle_button = NodePath("TOGGLE2")
 start_on_ready = false
 stagger = 0.05
 metadata/_edit_lock_ = true
@@ -353,48 +344,6 @@ script = ExtResource("6_ftak0")
 undershadow_text = NodePath("../RETRY_STAGE")
 corresponding_marquee = NodePath("../../MarqueeContainer/ToMenu")
 
-[node name="TOGGLE" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=1272573454]
-modulate = Color(0.961202, 0.36556464, 0.7977378, 1)
-z_index = 1
-layout_mode = 0
-offset_left = 1.7924194
-offset_top = 459.0
-offset_right = 1151.2078
-offset_bottom = 532.0
-rotation = -0.061099287
-pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_fonts/normal_font = SubResource("FontVariation_yuuuf")
-theme_override_font_sizes/normal_font_size = 60
-bbcode_enabled = true
-text = "TOGGLE FULLSCREEN"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TOGGLE2" type="RichTextLabel" parent="PauseMenu/Cascade" unique_id=91031305 node_paths=PackedStringArray("undershadow_text", "corresponding_marquee")]
-z_index = 1
-layout_mode = 0
-offset_left = -31.904251
-offset_top = 456.0125
-offset_right = 1199.5518
-offset_bottom = 529.0126
-rotation = -0.061099287
-pivot_offset_ratio = Vector2(0.5, 0.5)
-theme_override_fonts/normal_font = SubResource("FontVariation_up733")
-theme_override_font_sizes/normal_font_size = 60
-bbcode_enabled = true
-text = "TOGGLE FULLSCREEN"
-fit_content = true
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("6_ftak0")
-intensifier = 0.5
-undershadow_text = NodePath("../TOGGLE")
-corresponding_marquee = NodePath("../../MarqueeContainer/Toggle")
-metadata/_edit_lock_ = true
-
 [node name="MarqueeContainer" type="Control" parent="PauseMenu" unique_id=924971221 node_paths=PackedStringArray("marquees")]
 visible = false
 layout_mode = 3
@@ -468,29 +417,6 @@ script = ExtResource("8_6dj5d")
 metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="ColorRect" parent="PauseMenu/MarqueeContainer/ToMenu" unique_id=116802829]
-layout_mode = 0
-offset_left = 2.4234133
-offset_top = 10.140594
-offset_right = 1280.9214
-offset_bottom = 67.46196
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-metadata/_edit_lock_ = true
-
-[node name="Toggle" type="ColorRect" parent="PauseMenu/MarqueeContainer" unique_id=930588419]
-material = SubResource("ShaderMaterial_srbcc")
-layout_mode = 0
-offset_left = -68.0
-offset_top = 453.00003
-offset_right = 1208.3027
-offset_bottom = 527.41455
-rotation = -0.061086524
-pivot_offset_ratio = Vector2(0.5, 0.5)
-mouse_filter = 2
-script = ExtResource("8_6dj5d")
-metadata/_edit_lock_ = true
-
-[node name="ColorRect" type="ColorRect" parent="PauseMenu/MarqueeContainer/Toggle" unique_id=1418174794]
 layout_mode = 0
 offset_left = 2.4234133
 offset_top = 10.140594
