@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://bsveie7a0jpj4"]
+
+[ext_resource type="Texture2D" uid="uid://et0lbdvxfx8r" path="res://assets/textures/gear.png" id="1_h3c21"]
+[ext_resource type="Texture2D" uid="uid://y0cc76tjy4em" path="res://assets/textures/pillarlong.png" id="2_0wsko"]
+[ext_resource type="Texture2D" uid="uid://b3trxnwj0dchl" path="res://assets/textures/tank.png" id="3_kl38i"]
+[ext_resource type="Shader" uid="uid://cgvoo24srn2kn" path="res://shaderslop/vignette.gdshader" id="4_e3qo7"]
+[ext_resource type="Texture2D" uid="uid://rh51uf6qw83n" path="res://assets/textures/tankicon.png" id="5_0wsko"]
+[ext_resource type="Shader" uid="uid://dyfhwjmfbwar5" path="res://itch_page/dash2d.gdshader" id="6_kl38i"]
+
+[sub_resource type="Gradient" id="Gradient_50qib"]
+colors = PackedColorArray(0.7533, 0.83281505, 0.93, 1, 0.004449014, 0.37736765, 0.73668087, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nvh8e"]
+gradient = SubResource("Gradient_50qib")
+width = 16
+height = 16
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pckbq"]
+shader = ExtResource("4_e3qo7")
+shader_parameter/vignette_intensity = 0.5
+shader_parameter/vignette_opacity = 0.5
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50qib"]
+shader = ExtResource("6_kl38i")
+shader_parameter/color = Color(0, 0.75686276, 1, 0.4627451)
+shader_parameter/shift_amount = 75.0
+shader_parameter/value = 0.57999998703584
+
+[node name="Control" type="Control" unique_id=1163378637]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1055037049]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_nvh8e")
+
+[node name="Gear2" type="Sprite2D" parent="." unique_id=1048163045]
+visible = false
+position = Vector2(192, 3.000002)
+rotation = -1.9233528
+scale = Vector2(4.515, 4.515)
+texture = ExtResource("1_h3c21")
+
+[node name="Gear" type="Sprite2D" parent="." unique_id=791189199]
+visible = false
+position = Vector2(92, 209)
+rotation = 4.0735984
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("1_h3c21")
+
+[node name="Vignette" type="ColorRect" parent="." unique_id=1979455707]
+material = SubResource("ShaderMaterial_pckbq")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=652283359]
+visible = false
+position = Vector2(22, 141)
+rotation = 0.10271362
+scale = Vector2(2.22, 2.22)
+texture = ExtResource("2_0wsko")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=1219654347]
+visible = false
+position = Vector2(155, 133)
+rotation = -0.5235988
+scale = Vector2(2.22, 2.22)
+texture = ExtResource("2_0wsko")
+
+[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=1796095647]
+visible = false
+material = SubResource("ShaderMaterial_50qib")
+position = Vector2(78, 103.00001)
+rotation = -0.47280765
+scale = Vector2(5, 5)
+texture = ExtResource("5_0wsko")
+flip_h = true
+
+[node name="Sprite2D7" type="Sprite2D" parent="." unique_id=235782471]
+material = SubResource("ShaderMaterial_50qib")
+position = Vector2(41, 105)
+rotation = -0.47280765
+scale = Vector2(5, 5)
+texture = ExtResource("3_kl38i")
+flip_h = true
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=926036506]
+material = SubResource("ShaderMaterial_50qib")
+position = Vector2(69.00001, 102.999985)
+rotation = -0.47280765
+scale = Vector2(5, 5)
+texture = ExtResource("3_kl38i")
+flip_h = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=229701764]
+position = Vector2(103, 107)
+rotation = -0.47280762
+scale = Vector2(5, 5)
+texture = ExtResource("5_0wsko")
+flip_h = true
