@@ -13,7 +13,7 @@ config_version=5
 config/name="Free Will"
 run/main_scene="uid://buyvrdryjb10r"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://iw3uxjc3ogw2"
 
 [audio]
 
@@ -133,6 +133,7 @@ text/autoadvance_per_word_delay=0.01
 
 [display]
 
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [dotnet]

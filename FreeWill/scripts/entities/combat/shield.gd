@@ -1,4 +1,4 @@
-extends Area3D
+class_name Shield extends Area3D
 
 
 func _on_body_entered(body: Node3D) -> void:

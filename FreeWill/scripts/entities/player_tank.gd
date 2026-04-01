@@ -580,7 +580,10 @@ func _on_body_entered(body: Node) -> void:
 	if (body == grappled_target):
 		return
 
+	if (body is Shield):
+		linear_velocity = body.global_position.direction_to(global_position) * 250.0
+
 	if (body is BaseEnemy):
-		damage(25.0)
+		#damage(20)
 		body.damage(50.0)
-		linear_velocity = body.global_position.direction_to(global_position) * 50.0
+		linear_velocity = body.global_position.direction_to(global_position) * 250.0
