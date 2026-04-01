@@ -581,6 +581,6 @@ func _on_body_entered(body: Node) -> void:
 		return
 
 	if (body is BaseEnemy):
-		damage(25.0)
+		damage(20)
 		body.damage(50.0)
 		linear_velocity = body.global_position.direction_to(global_position) * 50.0
