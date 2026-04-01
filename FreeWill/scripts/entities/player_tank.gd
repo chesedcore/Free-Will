@@ -262,7 +262,9 @@ func _execute_dash() -> void:
 
 	var input_dir: Vector2 = Input.get_vector("left", "right", "up", "down")
 	if input_dir.is_zero_approx(): input_dir = Vector2.UP
+
 	var move_dir: Vector3 = Vector3(-input_dir.x, 0.0, -input_dir.y).rotated(Vector3.UP, camera_gimbal.rotation.y)
+
 	var dash_direction := move_dir
 	linear_velocity += dash_direction * DASH_FORCE
 
@@ -575,6 +577,9 @@ func shake(for_time: float = 1.5, shake_amp : float = 1.) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
+	if (body == grappled_target):
+		return
+
 	if (body is BaseEnemy):
 		damage(25.0)
 		body.damage(50.0)
