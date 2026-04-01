@@ -35,6 +35,8 @@ const BOMBERSPAWNHEIGHT : float = 2750
 
 var tank : PlayerTank
 
+var lost_mission := false
+
 #wave count starts from 0 remember to increment in display
 var current_wave: int = 0
 var enemy_count: int = 0
@@ -75,6 +77,7 @@ func _on_tank_fucking_exploded() -> void:
 	game_over_scene.current_scene = get_scene_file_path()
 	#this actually advances a wave upon death so gotta decrement by 1 BUT DONT DECREMENT IF THE PLAYER DIES DURING STARTING DIALOG
 	game_over_scene.current_wave_idx = current_wave
+	lost_mission = true
 	if current_wave > 0 :
 
 		game_over_scene.current_wave_idx -= 1
